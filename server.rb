@@ -17,14 +17,14 @@ get '/' do
     :page_description   => "desc",
     :content_for_header => "",
     :content_for_layout => content,
-    :cart => OpenStruct.new({
-      :item_count => 8,
-    }),
-    :cart2 => {
-      :item_count => 9,
-    },
-    :'cart.item_count' => 10,
-    :cart_item_count => 11,
+    # :cart => OpenStruct.new({
+    #   :item_count => 8,
+    # }),
+    # :cart2 => {
+    #   :item_count => 9,
+    # },
+    # :'cart.item_count' => 10,
+    # :cart_item_count => 11,
   }
 end
 

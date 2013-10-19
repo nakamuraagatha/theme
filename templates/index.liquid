@@ -1,0 +1,157 @@
+<div id="teaser" class="row">
+  <div id="teaser-left" class="col-md-9">
+    <div id="carousel-example-generic" class="carousel slide" data-interval="2000">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src='/assets/main_01.png' class="img-responsive">
+          <div class="carousel-caption">
+            <h3>BLBALBLA</h3>
+            <p>ah ok mehr hier</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src='/assets/main_02.png' class="img-responsive">
+          <div class="carousel-caption">
+            <h3>Autsch</h3>
+            <p>ah ok mehr hier</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src='/assets/main_03.png' class="img-responsive">
+          <div class="carousel-caption">
+            <h3>läuft</h3>
+            <p>ah ok mehr hier</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="icon-prev"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="icon-next"></span>
+      </a>
+    </div>
+  </div>
+
+  <div id="teaser-right" class="col-md-3 pull-right">
+    <ul class="reset">
+      <li>
+        <a href="">
+          <img src="/assets/product_border.png" alt="" class="product-border img-responsive" style="background-image:url('/assets/product.png');">
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <img src="/assets/product_border.png" alt="" class="product-border img-responsive" style="background-image:url('/assets/product.png');">
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <img src="/assets/product_border.png" alt="" class="product-border img-responsive" style="background-image:url('/assets/product.png');">
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1>Welcome</h1>
+    <p>
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    </p>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <hr class="dots">
+  </div>
+</div>
+
+<div id="more" class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h3>Newsest Gear</h3>
+    <ul id="list" class="reset">
+      <li>
+       <a href="#">
+          <img src="/assets/product.png" class="img-responsive">
+        </a>
+        <div>
+          <h5>Titelt Titelt Titelt Titelt</h5>
+          <a href=""> >> more</a>
+          <a href="" class="price">999 EUR</a>
+        </div>
+      </li>
+      <li>
+       <a href="#">
+          <img src="/assets/product.png" class="img-responsive">
+        </a>
+        <div>
+          <h5>Titelt Titelt Titelt Titelt</h5>
+          >> more
+        </div>
+      </li>
+      <li>
+       <a href="#">
+          <img src="/assets/product.png" class="img-responsive">
+        </a>
+        <div>
+          <h5>Titelt Titelt Titelt Titelt</h5>
+          >> more
+        </div>
+      </li>
+      <li>
+       <a href="#">
+          <img src="/assets/product.png" class="img-responsive">
+        </a>
+        <div>
+          <h5>Titelt Titelt Titelt Titelt</h5>
+          >> more
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-1 right"><div></div></div>
+</div>
+
+<div id="blog" class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h3>Latest News</h3>
+    <ul class="media-list">
+      <li class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="" alt="">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">{{ article.title | link_to: article.url }}</h4>
+          <p>asd ads lkjasd aslkjasd as;dhjla sdljhasd kjahsdiugasd alhjkasd lashukhas l</p>
+        </div>
+      </li>
+
+      {% assign article = blogs['news'].articles.first %}
+      <li class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="" alt="">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">{{ article.title | link_to: article.url }}</h4>
+          <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
+        </div>
+      </li>
+    </ul>
+
+    <a href="/blogs/news">mehr...</a>
+  </div>
+</div>
