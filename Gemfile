@@ -1,4 +1,10 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem "shopify_theme"
+gem 'liquid'
+gem 'therubyracer'
+gem 'less'
+gem 'sinatra'
+gem 'sinatra-contrib'
+
+gem 'shopify_theme'

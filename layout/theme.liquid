@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if template == "404" %}Page not found{% elsif template == 'index' %}{{ shop.name }}{% else %}{{ page_title }} - {{ shop.name }}{% endif %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if page_description %}
+    <meta name="description" content="{{ page_description }}">
+    {% endif %}
+    <meta name="author" content="{{ settings.meta_author }}">
+
+    <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!-- {{ 'css/bootstrap.min.css' | asset_url | stylesheet_tag }} -->
+    <link href="assets/css/style.css" rel="stylesheet" media="screen">
+    <!-- {{ 'css/style.css' | asset_url | stylesheet_tag }} -->
+
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+      {{ 'js/html5shiv.js' | asset_url | script_tag }}
+      {{ 'js/respond.min.js' | asset_url | script_tag }}
+    <![endif]-->
+
+    <!-- {% include 'fb-open-graph-tags' %} -->
+
+    <!-- content_for_header start -->
+    {{ content_for_header }}
+    <!-- content_for_header end -->
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
+          <nav>
+            <ul id="utilityNav" class="nav nav-pills">
+              <li><a id="homeIcon" href="/">Home</a></li>
+              <li><a href="/collections/all">Shop</a></li>
+              <li><a href="/pages/about-playmaker">About Playmaker</a></li>
+              <li><a href="/pages/contact">Kontakt</a></li>
+
+              <li><a href="/account/login" id="customer_login_link">Login</a></li>
+              <li><a href="/account/register" id="customer_register_link">Anmelden</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-3">
+          <nav>
+            <ul id="utilityNav" class="nav nav-pills">
+              {% if cart.item_count != 0 %}
+              <li><a href="/cart" title="Checkout">Checkout</a></li>
+              {% endif %}
+              <li><a href="/cart">Warenkorb ({{ cart.item_count }})</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- {{ 'jquery-1.10.2.min.js' | asset_url | script_tag }} -->
+    <!-- {{ 'bootstrap.min.js' | asset_url | script_tag }} -->
+    <script src="assets/js/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+  </body>
+</html>
