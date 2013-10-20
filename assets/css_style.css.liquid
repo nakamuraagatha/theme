@@ -44,16 +44,27 @@ a:hover {
   margin: 2px 0px;
   padding: 1px 10px;
 }
-#menu #main-nav.nav-pills a:hover {
-  color: red;
-}
 #menu #main-nav.nav-pills a.button {
   margin-top: 35px;
   padding-top: 65px;
   text-align: center;
-  background-image: url('{{'button.png' | asset_url}}');
+  background-image: url('{{'button_sprite.png' | asset_url}}');
+  background-position: 85px 0px;
   width: 85px;
   height: 85px;
+}
+#menu #main-nav.nav-pills a.button:hover {
+  color: red;
+  background-position: 0px 0px;
+}
+#menu #main-nav.nav-pills #nav-helmet .button:hover {
+  background-position: 0px 0px;
+}
+#menu #main-nav.nav-pills #nav-hands .button {
+  background-position: 85px 85px;
+}
+#menu #main-nav.nav-pills #nav-hands .button:hover {
+  background-position: 0px 85px;
 }
 #menu #main-nav.nav-pills #nav-logo a:hover {
   background: transparent;
@@ -66,7 +77,7 @@ a:hover {
   height: 230px;
 }
 #menu {
-  background-image: url('{{'menu.png' | asset_url}}');
+  background-image: url('{{'bg_menu.png' | asset_url}}');
   background-repeat: repeat-x;
   background-position: 0 30px;
   height: 160px;
@@ -137,15 +148,19 @@ hr {
   color: #fff;
 }
 #blog {
-  background: url('{{'bg_blog_left.png' | asset_url}}') top left repeat-y, url('{{'bg_blog_right.png' | asset_url}}') top right repeat-y, url('{{'bg_blog.png' | asset_url}}');
+  background: url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y, url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y, url('{{'bg_blog.png' | asset_url}}');
 }
 #footer {
-  background-image: url('{{'bg_footer.png' | asset_url}}');
+  background: url('{{'footer_deco2.png' | asset_url}}') top right no-repeat, url('{{'bg_footer.png' | asset_url}}');
+  background-position: right 40px, left top;
   height: 250px;
   padding-top: 40px;
 }
 #footer #footer-list > li {
+  background: url('{{'footer_deco.png' | asset_url}}') no-repeat;
+  background-position: left 20px;
   float: left;
+  padding-left: 30px;
   margin-right: 80px;
 }
 #footer p {

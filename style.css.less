@@ -56,17 +56,33 @@ a {
       margin: 2px 0px;
       padding: 1px 10px;
 
-      &:hover {
-        color: red;
-      }
-
       &.button {
         margin-top: 35px;
         padding-top: 65px;
         text-align: center;
-        background-image: url('button.png');
+        background-image: url('button_sprite.png');
+        background-position: 85px 0px;
         width: 85px;
         height: 85px;
+
+        &:hover {
+          color: red;
+          background-position: 0px 0px;
+        }
+      }
+    }
+
+    #nav-helmet .button {
+      &:hover {
+        background-position: 0px 0px;
+      }
+    }
+
+    #nav-hands .button {
+      background-position: 85px 85px;
+
+      &:hover {
+        background-position: 0px 85px;
       }
     }
 
@@ -86,7 +102,7 @@ a {
 }
 
 #menu {
-  background-image: url('menu.png');
+  background-image: url('bg_menu.png');
   background-repeat: repeat-x;
   background-position: 0 30px;
   // background-color: #123455;
@@ -175,16 +191,20 @@ hr {
 }
 
 #blog {
-  background: url('bg_blog_left.png') top left repeat-y, url('bg_blog_right.png') top right repeat-y, url('bg_blog.png');
+  background: url('bg_blog_border.png') top left repeat-y, url('bg_blog_border.png') top right repeat-y, url('bg_blog.png');
 }
 
 #footer {
-  background-image: url('bg_footer.png');
+  background: url('footer_deco2.png') top right no-repeat, url('bg_footer.png');
+  background-position: right 40px, left top;
   height: 250px;
   padding-top: 40px;
 
   #footer-list > li {
+    background: url('footer_deco.png') no-repeat;
+    background-position: left 20px;
     float:left;
+    padding-left: 30px;
     margin-right: 80px;
   }
 
