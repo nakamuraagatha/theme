@@ -28,6 +28,30 @@ get '/' do
   }
 end
 
-get '/assets/css/style.css' do
-  less :'../assets/css/style.css'
+module TextFilter
+  def asset_url(input)
+    "/assets/#{input}"
+  end
+
+  def stylesheet_tag(input)
+    %Q{<link href="#{input}" rel="stylesheet" media="screen">}
+  end
+
+  def script_tag(input)
+    %Q{<script src="#{input}"></script>}
+  end
+end
+
+Liquid::Template.register_filter(TextFilter)
+
+def style_css
+  style = less(:'../style.css')
+  style.gsub(/url\(([^)]+)\)/, %q{url('{{\1 | asset_url}}')}).tap do |content|
+    File.open('assets/css_style.css.liquid', 'w') { |file| file.write(content) }
+  end
+end
+
+get '/assets/css_style.css' do
+  content_type :css
+  Liquid::Template.parse(style_css).render()
 end

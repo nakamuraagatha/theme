@@ -12,23 +12,17 @@
     <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
     <link rel="canonical" href="{{ canonical_url }}">
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <!-- {{ 'css/bootstrap.min.css' | asset_url | stylesheet_tag }} -->
-    <link href="assets/css/style.css" rel="stylesheet" media="screen">
-    <!-- {{ 'css/style.css' | asset_url | stylesheet_tag }} -->
-
     <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-      <script src="assets/js/respond.min.js"></script>
-      {{ 'js/html5shiv.js' | asset_url | script_tag }}
-      {{ 'js/respond.min.js' | asset_url | script_tag }}
+      {{ 'js_html5shiv.js' | asset_url | script_tag }}
+      {{ 'js_respond.min.js' | asset_url | script_tag }}
     <![endif]-->
-
-    <!-- {% include 'fb-open-graph-tags' %} -->
 
     <!-- content_for_header start -->
     {{ content_for_header }}
     <!-- content_for_header end -->
+
+    {{ 'css_bootstrap.min.css' | asset_url | stylesheet_tag }}
+    {{ 'css_style.css' | asset_url | stylesheet_tag }}
   </head>
   <body>
 
@@ -38,7 +32,7 @@
           <div class="col-md-10 col-md-offset-1">
             <nav>
               <ul id="main-nav" class="nav nav-pills">
-                <li id="nav-logo"><a href="/"><img src="/assets/logo.png"></a></li>
+                <li id="nav-logo"><a href="/"><img src="{{'logo.png' | asset_url}}"></a></li>
                 <li id="nav-helmet"><a class="button" href="/collections/helmets">Helmet</a></li>
                 <li id="nav-hands"><a class="button" href="/collections/hands">Hands</a></li>
                 <li id="nav-pads"><a class="button" href="/collections/pads">Pads</a></li>
@@ -121,19 +115,13 @@
       </div>
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- {{ 'jquery-1.10.2.min.js' | asset_url | script_tag }} -->
-    <!-- {{ 'bootstrap.min.js' | asset_url | script_tag }} -->
-    <script src="assets/js/jquery-1.10.2.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
+    {{ '//code.jquery.com/jquery-1.10.2.min.js' | script_tag }}
+    {{ 'js_bootstrap.min.js' | asset_url | script_tag }}
     <script type="text/javascript">
       $(document).ready(function() {
         $('#teaser .carousel').carousel().on('slide.bs.carousel', function() {
-
         });
       });
     </script>
-
-    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
   </body>
 </html>

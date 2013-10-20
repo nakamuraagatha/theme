@@ -11,21 +11,21 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
         <div class="item active">
-          <img src='/assets/main_01.png' class="img-responsive">
+          <img src="{{'main_01.png' | asset_url}}" class="img-responsive">
           <div class="carousel-caption">
             <h3>BLBALBLA</h3>
             <p>ah ok mehr hier</p>
           </div>
         </div>
         <div class="item">
-          <img src='/assets/main_02.png' class="img-responsive">
+          <img src="{{'main_02.png' | asset_url}}" class="img-responsive">
           <div class="carousel-caption">
             <h3>Autsch</h3>
             <p>ah ok mehr hier</p>
           </div>
         </div>
         <div class="item">
-          <img src='/assets/main_03.png' class="img-responsive">
+          <img src="{{'main_03.png' | asset_url}}" class="img-responsive">
           <div class="carousel-caption">
             <h3>läuft</h3>
             <p>ah ok mehr hier</p>
@@ -47,17 +47,17 @@
     <ul class="reset">
       <li>
         <a href="">
-          <img src="/assets/product_border.png" alt="" class="product-border img-responsive" style="background-image:url('/assets/product.png');">
+          <img src="{{'product_border.png' | asset_url}}" alt="" class="product-border img-responsive" style="background-image:url('{{'product.png' | asset_url}}');">
         </a>
       </li>
       <li>
         <a href="">
-          <img src="/assets/product_border.png" alt="" class="product-border img-responsive" style="background-image:url('/assets/product.png');">
+          <img src="{{'product_border.png' | asset_url}}" alt="" class="product-border img-responsive" style="background-image:url('{{'product.png' | asset_url}}');">
         </a>
       </li>
       <li>
         <a href="">
-          <img src="/assets/product_border.png" alt="" class="product-border img-responsive" style="background-image:url('/assets/product.png');">
+          <img src="{{'product_border.png' | asset_url}}" alt="" class="product-border img-responsive" style="background-image:url('{{'product.png' | asset_url}}');">
         </a>
       </li>
     </ul>
@@ -83,44 +83,22 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 <div id="more" class="row">
   <div class="col-md-10 col-md-offset-1">
     <h3>Newsest Gear</h3>
-    <ul id="list" class="reset">
+    <ul id="more-list" class="reset">
+      {% for product in collections.frontpage.all_products %}
       <li>
-       <a href="#">
-          <img src="/assets/product.png" class="img-responsive">
-        </a>
-        <div>
-          <h5>Titelt Titelt Titelt Titelt</h5>
-          <a href=""> >> more</a>
-          <a href="" class="price">999 EUR</a>
+        <div class="more-head">
+          <a href="{{ shop.url }}{{ product.url }}">
+            <img src="{{ product.featured_image | product_img_url: 'small' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
+        </div>
+        <div class="more-body">
+          <h5>{{ product.title }}</h5>
+          <a href="{{ shop.url }}{{ product.url }}"> >> more</a>
+          <a href="{{ shop.url }}{{ product.url }}" class="price">{{ product.price | money }}</a>
         </div>
       </li>
-      <li>
-       <a href="#">
-          <img src="/assets/product.png" class="img-responsive">
-        </a>
-        <div>
-          <h5>Titelt Titelt Titelt Titelt</h5>
-          >> more
-        </div>
-      </li>
-      <li>
-       <a href="#">
-          <img src="/assets/product.png" class="img-responsive">
-        </a>
-        <div>
-          <h5>Titelt Titelt Titelt Titelt</h5>
-          >> more
-        </div>
-      </li>
-      <li>
-       <a href="#">
-          <img src="/assets/product.png" class="img-responsive">
-        </a>
-        <div>
-          <h5>Titelt Titelt Titelt Titelt</h5>
-          >> more
-        </div>
-      </li>
+      {% endfor %}
+
     </ul>
   </div>
   <div class="col-md-1 right"><div></div></div>
@@ -130,17 +108,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
   <div class="col-md-10 col-md-offset-1">
     <h3>Latest News</h3>
     <ul class="media-list">
-      <li class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" src="" alt="">
-        </a>
-        <div class="media-body">
-          <h4 class="media-heading">{{ article.title | link_to: article.url }}</h4>
-          <p>asd ads lkjasd aslkjasd as;dhjla sdljhasd kjahsdiugasd alhjkasd lashukhas l</p>
-        </div>
-      </li>
-
-      {% assign article = blogs['news'].articles.first %}
+      {% assign article = blogs.news.articles.first %}
       <li class="media">
         <a class="pull-left" href="#">
           <img class="media-object" src="" alt="">

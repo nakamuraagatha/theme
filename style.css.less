@@ -1,6 +1,6 @@
 
 body {
-  background-image: url('/assets/background.png');
+  background-image: url('background.png');
   color: #000;
 }
 
@@ -25,7 +25,7 @@ a {
 /*------------------------------- */
 
 #main {
-  background-image: url('/assets/bg_content.png');
+  background-image: url('bg_content.png');
   box-shadow: 0px 0px 10px #000000;
 }
 
@@ -64,7 +64,7 @@ a {
         margin-top: 35px;
         padding-top: 65px;
         text-align: center;
-        background-image: url('/assets/button.png');
+        background-image: url('button.png');
         width: 85px;
         height: 85px;
       }
@@ -81,12 +81,12 @@ a {
 }
 
 #header {
- background-image: url('/assets/bg_header.png');
+ background-image: url('bg_header.png');
  height: 230px;
 }
 
 #menu {
-  background-image: url('/assets/menu.png');
+  background-image: url('menu.png');
   background-repeat: repeat-x;
   background-position: 0 30px;
   // background-color: #123455;
@@ -115,59 +115,71 @@ a {
 }
 
 hr {
- background-image: url('/assets/hr.png');
+ background-image: url('hr.png');
  height: 40px;
  border: 0;
 }
 
 #more {
-  background: url('/assets/bg_more_left.png') top left no-repeat, url('/assets/bg_more.png') top left repeat-x;
+  background: url('bg_more_left.png') top left no-repeat, url('bg_more.png') top left repeat-x;
   background-position: 0 60px;
   overflow-x: visible;
   height: 300px;
   margin-left: -30px;
 
   .right div {
-    background: url('/assets/bg_more_right.png') right 60px no-repeat;
+    background: url('bg_more_right.png') right 60px no-repeat;
     margin-left: 30px;
     height: 300px;
     width: 100%;
   }
 
-  #list {
-    > li {
+  #more-list {
+    width: 100%;
+    li {
       float:left;
       margin-top: 15px;
-      margin-right: 10px;
+      width: 20%;
+      padding-left: 10px;
+      padding-right: 10px;
     }
 
-    img {
-      max-height:125px;
+    .more-head {
+      background: #fff;
+      width: 100%;
+      text-align: center;
       margin-bottom: 20px;
+      img {
+        height: 125px;
+      }
     }
 
-    h5 {
-      color: #fff;
-    }
+    .more-body {
+      width: 100%;
 
-    a {
-      float: left;
-      color: #000;
-
-      &.price {
-        float: right;
+      h5 {
         color: #fff;
+      }
+
+      a {
+        float: left;
+        color: #000;
+
+        &.price {
+          float: right;
+          color: #fff;
+        }
       }
     }
   }
 }
 
 #blog {
-  background: url('/assets/bg_blog_left.png') top left repeat-y, url('/assets/bg_blog_right.png') top right repeat-y, url('/assets/bg_blog.png');
+  background: url('bg_blog_left.png') top left repeat-y, url('bg_blog_right.png') top right repeat-y, url('bg_blog.png');
 }
 
 #footer {
-  background-image: url('/assets/bg_footer.png');
+  background-image: url('bg_footer.png');
   height: 250px;
   padding-top: 40px;
 
