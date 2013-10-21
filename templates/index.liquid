@@ -10,25 +10,31 @@
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
+        {% assign collection = collections['frontpage-hands'] %}
         <div class="item active">
-          <img src="{{'main_01.png' | asset_url}}" class="img-responsive">
+          <a href="{{ collection.url }}">
+            <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
+          </a>
           <div class="carousel-caption">
-            <h3>BLBALBLA</h3>
-            <p>ah ok mehr hier</p>
+            {{collection.description}}
           </div>
         </div>
+        {% assign collection = collections['frontpage-helmets'] %}
         <div class="item">
-          <img src="{{'main_02.png' | asset_url}}" class="img-responsive">
+          <a href="{{ collection.url }}">
+            <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
+          </a>
           <div class="carousel-caption">
-            <h3>Autsch</h3>
-            <p>ah ok mehr hier</p>
+            {{collection.description}}
           </div>
         </div>
+        {% assign collection = collections['frontpage-boots'] %}
         <div class="item">
-          <img src="{{'main_03.png' | asset_url}}" class="img-responsive">
+          <a href="{{ collection.url }}">
+            <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
+          </a>
           <div class="carousel-caption">
-            <h3>läuft</h3>
-            <p>ah ok mehr hier</p>
+            {{collection.description}}
           </div>
         </div>
       </div>
@@ -44,22 +50,14 @@
   </div>
 
   <div id="teaser-right" class="col-md-3 pull-right">
-    <ul class="reset">
+    <ul id="frontpage-hands" class="reset">
+      {% for product in collections['frontpage-hands'].all_products %}
       <li>
-        <a href="">
-          <img src="{{'product_border.png' | asset_url}}" alt="" class="product-border img-responsive" style="background-image:url('{{'product.png' | asset_url}}');">
+        <a href="{{ shop.url }}{{ product.url }}">
+          <img src="{{'product_border.png' | asset_url}}" alt="" class="product-border img-responsive" style="background-image:url('{{product.featured_image | product_img_url: 'small'}}');">
         </a>
       </li>
-      <li>
-        <a href="">
-          <img src="{{'product_border.png' | asset_url}}" alt="" class="product-border img-responsive" style="background-image:url('{{'product.png' | asset_url}}');">
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <img src="{{'product_border.png' | asset_url}}" alt="" class="product-border img-responsive" style="background-image:url('{{'product.png' | asset_url}}');">
-        </a>
-      </li>
+      {% endfor %}
     </ul>
   </div>
 </div>
@@ -84,7 +82,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
   <div class="col-md-10 col-md-offset-1">
     <h3>Newsest Gear</h3>
     <ul id="more-list" class="reset">
-      {% for product in collections.frontpage.all_products %}
+      {% for product in collections['frontpage'].all_products %}
       <li>
         <div class="more-head">
           <a href="{{ shop.url }}{{ product.url }}">
@@ -108,7 +106,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
   <div class="col-md-10 col-md-offset-1">
     <h3>Latest News</h3>
     <ul class="media-list">
-      {% assign article = blogs.news.articles.first %}
+      {% assign article = blogs['news'].articles.first %}
       <li class="media">
         <a class="pull-left" href="#">
           <img class="media-object" src="" alt="">
