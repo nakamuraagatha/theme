@@ -3,7 +3,11 @@ body {
   color: #000;
 }
 .product-border {
-  background-size: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  background-clip: content-box;
+  background-color: #FFF;
 }
 ul.reset {
   padding: 0;
@@ -86,14 +90,20 @@ a:hover {
   position: absolute;
   z-index: 100;
 }
-#content #teaser #teaser-left {
+#content #teaser #teaser-carousel {
   padding: 0;
 }
-#content #teaser #teaser-right {
+#content #teaser #teaser-products {
   padding: 0;
   padding-left: 30px;
 }
-#content #teaser #teaser-right li {
+#content #teaser #teaser-products ul {
+  display: none;
+}
+#content #teaser #teaser-products ul.active {
+  display: block;
+}
+#content #teaser #teaser-products ul li {
   margin-bottom: 15px;
 }
 hr {

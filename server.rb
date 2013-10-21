@@ -4,7 +4,7 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 
 require 'less'
-# require 'liquid'
+require 'liquid'
 
 set :public_folder, File.dirname(__FILE__)
 set :views, settings.root + '/templates'
@@ -42,6 +42,7 @@ module TextFilter
   end
 end
 
+Liquid::Template.file_system = Liquid::LocalFileSystem.new("../snippets")
 Liquid::Template.register_filter(TextFilter)
 
 def style_css

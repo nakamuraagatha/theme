@@ -1,0 +1,41 @@
+{% assign collection = collections[teaser_carousel_slide] %}
+{% if teaser_carousel_loaded != "true" %}
+  {% assign active = "active" %}{% assign teaser_carousel_loaded = "true" %}
+{% else %}
+  {% assign active = "" %}
+{% endif %}
+
+{% capture teaser_carousel_indicators %}
+{{ teaser_carousel_indicators }}
+<li data-target="#teaser-carousel" data-slide-to="0" class="{{ active }}"></li>
+{% endcapture %}
+
+{% capture teaser_carousel_slides %}
+{{ teaser_carousel_slides }}
+<div id="js-{{ teaser_carousel_slide }}" class="item {{ active }}">
+  <a href="{{ collection.url }}">
+    <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
+  </a>
+  <div class="carousel-caption">
+    {{ collection.description }}
+  </div>
+</div>
+{% endcapture %}
+
+{% capture teaser_carousel_products %}
+{{ teaser_carousel_products }}
+<ul id="js-{{ teaser_carousel_slide }}-product" class="teaser_carousel_product reset {{ active }}">
+  {% for product in collection.all_products limit:3 %}
+  <li>
+    <a href="{{ product.url }}"><img src="{{ 'product_border.png' | asset_url }}"
+           alt="{{ product.title | escape  }}"
+           style="background-image:url('{{ product.featured_image | product_img_url: 'compact' }}')"
+           class="product-border img-responsive"></a>
+  </li>
+  {% endfor %}
+</ul>
+{% endcapture %}
+
+
+
+

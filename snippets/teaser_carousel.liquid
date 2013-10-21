@@ -1,0 +1,28 @@
+{% include 'teaser_carousel_slide' with 'teaser-helmets' %}
+{% include 'teaser_carousel_slide' with 'teaser-hands' %}
+{% include 'teaser_carousel_slide' with 'teaser-boots' %}
+<div id="teaser" class="row">
+  <div id="teaser-carousel" class="carousel slide col-md-9" data-interval="4000">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      {{ teaser_carousel_indicators }}
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      {{ teaser_carousel_slides }}
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#teaser-carousel" data-slide="prev">
+      <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#teaser-carousel" data-slide="next">
+      <span class="icon-next"></span>
+    </a>
+  </div>
+
+  <div id="teaser-products" class="col-md-3 pull-right">
+    {{ teaser_carousel_products }}
+  </div>
+</div>

@@ -5,7 +5,10 @@ body {
 }
 
 .product-border {
-  background-size: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  background-clip: content-box;
   background-color: #FFF;
 }
 
@@ -116,16 +119,24 @@ a {
 
 #content {
   #teaser {
-    #teaser-left {
+    #teaser-carousel {
       padding: 0;
     }
 
-    #teaser-right {
+    #teaser-products {
       padding: 0;
       padding-left: 30px;
 
-      li {
-        margin-bottom: 15px;
+      ul {
+        display: none;
+
+        &.active {
+          display: block;
+        }
+
+        li {
+          margin-bottom: 15px;
+        }
       }
     }
   }

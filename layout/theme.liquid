@@ -32,7 +32,7 @@
           <div class="col-md-10 col-md-offset-1">
             <nav>
               <ul id="main-nav" class="nav nav-pills">
-                <li id="nav-logo"><a href="/"><img src="{{'logo.png' | asset_url}}"></a></li>
+                <li id="nav-logo"><a href="/"><img src="{{ 'logo.png' | asset_url }}"></a></li>
                 <li id="nav-helmet"><a class="button" href="/collections/helmets">Helmet</a></li>
                 <li id="nav-hands"><a class="button" href="/collections/hands">Hands</a></li>
                 <li id="nav-pads"><a class="button" href="/collections/pads">Pads</a></li>
@@ -119,7 +119,10 @@
     {{ 'js_bootstrap.min.js' | asset_url | script_tag }}
     <script type="text/javascript">
       $(document).ready(function() {
-        $('#teaser .carousel').carousel().on('slide.bs.carousel', function() {
+        $('#teaser .carousel').carousel().on('slide.bs.carousel', function(event) {
+          $("#teaser-products ul").removeClass("active");
+          $('#' + event.relatedTarget.id + '-product').addClass("active");
+        }).on('slid.bs.carousel', function(event) {
         });
       });
     </script>
