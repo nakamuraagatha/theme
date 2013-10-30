@@ -90,21 +90,42 @@ a:hover {
   position: absolute;
   z-index: 100;
 }
-#content #teaser #teaser-carousel {
+#teaser #teaser-carousel {
   padding: 0;
 }
-#content #teaser #teaser-products {
+#teaser #teaser-products {
   padding: 0;
   padding-left: 30px;
 }
-#content #teaser #teaser-products ul {
+#teaser #teaser-products ul {
   display: none;
 }
-#content #teaser #teaser-products ul.active {
+#teaser #teaser-products ul.active {
   display: block;
 }
-#content #teaser #teaser-products ul li {
+#teaser #teaser-products ul li {
   margin-bottom: 15px;
+}
+.collection > div {
+  padding: 0;
+}
+.collection ul li {
+  float: left;
+  margin: 10px;
+}
+.collection ul li .more-body {
+  width: 100%;
+}
+.collection ul li .more-body h5 {
+  color: #fff;
+}
+.collection ul li .more-body a {
+  float: left;
+  color: #000;
+}
+.collection ul li .more-body a.price {
+  float: right;
+  color: #fff;
 }
 hr {
   background-image: url('{{'hr.png' | asset_url}}');

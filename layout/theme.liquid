@@ -33,7 +33,7 @@
             <nav>
               <ul id="main-nav" class="nav nav-pills">
                 <li id="nav-logo"><a href="/"><img src="{{ 'logo.png' | asset_url }}"></a></li>
-                <li id="nav-helmet"><a class="button" href="/collections/helmets">Helmet</a></li>
+                <li id="nav-helmet"><a class="button" href="/collections/helmets">Helmets</a></li>
                 <li id="nav-hands"><a class="button" href="/collections/hands">Hands</a></li>
                 <li id="nav-pads"><a class="button" href="/collections/pads">Pads</a></li>
                 <li id="nav-boots"><a class="button" href="/collections/boots">Boots</a></li>
@@ -75,13 +75,9 @@
         </div>
       </div>
 
-      <div id="content" class="row">
-        <div class="col-md-12">
-        <!-- content_for_layout start -->
-         {{ content_for_layout }}
-        <!-- content_for_layout end -->
-        </div>
-      </div>
+      <!-- content_for_layout start -->
+       {{ content_for_layout }}
+      <!-- content_for_layout end -->
 
       <div id="footer" class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1">

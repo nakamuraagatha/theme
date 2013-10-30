@@ -1,0 +1,21 @@
+{% assign blog = blogs[blog_preview] %}
+
+<div id="blog" class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h3>Latest News</h3>
+    <ul class="media-list">
+      {% assign article = blog.articles.first %}
+      <li class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="" alt="">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">{{ article.title | link_to: article.url }}</h4>
+          <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
+        </div>
+      </li>
+    </ul>
+
+    <a href="/blogs/news">mehr...</a>
+  </div>
+</div>

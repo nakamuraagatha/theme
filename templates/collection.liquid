@@ -1,1 +1,41 @@
-collection.liquid
+
+<div class="collection row">
+  <div class="col-md-9">
+    <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
+  </div>
+  <div class="col-md-3">
+    {{ collection.description }}
+  </div>
+</div>
+
+<div class="collection row">
+  <div class="col-md-10 col-md-offset-1">
+    <ul class="reset">
+      {% for product in collection.all_products %}
+      <li>
+        <div class="more-head">
+          <a href="{{ product.url }}"><img src="{{ 'product_border.png' | asset_url }}"
+               alt="{{ product.title | escape  }}"
+               style="background-image:url('{{ product.featured_image | product_img_url: 'compact' }}')"
+               class="product-border"></a>
+        </div>
+        <div class="more-body">
+          <h5>{{ product.title }}</h5>
+          <a href="{{ product.url }}"> >> more</a>
+          <a href="{{ product.url }}" class="price">{{ product.price | money }}</a>
+        </div>
+
+
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <hr class="dots">
+  </div>
+</div>
+
+{% include 'new_products' with 'new-products' %}

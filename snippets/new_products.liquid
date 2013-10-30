@@ -1,0 +1,25 @@
+{% assign collection = collections[new_products] %}
+
+<div id="more" class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h3>Newsest Gear</h3>
+    <ul id="more-list" class="reset">
+      {% for product in collection.all_products limit:5 %}
+      <li>
+        <div class="more-head">
+          <a href="{{ product.url }}">
+            <img src="{{ product.featured_image | product_img_url: 'small' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
+        </div>
+        <div class="more-body">
+          <h5>{{ product.title }}</h5>
+          <a href="{{ product.url }}"> >> more</a>
+          <a href="{{ product.url }}" class="price">{{ product.price | money }}</a>
+        </div>
+      </li>
+      {% endfor %}
+
+    </ul>
+  </div>
+  <div class="col-md-1 right"><div></div></div>
+</div>

@@ -17,46 +17,6 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
   </div>
 </div>
 
-<div id="more" class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <h3>Newsest Gear</h3>
-    <ul id="more-list" class="reset">
-      {% for product in collections['frontpage'].all_products %}
-      <li>
-        <div class="more-head">
-          <a href="{{ shop.url }}{{ product.url }}">
-            <img src="{{ product.featured_image | product_img_url: 'small' }}" alt="{{ product.featured_image.alt | escape }}">
-          </a>
-        </div>
-        <div class="more-body">
-          <h5>{{ product.title }}</h5>
-          <a href="{{ shop.url }}{{ product.url }}"> >> more</a>
-          <a href="{{ shop.url }}{{ product.url }}" class="price">{{ product.price | money }}</a>
-        </div>
-      </li>
-      {% endfor %}
+<!-- {% include 'new_products' with 'new-products' %} -->
 
-    </ul>
-  </div>
-  <div class="col-md-1 right"><div></div></div>
-</div>
-
-<div id="blog" class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <h3>Latest News</h3>
-    <ul class="media-list">
-      {% assign article = blogs['news'].articles.first %}
-      <li class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" src="" alt="">
-        </a>
-        <div class="media-body">
-          <h4 class="media-heading">{{ article.title | link_to: article.url }}</h4>
-          <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
-        </div>
-      </li>
-    </ul>
-
-    <a href="/blogs/news">mehr...</a>
-  </div>
-</div>
+<!-- {% include 'blog_preview' with 'news' %} -->
