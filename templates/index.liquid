@@ -1,22 +1,17 @@
 
 {% include 'teaser_carousel'%}
 
+{% assign collection = collections['frontpage'] %}
+
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <h1>Welcome</h1>
-    <p>
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-    </p>
+    <h1>{{ collection.title }}</h1>
+    <p> {{ collection.description }}</p>
 
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
     <hr class="dots">
   </div>
 </div>
 
-{% include 'new_products' with 'new-products' %}
+{% include 'new_products' with collection %}
 
 {% include 'blog_preview' with 'news' %}

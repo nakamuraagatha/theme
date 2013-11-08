@@ -1,8 +1,10 @@
 body {
+  background-color: #363636;
   background-image: url('{{'background.jpg' | asset_url}}');
   color: #000;
 }
 .product-border {
+  box-shadow: -1px 2px 4px #000000;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -22,6 +24,7 @@ a:hover {
 }
 /*------------------------------- */
 #main {
+  background-color: #7c7c7c;
   background-image: url('{{'bg_content.jpg' | asset_url}}');
   box-shadow: 0px 0px 10px #000000;
 }
@@ -49,26 +52,63 @@ a:hover {
   padding: 1px 10px;
 }
 #menu #main-nav.nav-pills a.button {
-  margin-top: 35px;
-  padding-top: 65px;
+  margin-top: 30px;
+  padding-top: 70px;
   text-align: center;
   background-image: url('{{'button_sprite.png' | asset_url}}');
-  background-position: 85px 0px;
-  width: 85px;
-  height: 85px;
+  width: 80px;
+  height: 90px;
 }
-#menu #main-nav.nav-pills a.button:hover {
-  color: red;
+#menu #main-nav.nav-pills #nav-about .button {
   background-position: 0px 0px;
 }
-#menu #main-nav.nav-pills #nav-helmet .button:hover {
-  background-position: 0px 0px;
+#menu #main-nav.nav-pills #nav-about .button:hover {
+  background-position: 80px 0px;
+}
+#menu #main-nav.nav-pills #nav-helmets .button {
+  background-position: 0px -90px;
+}
+#menu #main-nav.nav-pills #nav-helmets .button:hover {
+  background-position: 80px -90px;
 }
 #menu #main-nav.nav-pills #nav-hands .button {
-  background-position: 85px 85px;
+  background-position: 0px -180px;
 }
 #menu #main-nav.nav-pills #nav-hands .button:hover {
-  background-position: 0px 85px;
+  background-position: 80px -180px;
+}
+#menu #main-nav.nav-pills #nav-pads .button {
+  background-position: 0px -270px;
+}
+#menu #main-nav.nav-pills #nav-pads .button:hover {
+  background-position: 80px -270px;
+}
+#menu #main-nav.nav-pills #nav-boots .button {
+  background-position: 0px -360px;
+}
+#menu #main-nav.nav-pills #nav-boots .button:hover {
+  background-position: 80px -360px;
+}
+#menu #main-nav.nav-pills #nav-kits {
+  display: none;
+}
+#menu #main-nav.nav-pills #nav-kits .button {
+  background-position: 0px -450px;
+}
+#menu #main-nav.nav-pills #nav-kits .button:hover {
+  background-position: 80px -450px;
+}
+#menu #main-nav.nav-pills #nav-blog .button {
+  background-position: 0px -540px;
+}
+#menu #main-nav.nav-pills #nav-blog .button:hover {
+  background-position: 80px -540px;
+}
+#menu #main-nav.nav-pills #nav-contact .button {
+  background-position: 0px -630px;
+}
+#menu #main-nav.nav-pills #nav-contact .button:hover {
+  background-position: 80px -630px;
 }
 #menu #main-nav.nav-pills #nav-logo a:hover {
   background: transparent;
@@ -129,6 +169,7 @@ a:hover {
 }
 hr {
   background-image: url('{{'hr.png' | asset_url}}');
+  background-repeat: repeat-x;
   height: 40px;
   border: 0;
 }
@@ -139,8 +180,11 @@ hr {
   height: 300px;
   margin-left: -30px;
 }
+#new-products > div {
+  padding-left: 30px;
+}
 #new-products .right div {
-  background: url('{{'bg_more_right.png' | asset_url}}') right 60px no-repeat;
+  background: url('{{'bg_more_right.png' | asset_url}}') right 60px no-repeat, url('{{'bg_more.png' | asset_url}}') left 60px repeat-x;
   margin-left: 30px;
   height: 300px;
   width: 100%;
@@ -181,6 +225,7 @@ hr {
   color: #fff;
 }
 #blog {
+  background-color: #909090;
   background: url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y, url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y, url('{{'bg_blog.jpg' | asset_url}}');
 }
 #footer {

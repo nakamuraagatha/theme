@@ -33,13 +33,16 @@
             <nav>
               <ul id="main-nav" class="nav nav-pills">
                 <li id="nav-logo"><a href="/"><img src="{{ 'logo.png' | asset_url }}"></a></li>
-                <li id="nav-helmet"><a class="button" href="/collections/helmets">Helmets</a></li>
+
+                <li id="nav-about"><a class="button" href="/pages/about">About</a></li>
+
+                <li id="nav-helmets"><a class="button" href="/collections/helmets">Helmets</a></li>
                 <li id="nav-hands"><a class="button" href="/collections/hands">Hands</a></li>
                 <li id="nav-pads"><a class="button" href="/collections/pads">Pads</a></li>
                 <li id="nav-boots"><a class="button" href="/collections/boots">Boots</a></li>
-                <li id="nav-pm-kit"><a class="button" href="/collections/pm-kit">PM-Kit</a></li>
+                <li id="nav-kits"><a class="button" href="/collections/pm-kit">PM-Kit</a></li>
 
-                <li id="nav-blog"><a class="button" href="/blogs">Blog</a></li>
+                <li id="nav-blog"><a class="button" href="/blogs/news">Blog</a></li>
                 <li id="nav-contact"><a class="button" href="/pages/contact">Kontakt</a></li>
               </ul>
             </nav>
@@ -58,8 +61,8 @@
               <li><a href="/pages/about-playmaker">About Playmaker</a></li>
               <li><a href="/pages/contact">Kontakt</a></li>
 
-              <li><a href="/account/login" id="customer_login_link">Login</a></li>
-              <li><a href="/account/register" id="customer_register_link">Anmelden</a></li>
+              <li><a href="/account/login">Login</a></li>
+              <li><a href="/account/register">Sign Up</a></li>
             </ul>
           </nav>
         </div>
@@ -69,7 +72,7 @@
               {% if cart.item_count != 0 %}
               <li><a href="/cart" title="Checkout">Checkout</a></li>
               {% endif %}
-              <li><a href="/cart">Warenkorb ({{ cart.item_count }})</a></li>
+              <li><a href="/cart">C-Art ({{ cart.item_count }})</a></li>
             </ul>
           </nav>
         </div>
@@ -85,7 +88,7 @@
             <li>
               <h5>Shop</h5>
               <ul id="footer-nav1" class="reset">
-                <li><a href="/collections/helmets">Helmet</a></li>
+                <li><a href="/collections/helmets">Helmets</a></li>
                 <li><a href="/collections/hands">Hands</a></li>
                 <li><a href="/collections/pads">Pads</a></li>
                 <li><a href="/collections/boots">Boots</a></li>
@@ -102,7 +105,8 @@
             <li>
               <h5>Informationen</h5>
               <ul id="footer-nav2" class="reset">
-                <li id="nav-blog"><a class="button" href="/blogs">Blog</a></li>
+              <li id="nav-blog"><a class="button" href="/pages/about">About</a></li>
+                <li id="nav-blog"><a class="button" href="/blogs/news">Blog</a></li>
                 <li id="nav-contact"><a class="button" href="/pages/contact">Kontakt</a></li>
               </ul>
             </li>

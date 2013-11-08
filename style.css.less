@@ -1,10 +1,12 @@
 
 body {
+  background-color: #363636;
   background-image: url('background.jpg');
   color: #000;
 }
 
 .product-border {
+  box-shadow: -1px 2px 4px #000000;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -29,6 +31,7 @@ a {
 /*------------------------------- */
 
 #main {
+  background-color: #7c7c7c;
   background-image: url('bg_content.jpg');
   box-shadow: 0px 0px 10px #000000;
 }
@@ -42,6 +45,15 @@ a {
 
   &:hover {
     color: #000000;
+  }
+}
+
+.menu-button(@pos) {
+  .button {
+    background-position: 0px -(@pos * 90px);
+    &:hover {
+      background-position: 80px -(@pos * 90px);
+    }
   }
 }
 
@@ -61,34 +73,24 @@ a {
       padding: 1px 10px;
 
       &.button {
-        margin-top: 35px;
-        padding-top: 65px;
+        margin-top: 30px;
+        padding-top: 70px;
         text-align: center;
         background-image: url('button_sprite.png');
-        background-position: 85px 0px;
-        width: 85px;
-        height: 85px;
-
-        &:hover {
-          color: red;
-          background-position: 0px 0px;
-        }
+        width: 80px;
+        height: 90px;
       }
     }
 
-    #nav-helmet .button {
-      &:hover {
-        background-position: 0px 0px;
-      }
-    }
+    #nav-about { .menu-button(0); }
+    #nav-helmets { .menu-button(1); }
+    #nav-hands { .menu-button(2); }
+    #nav-pads { .menu-button(3); }
+    #nav-boots { .menu-button(4); }
+    #nav-kits { .menu-button(5);  .hidden; }
 
-    #nav-hands .button {
-      background-position: 85px 85px;
-
-      &:hover {
-        background-position: 0px 85px;
-      }
-    }
+    #nav-blog { .menu-button(6); }
+    #nav-contact { .menu-button(7); }
 
     #nav-logo a:hover {
       background: transparent;
@@ -172,6 +174,7 @@ a {
 
 hr {
  background-image: url('hr.png');
+ background-repeat: repeat-x;
  height: 40px;
  border: 0;
 }
@@ -183,8 +186,12 @@ hr {
   height: 300px;
   margin-left: -30px;
 
+  > div {
+    padding-left: 30px;
+  }
+
   .right div {
-    background: url('bg_more_right.png') right 60px no-repeat;
+    background: url('bg_more_right.png') right 60px no-repeat, url('bg_more.png') left 60px repeat-x;
     margin-left: 30px;
     height: 300px;
     width: 100%;
@@ -233,6 +240,7 @@ hr {
 }
 
 #blog {
+  background-color: #909090;
   background: url('bg_blog_border.png') top left repeat-y, url('bg_blog_border.png') top right repeat-y, url('bg_blog.jpg');
 }
 
