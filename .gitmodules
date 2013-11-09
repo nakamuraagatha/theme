@@ -1,0 +1,3 @@
+[submodule "skeleton-theme"]
+	path = skeleton-theme
+	url = https://github.com/Shopify/skeleton-theme.git
