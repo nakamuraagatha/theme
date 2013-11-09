@@ -58,6 +58,22 @@ a {
 }
 
 #menu {
+  background-image: url('bg_menu.png');
+  background-repeat: repeat-x;
+  background-position: 0 30px;
+  // background-color: #123455;
+  height: 160px;
+  width: 100%;
+  margin-top: 100px;
+  position: absolute;
+  z-index: 100;
+
+  &.sticky {
+    position:fixed;
+    margin-top: 0px;
+    top:0;
+  }
+
   div {
     padding: 0;
   }
@@ -105,18 +121,6 @@ a {
 #header {
  background-image: url('bg_header.png');
  height: 230px;
-}
-
-#menu {
-  background-image: url('bg_menu.png');
-  background-repeat: repeat-x;
-  background-position: 0 30px;
-  // background-color: #123455;
-  height: 160px;
-  width: 100%;
-  margin-top: 100px;
-  position: absolute;
-  z-index: 100;
 }
 
 #teaser {

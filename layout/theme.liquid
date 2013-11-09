@@ -122,8 +122,14 @@
         $('#teaser .carousel').carousel().on('slide.bs.carousel', function(event) {
           $("#teaser-products ul").removeClass("active");
           $('#' + event.relatedTarget.id + '-product').addClass("active");
-        }).on('slid.bs.carousel', function(event) {
         });
+      }).on("scroll", function(){
+        if ($(window).scrollTop() >= 100) {
+          $('#menu').addClass('sticky');
+        }
+        else {
+          $('#menu').removeClass('sticky');
+        }
       });
     </script>
   </body>

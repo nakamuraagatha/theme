@@ -38,6 +38,21 @@ a:hover {
 #top-nav.nav-pills a:hover {
   color: #000000;
 }
+#menu {
+  background-image: url('{{'bg_menu.png' | asset_url}}');
+  background-repeat: repeat-x;
+  background-position: 0 30px;
+  height: 160px;
+  width: 100%;
+  margin-top: 100px;
+  position: absolute;
+  z-index: 100;
+}
+#menu.sticky {
+  position: fixed;
+  margin-top: 0px;
+  top: 0;
+}
 #menu div {
   padding: 0;
 }
@@ -119,16 +134,6 @@ a:hover {
 #header {
   background-image: url('{{'bg_header.png' | asset_url}}');
   height: 230px;
-}
-#menu {
-  background-image: url('{{'bg_menu.png' | asset_url}}');
-  background-repeat: repeat-x;
-  background-position: 0 30px;
-  height: 160px;
-  width: 100%;
-  margin-top: 100px;
-  position: absolute;
-  z-index: 100;
 }
 #teaser #teaser-carousel {
   padding: 0;
