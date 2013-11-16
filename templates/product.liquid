@@ -7,24 +7,30 @@
       <div class="row">
         <div id="product-photo-container" class="col-md-5">
           <a class="gallery" href="{{ product.featured_image.src | product_img_url: 'original' }}" rel="gallery">
-            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" class="img-responsive"/>
           </a>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 thumbs">
           <ul id="product-photo-thumbs" class="reset">
-            {% for image in product.images offset:1 %}
+            {% for image in product.images offset:1 limit:3 %}
               <li class="product-photo-thumb">
                 <a class="gallery" href="{{ image.src | product_img_url: 'original' }}" rel="gallery">
-                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
+                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="thumbnail img-responsive" />
                 </a>
               </li>
             {% endfor %}
           </ul>
         </div>
         <div class="col-md-6">
-          <h1 itemprop="name">{{ product.title }}</h1>
+          <h1 itemprop="name">{{ product.title }} <small>{{ product.vendor }}</small></h1>
 
           <hr>
+
+          <select id="product-select" name="id" multiple>
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+            {% endfor %}
+          </select>
 
           <hr>
 
@@ -58,15 +64,10 @@
       </div>
     </div>
   </div>
-  </div>
 </div>
 <script>
-  jQuery(function($) {
-
-    var selectCallback = function(variant, selector) {
-
+   var selectCallback = function(variant, selector) {
       if (variant) {
-
         if (variant.available) {
 
           // Selected a valid variant that is available.
@@ -98,7 +99,6 @@
         $('#backorder').addClass('hidden');
         $('#add').val('Unavailable').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);
       }
-
     };
 
     new Shopify.OptionSelectors('product-select', { product: {{ product | json }}, onVariantSelected: selectCallback });
@@ -118,49 +118,4 @@
         {% endfor %}
       {% endif %}
     {% endfor %}
-
-  });
-
 </script>
-
-
-
-      <div id="product-details">
-        {% assign product_vendor_handle = product.vendor | handle %}
-        {% comment %}
-        Do we have a collection that has the same name as our product vendor name?
-        If we do, let's have the vendor link point to it.
-        If not, we will point to the automatic vendor collection.
-        {% endcomment %}
-        {% if collections[product_vendor_handle].handle == product_vendor_handle %}
-          {% assign vendor_url = collections[product_vendor_handle].url %}
-        {% else %}
-          {% assign vendor_url = product.vendor | url_for_vendor %}
-        {% endif %}
-        <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
-
-
-        {% assign hide_default_title = false %}
-        {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
-          {% assign hide_default_title = true %}
-        {% endif %}
-
-        <div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
-         <select id="product-select" name="id" class="hidden">
-         {% for variant in product.variants %}
-           <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-         {% endfor %}
-         </select>
-        </div>
-
-        <div id="backorder" class="hidden">
-          <p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
-        </div>
-      </div><!-- #product-details -->
-    </form>
-      {% endif %}
-
-      </div><!-- #product-photos -->
-
-
-

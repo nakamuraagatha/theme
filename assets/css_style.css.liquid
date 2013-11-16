@@ -35,7 +35,7 @@ a:hover {
   font-size: 11px;
   color: #ffffff;
   text-transform: uppercase;
-  margin: 2px 0px;
+  margin: 0px;
   padding: 4px 10px;
 }
 #top-nav.nav-pills a:hover {
@@ -77,62 +77,62 @@ a:hover {
   width: 80px;
   height: 90px;
 }
-#menu #main-nav.nav-pills #nav-about .button {
-  background-position: 0px 0px;
-}
-#menu #main-nav.nav-pills #nav-about .button:hover {
-  background-position: 80px 0px;
-}
-#menu #main-nav.nav-pills #nav-helmets .button {
-  background-position: 0px -90px;
-}
-#menu #main-nav.nav-pills #nav-helmets .button:hover {
-  background-position: 80px -90px;
-}
-#menu #main-nav.nav-pills #nav-hands .button {
-  background-position: 0px -180px;
-}
-#menu #main-nav.nav-pills #nav-hands .button:hover {
-  background-position: 80px -180px;
-}
-#menu #main-nav.nav-pills #nav-pads .button {
-  background-position: 0px -270px;
-}
-#menu #main-nav.nav-pills #nav-pads .button:hover {
-  background-position: 80px -270px;
-}
-#menu #main-nav.nav-pills #nav-boots .button {
-  background-position: 0px -360px;
-}
-#menu #main-nav.nav-pills #nav-boots .button:hover {
-  background-position: 80px -360px;
-}
-#menu #main-nav.nav-pills #nav-kits {
-  display: none;
-}
-#menu #main-nav.nav-pills #nav-kits .button {
-  background-position: 0px -450px;
-}
-#menu #main-nav.nav-pills #nav-kits .button:hover {
-  background-position: 80px -450px;
-}
-#menu #main-nav.nav-pills #nav-blog .button {
-  background-position: 0px -540px;
-}
-#menu #main-nav.nav-pills #nav-blog .button:hover {
-  background-position: 80px -540px;
-}
-#menu #main-nav.nav-pills #nav-contact .button {
-  background-position: 0px -630px;
-}
-#menu #main-nav.nav-pills #nav-contact .button:hover {
-  background-position: 80px -630px;
-}
-#menu #main-nav.nav-pills #nav-logo a:hover {
+#menu #main-nav.nav-pills .nav-logo a:hover {
   background: transparent;
 }
-#menu #main-nav.nav-pills #nav-blog {
+#menu #main-nav.nav-pills .nav-about .button {
+  background-position: 0px 0px;
+}
+#menu #main-nav.nav-pills .nav-about .button:hover {
+  background-position: 80px 0px;
+}
+#menu #main-nav.nav-pills .nav-helmets .button {
+  background-position: 0px -90px;
+}
+#menu #main-nav.nav-pills .nav-helmets .button:hover {
+  background-position: 80px -90px;
+}
+#menu #main-nav.nav-pills .nav-hands .button {
+  background-position: 0px -180px;
+}
+#menu #main-nav.nav-pills .nav-hands .button:hover {
+  background-position: 80px -180px;
+}
+#menu #main-nav.nav-pills .nav-pads .button {
+  background-position: 0px -270px;
+}
+#menu #main-nav.nav-pills .nav-pads .button:hover {
+  background-position: 80px -270px;
+}
+#menu #main-nav.nav-pills .nav-boots .button {
+  background-position: 0px -360px;
+}
+#menu #main-nav.nav-pills .nav-boots .button:hover {
+  background-position: 80px -360px;
+}
+#menu #main-nav.nav-pills .nav-kits {
+  display: none;
+}
+#menu #main-nav.nav-pills .nav-kits .button {
+  background-position: 0px -450px;
+}
+#menu #main-nav.nav-pills .nav-kits .button:hover {
+  background-position: 80px -450px;
+}
+#menu #main-nav.nav-pills .nav-blog {
   margin-left: 50px;
+}
+#menu #main-nav.nav-pills .nav-blog .button {
+  background-position: 0px -540px;
+}
+#menu #main-nav.nav-pills .nav-blog .button:hover {
+  background-position: 80px -540px;
+}
+#menu #main-nav.nav-pills .nav-contact .button {
+  background-position: 0px -630px;
+}
+#menu #main-nav.nav-pills .nav-contact .button:hover {
+  background-position: 80px -630px;
 }
 #header {
   background-image: url('{{'bg_header.png' | asset_url}}');
@@ -208,12 +208,14 @@ hr {
   padding-right: 10px;
 }
 #new-products .list .head {
+  border: 1px solid #000;
   box-shadow: inset 0px 0px 4px #000000;
-  padding: 5px;
+  padding: 2px;
   background: #fff;
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 #new-products .list .head img {
   height: 125px;
@@ -234,6 +236,13 @@ hr {
 }
 #product img {
   background-color: #FFF;
+  border: 1px solid #000;
+}
+#product .thumbs {
+  padding: 0;
+}
+#product .thumbs li {
+  margin-bottom: 20px;
 }
 #blog {
   background-color: #909090;

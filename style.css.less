@@ -44,7 +44,7 @@ a {
   font-size: 11px;
   color: #ffffff;
   text-transform: uppercase;
-  margin: 2px 0px;
+  margin: 0px;
   padding: 4px 10px;
 
   &:hover {
@@ -102,23 +102,18 @@ a {
       }
     }
 
-    #nav-about { .menu-button(0); }
-    #nav-helmets { .menu-button(1); }
-    #nav-hands { .menu-button(2); }
-    #nav-pads { .menu-button(3); }
-    #nav-boots { .menu-button(4); }
-    #nav-kits { .menu-button(5);  .hidden; }
-
-    #nav-blog { .menu-button(6); }
-    #nav-contact { .menu-button(7); }
-
-    #nav-logo a:hover {
+    .nav-logo a:hover {
       background: transparent;
     }
 
-    #nav-blog {
-      margin-left: 50px;
-    }
+    .nav-about   { .menu-button(0); }
+    .nav-helmets { .menu-button(1); }
+    .nav-hands   { .menu-button(2); }
+    .nav-pads    { .menu-button(3); }
+    .nav-boots   { .menu-button(4); }
+    .nav-kits    { .menu-button(5);  .hidden; }
+    .nav-blog    { .menu-button(6); margin-left: 50px;}
+    .nav-contact { .menu-button(7); }
   }
 }
 
@@ -216,12 +211,14 @@ hr {
     }
 
     .head {
+      border: 1px solid #000;
       box-shadow: inset 0px 0px 4px #000000;
-      padding: 5px;
+      padding: 2px;
       background: #fff;
       width: 100%;
       text-align: center;
       margin-bottom: 20px;
+      overflow: hidden;
       img {
         height: 125px;
       }
@@ -250,6 +247,15 @@ hr {
 #product {
   img {
     background-color: #FFF;
+    border: 1px solid #000;
+  }
+
+  .thumbs {
+    padding: 0;
+
+    li {
+      margin-bottom: 20px;
+    }
   }
 }
 

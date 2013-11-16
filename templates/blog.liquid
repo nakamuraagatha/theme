@@ -1,4 +1,4 @@
-{% paginate blog.articles by settings.pagination_limit %}
+{% paginate blog.articles by 10 %}
 <div id="blog" class="row">
   <div class="col-md-10 col-md-offset-1">
     <h1>{{ blog.title }}</h1>
