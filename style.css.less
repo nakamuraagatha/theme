@@ -1,8 +1,22 @@
+@font-face {
+  font-family: 'jersey_m54regular';
+  src: url('jersey_m54-webfont.eot');
+  src: url('jersey_m54-webfont.eot?#iefix') format('embedded-opentype'),
+       url('jersey_m54-webfont.woff') format('woff'),
+       url('jersey_m54-webfont.ttf') format('truetype'),
+       url('jersey_m54-webfont.svg#jersey_m54regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   background-color: #363636;
   background-image: url('background.jpg');
   color: #000;
+  font-family: "Titillium Web";
+  font-weight: 600;
+  font-size: 15pt;
+  line-height: 20pt;
 }
 
 .product-border {
@@ -32,6 +46,17 @@ a {
   }
 }
 
+h1 {
+  font-family: 'jersey_m54regular';
+  color: #D9DADA;
+  font-size: 35pt;
+}
+
+h2 {
+  font-family: 'jersey_m54regular';
+  color: #F6F6F6;
+  font-size: 18pt;
+}
 /*------------------------------- */
 
 #main {
@@ -59,6 +84,10 @@ a {
       background-position: 80px -(@pos * 90px);
     }
   }
+  &.active .button {
+    background-position: 80px -(@pos * 90px);
+    background-color: transparent;
+  }
 }
 
 #menu {
@@ -68,7 +97,7 @@ a {
   // background-color: #123455;
   height: 160px;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 110px;
   position: absolute;
   z-index: 100;
 
@@ -86,15 +115,15 @@ a {
     padding: 0;
 
     a {
-      font-size: 13px;
       color: #ffffff;
+      font-size: 13pt;
       text-transform: uppercase;
       margin: 2px 0px;
       padding: 1px 10px;
 
       &.button {
         margin-top: 30px;
-        padding-top: 70px;
+        padding: 65px 0 0 0;
         text-align: center;
         background-image: url('button_sprite.png');
         width: 80px;
@@ -145,11 +174,13 @@ a {
   }
 }
 
-.collection {
+#collection-header {
   > div {
    padding: 0;
   }
+}
 
+#collection {
   ul li {
     float: left;
     margin: 10px;
@@ -245,9 +276,39 @@ hr {
 }
 
 #product {
+  > div {
+    padding-top: 40px;
+  }
+
+  h1 {
+    font-family: "Titillium Web";
+    font-size: 20pt;
+    color: #000;
+    background-repeat: no-repeat;
+    height: 85px;
+    margin-top: 0;
+    padding-left: 5px;
+  }
+
+  &.helme h1 {
+    background-image: url('drips_helme.png');
+  }
+
+  &.pads h1 {
+    background-image: url('drips_pads.png');
+  }
+
+  &.hands h1 {
+    background-image: url('drips_hands.png');
+  }
+
+  &.schuhe h1 {
+    background-image: url('drips_schuhe.png');
+  }
+
   img {
     background-color: #FFF;
-    border: 1px solid #000;
+    border: 4px solid #000;
   }
 
   .thumbs {
@@ -255,14 +316,32 @@ hr {
 
     li {
       margin-bottom: 20px;
+
+      img {
+        border: 2px solid #000;
+      }
     }
   }
 }
 
-
-#blog {
+#blog-preview {
   background-color: #909090;
   background: url('bg_blog_border.png') top left repeat-y, url('bg_blog_border.png') top right repeat-y, url('bg_blog.jpg');
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+
+#blog {
+   > div {
+    padding-top: 40px;
+  }
+}
+
+#page {
+  > div {
+    padding-top: 40px;
+  }
 }
 
 #footer {
@@ -270,6 +349,8 @@ hr {
   background-position: right 40px, left top;
   height: 250px;
   padding-top: 40px;
+  font-size: 10pt;
+  line-height: 15pt;
 
   #footer-list > li {
     background: url('footer_deco.png') no-repeat;

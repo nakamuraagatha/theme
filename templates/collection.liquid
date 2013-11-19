@@ -1,4 +1,4 @@
-<div id="collection" class="row">
+<div id="collection-header" class="row">
   <div class="col-md-9">
     <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
   </div>
@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="row collection">
+<div id="collection" class="row">
   <div class="col-md-10 col-md-offset-1">
     <ul class="reset">
       {% for product in collection.all_products %}

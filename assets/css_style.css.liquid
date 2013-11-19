@@ -1,7 +1,18 @@
+@font-face {
+  font-family: 'jersey_m54regular';
+  src: url('{{'jersey_m54-webfont.eot' | asset_url}}');
+  src: url('{{'jersey_m54-webfont.eot?#iefix' | asset_url}}') format('embedded-opentype'), url('{{'jersey_m54-webfont.woff' | asset_url}}') format('woff'), url('{{'jersey_m54-webfont.ttf' | asset_url}}') format('truetype'), url('{{'jersey_m54-webfont.svg#jersey_m54regular' | asset_url}}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   background-color: #363636;
   background-image: url('{{'background.jpg' | asset_url}}');
   color: #000;
+  font-family: "Titillium Web";
+  font-weight: 600;
+  font-size: 15pt;
+  line-height: 20pt;
 }
 .product-border {
   box-shadow: -1px 2px 4px #000000;
@@ -25,6 +36,16 @@ a {
 a:hover {
   color: #aaa;
 }
+h1 {
+  font-family: 'jersey_m54regular';
+  color: #D9DADA;
+  font-size: 35pt;
+}
+h2 {
+  font-family: 'jersey_m54regular';
+  color: #F6F6F6;
+  font-size: 18pt;
+}
 /*------------------------------- */
 #main {
   background-color: #7c7c7c;
@@ -47,7 +68,7 @@ a:hover {
   background-position: 0 30px;
   height: 160px;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 110px;
   position: absolute;
   z-index: 100;
 }
@@ -63,15 +84,15 @@ a:hover {
   padding: 0;
 }
 #menu #main-nav.nav-pills a {
-  font-size: 13px;
   color: #ffffff;
+  font-size: 13pt;
   text-transform: uppercase;
   margin: 2px 0px;
   padding: 1px 10px;
 }
 #menu #main-nav.nav-pills a.button {
   margin-top: 30px;
-  padding-top: 70px;
+  padding: 65px 0 0 0;
   text-align: center;
   background-image: url('{{'button_sprite.png' | asset_url}}');
   width: 80px;
@@ -86,11 +107,19 @@ a:hover {
 #menu #main-nav.nav-pills .nav-about .button:hover {
   background-position: 80px 0px;
 }
+#menu #main-nav.nav-pills .nav-about.active .button {
+  background-position: 80px 0px;
+  background-color: transparent;
+}
 #menu #main-nav.nav-pills .nav-helmets .button {
   background-position: 0px -90px;
 }
 #menu #main-nav.nav-pills .nav-helmets .button:hover {
   background-position: 80px -90px;
+}
+#menu #main-nav.nav-pills .nav-helmets.active .button {
+  background-position: 80px -90px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-hands .button {
   background-position: 0px -180px;
@@ -98,17 +127,29 @@ a:hover {
 #menu #main-nav.nav-pills .nav-hands .button:hover {
   background-position: 80px -180px;
 }
+#menu #main-nav.nav-pills .nav-hands.active .button {
+  background-position: 80px -180px;
+  background-color: transparent;
+}
 #menu #main-nav.nav-pills .nav-pads .button {
   background-position: 0px -270px;
 }
 #menu #main-nav.nav-pills .nav-pads .button:hover {
   background-position: 80px -270px;
 }
+#menu #main-nav.nav-pills .nav-pads.active .button {
+  background-position: 80px -270px;
+  background-color: transparent;
+}
 #menu #main-nav.nav-pills .nav-boots .button {
   background-position: 0px -360px;
 }
 #menu #main-nav.nav-pills .nav-boots .button:hover {
   background-position: 80px -360px;
+}
+#menu #main-nav.nav-pills .nav-boots.active .button {
+  background-position: 80px -360px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-kits {
   display: none;
@@ -119,6 +160,10 @@ a:hover {
 #menu #main-nav.nav-pills .nav-kits .button:hover {
   background-position: 80px -450px;
 }
+#menu #main-nav.nav-pills .nav-kits.active .button {
+  background-position: 80px -450px;
+  background-color: transparent;
+}
 #menu #main-nav.nav-pills .nav-blog {
   margin-left: 50px;
 }
@@ -128,11 +173,19 @@ a:hover {
 #menu #main-nav.nav-pills .nav-blog .button:hover {
   background-position: 80px -540px;
 }
+#menu #main-nav.nav-pills .nav-blog.active .button {
+  background-position: 80px -540px;
+  background-color: transparent;
+}
 #menu #main-nav.nav-pills .nav-contact .button {
   background-position: 0px -630px;
 }
 #menu #main-nav.nav-pills .nav-contact .button:hover {
   background-position: 80px -630px;
+}
+#menu #main-nav.nav-pills .nav-contact.active .button {
+  background-position: 80px -630px;
+  background-color: transparent;
 }
 #header {
   background-image: url('{{'bg_header.png' | asset_url}}');
@@ -154,24 +207,24 @@ a:hover {
 #teaser #teaser-products ul li {
   margin-bottom: 15px;
 }
-.collection > div {
+#collection-header > div {
   padding: 0;
 }
-.collection ul li {
+#collection ul li {
   float: left;
   margin: 10px;
 }
-.collection ul li .more-body {
+#collection ul li .more-body {
   width: 100%;
 }
-.collection ul li .more-body h5 {
+#collection ul li .more-body h5 {
   color: #fff;
 }
-.collection ul li .more-body a {
+#collection ul li .more-body a {
   float: left;
   color: #000;
 }
-.collection ul li .more-body a.price {
+#collection ul li .more-body a.price {
   float: right;
   color: #fff;
 }
@@ -234,9 +287,33 @@ hr {
   float: right;
   color: #fff;
 }
+#product > div {
+  padding-top: 40px;
+}
+#product h1 {
+  font-family: "Titillium Web";
+  font-size: 20pt;
+  color: #000;
+  background-repeat: no-repeat;
+  height: 85px;
+  margin-top: 0;
+  padding-left: 5px;
+}
+#product.helme h1 {
+  background-image: url('{{'drips_helme.png' | asset_url}}');
+}
+#product.pads h1 {
+  background-image: url('{{'drips_pads.png' | asset_url}}');
+}
+#product.hands h1 {
+  background-image: url('{{'drips_hands.png' | asset_url}}');
+}
+#product.schuhe h1 {
+  background-image: url('{{'drips_schuhe.png' | asset_url}}');
+}
 #product img {
   background-color: #FFF;
-  border: 1px solid #000;
+  border: 4px solid #000;
 }
 #product .thumbs {
   padding: 0;
@@ -244,15 +321,28 @@ hr {
 #product .thumbs li {
   margin-bottom: 20px;
 }
-#blog {
+#product .thumbs li img {
+  border: 2px solid #000;
+}
+#blog-preview {
   background-color: #909090;
   background: url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y, url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y, url('{{'bg_blog.jpg' | asset_url}}');
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+#blog > div {
+  padding-top: 40px;
+}
+#page > div {
+  padding-top: 40px;
 }
 #footer {
   background: url('{{'footer_deco2.png' | asset_url}}') top right no-repeat, url('{{'bg_footer.png' | asset_url}}');
   background-position: right 40px, left top;
   height: 250px;
   padding-top: 40px;
+  font-size: 10pt;
+  line-height: 15pt;
 }
 #footer #footer-list > li {
   background: url('{{'footer_deco.png' | asset_url}}') no-repeat;

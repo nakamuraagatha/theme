@@ -11,6 +11,7 @@
 
     <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
     <link rel="canonical" href="{{ canonical_url }}">
+    <link href="//fonts.googleapis.com/css?family=Titillium+Web:200italic,200,300italic,300,400italic,400,600italic,600,700italic,700,900" rel="stylesheet" type="text/css">
 
     {% include 'fb-open-graph-tags' %}
 
@@ -34,11 +35,20 @@
           <div class="col-md-10 col-md-offset-1">
             <nav>
               <ul id="main-nav" class="nav nav-pills">
-                <li id="nav-logo"><a href="/"><img src="{{ 'logo.png' | asset_url }}"></a></li>
+                <li class="nav-logo"><a href="/"><img src="{{ 'logo.png' | asset_url }}"></a></li>
                 {% assign linklist = linklists['main-menu'] %}
                 {% for link in linklist.links %}
                   {% assign title = link.title | split: ';' %}
-                  <li class="{{ title[1] }} {% if link.active %}active{% endif %}"><a class="button" href="{{ link.url }}">{{ title[0] }}</a></li>
+                  {% assign active = link.active %}
+                  {% if product && link.type == 'collection_link' %}
+                    {% assign active = false %}
+                    {% for collection in product.collections %}
+                      {% if active == false and collection.handle == link.object.handle %}
+                        {% assign active = true %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                  <li class="{{ title[1] }} {% if active %}active{% endif %}"><a class="button" href="{{ link.url }}">{{ title[0] }}</a></li>
                 {% endfor %}
               </ul>
             </nav>

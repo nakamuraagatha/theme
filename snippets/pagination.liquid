@@ -1,18 +1,20 @@
 {% if paginate.pages > 1 %}
 <div class="row">
-  <div class="col-md-10 col-md-offset-1 pagination">
+  <div class="col-md-10 col-md-offset-1">
     <ul class="pagination clearfix">
-    {% if paginate.previous %}
-    	<li><a href="{{ paginate.previous.url }}" class="prev">Previous</a></li>
-    {% else %}
-    	<li><span>{{ back_word }}</span></li>
-    {% endif %}
-    	<li>Page {{ paginate.current_page }} of {{ paginate.pages }}</li>
-    {% if paginate.next %}
-    	<li><a href="{{ paginate.next.url }}" class="next">Next</a></li>
-    {% else %}
-    	<li><span>{{ next_word }}</span></li>
-    {% endif %}
+      {% if paginate.previous %}
+        <li>{{ paginate.previous.title | link_to: paginate.previous.url }}</li>
+      {% endif %}
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <li>{{ part.title | link_to: part.url }}
+        {% else %}
+          <li class="active">{{ part.title | link_to: "#" }}</li>
+        {% endif %}
+      {% endfor %}
+      {% if paginate.next %}
+        <li>{{ paginate.next.title | link_to: paginate.next.url }}</li>
+      {% endif %}
     </ul>
   </div>
 </div>

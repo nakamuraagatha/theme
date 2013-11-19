@@ -1,4 +1,4 @@
-<div itemscope itemtype="http://schema.org/Product" id="product" class="row">
+<div id="product" class="row {{ product.type | downcase }}" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
 
@@ -26,11 +26,18 @@
 
           <hr>
 
-          <select id="product-select" name="id" multiple>
-            {% for variant in product.variants %}
-              <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+          <ul class="reset">
+            {% for option in product.options %}
+              <li>
+                <div>{{ option }}</div>
+                <select class="product-select {{ option }}" name="{{ option }}"></select>
+              <li>
             {% endfor %}
-          </select>
+          </ul>
+
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+          {% endfor %}
 
           <hr>
 
