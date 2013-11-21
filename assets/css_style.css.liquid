@@ -5,14 +5,36 @@
   font-weight: normal;
   font-style: normal;
 }
-body {
-  background-color: #363636;
-  background-image: url('{{'background.jpg' | asset_url}}');
-  color: #000;
-  font-family: "Titillium Web";
-  font-weight: 600;
-  font-size: 15pt;
-  line-height: 20pt;
+/*------------- MIXINS ------------------ */
+.hidden {
+  display: none;
+}
+.white {
+  background-color: white;
+}
+.green {
+  background-color: green;
+}
+.red {
+  background-color: red;
+}
+.blue {
+  background-color: blue;
+}
+.yellow {
+  background-color: yellow;
+}
+.gray {
+  background-color: gray;
+}
+.bglight {
+  background-color: #909090;
+  background: url('{{'bg_blog.jpg' | asset_url}}');
+}
+.bglight-screws {
+  background-color: #909090;
+  background: url('{{'bg_blog.jpg' | asset_url}}');
+  background: url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y, url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y, url('{{'bg_blog.jpg' | asset_url}}');
 }
 .product-border {
   box-shadow: -1px 2px 4px #000000;
@@ -25,10 +47,23 @@ body {
 .product-border:hover {
   background-size: 102% auto;
 }
-ul.reset {
+.content-offset > div {
+  padding-top: 40px;
+}
+.ul-reset {
   padding: 0;
   list-style: none;
   margin-left: 0;
+}
+/*-------------- OVERRIDES ----------------- */
+body {
+  background-color: #363636;
+  background-image: url('{{'background.jpg' | asset_url}}');
+  color: #000;
+  font-family: "Titillium Web";
+  font-weight: 600;
+  font-size: 15pt;
+  line-height: 20pt;
 }
 a {
   color: #fff;
@@ -45,6 +80,22 @@ h2 {
   font-family: 'jersey_m54regular';
   color: #F6F6F6;
   font-size: 18pt;
+}
+h4 {
+  font-family: 'jersey_m54regular';
+  color: #F6F6F6;
+  font-size: 14pt;
+}
+hr {
+  background-image: url('{{'hr.png' | asset_url}}');
+  background-repeat: repeat-x;
+  height: 40px;
+  border: 0;
+}
+ul.reset {
+  padding: 0;
+  list-style: none;
+  margin-left: 0;
 }
 /*------------------------------- */
 #main {
@@ -207,32 +258,23 @@ h2 {
 #teaser #teaser-products ul li {
   margin-bottom: 15px;
 }
-#collection-header > div {
-  padding: 0;
-}
-#collection ul li {
+.collection ul li {
   float: left;
   margin: 10px;
 }
-#collection ul li .more-body {
+.collection ul li .more-body {
   width: 100%;
 }
-#collection ul li .more-body h5 {
+.collection ul li .more-body h5 {
   color: #fff;
 }
-#collection ul li .more-body a {
+.collection ul li .more-body a {
   float: left;
   color: #000;
 }
-#collection ul li .more-body a.price {
+.collection ul li .more-body a.price {
   float: right;
   color: #fff;
-}
-hr {
-  background-image: url('{{'hr.png' | asset_url}}');
-  background-repeat: repeat-x;
-  height: 40px;
-  border: 0;
 }
 #new-products {
   background: url('{{'bg_more_left.png' | asset_url}}') top left no-repeat, url('{{'bg_more.png' | asset_url}}') top left repeat-x;
@@ -287,54 +329,95 @@ hr {
   float: right;
   color: #fff;
 }
-#product > div {
-  padding-top: 40px;
-}
-#product h1 {
+.product h1 {
   font-family: "Titillium Web";
   font-size: 20pt;
   color: #000;
   background-repeat: no-repeat;
   height: 85px;
   margin-top: 0;
+  padding-top: -2px;
   padding-left: 5px;
+  font-weight: 999;
 }
-#product.helme h1 {
-  background-image: url('{{'drips_helme.png' | asset_url}}');
-}
-#product.pads h1 {
-  background-image: url('{{'drips_pads.png' | asset_url}}');
-}
-#product.hands h1 {
-  background-image: url('{{'drips_hands.png' | asset_url}}');
-}
-#product.schuhe h1 {
-  background-image: url('{{'drips_schuhe.png' | asset_url}}');
-}
-#product img {
+.product img {
   background-color: #FFF;
   border: 4px solid #000;
 }
-#product .thumbs {
+.product .thumbs {
   padding: 0;
 }
-#product .thumbs li {
+.product .thumbs li {
   margin-bottom: 20px;
 }
-#product .thumbs li img {
+.product .thumbs li img {
   border: 2px solid #000;
+}
+.product hr {
+  clear: both;
+}
+.product #options li {
+  float: left;
+  margin-right: 40px;
+}
+.product #product-price {
+  float: left;
+}
+.product #product-price .product-price {
+  font-size: 40pt;
+  font-weight: 600;
+}
+.product #product-add {
+  float: right;
+}
+.product #product-add #add {
+  border: 1px solid;
+}
+.product.helme h1 {
+  background-image: url('{{'drips_helme.png' | asset_url}}');
+}
+.product.helme #add {
+  background-color: #DF0000;
+}
+.product.pads h1 {
+  background-image: url('{{'drips_pads.png' | asset_url}}');
+}
+.product.pads #add {
+  background-color: #FFC800;
+}
+.product.hands h1 {
+  background-image: url('{{'drips_hands.png' | asset_url}}');
+}
+.product.hands #add {
+  background-color: #00A237;
+}
+.product.schuhe h1 {
+  background-image: url('{{'drips_schuhe.png' | asset_url}}');
+}
+.product.schuhe #add {
+  background-color: #3F6AD0;
+}
+.page-about-list {
+  background-color: #909090;
+  background: url('{{'bg_blog.jpg' | asset_url}}');
+  background: url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y, url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y, url('{{'bg_blog.jpg' | asset_url}}');
+}
+.page-about-list ul {
+  padding: 0;
+  list-style: none;
+  margin-left: 0;
+}
+.page-about-list li {
+  float: left;
+  width: 25%;
+  padding: 15px;
 }
 #blog-preview {
   background-color: #909090;
+  background: url('{{'bg_blog.jpg' | asset_url}}');
   background: url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y, url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y, url('{{'bg_blog.jpg' | asset_url}}');
   padding-top: 40px;
   padding-bottom: 40px;
-}
-#blog > div {
-  padding-top: 40px;
-}
-#page > div {
-  padding-top: 40px;
 }
 #footer {
   background: url('{{'footer_deco2.png' | asset_url}}') top right no-repeat, url('{{'bg_footer.png' | asset_url}}');
@@ -353,26 +436,4 @@ hr {
 }
 #footer p {
   color: #FFF;
-}
-/*------------------------------- */
-.hidden {
-  display: none;
-}
-.white {
-  background-color: white;
-}
-.green {
-  background-color: green;
-}
-.red {
-  background-color: red;
-}
-.blue {
-  background-color: blue;
-}
-.yellow {
-  background-color: yellow;
-}
-.gray {
-  background-color: gray;
 }

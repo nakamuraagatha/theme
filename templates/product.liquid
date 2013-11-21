@@ -1,4 +1,4 @@
-<div id="product" class="row {{ product.type | downcase }}" itemscope itemtype="http://schema.org/Product">
+<div class="product {{ product.type | downcase }} content-offset row" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
 
@@ -22,22 +22,22 @@
           </ul>
         </div>
         <div class="col-md-6">
-          <h1 itemprop="name">{{ product.title }} <small>{{ product.vendor }}</small></h1>
+          <h1 itemprop="name">{{ product.vendor }} {{ product.title }}</h1>
 
           <hr>
 
-          <ul class="reset">
+          <ul id="options" class="reset">
             {% for option in product.options %}
               <li>
                 <div>{{ option }}</div>
                 <select class="product-select {{ option }}" name="{{ option }}"></select>
-              <li>
+              </li>
             {% endfor %}
           </ul>
 
-          {% for variant in product.variants %}
+  <!--         {% for variant in product.variants %}
             <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-          {% endfor %}
+          {% endfor %} -->
 
           <hr>
 
@@ -57,8 +57,9 @@
             </p>
           </div>
 
+
           <div id="product-add">
-            <input type="submit" name="add" id="add" value="Add to cart">
+            <input type="submit" name="add" id="add" value="In den Warenkorb">
           </div>
 
         </div>

@@ -9,14 +9,25 @@
   font-style: normal;
 }
 
-body {
-  background-color: #363636;
-  background-image: url('background.jpg');
-  color: #000;
-  font-family: "Titillium Web";
-  font-weight: 600;
-  font-size: 15pt;
-  line-height: 20pt;
+/*------------- MIXINS ------------------ */
+
+.hidden { display: none; }
+
+.white  { background-color: white; }
+.green  { background-color: green; }
+.red    { background-color: red; }
+.blue   { background-color: blue; }
+.yellow { background-color: yellow; }
+.gray   { background-color: gray; }
+
+.bglight {
+  background-color: #909090;
+  background: url('bg_blog.jpg');
+}
+
+.bglight-screws {
+  .bglight;
+  background: url('bg_blog_border.png') top left repeat-y, url('bg_blog_border.png') top right repeat-y, url('bg_blog.jpg');
 }
 
 .product-border {
@@ -32,10 +43,40 @@ body {
   }
 }
 
-ul.reset {
+.content-offset {
+   > div {
+    padding-top: 40px;
+  }
+}
+
+.ul-reset {
   padding: 0;
   list-style: none;
   margin-left: 0;
+}
+
+.menu-button(@pos) {
+  .button {
+    background-position: 0px -(@pos * 90px);
+    &:hover {
+      background-position: 80px -(@pos * 90px);
+    }
+  }
+  &.active .button {
+    background-position: 80px -(@pos * 90px);
+    background-color: transparent;
+  }
+}
+
+/*-------------- OVERRIDES ----------------- */
+body {
+  background-color: #363636;
+  background-image: url('background.jpg');
+  color: #000;
+  font-family: "Titillium Web";
+  font-weight: 600;
+  font-size: 15pt;
+  line-height: 20pt;
 }
 
 a {
@@ -57,6 +98,22 @@ h2 {
   color: #F6F6F6;
   font-size: 18pt;
 }
+
+h4 {
+  font-family: 'jersey_m54regular';
+  color: #F6F6F6;
+  font-size: 14pt;
+}
+
+hr {
+ background-image: url('hr.png');
+ background-repeat: repeat-x;
+ height: 40px;
+ border: 0;
+}
+
+ul.reset { .ul-reset; }
+
 /*------------------------------- */
 
 #main {
@@ -74,19 +131,6 @@ h2 {
 
   &:hover {
     color: #000000;
-  }
-}
-
-.menu-button(@pos) {
-  .button {
-    background-position: 0px -(@pos * 90px);
-    &:hover {
-      background-position: 80px -(@pos * 90px);
-    }
-  }
-  &.active .button {
-    background-position: 80px -(@pos * 90px);
-    background-color: transparent;
   }
 }
 
@@ -161,7 +205,7 @@ h2 {
     padding-left: 30px;
 
     ul {
-      display: none;
+      .hidden;
 
       &.active {
         display: block;
@@ -174,13 +218,7 @@ h2 {
   }
 }
 
-#collection-header {
-  > div {
-   padding: 0;
-  }
-}
-
-#collection {
+.collection {
   ul li {
     float: left;
     margin: 10px;
@@ -204,13 +242,6 @@ h2 {
     }
 
   }
-}
-
-hr {
- background-image: url('hr.png');
- background-repeat: repeat-x;
- height: 40px;
- border: 0;
 }
 
 #new-products {
@@ -275,11 +306,7 @@ hr {
   }
 }
 
-#product {
-  > div {
-    padding-top: 40px;
-  }
-
+.product {
   h1 {
     font-family: "Titillium Web";
     font-size: 20pt;
@@ -287,23 +314,9 @@ hr {
     background-repeat: no-repeat;
     height: 85px;
     margin-top: 0;
+    padding-top: -2px;
     padding-left: 5px;
-  }
-
-  &.helme h1 {
-    background-image: url('drips_helme.png');
-  }
-
-  &.pads h1 {
-    background-image: url('drips_pads.png');
-  }
-
-  &.hands h1 {
-    background-image: url('drips_hands.png');
-  }
-
-  &.schuhe h1 {
-    background-image: url('drips_schuhe.png');
+    font-weight: 999;
   }
 
   img {
@@ -322,26 +335,67 @@ hr {
       }
     }
   }
+
+  hr {
+    clear: both;
+  }
+
+  #options li {
+    float: left;
+    margin-right: 40px;
+  }
+
+  #product-price {
+    float: left;
+
+    .product-price {
+      font-size: 40pt;
+      font-weight: 600;
+    }
+  }
+
+  #product-add {
+    float: right;
+    #add {
+      border: 1px solid;
+    }
+  }
+
+  &.helme {
+    h1 { background-image: url('drips_helme.png'); }
+    #add { background-color: #DF0000; }
+  }
+
+  &.pads {
+    h1 { background-image: url('drips_pads.png'); }
+    #add { background-color: #FFC800; }
+  }
+
+  &.hands  {
+    h1 { background-image: url('drips_hands.png'); }
+    #add { background-color: #00A237; }
+  }
+
+  &.schuhe {
+    h1 { background-image: url('drips_schuhe.png'); }
+    #add { background-color: #3F6AD0; }
+  }
+}
+
+.page-about-list {
+  .bglight-screws;
+  ul { .ul-reset; }
+  li {
+    float: left;
+    width: 25%;
+    padding: 15px;
+  }
 }
 
 #blog-preview {
-  background-color: #909090;
-  background: url('bg_blog_border.png') top left repeat-y, url('bg_blog_border.png') top right repeat-y, url('bg_blog.jpg');
+  .bglight-screws;
   padding-top: 40px;
   padding-bottom: 40px;
-}
-
-
-#blog {
-   > div {
-    padding-top: 40px;
-  }
-}
-
-#page {
-  > div {
-    padding-top: 40px;
-  }
 }
 
 #footer {
@@ -364,13 +418,3 @@ hr {
     color: #FFF;
   }
 }
-/*------------------------------- */
-
-.hidden { display: none; }
-.white  { background-color: white; }
-
-.green  { background-color: green; }
-.red    { background-color: red; }
-.blue   { background-color: blue; }
-.yellow { background-color: yellow; }
-.gray   { background-color: gray; }
