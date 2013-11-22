@@ -134,6 +134,9 @@
           $("#teaser-products ul").removeClass("active");
           $('#' + event.relatedTarget.id + '-product').addClass("active");
         });
+
+        $(".collapse").collapse('toggle');
+
       }).on("scroll", function(){
         if ($(window).scrollTop() >= 100) {
           $('#menu').addClass('sticky');

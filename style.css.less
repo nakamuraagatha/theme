@@ -361,25 +361,42 @@ ul.reset { .ul-reset; }
     }
   }
 
-  &.helme {
-    h1 { background-image: url('drips_helme.png'); }
-    #add { background-color: #DF0000; }
+  #accordion {
+    margin-top: 50px;
+
+    div { .bglight; }
+
+    h2 {
+      font-size: 24pt;
+    }
+
+    ul { .ul-reset; }
+    li {
+      float: left;
+      width: 30%;
+      padding: 15px;
+    }
   }
 
-  &.pads {
-    h1 { background-image: url('drips_pads.png'); }
-    #add { background-color: #FFC800; }
+  @helme: #DF0000;
+  @pads: #FFC800;
+  @hands: #00A237;
+  @schuhe: #3F6AD0;
+
+  .extra(@type){
+    h1 { background-image: url('drips_@{type}.png'); }
+    #add { background-color: @@type; }
+    #accordion .panel-heading  {
+      background: transparent;
+      background-color: @@type;
+      opacity:0.6;
+    }
   }
 
-  &.hands  {
-    h1 { background-image: url('drips_hands.png'); }
-    #add { background-color: #00A237; }
-  }
-
-  &.schuhe {
-    h1 { background-image: url('drips_schuhe.png'); }
-    #add { background-color: #3F6AD0; }
-  }
+  &.helme  { .extra('helme'); }
+  &.pads   { .extra('pads'); }
+  &.hands  { .extra('hands'); }
+  &.schuhe { .extra('schuhe'); }
 }
 
 .page-about-list {
