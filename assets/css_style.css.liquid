@@ -42,7 +42,7 @@
   background-size: contain;
   background-position: center center;
   background-clip: content-box;
-  background-color: #444;
+  background-color: #444444;
 }
 .product-border:hover {
   background-size: 100% auto;
@@ -66,11 +66,10 @@ body {
   line-height: 20pt;
 }
 a {
-  color: #fff;
+  color: #ffffff;
 }
 a:hover {
-  color: #aaa;
-  background-color: transparent;
+  color: #aaaaaa;
 }
 h1 {
   font-family: 'jersey_m54regular';
@@ -99,15 +98,16 @@ hr {
   background-image: url('{{'bg_content.jpg' | asset_url}}');
   box-shadow: 0px 0px 10px #000000;
 }
-#top-nav.nav-pills a {
+.header-menu.nav-pills a {
   font-size: 11px;
-  color: #ffffff;
+  color: #fff;
   text-transform: uppercase;
   margin: 0px;
-  padding: 4px 10px;
+  padding: 0px 10px;
 }
-#top-nav.nav-pills a:hover {
-  color: #000000;
+.header-menu.nav-pills a:hover {
+  background-color: transparent;
+  color: #aaaaaa;
 }
 #menu {
   background-image: url('{{'bg_menu.png' | asset_url}}');
@@ -156,6 +156,7 @@ hr {
 }
 #menu #main-nav.nav-pills .nav-about.active .button {
   background-position: 80px 0px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-about.margin-left {
   margin-left: 50px;
@@ -168,6 +169,7 @@ hr {
 }
 #menu #main-nav.nav-pills .nav-helmets.active .button {
   background-position: 80px -90px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-helmets.margin-left {
   margin-left: 50px;
@@ -180,6 +182,7 @@ hr {
 }
 #menu #main-nav.nav-pills .nav-hands.active .button {
   background-position: 80px -180px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-hands.margin-left {
   margin-left: 50px;
@@ -192,6 +195,7 @@ hr {
 }
 #menu #main-nav.nav-pills .nav-pads.active .button {
   background-position: 80px -270px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-pads.margin-left {
   margin-left: 50px;
@@ -204,6 +208,7 @@ hr {
 }
 #menu #main-nav.nav-pills .nav-boots.active .button {
   background-position: 80px -360px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-boots.margin-left {
   margin-left: 50px;
@@ -216,6 +221,7 @@ hr {
 }
 #menu #main-nav.nav-pills .nav-kits.active .button {
   background-position: 80px -450px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-kits.margin-left {
   margin-left: 50px;
@@ -228,6 +234,7 @@ hr {
 }
 #menu #main-nav.nav-pills .nav-blog.active .button {
   background-position: 80px -540px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-blog.margin-left {
   margin-left: 50px;
@@ -240,6 +247,7 @@ hr {
 }
 #menu #main-nav.nav-pills .nav-contact.active .button {
   background-position: 80px -630px;
+  background-color: transparent;
 }
 #menu #main-nav.nav-pills .nav-contact.margin-left {
   margin-left: 50px;
@@ -263,24 +271,6 @@ hr {
 }
 #teaser #teaser-products ul li {
   margin-bottom: 15px;
-}
-.collection ul li {
-  float: left;
-  margin: 10px;
-}
-.collection ul li .more-body {
-  width: 100%;
-}
-.collection ul li .more-body h5 {
-  color: #fff;
-}
-.collection ul li .more-body a {
-  float: left;
-  color: #000;
-}
-.collection ul li .more-body a.price {
-  float: right;
-  color: #fff;
 }
 #new-products {
   background: url('{{'bg_more_left.png' | asset_url}}') top left no-repeat, url('{{'bg_more.png' | asset_url}}') top left repeat-x;
@@ -335,6 +325,43 @@ hr {
   float: right;
   color: #fff;
 }
+.collection .row > div {
+  padding: 0px;
+}
+.collection .row .description {
+  padding: 15px 15px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.collection .row .description ul {
+  padding: 0;
+  list-style: none;
+  margin-left: 0;
+}
+.collection .products ul {
+  padding: 0;
+  list-style: none;
+  margin-left: 0;
+}
+.collection .products ul li {
+  float: left;
+  margin: 10px;
+  width: 30%;
+}
+.collection .products ul li .more-body {
+  width: 100%;
+}
+.collection .products ul li .more-body h5 {
+  color: #fff;
+}
+.collection .products ul li .more-body a {
+  float: left;
+  color: #000;
+}
+.collection .products ul li .more-body a.price {
+  float: right;
+  color: #fff;
+}
 .product h1 {
   font-family: "Titillium Web";
   font-size: 20pt;
@@ -347,7 +374,7 @@ hr {
   font-weight: 999;
 }
 .product img {
-  background-color: #444;
+  background-color: #444444;
   border: 4px solid #000;
 }
 .product .thumbs {
@@ -443,20 +470,44 @@ hr {
   background-color: #3f6ad0;
   opacity: 0.6;
 }
-.page-about-list {
+.page.about .list {
   background-color: #909090;
   background: url('{{'bg_blog.jpg' | asset_url}}');
   background: url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y, url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y, url('{{'bg_blog.jpg' | asset_url}}');
 }
-.page-about-list ul {
+.page.about .list ul {
   padding: 0;
   list-style: none;
   margin-left: 0;
 }
-.page-about-list li {
+.page.about .list li {
   float: left;
   width: 25%;
   padding: 15px;
+}
+footer > div {
+  background: url('{{'footer_deco2.png' | asset_url}}') top right no-repeat, url('{{'bg_footer.jpg' | asset_url}}');
+  background-position: right 40px, left top;
+  height: 220px;
+  padding-top: 15px;
+  font-size: 10pt;
+  line-height: 15pt;
+}
+footer > div ul {
+  padding: 0;
+  list-style: none;
+  margin-left: 0;
+}
+footer > div #footer-list > li {
+  background: url('{{'footer_deco.png' | asset_url}}') no-repeat;
+  background-position: left 20px;
+  float: left;
+  padding-left: 30px;
+  margin-right: 80px;
+}
+footer > div #footer-list > li .footer a:hover {
+  text-decoration: none;
+  color: #FFF;
 }
 #blog-preview {
   background-color: #909090;
@@ -464,28 +515,4 @@ hr {
   background: url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y, url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y, url('{{'bg_blog.jpg' | asset_url}}');
   padding-top: 40px;
   padding-bottom: 40px;
-}
-#footer {
-  background: url('{{'footer_deco2.png' | asset_url}}') top right no-repeat, url('{{'bg_footer.png' | asset_url}}');
-  background-position: right 40px, left top;
-  height: 250px;
-  padding-top: 40px;
-  font-size: 10pt;
-  line-height: 15pt;
-}
-#footer ul {
-  padding: 0;
-  list-style: none;
-  margin-left: 0;
-}
-#footer #footer-list > li {
-  background: url('{{'footer_deco.png' | asset_url}}') no-repeat;
-  background-position: left 20px;
-  float: left;
-  padding-left: 30px;
-  margin-right: 80px;
-}
-#footer #footer-list > li .footer a:hover {
-  text-decoration: none;
-  color: #FFF;
 }

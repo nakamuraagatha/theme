@@ -12,8 +12,8 @@
           </a>
         </div>
         <div class="body">
-          <h5>{{ product.title }}</h5>
-          <a href="{{ product.url }}"> >> more</a>
+          <h5>{{ product.vendor }} {{ product.title }}</h5>
+          <a href="{{ product.url }}"> >> Details</a>
           <a href="{{ product.url }}" class="price">{{ product.price | money }}</a>
         </div>
       </li>

@@ -13,7 +13,7 @@
 {% capture teaser_carousel_slides %}
 {{ teaser_carousel_slides }}
 <div id="js-{{ teaser_carousel_slide }}" class="item {{ active }}">
-  <a href="{{ collection.url }}">
+  <a href="{{ collection.url | replace: 'teaser-', '' }}">
     <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
   </a>
   <div class="carousel-caption">
@@ -24,7 +24,7 @@
 
 {% capture teaser_carousel_products %}
 {{ teaser_carousel_products }}
-<ul id="js-{{ teaser_carousel_slide }}-product" class="teaser_carousel_product reset {{ active }}">
+<ul id="js-{{ teaser_carousel_slide }}-product" class="teaser_carousel_product ul-reset {{ active }}">
   {% for product in collection.all_products limit:3 %}
   <li>
     <a href="{{ product.url }}"><img src="{{ 'product_border.png' | asset_url }}"

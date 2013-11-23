@@ -46,7 +46,7 @@ Liquid::Template.file_system = Liquid::LocalFileSystem.new("../snippets")
 Liquid::Template.register_filter(TextFilter)
 
 def style_css
-  style = less(:'../style.css')
+  style = less(:'../styles/main')
   style.gsub(/url\(([^)]+)\)/, %q{url('{{\1 | asset_url}}')}).tap do |content|
     File.open('assets/css_style.css.liquid', 'w') { |file| file.write(content) }
   end

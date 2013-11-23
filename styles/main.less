@@ -14,6 +14,9 @@
 @hands: #00A237;
 @schuhe: #3F6AD0;
 @default: #000;
+@a: #FFF;
+@a_hover: #AAA;
+@image_bg: #444;
 
 /*------------- MIXINS ------------------ */
 
@@ -42,17 +45,15 @@
   background-size: contain;
   background-position: center center;
   background-clip: content-box;
-  background-color: #444;
+  background-color: @image_bg;
 
   &:hover {
     background-size: 100% auto;
   }
 }
 
-.content-offset {
-   > div {
-    padding-top: 40px;
-  }
+.content-offset >div {
+  padding-top: 40px;
 }
 
 .ul-reset {
@@ -90,9 +91,9 @@ body {
 }
 
 a {
-  color: #fff;
+  color: @a;
   &:hover {
-    color: #aaa;
+    color: @a_hover;
   }
 }
 
@@ -129,15 +130,16 @@ hr {
   box-shadow: 0px 0px 10px #000000;
 }
 
-#top-nav.nav-pills a {
+.header-menu.nav-pills a {
   font-size: 11px;
-  color: #ffffff;
+  color: #fff;
   text-transform: uppercase;
   margin: 0px;
-  padding: 4px 10px;
+  padding: 0px 10px;
 
   &:hover {
-    color: #000000;
+    background-color: transparent;
+    color: @a_hover;
   }
 }
 
@@ -225,32 +227,6 @@ hr {
   }
 }
 
-.collection {
-  ul li {
-    float: left;
-    margin: 10px;
-
-    .more-body {
-      width: 100%;
-
-      h5 {
-        color: #fff;
-      }
-
-      a {
-        float: left;
-        color: #000;
-
-        &.price {
-          float: right;
-          color: #fff;
-        }
-      }
-    }
-
-  }
-}
-
 #new-products {
   background: url('bg_more_left.png') top left no-repeat, url('bg_more.png') top left repeat-x;
   background-position: 0 60px;
@@ -313,103 +289,10 @@ hr {
   }
 }
 
-.product {
-  h1 {
-    font-family: "Titillium Web";
-    font-size: 20pt;
-    color: #000;
-    background-repeat: no-repeat;
-    height: 85px;
-    margin-top: 0;
-    padding-top: -2px;
-    padding-left: 5px;
-    font-weight: 999;
-  }
-
-  img {
-    background-color: #444;
-    border: 4px solid #000;
-  }
-
-  .thumbs {
-    padding: 0;
-
-    li {
-      margin-bottom: 20px;
-
-      img {
-        border: 2px solid #000;
-      }
-    }
-  }
-
-  hr {
-    clear: both;
-  }
-
-  #options li {
-    float: left;
-    margin-right: 40px;
-  }
-
-  #product-price {
-    float: left;
-
-    .product-price {
-      font-size: 40pt;
-      font-weight: 600;
-    }
-  }
-
-  #product-add {
-    float: right;
-    #add {
-      border: 1px solid;
-    }
-  }
-
-  #accordion {
-    margin-top: 50px;
-
-    div { .bglight; }
-
-    h2 {
-      font-size: 24pt;
-    }
-
-    ul { .ul-reset; }
-    li {
-      float: left;
-      width: 30%;
-      padding: 15px;
-    }
-  }
-
-  .extra(@type){
-    h1 { background-image: url('drips_@{type}.png'); }
-    #add { background-color: @@type; }
-    #accordion .panel-heading  {
-      background: transparent;
-      background-color: @@type;
-      opacity:0.6;
-    }
-  }
-
-  &.helme  { .extra('helme'); }
-  &.pads   { .extra('pads'); }
-  &.hands  { .extra('hands'); }
-  &.schuhe { .extra('schuhe'); }
-}
-
-.page-about-list {
-  .bglight-screws;
-  ul { .ul-reset; }
-  li {
-    float: left;
-    width: 25%;
-    padding: 15px;
-  }
-}
+.collection { @import 'collection'; }
+.product { @import 'product'; }
+.page { @import 'page'; }
+footer >div { @import 'footer'; }
 
 #blog-preview {
   .bglight-screws;
@@ -417,26 +300,4 @@ hr {
   padding-bottom: 40px;
 }
 
-#footer {
-  background: url('footer_deco2.png') top right no-repeat, url('bg_footer.png');
-  background-position: right 40px, left top;
-  height: 250px;
-  padding-top: 40px;
-  font-size: 10pt;
-  line-height: 15pt;
 
-  ul { .ul-reset; }
-
-  #footer-list > li {
-    background: url('footer_deco.png') no-repeat;
-    background-position: left 20px;
-    float:left;
-    padding-left: 30px;
-    margin-right: 80px;
-
-    .footer a:hover {
-      text-decoration: none;
-      color: #FFF;
-    }
-  }
-}

@@ -28,7 +28,6 @@
     {{ 'css_style.css' | asset_url | stylesheet_tag }}
   </head>
   <body>
-
     <div id="menu" class="hidden-xs">
       <div class="container">
         <div class="row">
@@ -58,45 +57,49 @@
     </div>
 
     <div id="main" class="container">
-      <div id="header" class="row">
-        <div class="col-xs-8 col-md-6 col-md-offset-1">
-          <nav>
-            <ul id="top-nav" class="nav nav-pills hidden">
-              {% assign linklist = linklists['header-menu'] %}
-              {% for link in linklist.links %}
-                {% assign title = link.title | split: ';' %}
-                <li class="{{ title[1] }} {% if link.active %}active{% endif %}">
-                  <a href="{{ link.url }}">{{ title[0] }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </nav>
+      <header>
+        <div id="header" class="row">
+          <div class="col-xs-8 col-md-6 col-md-offset-1">
+            <nav>
+              <ul class="header-menu nav nav-pills hidden">
+                {% assign linklist = linklists['header-menu'] %}
+                {% for link in linklist.links %}
+                  {% assign title = link.title | split: ';' %}
+                  <li class="{{ title[1] }} {% if link.active %}active{% endif %}">
+                    <a href="{{ link.url }}">{{ title[0] }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </nav>
+          </div>
+          <div class="col-xs-4 col-md-3 col-md-offset-2">
+            <nav class="pull-right">
+              <ul class="header-menu nav nav-pills">
+                {% if cart.item_count != 0 %}
+                  <li><a href="/cart" title="Checkout">Zur Kasse</a></li>
+                {% endif %}
+                <li><a href="/cart">Warenkorb <span class="badge">{{ cart.item_count }}</span></a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
-        <div class="col-xs-4 col-md-3 col-md-offset-2">
-          <nav class="pull-right">
-            <ul id="top-nav" class="nav nav-pills">
-              {% if cart.item_count != 0 %}
-              <li><a href="/cart" title="Checkout">Zur Kasse</a></li>
-              {% endif %}
-              <li><a href="/cart">Warenkorb <span class="badge">{{ cart.item_count }}</span></a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+      </header>
 
-      <!-- content_for_layout start -->
-      {{ content_for_layout }}
-      <!-- content_for_layout end -->
+      <section class="{{ template | replace: '.', ' '}}">
+        {{ content_for_layout }}
+      </section>
 
-      <div id="footer" class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
-          <ul id="footer-list">
-            {% include 'footer_menu' with 'footer-shop-menu' %}
-            {% include 'footer_menu' with 'footer' %}
-            {% include 'footer_menu' with 'footer-info-menu' %}
-          </ul>
+      <footer>
+        <div class="row">
+          <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <ul id="footer-list">
+              {% include 'footer_menu' with 'footer-shop-menu' %}
+              {% include 'footer_menu' with 'footer' %}
+              {% include 'footer_menu' with 'footer-info-menu' %}
+            </ul>
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
 
     {{ '//code.jquery.com/jquery-1.10.2.min.js' | script_tag }}
