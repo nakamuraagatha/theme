@@ -1,15 +1,28 @@
-.row >div {
+.header {
   padding: 0px;
+  height: 450px;
+
+  img {
+    position:absolute;
+    clip: rect(0px, 880px, 350px, 0px);
+  }
 }
 
-.row .description {
+.description {
   padding: 5px 15px;
+
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
 
   ul {
     .ul-reset;
+
+    font-size: 14px;
+    line-height: 20px;
   }
-  font-size: 14px;
-  line-height: 20px;
 }
 
 .products {
@@ -41,3 +54,12 @@
     }
   }
 }
+
+.extra(@type){
+  .header { background-color: @@type; }
+}
+
+.helme  { .extra('helme'); }
+.pads   { .extra('pads'); }
+.hands  { .extra('hands'); }
+.schuhe { .extra('schuhe'); }

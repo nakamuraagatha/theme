@@ -259,6 +259,9 @@ hr {
 #teaser #teaser-carousel {
   padding: 0;
 }
+#teaser #teaser-carousel .carousel-indicators {
+  bottom: -5px;
+}
 #teaser #teaser-products {
   padding: 0;
   padding-left: 30px;
@@ -325,18 +328,28 @@ hr {
   float: right;
   color: #fff;
 }
-.collection .row > div {
+.collection .header {
   padding: 0px;
+  height: 450px;
 }
-.collection .row .description {
-  padding: 15px 15px;
-  font-size: 14px;
-  line-height: 20px;
+.collection .header img {
+  position: absolute;
+  clip: rect(0px, 880px, 350px, 0px);
 }
-.collection .row .description ul {
+.collection .description {
+  padding: 5px 15px;
+}
+.collection .description img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+.collection .description ul {
   padding: 0;
   list-style: none;
   margin-left: 0;
+  font-size: 14px;
+  line-height: 20px;
 }
 .collection .products ul {
   padding: 0;
@@ -361,6 +374,18 @@ hr {
 .collection .products ul li .more-body a.price {
   float: right;
   color: #fff;
+}
+.collection .helme .header {
+  background-color: #df0000;
+}
+.collection .pads .header {
+  background-color: #ffc800;
+}
+.collection .hands .header {
+  background-color: #00a237;
+}
+.collection .schuhe .header {
+  background-color: #3f6ad0;
 }
 .product h1 {
   font-family: "Titillium Web";

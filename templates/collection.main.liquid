@@ -1,4 +1,17 @@
-<div class="content-offset row">
+{% assign product_type = collection.all_types | first | downcase %}
+
+<div class="{{ product_type }} row">
+  <div class="header col-md-9">
+    {% assign parent_collection_name = 'teaser-' | append: collection.handle %}
+    {% assign parent_collection = collections[parent_collection_name] %}
+    <img src="{{ parent_collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
+  </div>
+  <div class="description col-md-3">
+    {{ collection.description }}
+  </div>
+</div>
+
+<div class="{{ product_type }} row">
   <div class="products col-md-10 col-md-offset-1 ">
     <ul>
       {% for product in collection.all_products %}
@@ -17,5 +30,11 @@
       </li>
       {% endfor %}
     </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <hr class="dots">
   </div>
 </div>
