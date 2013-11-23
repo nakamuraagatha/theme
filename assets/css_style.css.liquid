@@ -42,10 +42,10 @@
   background-size: contain;
   background-position: center center;
   background-clip: content-box;
-  background-color: #FFF;
+  background-color: #444;
 }
 .product-border:hover {
-  background-size: 102% auto;
+  background-size: 100% auto;
 }
 .content-offset > div {
   padding-top: 40px;
@@ -59,7 +59,7 @@
 body {
   background-color: #363636;
   background-image: url('{{'background.jpg' | asset_url}}');
-  color: #000;
+  color: #000000;
   font-family: "Titillium Web";
   font-weight: 600;
   font-size: 15pt;
@@ -70,6 +70,7 @@ a {
 }
 a:hover {
   color: #aaa;
+  background-color: transparent;
 }
 h1 {
   font-family: 'jersey_m54regular';
@@ -91,11 +92,6 @@ hr {
   background-repeat: repeat-x;
   height: 40px;
   border: 0;
-}
-ul.reset {
-  padding: 0;
-  list-style: none;
-  margin-left: 0;
 }
 /*------------------------------- */
 #main {
@@ -119,7 +115,7 @@ ul.reset {
   background-position: 0 30px;
   height: 160px;
   width: 100%;
-  margin-top: 110px;
+  margin-top: 50px;
   position: absolute;
   z-index: 100;
 }
@@ -141,6 +137,9 @@ ul.reset {
   margin: 2px 0px;
   padding: 1px 10px;
 }
+#menu #main-nav.nav-pills a:hover {
+  background: transparent;
+}
 #menu #main-nav.nav-pills a.button {
   margin-top: 30px;
   padding: 65px 0 0 0;
@@ -148,9 +147,6 @@ ul.reset {
   background-image: url('{{'button_sprite.png' | asset_url}}');
   width: 80px;
   height: 90px;
-}
-#menu #main-nav.nav-pills .nav-logo a:hover {
-  background: transparent;
 }
 #menu #main-nav.nav-pills .nav-about .button {
   background-position: 0px 0px;
@@ -160,7 +156,9 @@ ul.reset {
 }
 #menu #main-nav.nav-pills .nav-about.active .button {
   background-position: 80px 0px;
-  background-color: transparent;
+}
+#menu #main-nav.nav-pills .nav-about.margin-left {
+  margin-left: 50px;
 }
 #menu #main-nav.nav-pills .nav-helmets .button {
   background-position: 0px -90px;
@@ -170,7 +168,9 @@ ul.reset {
 }
 #menu #main-nav.nav-pills .nav-helmets.active .button {
   background-position: 80px -90px;
-  background-color: transparent;
+}
+#menu #main-nav.nav-pills .nav-helmets.margin-left {
+  margin-left: 50px;
 }
 #menu #main-nav.nav-pills .nav-hands .button {
   background-position: 0px -180px;
@@ -180,7 +180,9 @@ ul.reset {
 }
 #menu #main-nav.nav-pills .nav-hands.active .button {
   background-position: 80px -180px;
-  background-color: transparent;
+}
+#menu #main-nav.nav-pills .nav-hands.margin-left {
+  margin-left: 50px;
 }
 #menu #main-nav.nav-pills .nav-pads .button {
   background-position: 0px -270px;
@@ -190,7 +192,9 @@ ul.reset {
 }
 #menu #main-nav.nav-pills .nav-pads.active .button {
   background-position: 80px -270px;
-  background-color: transparent;
+}
+#menu #main-nav.nav-pills .nav-pads.margin-left {
+  margin-left: 50px;
 }
 #menu #main-nav.nav-pills .nav-boots .button {
   background-position: 0px -360px;
@@ -200,10 +204,9 @@ ul.reset {
 }
 #menu #main-nav.nav-pills .nav-boots.active .button {
   background-position: 80px -360px;
-  background-color: transparent;
 }
-#menu #main-nav.nav-pills .nav-kits {
-  display: none;
+#menu #main-nav.nav-pills .nav-boots.margin-left {
+  margin-left: 50px;
 }
 #menu #main-nav.nav-pills .nav-kits .button {
   background-position: 0px -450px;
@@ -213,9 +216,8 @@ ul.reset {
 }
 #menu #main-nav.nav-pills .nav-kits.active .button {
   background-position: 80px -450px;
-  background-color: transparent;
 }
-#menu #main-nav.nav-pills .nav-blog {
+#menu #main-nav.nav-pills .nav-kits.margin-left {
   margin-left: 50px;
 }
 #menu #main-nav.nav-pills .nav-blog .button {
@@ -226,7 +228,9 @@ ul.reset {
 }
 #menu #main-nav.nav-pills .nav-blog.active .button {
   background-position: 80px -540px;
-  background-color: transparent;
+}
+#menu #main-nav.nav-pills .nav-blog.margin-left {
+  margin-left: 50px;
 }
 #menu #main-nav.nav-pills .nav-contact .button {
   background-position: 0px -630px;
@@ -236,11 +240,13 @@ ul.reset {
 }
 #menu #main-nav.nav-pills .nav-contact.active .button {
   background-position: 80px -630px;
-  background-color: transparent;
+}
+#menu #main-nav.nav-pills .nav-contact.margin-left {
+  margin-left: 50px;
 }
 #header {
   background-image: url('{{'bg_header.png' | asset_url}}');
-  height: 230px;
+  height: 170px;
 }
 #teaser #teaser-carousel {
   padding: 0;
@@ -341,7 +347,7 @@ ul.reset {
   font-weight: 999;
 }
 .product img {
-  background-color: #FFF;
+  background-color: #444;
   border: 4px solid #000;
 }
 .product .thumbs {
@@ -467,6 +473,11 @@ ul.reset {
   font-size: 10pt;
   line-height: 15pt;
 }
+#footer ul {
+  padding: 0;
+  list-style: none;
+  margin-left: 0;
+}
 #footer #footer-list > li {
   background: url('{{'footer_deco.png' | asset_url}}') no-repeat;
   background-position: left 20px;
@@ -474,6 +485,7 @@ ul.reset {
   padding-left: 30px;
   margin-right: 80px;
 }
-#footer p {
+#footer #footer-list > li .footer a:hover {
+  text-decoration: none;
   color: #FFF;
 }

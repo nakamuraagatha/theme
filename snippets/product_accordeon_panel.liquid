@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        Features
+      </a>
+    </h2>
+  </div>
+  <div id="collapseTwo" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <ul>
+        {% for feature in product.metafields.features %}
+          <li>
+            {{ feature | last}}
+          </li>
+        {% endfor %}
+      <ul>
+    </div>
+  </div>
+</div>

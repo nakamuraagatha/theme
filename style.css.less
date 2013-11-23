@@ -9,6 +9,12 @@
   font-style: normal;
 }
 
+@helme: #DF0000;
+@pads: #FFC800;
+@hands: #00A237;
+@schuhe: #3F6AD0;
+@default: #000;
+
 /*------------- MIXINS ------------------ */
 
 .hidden { display: none; }
@@ -36,10 +42,10 @@
   background-size: contain;
   background-position: center center;
   background-clip: content-box;
-  background-color: #FFF;
+  background-color: #444;
 
   &:hover {
-    background-size: 102% auto;
+    background-size: 100% auto;
   }
 }
 
@@ -66,13 +72,17 @@
     background-position: 80px -(@pos * 90px);
     background-color: transparent;
   }
+
+  &.margin-left {
+    margin-left: 50px;
+  }
 }
 
 /*-------------- OVERRIDES ----------------- */
 body {
   background-color: #363636;
   background-image: url('background.jpg');
-  color: #000;
+  color: @default;
   font-family: "Titillium Web";
   font-weight: 600;
   font-size: 15pt;
@@ -81,7 +91,6 @@ body {
 
 a {
   color: #fff;
-
   &:hover {
     color: #aaa;
   }
@@ -112,8 +121,6 @@ hr {
  border: 0;
 }
 
-ul.reset { .ul-reset; }
-
 /*------------------------------- */
 
 #main {
@@ -141,7 +148,7 @@ ul.reset { .ul-reset; }
   // background-color: #123455;
   height: 160px;
   width: 100%;
-  margin-top: 110px;
+  margin-top: 50px;
   position: absolute;
   z-index: 100;
 
@@ -165,6 +172,10 @@ ul.reset { .ul-reset; }
       margin: 2px 0px;
       padding: 1px 10px;
 
+      &:hover {
+        background: transparent;
+      }
+
       &.button {
         margin-top: 30px;
         padding: 65px 0 0 0;
@@ -175,24 +186,20 @@ ul.reset { .ul-reset; }
       }
     }
 
-    .nav-logo a:hover {
-      background: transparent;
-    }
-
     .nav-about   { .menu-button(0); }
     .nav-helmets { .menu-button(1); }
     .nav-hands   { .menu-button(2); }
     .nav-pads    { .menu-button(3); }
     .nav-boots   { .menu-button(4); }
-    .nav-kits    { .menu-button(5);  .hidden; }
-    .nav-blog    { .menu-button(6); margin-left: 50px;}
+    .nav-kits    { .menu-button(5); }
+    .nav-blog    { .menu-button(6); }
     .nav-contact { .menu-button(7); }
   }
 }
 
 #header {
  background-image: url('bg_header.png');
- height: 230px;
+ height: 170px;
 }
 
 #teaser {
@@ -320,7 +327,7 @@ ul.reset { .ul-reset; }
   }
 
   img {
-    background-color: #FFF;
+    background-color: #444;
     border: 4px solid #000;
   }
 
@@ -378,11 +385,6 @@ ul.reset { .ul-reset; }
     }
   }
 
-  @helme: #DF0000;
-  @pads: #FFC800;
-  @hands: #00A237;
-  @schuhe: #3F6AD0;
-
   .extra(@type){
     h1 { background-image: url('drips_@{type}.png'); }
     #add { background-color: @@type; }
@@ -423,15 +425,18 @@ ul.reset { .ul-reset; }
   font-size: 10pt;
   line-height: 15pt;
 
+  ul { .ul-reset; }
+
   #footer-list > li {
     background: url('footer_deco.png') no-repeat;
     background-position: left 20px;
     float:left;
     padding-left: 30px;
     margin-right: 80px;
-  }
 
-  p {
-    color: #FFF;
+    .footer a:hover {
+      text-decoration: none;
+      color: #FFF;
+    }
   }
 }

@@ -11,7 +11,7 @@
           </a>
         </div>
         <div class="col-md-1 thumbs">
-          <ul id="product-photo-thumbs" class="reset">
+          <ul id="product-photo-thumbs" class="ul-reset">
             {% for image in product.images offset:1 limit:3 %}
               <li class="product-photo-thumb">
                 <a class="gallery" href="{{ image.src | product_img_url: 'original' }}" rel="gallery">
@@ -26,7 +26,7 @@
 
           <hr>
 
-          <ul id="options" class="reset">
+          <ul id="options" class="ul-reset">
             {% for option in product.options %}
               <li>
                 <div>{{ option }}</div>
@@ -40,9 +40,9 @@
           <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
             <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
             {% if product.available %}
-            <link itemprop="availability" href="http://schema.org/InStock" />
+              <link itemprop="availability" href="http://schema.org/InStock" />
             {% else %}
-            <link itemprop="availability" href="http://schema.org/OutOfStock" />
+             <link itemprop="availability" href="http://schema.org/OutOfStock" />
             {% endif %}
             <p>
               {% if product.compare_at_price > product.price %}
@@ -53,9 +53,12 @@
             </p>
           </div>
 
-
           <div id="product-add">
-            <input type="submit" name="add" id="add" value="In den Warenkorb">
+            {% if product.available %}
+              <input type="submit" name="add" id="add" value="In den Warenkorb">
+            {% else %}
+              <p>leider vergriffen</p>
+            {% endif %}
           </div>
 
         </div>
@@ -81,26 +84,7 @@
           </div>
 
           {% if product.metafields.features.size > 0 %}
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h2 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                    Features
-                  </a>
-                </h2>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <ul>
-                    {% for feature in product.metafields.features %}
-                      <li>
-                        {{ feature | last}}
-                      </li>
-                    {% endfor %}
-                  <ul>
-                </div>
-              </div>
-            </div>
+            {% include 'product_accordeon_panel' with ['Features', "asd"] %}
           {% endif %}
 
       </div>

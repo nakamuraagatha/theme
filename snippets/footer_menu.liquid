@@ -1,0 +1,13 @@
+<li>
+  {% assign linklist = linklists[footer_menu] %}
+  {% assign title = linklist.title | split: ';' %}
+  <h5>{{ title[1] }}</h5>
+  <ul class="{{ footer_menu }}">
+    {% for link in linklist.links %}
+      {% assign title = link.title | split: ';' %}
+      <li class="{{ title[1] }} {% if link.active %}active{% endif %}">
+        <a href="{{ link.url }}">{{ title[0] }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</li>
