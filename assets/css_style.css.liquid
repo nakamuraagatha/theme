@@ -1,11 +1,18 @@
 @font-face {
-  font-family: 'jersey_m54regular';
-  src: url('{{'jersey_m54-webfont.eot' | asset_url}}');
-  src: url('{{'jersey_m54-webfont.eot?#iefix' | asset_url}}') format('embedded-opentype'), url('{{'jersey_m54-webfont.woff' | asset_url}}') format('woff'), url('{{'jersey_m54-webfont.ttf' | asset_url}}') format('truetype'), url('{{'jersey_m54-webfont.svg#jersey_m54regular' | asset_url}}') format('svg');
+  font-family: 'sf_collegiate_solidregular';
+  src: url('{{'SF_Collegiate_Solid-webfont.eot' | asset_url}}');
+  src: url('{{'SF_Collegiate_Solid-webfont.eot?#iefix' | asset_url}}') format('embedded-opentype'), url('{{'SF_Collegiate_Solid-webfont.woff' | asset_url}}') format('woff'), url('{{'SF_Collegiate_Solid-webfont.ttf' | asset_url}}') format('truetype'), url('{{'SF_Collegiate_Solid-webfont.svg#sf_collegiate_solidregular' | asset_url}}') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 /*------------- MIXINS ------------------ */
+.main_font {
+  font-family: "Titillium Web";
+}
+.header_font {
+  font-family: 'sf_collegiate_solidregular';
+  text-transform: uppercase;
+}
 .hidden {
   display: none;
 }
@@ -72,17 +79,26 @@ a:hover {
   color: #aaaaaa;
 }
 h1 {
-  font-family: 'jersey_m54regular';
+  font-family: 'sf_collegiate_solidregular';
+  text-transform: uppercase;
   color: #D9DADA;
   font-size: 35pt;
 }
 h2 {
-  font-family: 'jersey_m54regular';
+  font-family: 'sf_collegiate_solidregular';
+  text-transform: uppercase;
   color: #F6F6F6;
   font-size: 18pt;
 }
+h3 {
+  font-family: 'sf_collegiate_solidregular';
+  text-transform: uppercase;
+  color: #F6F6F6;
+  font-size: 16pt;
+}
 h4 {
-  font-family: 'jersey_m54regular';
+  font-family: 'sf_collegiate_solidregular';
+  text-transform: uppercase;
   color: #F6F6F6;
   font-size: 14pt;
 }
