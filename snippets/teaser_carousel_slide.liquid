@@ -13,7 +13,7 @@
 {% capture teaser_carousel_slides %}
 {{ teaser_carousel_slides }}
 <div id="js-{{ teaser_carousel_slide }}" class="item {{ active }}">
-  <a href="{{ collection.url | replace: 'teaser-', '' }}">
+  <a href="{{ collection.url | remove: 'teaser-' }}">
     <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
   </a>
   <div class="carousel-caption">

@@ -10,12 +10,18 @@
                class="product-border"></a>
         </div>
         <div class="more-body">
-          <h5>{{ product.title }}</h5>
+          <h5>{{ product.vendor }} {{ product.title }}</h5>
           <a href="{{ product.url }}"> >> Details</a>
           <a href="{{ product.url }}" class="price">{{ product.price | money }}</a>
         </div>
       </li>
       {% endfor %}
     </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <hr class="dots">
   </div>
 </div>

@@ -7,11 +7,11 @@
       <div class="row">
         <div id="product-photo-container" class="col-md-5">
           <a class="gallery" href="{{ product.featured_image.src | product_img_url: 'original' }}" rel="gallery">
-            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" class="img-responsive"/>
+            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" class="img-rounded img-responsive"/>
           </a>
         </div>
         <div class="col-md-1 thumbs">
-          <ul id="product-photo-thumbs" class="ul-reset">
+          <ul id="product-photo-thumbs" class="list-unstyled">
             {% for image in product.images offset:1 limit:3 %}
               <li class="product-photo-thumb">
                 <a class="gallery" href="{{ image.src | product_img_url: 'original' }}" rel="gallery">
@@ -26,11 +26,36 @@
 
           <hr>
 
-          <ul id="options" class="ul-reset">
+          <ul id="options" class="list-unstyled list-inline">
+            <li id="variants">
+              <label for="id">Optionen</label>
+              <select id="product-select" class="form-control" name="id">
+                {% for variant in product.variants %}
+                  <option value="{{ variant.id }}">{{ variant.title }}</option>
+                  {% capture product_variants %}
+                    {{ product_variants }}
+                    addVariant({
+                      id: {{variant.id}},
+                      price: '{{variant.price | money}}',
+                      options: {
+                        {% if product.options[0] %}{{product.options[0] | downcase}}: '{{variant.option1}}'{% endif %}
+                        {% if product.options[1] %},{{product.options[1] | downcase}}: '{{variant.option2}}'{% endif %}
+                        {% if product.options[2] %},{{product.options[2] | downcase}}: '{{variant.option3}}'{% endif %}
+                      },
+                      available: {{variant.available}}
+                    });
+                  {% endcapture %}
+
+                {% endfor %}
+                {% if item.product.variants.size < 1 %}
+                  <option value="{{ product.id }}">{{ product.vendor }} {{ product.title }}</option>
+                {% endif %}
+              </select>
+            </li>
             {% for option in product.options %}
               <li>
-                <div>{{ option }}</div>
-                <select class="product-select {{ option }}" name="{{ option }}"></select>
+                <label for="{{ option | downcase}}">{{ option }}</label>
+                <select class="{{ option | downcase }} option form-control" name="{{ option | downcase}}"></select>
               </li>
             {% endfor %}
           </ul>
@@ -42,52 +67,104 @@
             {% if product.available %}
               <link itemprop="availability" href="http://schema.org/InStock" />
             {% else %}
-             <link itemprop="availability" href="http://schema.org/OutOfStock" />
+              <link itemprop="availability" href="http://schema.org/OutOfStock" />
             {% endif %}
             <p>
               {% if product.compare_at_price > product.price %}
-              <span class="product-price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="product-compare-price">{{ product.compare_at_price_max | money }}</s>
+                <span class="product-price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="product-compare-price">{{ product.compare_at_price_max | money }}</span>
               {% else %}
-              <span class="product-price" itemprop="price">{{ product.price | money }}</span>
+                <span class="product-price" itemprop="price">{{ product.price | money }}</span>
               {% endif %}
+              <br><small>Preis inkl. MwST, zzgl. <a href="/pages/versandkosten">Versand</a></small>
             </p>
           </div>
 
           <div id="product-add">
             {% if product.available %}
-              <input type="submit" name="add" id="add" value="In den Warenkorb">
-            {% else %}
-              <p>leider vergriffen</p>
+              <button type="submit" name="add" id="add" class="btn btn-default">In den Warenkorb</button>
             {% endif %}
           </div>
-
+          <div id="availability">
+            <p>Das Produkt ist zur Zeit leider vergriffen</p>
+          </div>
         </div>
       </div>
     </form>
 
     <div class="row">
       <div id="accordion" class="panel-group col-md-12" itemprop="description">
-
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h2 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                  Infos
-                </a>
-              </h2>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse">
-              <div class="panel-body">
-                {{ product.description }}
-              </div>
-            </div>
-          </div>
+          {% assign product_accordeon_panel_body = product.description %}
+          {% include 'product_accordeon_panel' with 'Infos' %}
 
           {% if product.metafields.features.size > 0 %}
-            {% include 'product_accordeon_panel' with ['Features', "asd"] %}
+            {% capture product_accordeon_panel_body %}
+            <ul>
+              {% for feature in product.metafields.features %}
+                <li>
+                  {{ feature | last}}
+                </li>
+              {% endfor %}
+            </ul>
+            {% endcapture %}
+            {% include 'product_accordeon_panel' with 'Features' %}
           {% endif %}
 
+          {% if product.metafields.review.size > 0 %}
+            {% capture product_accordeon_panel_body %}
+              {{product.metafields.review | first | last }}
+            {% endcapture %}
+            {% include 'product_accordeon_panel' with 'Review' %}
+          {% endif %}
       </div>
     </div>
   </div>
 </div>
+
+{% capture content_for_footer %}
+  {{ content_for_footer }}
+  <script type="text/javascript">
+    var variants = {},
+    addVariant = function(variant){
+      $('#variants').hide();
+      variant.key = '';
+      $.each( variant.options, function(key, value) {
+        variant.key += value;
+        $('select.' + key).filter(function(select) {
+          return $(this).find("option." + value).length !== 1;
+        }).append('<option class="' + value +'" value="' + value + '">' + value + '</option>');
+      });
+      variants[variant.key] = variant;
+    };
+
+    $('#options select.option').on('change', function(event){
+      var key = $('#options select.option').map(function(index, option) {
+        return $(this).val();
+      }).toArray().join('');
+      $('#product-select').trigger('changeVariant', variants[key]);
+    });
+
+    $('#product-select').on('change', function(event, variant) {
+      var select = $(this),
+      id = select.val();
+      $.each(variants, function(key, variant) {
+        if(variant.id == id) {
+          select.trigger('changeVariant', variant);
+        }
+      });
+    }).on('changeVariant', function(event, variant) {
+      if(variant) {
+        $(this).val(variant.id);
+        $('form').toggleClass('unavailable', !variant.available);
+        $('.product-price').html(variant.price);
+      }
+      else {
+        $('form').addClass('unavailable');
+      }
+    });
+
+    $(document).ready(function() {
+      {{ product_variants }}
+    });
+  </script>
+{% endcapture %}
+

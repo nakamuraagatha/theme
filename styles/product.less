@@ -32,7 +32,6 @@ hr {
 }
 
 #options li {
-  float: left;
   margin-right: 40px;
 }
 
@@ -79,7 +78,20 @@ hr {
   }
 }
 
-&.helme  { .extra('helme'); }
-&.pads   { .extra('pads'); }
-&.hands  { .extra('hands'); }
-&.schuhe { .extra('schuhe'); }
+#availability {
+  .hidden;
+}
+
+.unavailable {
+  #product-add, #product-price {
+    .hidden;
+  }
+  #availability {
+    display: block;
+  }
+}
+
+.helme  { .extra('helme'); }
+.pads   { .extra('pads'); }
+.hands  { .extra('hands'); }
+.schuhe { .extra('schuhe'); }

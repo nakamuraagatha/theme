@@ -112,7 +112,11 @@
           $('#' + event.relatedTarget.id + '-product').addClass("active");
         });
 
-        $(".collapse").collapse('toggle');
+      // $(".panel-heading").on("click", function(event){
+      //   event.stopPropagation();
+      //   console.log($(this).find('a'));
+        // $(this).find('a').click();
+      // });
 
       }).on("scroll", function(){
         if ($(window).scrollTop() >= 40) {
@@ -123,5 +127,7 @@
         }
       });
     </script>
+
+    {{ content_for_footer }}
   </body>
 </html>

@@ -5,6 +5,7 @@
     {% assign parent_collection_name = 'teaser-' | append: collection.handle %}
     {% assign parent_collection = collections[parent_collection_name] %}
     <img src="{{ parent_collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
+    <h1>{{ collection.title }}</h1>
   </div>
   <div class="description col-md-3">
     {{ collection.description }}
@@ -23,7 +24,7 @@
                class="product-border"></a>
         </div>
         <div class="more-body">
-          <h5>{{ product.title }}</h5>
+          <h5>{{ product.vendor }} {{ product.title }}</h5>
           <a href="{{ product.url }}"> >> Details</a>
           <a href="{{ product.url }}" class="price">{{ product.price | money }}</a>
         </div>

@@ -105,7 +105,7 @@ h4 {
 hr {
   background-image: url('{{'hr.png' | asset_url}}');
   background-repeat: repeat-x;
-  height: 40px;
+  height: 20px;
   border: 0;
 }
 /*------------------------------- */
@@ -291,6 +291,15 @@ hr {
 #teaser #teaser-products ul li {
   margin-bottom: 15px;
 }
+.cart {
+  margin-bottom: 100px;
+}
+.cart .table {
+  padding: 0;
+}
+.cart .table td {
+  vertical-align: middle;
+}
 #new-products {
   background: url('{{'bg_more_left.png' | asset_url}}') top left no-repeat, url('{{'bg_more.png' | asset_url}}') top left repeat-x;
   background-position: 0 60px;
@@ -346,11 +355,15 @@ hr {
 }
 .collection .header {
   padding: 0px;
-  height: 450px;
+  height: 415px;
 }
 .collection .header img {
   position: absolute;
   clip: rect(0px, 880px, 350px, 0px);
+}
+.collection .header h1 {
+  margin-top: 360px;
+  margin-left: 100px;
 }
 .collection .description {
   padding: 5px 15px;
@@ -431,7 +444,6 @@ hr {
   clear: both;
 }
 .product #options li {
-  float: left;
   margin-right: 40px;
 }
 .product #product-price {
@@ -467,46 +479,56 @@ hr {
   width: 30%;
   padding: 15px;
 }
-.product.helme h1 {
+.product #availability {
+  display: none;
+}
+.product .unavailable #product-add,
+.product .unavailable #product-price {
+  display: none;
+}
+.product .unavailable #availability {
+  display: block;
+}
+.product .helme h1 {
   background-image: url('{{'drips_helme.png' | asset_url}}');
 }
-.product.helme #add {
+.product .helme #add {
   background-color: #df0000;
 }
-.product.helme #accordion .panel-heading {
+.product .helme #accordion .panel-heading {
   background: transparent;
   background-color: #df0000;
   opacity: 0.6;
 }
-.product.pads h1 {
+.product .pads h1 {
   background-image: url('{{'drips_pads.png' | asset_url}}');
 }
-.product.pads #add {
+.product .pads #add {
   background-color: #ffc800;
 }
-.product.pads #accordion .panel-heading {
+.product .pads #accordion .panel-heading {
   background: transparent;
   background-color: #ffc800;
   opacity: 0.6;
 }
-.product.hands h1 {
+.product .hands h1 {
   background-image: url('{{'drips_hands.png' | asset_url}}');
 }
-.product.hands #add {
+.product .hands #add {
   background-color: #00a237;
 }
-.product.hands #accordion .panel-heading {
+.product .hands #accordion .panel-heading {
   background: transparent;
   background-color: #00a237;
   opacity: 0.6;
 }
-.product.schuhe h1 {
+.product .schuhe h1 {
   background-image: url('{{'drips_schuhe.png' | asset_url}}');
 }
-.product.schuhe #add {
+.product .schuhe #add {
   background-color: #3f6ad0;
 }
-.product.schuhe #accordion .panel-heading {
+.product .schuhe #accordion .panel-heading {
   background: transparent;
   background-color: #3f6ad0;
   opacity: 0.6;
