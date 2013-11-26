@@ -1,0 +1,60 @@
+@import 'main';
+
+// http://docs.shopify.com/manual/configuration/store-customization/checkout-css
+
+#header > h1 span.title {
+  display:none;
+}
+
+#main {
+  padding-top:10px;
+  width: 792px;
+}
+
+#overview {
+  .bglight;
+  border: 0;
+
+  h2 {
+    font-size: 18pt;
+    color: @default;
+  }
+}
+
+#products {
+  border: 0;
+}
+
+#wallet {
+  border-left: 1px solid #444;
+}
+
+#cost {
+  font-family: "Titillium Web";
+  font-size: 40pt;
+  font-weight: 600;
+  text-shadow: #444 2px 2px;
+}
+
+#steps {
+  font-family: "Titillium Web";
+}
+
+#thumbs {
+  h3.plisthead {
+    color: @default;
+    font-size: 15pt;
+  }
+
+  .plist-variant-title, .plist-line-price {
+    color: #444;
+  }
+
+  div {
+    border: 0;
+  }
+}
+
+#footer {
+  background: transparent;
+}

@@ -17,14 +17,6 @@ get '/' do
     :page_description   => "desc",
     :content_for_header => "",
     :content_for_layout => content,
-    # :cart => OpenStruct.new({
-    #   :item_count => 8,
-    # }),
-    # :cart2 => {
-    #   :item_count => 9,
-    # },
-    # :'cart.item_count' => 10,
-    # :cart_item_count => 11,
   }
 end
 
@@ -45,14 +37,17 @@ end
 Liquid::Template.file_system = Liquid::LocalFileSystem.new("../snippets")
 Liquid::Template.register_filter(TextFilter)
 
-def style_css
-  style = less :'../styles/main', :compress => true
+def style_css(source, target)
+  style = less "../styles/#{source}".to_sym, :compress => true
   style.gsub(/url\(([^)]+)\)/, %q{url('{{\1 | asset_url}}')}).tap do |content|
-    File.open('assets/css_style.css.liquid', 'w') { |file| file.write(content) }
+    File.open("assets/#{target}", 'w') { |file| file.write(content) }
   end
 end
 
+
 get '/assets/css_style.css' do
   content_type :css
-  Liquid::Template.parse(style_css).render()
+  style_css('checkout', 'checkout.css.liquid')
+  css = style_css('main', 'css_style.css.liquid')
+  Liquid::Template.parse(css).render()
 end

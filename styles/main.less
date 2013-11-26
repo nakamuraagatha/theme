@@ -49,19 +49,9 @@
 // Utility classes
 @import "bootstrap/less/utilities.less";
 @import "bootstrap/less/responsive-utilities.less";
+@import "fonts";
 
 /*------------- CFGS ------------------ */
-
-@font-face {
-  font-family: 'sf_collegiate_solidregular';
-  src: url('SF_Collegiate_Solid-webfont.eot');
-  src: url('SF_Collegiate_Solid-webfont.eot?#iefix') format('embedded-opentype'),
-       url('SF_Collegiate_Solid-webfont.woff') format('woff'),
-       url('SF_Collegiate_Solid-webfont.ttf') format('truetype'),
-       url('SF_Collegiate_Solid-webfont.svg#sf_collegiate_solidregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 
 @helme: #DF0000;
 @pads: #FFC800;
@@ -70,7 +60,7 @@
 @default: #000;
 @a: #FFF;
 @a_hover: #AAA;
-@image_bg: #444;
+@image_bg: #FFF;
 
 /*------------- MIXINS ------------------ */
 
@@ -149,7 +139,7 @@ body {
   color: @default;
   .main_font;
   font-weight: 600;
-  font-size: 15pt;
+  font-size: 13pt;
   line-height: 20pt;
 }
 
@@ -269,7 +259,7 @@ hr {
 }
 
 #header {
- background-image: url('bg_header.png');
+ background-image: url('bg_header.jpg');
  height: 170px;
 }
 
