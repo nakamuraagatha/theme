@@ -1,0 +1,15 @@
+{% for product in collections['zubehor'].all_products %}
+  {% assign product_id = product.id | downcase %}
+  {% if product_id == product_accessorie %}
+    <div class="head">
+      <a href="{{ product.url }}">
+        <img src="{{ product.featured_image | product_img_url: 'small' }}" alt="{{ product.featured_image.alt | escape }}">
+      </a>
+    </div>
+    <div class="body">
+      <h5>{{ product.vendor }} {{ product.title }}</h5>
+      <a href="{{ product.url }}"> >> Details</a>
+      <a href="{{ product.url }}" class="price">{{ product.price | money }}</a>
+    </div>
+  {% endif %}
+{% endfor %}

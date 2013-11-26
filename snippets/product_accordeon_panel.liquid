@@ -1,16 +1,22 @@
 {% assign size = product_accordeon_panel_count | size %}
-{% if 0 == size %}
+{% if size == 0 %}
   {% assign product_accordeon_panel_count = 1 %}
   {% assign active = 'in' %}
 {% else %}
   {% assign product_accordeon_panel_count = product_accordeon_panel_count | plus: 1 %}
   {% assign active = '' %}
 {% endif %}
-<div class="panel panel-default">
+
+{% assign size = product_accordeon_panel_title | size %}
+{% if size == 0 %}
+  {% assign product_accordeon_panel_title = product_accordeon_panel | capitalize %}
+{% endif %}
+
+<div class="{{ product_accordeon_panel | downcase }} panel panel-default">
   <div class="panel-heading">
     <h2 class="panel-title">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{product_accordeon_panel_count}}">
-        {{ product_accordeon_panel }}
+        {{ product_accordeon_panel_title }}
       </a>
     </h2>
   </div>
@@ -20,4 +26,4 @@
     </div>
   </div>
 </div>
-
+{% assign product_accordeon_panel_title = '' %}

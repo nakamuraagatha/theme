@@ -100,20 +100,49 @@
             {% capture product_accordeon_panel_body %}
             <ul>
               {% for feature in product.metafields.features %}
+                {% assign feature_details = feature | last | split: '|' %}
                 <li>
-                  {{ feature | last}}
+                  <img src="{{ feature_details[0] }}" alt="{{ feature_details[1] | escape}}" class="img-rounded img-responsive"/>
+                  <span class="caption">
+                    <h4>{{ feature_details[1] }}</h4>
+                    <p>{{ feature_details[2] }}</p>
+                  </span>
                 </li>
               {% endfor %}
             </ul>
             {% endcapture %}
-            {% include 'product_accordeon_panel' with 'Features' %}
+            {% include 'product_accordeon_panel' with 'features' %}
           {% endif %}
 
           {% if product.metafields.review.size > 0 %}
             {% capture product_accordeon_panel_body %}
               {{product.metafields.review | first | last }}
             {% endcapture %}
-            {% include 'product_accordeon_panel' with 'Review' %}
+            {% include 'product_accordeon_panel' with 'review' %}
+          {% endif %}
+
+          {% if product.metafields.accessories.size > 0 %}
+            {% assign product_accordeon_panel_title = 'Zubehör' %}
+            {% capture product_accordeon_panel_body %}
+              <ul>
+              {% for accessorie in product.metafields.accessories %}
+                <li><ul>
+                  {% assign accessories = accessorie | last | split: ',' %}
+                  {% for accessorie_id in accessories %}
+                    <li>{% include 'product_accessorie' with accessorie_id %}</li>
+                  {% endfor %}
+                </ul></li>
+              {% endfor %}
+              </ul>
+            {% endcapture %}
+            {% include 'product_accordeon_panel' with 'accessories' %}
+          {% endif %}
+
+          {% if product.metafields.fitting.size > 0 %}
+            {% capture product_accordeon_panel_body %}
+              {{product.metafields.fitting | first | last }}
+            {% endcapture %}
+            {% include 'product_accordeon_panel' with 'fitting' %}
           {% endif %}
       </div>
     </div>
