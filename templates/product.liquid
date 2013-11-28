@@ -97,14 +97,15 @@
           {% assign product_accordeon_panel_body = product.description %}
           {% include 'product_accordeon_panel' with 'Infos' %}
 
-          {% if product.metafields.features.size > 0 %}
+          {%assign metafields = product.metafields.features %}
+          {% if metafields.size > 0 %}
             {% assign product_accordeon_panel_title = 'Eigenschaften' %}
             {% capture product_accordeon_panel_body %}
             <ul>
-              {% for feature in product.metafields.features %}
-                {% assign feature_details = feature | last | split: '|' %}
+              {% for metafield in metafields %}
+                {% assign feature_details = metafield | last | split: '|' %}
                 <li>
-                  <img src="{{ feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-rounded img-responsive"/>
+                  <img src="{{ feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
                   <span class="caption">
                     <h4>{{ feature_details[1] }}</h4>
                     <p>{{ feature_details[2] }}</p>
@@ -116,10 +117,17 @@
             {% include 'product_accordeon_panel' with 'features' %}
           {% endif %}
 
-          {% if product.metafields.fitting.size > 0 %}
+          {%assign metafields = product.metafields.fitting %}
+          {% if metafields.size > 0 %}
             {% assign product_accordeon_panel_title = 'Grössenangaben' %}
             {% capture product_accordeon_panel_body %}
-              {{product.metafields.fitting | first | last }}
+              <ul>
+                {% for metafield in metafields %}
+                  <li>
+                    {{ metafield | last }}
+                  </li>
+                {% endfor %}
+              </ul>
             {% endcapture %}
             {% include 'product_accordeon_panel' with 'fitting' %}
           {% endif %}
