@@ -6,7 +6,7 @@
     <form action="/cart/add" method="post" enctype="multipart/form-data">
       <div class="row">
         <div id="product-photo-container" class="col-md-5">
-          <a class="gallery" href="{{ product.featured_image.src | product_img_url: 'original' }}" rel="gallery">
+          <a class="fancybox" href="{{ product.featured_image.src | product_img_url: 'original' }}" title="{{ product.vendor }} {{ product.title }}" rel="gallery">
             <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" class="img-rounded img-responsive"/>
           </a>
         </div>
@@ -14,7 +14,7 @@
           <ul id="product-photo-thumbs" class="list-unstyled">
             {% for image in product.images offset:1 limit:3 %}
               <li class="product-photo-thumb">
-                <a class="gallery" href="{{ image.src | product_img_url: 'original' }}" rel="gallery">
+                <a class="fancybox" href="{{ image.src | product_img_url: 'original' }}" title="{{ image.alt | escape }}" rel="gallery">
                   <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="thumbnail img-responsive" />
                 </a>
               </li>
