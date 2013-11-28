@@ -1,19 +1,22 @@
 .header {
   padding: 0px;
-  height: 415px;
+  height: 370px;
 
   img {
-    position:absolute;
+    position: absolute;
     clip: rect(0px, 880px, 350px, 0px);
   }
 
   h1 {
+    .hidden;
     margin-top: 360px;
     margin-left: 100px;
   }
 }
 
 .description {
+  .hidden-sm;
+  .hidden-xs;
   padding: 5px 15px;
 
   img {
@@ -38,6 +41,10 @@
       float: left;
       margin: 10px;
       width: 30%;
+
+      img {
+        .img-responsive;
+      }
 
       .more-body {
         width: 100%;

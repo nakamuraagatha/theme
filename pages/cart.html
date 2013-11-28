@@ -1,0 +1,24 @@
+      <div class="has-error">
+          <label class="checkbox-inline" for="agb">
+            <input type="checkbox" name="agb" class="checkbox-inline form-control" id="agb" value="">
+          Ich habe die <a rel="nofollow" href="/pages/agb" onclick="window.open('/pages/agb', 'agb_popup', 'resizable=yes,status=no,scrollbars=yes,menubar=yes,width=800,height=600');return false;">AGB</a> und das <a rel="nofollow" href="/pages/agb#widerrufsrecht" onclick="window.open('/pages/agb#widerrufsrecht', 'widerufsrecht_popup', 'resizable=yes,status=no,scrollbars=yes,menubar=yes,width=800,height=600');return false;">Widerrufsrecht</a> gelesen und bin damit einverstanden.
+          </label>
+        </div>
+
+
+{% if product.metafields.accessories.size > 0 %}
+            {% assign product_accordeon_panel_title = 'Zubehör' %}
+            {% capture product_accordeon_panel_body %}
+              <ul>
+              {% for accessorie in product.metafields.accessories %}
+                <li><ul>
+                  {% assign accessories = accessorie | last | split: ',' %}
+                  {% for accessorie_id in accessories %}
+                    <li>{% include 'product_accessorie' with accessorie_id %}</li>
+                  {% endfor %}
+                </ul></li>
+              {% endfor %}
+              </ul>
+            {% endcapture %}
+            {% include 'product_accordeon_panel' with 'accessories' %}
+          {% endif %}

@@ -96,19 +96,21 @@
 
 .bglight-screws {
   .bglight;
-  background: url('bg_blog_border.png') top left repeat-y, url('bg_blog_border.png') top right repeat-y, url('bg_blog.jpg');
+  @media (min-width: @screen-md-min) {
+    background: url('bg_blog_border.png') top left repeat-y, url('bg_blog_border.png') top right repeat-y, url('bg_blog.jpg');
+  }
 }
 
 .product-border {
   box-shadow: -1px 2px 4px #000000;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: auto 75%;
   background-position: center center;
   background-clip: content-box;
   background-color: @image_bg;
 
   &:hover {
-    background-size: 100% auto;
+    background-size: auto 80% ;
   }
 }
 
@@ -201,6 +203,7 @@ hr {
   color: #fff;
   text-transform: uppercase;
   margin: 0px;
+  margin-top: 2px;
   padding: 0px 10px;
 
   &:hover {
@@ -254,14 +257,15 @@ hr {
       }
     }
 
+    .nav-logo    { margin-right: 20px; }
     .nav-about   { .menu-button(0); }
     .nav-helmets { .menu-button(1); }
     .nav-hands   { .menu-button(2); }
     .nav-pads    { .menu-button(3); }
     .nav-boots   { .menu-button(4); }
-    .nav-kits    { .menu-button(5); }
-    .nav-blog    { .menu-button(6); }
-    .nav-contact { .menu-button(7); }
+    .nav-kits    { .menu-button(5); .hidden-xs;}
+    .nav-blog    { .menu-button(6); .hidden-xs;}
+    .nav-contact { .menu-button(7); .hidden-sm; .hidden-xs;}
   }
 }
 
@@ -280,6 +284,8 @@ hr {
   }
 
   #teaser-products {
+    .hidden-sm;
+    .hidden-xs;
     padding: 0;
     padding-left: 30px;
 
@@ -319,6 +325,8 @@ hr {
   }
 
   .right div {
+    .hidden-sm;
+    .hidden-xs;
     background: url('bg_more_right.png') right 60px no-repeat, url('bg_more.png') left 60px repeat-x;
     margin-left: 30px;
     height: 300px;
@@ -376,7 +384,6 @@ footer >div { @import 'footer'; }
 
 #blog-preview {
   .bglight-screws;
-  padding-top: 40px;
   padding-bottom: 40px;
 }
 
