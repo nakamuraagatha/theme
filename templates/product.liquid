@@ -131,6 +131,23 @@
             {% endcapture %}
             {% include 'product_accordeon_panel' with 'fitting' %}
           {% endif %}
+
+          {% if product.metafields.accessories.size > 0 %}
+            {% assign product_accordeon_panel_title = 'Zubehör' %}
+            {% capture product_accordeon_panel_body %}
+              <ul>
+              {% for accessorie in product.metafields.accessories %}
+                <li><ul>
+                  {% assign accessories = accessorie | last | split: ',' %}
+                  {% for accessorie_id in accessories %}
+                    <li>{% include 'product_accessorie' with accessorie_id %}</li>
+                  {% endfor %}
+                </ul></li>
+              {% endfor %}
+              </ul>
+            {% endcapture %}
+            {% include 'product_accordeon_panel' with 'accessories' %}
+          {% endif %}
       </div>
     </div>
   </div>
