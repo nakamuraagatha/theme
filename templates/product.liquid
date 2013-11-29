@@ -12,12 +12,22 @@
         </div>
         <div class="col-md-1 thumbs">
           <ul id="product-photo-thumbs" class="list-unstyled">
-            {% for image in product.images offset:1 limit:3 %}
-              <li class="product-photo-thumb">
+            {% for image in product.images offset:1 %}
+              {% if forloop.index < 4 %}
+                {% assign class = "" %}
+              {% else %}
+                {% assign class = "hidden" %}
+              {% endif %}
+              <li class="product-photo-thumb {{ class }}">
                 <a class="fancybox" href="{{ image.src | product_img_url: 'original' }}" title="{{ image.alt | escape }}" rel="gallery">
                   <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="thumbnail img-responsive" />
                 </a>
               </li>
+              {% if forloop.index == 4 %}
+                <li class="product-photo-thumb">
+                  <a class="fancybox-launcher" href="#">mehr...</a>
+                </li>
+              {% endif %}
             {% endfor %}
           </ul>
         </div>
