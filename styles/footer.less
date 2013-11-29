@@ -8,7 +8,14 @@ line-height: 15pt;
 
 ul { .ul-reset; }
 
+h4 {
+  color: #000;
+}
+
 #footer-list >li {
+  &:first-child {
+    .hidden-xs;
+  }
   background: url('footer_deco.png') no-repeat;
   background-position: left 20px;
   float:left;

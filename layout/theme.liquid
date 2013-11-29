@@ -73,10 +73,7 @@
           <div class="col-xs-6 col-md-5 col-md-offset-2">
             <nav class="pull-right">
               <ul class="header-menu nav nav-pills">
-                {% if cart.item_count != 0 %}
-                  <li><a href="/cart" title="Checkout">Zur Kasse</a></li>
-                {% endif %}
-                <li><a href="/cart">Warenkorb <span class="badge">{{ cart.item_count }}</span></a></li>
+                  <li><a href="/cart">Warenkorb <span class="badge">{{ cart.item_count }}</span></a></li>
               </ul>
             </nav>
           </div>
@@ -121,8 +118,8 @@
           nextEffect: 'fade',
           helpers: {
             thumbs: {
-              width: 50,
-              height: 50
+              width: 100,
+              height: 100
             }
           }
         });

@@ -1,7 +1,7 @@
 <li>
   {% assign linklist = linklists[footer_menu] %}
   {% assign title = linklist.title | split: ';' %}
-  <h5>{{ title[1] }}</h5>
+  <h4>{{ title[1] }}</h4>
   <ul class="{{ footer_menu }}">
     {% for link in linklist.links %}
       {% assign title = link.title | split: ';' %}

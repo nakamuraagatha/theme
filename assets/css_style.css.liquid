@@ -712,7 +712,8 @@ a{color:#fff}a:hover{color:#aaa}
 h1{font-family:'playmaker_3regular';text-transform:uppercase;font-weight:bold;color:#d9dada;font-size:35pt}
 h2{font-family:'playmaker_3regular';text-transform:uppercase;font-weight:bold;color:#f6f6f6;font-size:18pt}
 h3{font-family:'playmaker_3regular';text-transform:uppercase;font-weight:bold;color:#f6f6f6;font-size:16pt}
-h4{font-family:'playmaker_3regular';text-transform:uppercase;font-weight:bold;color:#f6f6f6;font-size:14pt}
+h4{font-family:"Titillium Web";font-weight:600;font-size:12pt;color:#f6f6f6;font-size:12pt}
+h5{font-family:"Titillium Web";font-weight:600;font-size:12pt;color:#f6f6f6;font-size:11pt}
 hr{background-image:url('{{'hr.png' | asset_url}}');background-repeat:repeat-x;height:20px;border:0}
 #main{background-color:#7c7c7c;background-image:url('{{'bg_content.jpg' | asset_url}}');box-shadow:0 0 10px #000}
 .header-menu.nav-pills a{font-size:12pt;color:#fff;text-transform:uppercase;margin:0;margin-top:2px;padding:0 10px}.header-menu.nav-pills a:hover{background-color:transparent;color:#aaa}
@@ -770,7 +771,9 @@ th#teaser #teaser-products,td#teaser #teaser-products{display:table-cell !import
 @media (min-width:1200px){#teaser #teaser-products.hidden-lg,tr#teaser #teaser-products.hidden-lg,th#teaser #teaser-products.hidden-lg,td#teaser #teaser-products.hidden-lg{display:none !important}}
 @media (max-width:767px){#teaser #teaser-products,tr#teaser #teaser-products,th#teaser #teaser-products,td#teaser #teaser-products{display:none !important}}#teaser #teaser-products ul{display:none}#teaser #teaser-products ul.active{display:block}
 #teaser #teaser-products ul li{margin-bottom:15px}
+.cart>div{margin-bottom:80px}
 .cart .table{padding:0}.cart .table td{vertical-align:middle}
+.cart button{border:1px solid;font-size:16pt;background-color:#fff}
 #new-products{background:url('{{'bg_more_left.png' | asset_url}}') top left no-repeat,url('{{'bg_more.png' | asset_url}}') top left repeat-x;background-position:0 60px;overflow-x:visible;height:300px;margin-left:-30px}#new-products>div{padding-left:30px}
 #new-products .right div{display:block !important;background:url('{{'bg_more_right.png' | asset_url}}') right 60px no-repeat,url('{{'bg_more.png' | asset_url}}') left 60px repeat-x;margin-left:30px;height:300px;width:100%}tr#new-products .right div{display:table-row !important}
 th#new-products .right div,td#new-products .right div{display:table-cell !important}
@@ -780,7 +783,7 @@ th#new-products .right div,td#new-products .right div{display:table-cell !import
 @media (max-width:767px){#new-products .right div,tr#new-products .right div,th#new-products .right div,td#new-products .right div{display:none !important}}
 #new-products .list{width:100%}#new-products .list li{float:left;margin-top:10px;width:20%;padding-left:10px;padding-right:10px}
 #new-products .list .head{border:1px solid #000;box-shadow:inset 0 0 4px #000;padding:2px;background:#fff;width:100%;text-align:center;margin-bottom:20px;overflow:hidden}#new-products .list .head img{height:125px}
-#new-products .list .body{width:100%}#new-products .list .body h5{color:#fff;font-size:11pt}
+#new-products .list .body{width:100%}#new-products .list .body h4{height:35px}
 #new-products .list .body a{float:left;color:#000}#new-products .list .body a.price{float:right;color:#fff}
 .blog .date{font-family:"Titillium Web";font-weight:600;font-size:12pt;color:#000}
 .collection .header{padding:0;height:370px}.collection .header img{position:absolute;clip:rect(0, 880px, 350px, 0)}
@@ -799,22 +802,23 @@ th.collection .description,td.collection .description{display:table-cell !import
 .collection .pads .header{background-color:#ffc800}
 .collection .hands .header{background-color:#00a237}
 .collection .schuhe .header{background-color:#3f6ad0}
-.product h1{font-family:"Titillium Web";font-weight:600;font-size:12pt;font-size:20pt;color:#000;background-repeat:no-repeat;height:85px;margin-top:0;padding-top:-2px;padding-left:5px;font-weight:999}
-.product img{background-color:#fff;border:4px solid #000}
-.product .thumbs{display:block !important;padding:0}tr.product .thumbs{display:table-row !important}
-th.product .thumbs,td.product .thumbs{display:table-cell !important}
-@media (max-width:767px){.product .thumbs.hidden-xs,tr.product .thumbs.hidden-xs,th.product .thumbs.hidden-xs,td.product .thumbs.hidden-xs{display:none !important}}
-@media (min-width:768px) and (max-width:991px){.product .thumbs,tr.product .thumbs,th.product .thumbs,td.product .thumbs{display:none !important}}@media (min-width:992px) and (max-width:1199px){.product .thumbs.hidden-md,tr.product .thumbs.hidden-md,th.product .thumbs.hidden-md,td.product .thumbs.hidden-md{display:none !important}}
-@media (min-width:1200px){.product .thumbs.hidden-lg,tr.product .thumbs.hidden-lg,th.product .thumbs.hidden-lg,td.product .thumbs.hidden-lg{display:none !important}}
-@media (max-width:767px){.product .thumbs,tr.product .thumbs,th.product .thumbs,td.product .thumbs{display:none !important}}.product .thumbs li{margin-bottom:20px}.product .thumbs li img{border:2px solid #000}
-.product hr{clear:both}
-.product #options li{margin-right:40px}
-.product #product-price{float:left}.product #product-price .product-price{font-size:40pt;font-weight:600}
-.product #product-add{float:right}.product #product-add #add{border:1px solid}
+.product form h1{font-family:"Titillium Web";font-weight:600;font-size:12pt;font-size:20pt;color:#000;background-repeat:no-repeat;height:85px;margin-top:0;padding-top:-2px;padding-left:5px;font-weight:999}
+.product form img{background-color:#fff;border:4px solid #000}
+.product form .thumbs{display:block !important;padding:0}tr.product form .thumbs{display:table-row !important}
+th.product form .thumbs,td.product form .thumbs{display:table-cell !important}
+@media (max-width:767px){.product form .thumbs.hidden-xs,tr.product form .thumbs.hidden-xs,th.product form .thumbs.hidden-xs,td.product form .thumbs.hidden-xs{display:none !important}}
+@media (min-width:768px) and (max-width:991px){.product form .thumbs,tr.product form .thumbs,th.product form .thumbs,td.product form .thumbs{display:none !important}}@media (min-width:992px) and (max-width:1199px){.product form .thumbs.hidden-md,tr.product form .thumbs.hidden-md,th.product form .thumbs.hidden-md,td.product form .thumbs.hidden-md{display:none !important}}
+@media (min-width:1200px){.product form .thumbs.hidden-lg,tr.product form .thumbs.hidden-lg,th.product form .thumbs.hidden-lg,td.product form .thumbs.hidden-lg{display:none !important}}
+@media (max-width:767px){.product form .thumbs,tr.product form .thumbs,th.product form .thumbs,td.product form .thumbs{display:none !important}}.product form .thumbs li{margin-bottom:20px}.product form .thumbs li img{border:2px solid #000}
+.product form hr{clear:both}
+.product form #options li{margin-right:40px}
+.product form #product-price{float:left}.product form #product-price .product-price{font-size:40pt;font-weight:600}
+.product form #product-add{float:right !important;margin-top:-8px}.product form #product-add #add{border:1px solid;font-size:16pt}
 .product #accordion{margin-top:50px}.product #accordion div{background-color:#909090;background:url('{{'bg_blog.jpg' | asset_url}}')}
 .product #accordion h2{font-size:24pt}
 .product #accordion ul{padding-left:0;list-style:none}
-.product #accordion .features li{cursor:pointer;float:left;position:relative;overflow:hidden;width:30%;margin:15px}.product #accordion .features li .caption{background-color:rgba(0,0,0,0.8);position:absolute;color:#fff;z-index:10;-webkit-transition:all 300ms ease-out;-moz-transition:all 300ms ease-out;-o-transition:all 300ms ease-out;-ms-transition:all 300ms ease-out;transition:all 300ms ease-out;display:block;padding:0 8px 8px 8px;margin-top:-37px}
+.product #accordion .features img{background-color:#fff;border:4px solid #000}
+.product #accordion .features li{float:left;position:relative;overflow:hidden;width:30%;margin:15px}.product #accordion .features li .caption{background-color:rgba(0,0,0,0.8);position:absolute;color:#fff;z-index:10;-webkit-transition:all 300ms ease-out;-moz-transition:all 300ms ease-out;-o-transition:all 300ms ease-out;-ms-transition:all 300ms ease-out;transition:all 300ms ease-out;display:block;padding:0 8px 8px 8px;margin-top:-37px}
 .product #accordion .features li:hover .caption{-moz-transform:translateY(-100%);-o-transform:translateY(-100%);-webkit-transform:translateY(-100%);opacity:1;margin-top:0;transform:translateY(-100%)}
 .product #accordion .accessories li ul{padding-left:0;list-style:none}.product #accordion .accessories li ul>li{display:inline-block;padding-left:5px;padding-right:5px}.product #accordion .accessories li ul>li:first-child{padding-left:0}
 .product #accordion .accessories li ul li{margin:15px}
@@ -827,16 +831,16 @@ th.product .thumbs,td.product .thumbs{display:table-cell !important}
 .product .unavailable #product-add,.product .unavailable #product-price{display:none !important;visibility:hidden !important;display:none}
 .product .unavailable #availability{display:block}
 .product .helme h1{background-image:url('{{'drips_helme.png' | asset_url}}')}
-.product .helme #add{background-color:#df0000}
+.product .helme #add{background-color:#fff}
 .product .helme #accordion .panel-heading{background:transparent;background-color:#df0000;opacity:.6}
 .product .pads h1{background-image:url('{{'drips_pads.png' | asset_url}}')}
-.product .pads #add{background-color:#ffc800}
+.product .pads #add{background-color:#fff}
 .product .pads #accordion .panel-heading{background:transparent;background-color:#ffc800;opacity:.6}
 .product .hands h1{background-image:url('{{'drips_hands.png' | asset_url}}')}
-.product .hands #add{background-color:#00a237}
+.product .hands #add{background-color:#fff}
 .product .hands #accordion .panel-heading{background:transparent;background-color:#00a237;opacity:.6}
 .product .schuhe h1{background-image:url('{{'drips_schuhe.png' | asset_url}}')}
-.product .schuhe #add{background-color:#3f6ad0}
+.product .schuhe #add{background-color:#fff}
 .product .schuhe #accordion .panel-heading{background:transparent;background-color:#3f6ad0;opacity:.6}
 .page.about .list{background-color:#909090;background:url('{{'bg_blog.jpg' | asset_url}}')}@media (min-width:992px){.page.about .list{background:url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y,url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y,url('{{'bg_blog.jpg' | asset_url}}')}}.page.about .list ul{padding:0;list-style:none;margin-left:0}
 .page.about .list li{text-align:justify;float:left;width:25%;padding:15px 0 15px 30px}.page.about .list li img{margin-right:auto;display:block;margin-left:auto;margin-right:auto}
@@ -854,5 +858,11 @@ textarea.page.contact input,textarea.page.contact textarea{height:auto}
 .page.contact .errorForm{background:#eebdbd;color:#f00}
 .page.contact .feedback{padding:.5em .7em;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;margin-bottom:20px}.page.contact .feedback p{padding:5px}
 footer>div{background:url('{{'footer_deco2.png' | asset_url}}') top right no-repeat,url('{{'bg_footer.jpg' | asset_url}}');background-position:right 10px,left top;height:220px;padding-top:5px;margin-top:80px;font-size:10pt;line-height:15pt}footer>div ul{padding:0;list-style:none;margin-left:0}
-footer>div #footer-list>li{background:url('{{'footer_deco.png' | asset_url}}') no-repeat;background-position:left 20px;float:left;padding-left:30px;margin-right:80px}footer>div #footer-list>li .footer a:hover{text-decoration:none;color:#fff}
+footer>div h4{color:#000}
+footer>div #footer-list>li{background:url('{{'footer_deco.png' | asset_url}}') no-repeat;background-position:left 20px;float:left;padding-left:30px;margin-right:80px}footer>div #footer-list>li:first-child{display:block !important}trfooter>div #footer-list>li:first-child{display:table-row !important}
+thfooter>div #footer-list>li:first-child,tdfooter>div #footer-list>li:first-child{display:table-cell !important}
+@media (max-width:767px){footer>div #footer-list>li:first-child,trfooter>div #footer-list>li:first-child,thfooter>div #footer-list>li:first-child,tdfooter>div #footer-list>li:first-child{display:none !important}}@media (min-width:768px) and (max-width:991px){footer>div #footer-list>li:first-child.hidden-sm,trfooter>div #footer-list>li:first-child.hidden-sm,thfooter>div #footer-list>li:first-child.hidden-sm,tdfooter>div #footer-list>li:first-child.hidden-sm{display:none !important}}
+@media (min-width:992px) and (max-width:1199px){footer>div #footer-list>li:first-child.hidden-md,trfooter>div #footer-list>li:first-child.hidden-md,thfooter>div #footer-list>li:first-child.hidden-md,tdfooter>div #footer-list>li:first-child.hidden-md{display:none !important}}
+@media (min-width:1200px){footer>div #footer-list>li:first-child.hidden-lg,trfooter>div #footer-list>li:first-child.hidden-lg,thfooter>div #footer-list>li:first-child.hidden-lg,tdfooter>div #footer-list>li:first-child.hidden-lg{display:none !important}}
+footer>div #footer-list>li .footer a:hover{text-decoration:none;color:#fff}
 #blog-preview{background-color:#909090;background:url('{{'bg_blog.jpg' | asset_url}}');padding-bottom:40px}@media (min-width:992px){#blog-preview{background:url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y,url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y,url('{{'bg_blog.jpg' | asset_url}}')}}

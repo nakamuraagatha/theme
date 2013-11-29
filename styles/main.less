@@ -178,9 +178,15 @@ h3 {
 }
 
 h4 {
-  .header_font;
+  .main_font;
   color: #F6F6F6;
-  font-size: 14pt;
+  font-size: 12pt;
+}
+
+h5 {
+  .main_font;
+  color: #F6F6F6;
+  font-size: 11pt;
 }
 
 hr {
@@ -304,12 +310,22 @@ hr {
 }
 
 .cart {
+  >div {
+    margin-bottom: 80px;
+  }
+
   .table {
     padding: 0;
 
     td {
       vertical-align: middle;
     }
+  }
+
+  button {
+    border: 1px solid;
+    font-size: 16pt;
+    background-color: #fff;
   }
 }
 
@@ -360,9 +376,8 @@ hr {
     .body {
       width: 100%;
 
-      h5 {
-        color: #fff;
-        font-size: 11pt;
+      h4 {
+        height: 35px;
       }
 
       a {

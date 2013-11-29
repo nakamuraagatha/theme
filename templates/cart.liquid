@@ -34,7 +34,6 @@
                 <td>{{ item.price | money }}</td>
                 <td>
                   {{ item.quantity }}
-                  <!-- <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" /> -->
                 </td>
                 <td>{{ item.line_price | money }}</td>
                 <td>
@@ -66,3 +65,5 @@
   </div>
 </div>
 
+{% assign collection = collections['frontpage'] %}
+{% include 'new_products' with collection %}
