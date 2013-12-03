@@ -82,8 +82,6 @@
   font-weight: bold;
 }
 
-.hidden { display: none; }
-
 .white  { background-color: white; }
 .green  { background-color: green; }
 .red    { background-color: red; }
@@ -309,26 +307,6 @@ hr {
   }
 }
 
-.cart {
-  >div {
-    margin-bottom: 80px;
-  }
-
-  .table {
-    padding: 0;
-
-    td {
-      vertical-align: middle;
-    }
-  }
-
-  button {
-    border: 1px solid;
-    font-size: 16pt;
-    background-color: #fff;
-  }
-}
-
 #new-products {
   background: url('bg_more_left.png') top left no-repeat, url('bg_more.png') top left repeat-x;
   background-position: 0 60px;
@@ -402,6 +380,7 @@ hr {
 }
 
 .collection { @import 'collection'; }
+.cart { @import 'cart'; }
 .product { @import 'product'; }
 .page { @import 'page'; }
 footer >div { @import 'footer'; }

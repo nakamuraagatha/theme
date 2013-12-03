@@ -2,9 +2,7 @@
 
 <div class="{{ product_type }} row">
   <div class="header col-md-9">
-    {% assign parent_collection_name = 'teaser-' | append: collection.handle %}
-    {% assign parent_collection = collections[parent_collection_name] %}
-    <img src="{{ parent_collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
+    <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape  }}" class="img-responsive">
     <h1>{{ collection.title }}</h1>
   </div>
   <div class="description col-md-3">

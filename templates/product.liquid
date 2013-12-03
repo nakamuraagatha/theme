@@ -6,8 +6,9 @@
     <form action="/cart/add" method="post" enctype="multipart/form-data">
       <div class="row">
         <div id="product-photo-container" class="col-md-5">
-          <a class="fancybox" href="{{ product.featured_image.src | product_img_url: 'original' }}" title="{{ product.vendor }} {{ product.title }}" rel="gallery">
-            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" class="img-responsive"/>
+          {% assign alt = product.featured_image.alt | escape | replace: product.title %}
+          <a class="fancybox" href="{{ product.featured_image.src | product_img_url: 'original' }}" title="{{ product.vendor }} {{ product.title }} {{ alt }}" rel="gallery">
+            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.vendor }} {{ product.title }} {{ alt }}" class="img-responsive"/>
           </a>
         </div>
         <div class="col-md-1 thumbs">
@@ -19,14 +20,14 @@
                 {% assign class = "hidden" %}
               {% endif %}
               <li class="product-photo-thumb {{ class }}">
-                <a class="fancybox" href="{{ image.src | product_img_url: 'original' }}" title="{{ image.alt | escape }}" rel="gallery">
-                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="thumbnail img-responsive" />
+                {% assign alt = image.alt | escape | replace: product.title %}
+                <a class="fancybox" href="{{ image.src | product_img_url: 'original' }}" title="{{ product.vendor }} {{ product.title }} {{ alt }}" rel="gallery">
+                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ product.vendor }} {{ product.title }} {{ alt }}" class="thumbnail img-responsive" />
                 </a>
               </li>
               {% if forloop.index == 4 %}
                 <li class="product-photo-thumb">
                   <a class="fancybox-launcher" href="#">mehr...</a>
-                  <a class="fancybox" href="#features">mehr...</a>
                 </li>
               {% endif %}
             {% endfor %}
@@ -49,7 +50,7 @@
                       id: {{variant.id}},
                       price: '{{variant.price | money}}',
                       options: {
-                        {% if product.options[0] %}{{product.options[0] | handleize}}: '{{variant.option1}}'{% endif %}
+                        {% if product.options[0] %} {{product.options[0] | handleize}}: '{{variant.option1}}'{% endif %}
                         {% if product.options[1] %},{{product.options[1] | handleize}}: '{{variant.option2}}'{% endif %}
                         {% if product.options[2] %},{{product.options[2] | handleize}}: '{{variant.option3}}'{% endif %}
                       },
@@ -94,7 +95,9 @@
           <div id="product-add">
             {% if product.available %}
               <button type="submit" name="add" id="add" class="pull-right btn btn-default">In den Warenkorb</button>
-              <br><small>(ohne Facemask, <a href="">bitte hier wählen</a>)</small>
+              {% if product.type == "Helme" %}
+              <br><small>(ohne Facemask, <a href="/collections/zubehor-{{ product.handle }}">bitte hier wählen</a>)</small>
+              {% endif  %}
             {% endif %}
           </div>
           <div id="availability">
@@ -174,10 +177,11 @@
       $('#variants').hide();
       variant.key = '';
       $.each( variant.options, function(key, value) {
-        variant.key += value;
+        var norm_value = value.replace(' ', '').replace('/', '');
+        variant.key += norm_value;
         $('select.' + key).filter(function(select) {
-          return $(this).find("option." + value).length !== 1;
-        }).append('<option class="' + value +'" value="' + value + '">' + value + '</option>');
+          return $(this).find("option." + norm_value).length !== 1;
+        }).append('<option class="' + norm_value +'" value="' + norm_value + '">' + value + '</option>');
       });
       variants[variant.key] = variant;
     };
@@ -215,5 +219,14 @@
 {% endcapture %}
 
 
-{% assign collection = collections['frontpage'] %}
-{% include 'new_products' with collection %}
+{% if product.type == "Helme" %}
+  {% assign collection_name = 'zubehor-' | append: product.handle %}
+  {% assign collection = collections[collection_name] %}
+{% elsif product.type == "Pads" %}
+  {% assign collection = collections['zubehor-pads'] %}
+{% else %}
+  {% assign collection = collections['frontpage'] %}
+{% endif %}
+
+
+{% include 'related_products' with collection %}
