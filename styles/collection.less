@@ -26,53 +26,35 @@
   }
 
   ul {
-    .ul-reset;
+    .list-unstyled;
 
     font-size: 14px;
     line-height: 20px;
   }
 }
 
-.products {
-  ul {
-    .ul-reset;
+ul.products {
+  .list-unstyled;
+  .list-inline;
+  width: 100%;
 
-    li {
-      float: left;
-      margin: 10px;
-      width: 30%;
-
-      img {
-        .img-responsive;
-      }
-
-      .more-body {
-        width: 100%;
-
-        h5 {
-          color: #fff;
-          font-size: 11pt;
-        }
-
-        a {
-          float: left;
-          color: #000;
-
-          &.price {
-            float: right;
-            color: #fff;
-          }
-        }
-      }
+  li {
+    width: 30%;
+    padding: 15px;
+    &:first-child {
+      padding-left: 15px;
     }
+
+    .noborder { .hide; }
+    .border { .show; }
   }
 }
 
-.extra(@type){
-  .header { background-color: @@type; }
-}
+// .extra(@type){
+//   .header { background-color: @@type; }
+// }
 
-.helme  { .extra('helme'); }
-.pads   { .extra('pads'); }
-.hands  { .extra('hands'); }
-.schuhe { .extra('schuhe'); }
+// .helme  { .extra('helme'); }
+// .pads   { .extra('pads'); }
+// .hands  { .extra('hands'); }
+// .schuhe { .extra('schuhe'); }

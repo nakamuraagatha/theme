@@ -12,21 +12,9 @@
 
 <div class="{{ product_type }} row">
   <div class="products col-md-10 col-md-offset-1 ">
-    <ul>
+    <ul class="products">
       {% for product in collection.all_products %}
-      <li>
-        <div class="more-head">
-          <a href="{{ product.url }}"><img src="{{ 'product_border.png' | asset_url }}"
-               alt="{{ product.title | escape  }}"
-               style="background-image:url('{{ product.featured_image | product_img_url: 'compact' }}')"
-               class="product-border"></a>
-        </div>
-        <div class="more-body">
-          <h4>{{ product.vendor }} {{ product.title }}</h4>
-          <a href="{{ product.url }}"> &gt; Details</a>
-          <a href="{{ product.url }}" class="price">{{ product.price | money }}</a>
-        </div>
-      </li>
+        {% include 'product' with product %}
       {% endfor %}
     </ul>
   </div>

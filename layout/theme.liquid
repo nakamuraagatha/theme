@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% if template == "404" %}Page not found{% elsif template == 'index' %}{{ shop.name }}{% else %}{{ page_title }} - {{ shop.name }}{% endif %}</title>
+    <title>{% if template == "404" %}
+      Page not found
+    {% elsif template == 'index' %}
+      Playmakers - Football Ausrüstung Shop
+    {% else %}
+      {{ page_title }} - {{ shop.name }}
+    {% endif %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if page_description %}
     <meta name="description" content="{{ page_description }}">
     {% endif %}
-    <meta name="author" content="{{ settings.meta_author }}">
+    <meta name="author" content="Playmakers - Pascal Heck">
 
-    <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
     <link rel="canonical" href="{{ canonical_url }}">
 
     {% include 'fb-open-graph-tags' %}

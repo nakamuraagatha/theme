@@ -1,7 +1,13 @@
-<li>
+<li class="product">
   <div class="head">
-    <a href="{{ product.url }}">
-      <img src="{{ product.featured_image | product_img_url: 'compact' }}" alt="{{ product.featured_image.alt | escape }}">
+    <a href="{{ product.url | within: collection }}">
+      <img src="{{ product.featured_image | product_img_url: 'compact' }}"
+           alt="{{ product.featured_image.alt | escape }}"
+           class="noborder">
+      <img src="{{ 'product_border.png' | asset_url }}"
+           alt="{{ product.featured_image.alt | escape }}"
+           style="background-image:url('{{ product.featured_image | product_img_url: 'compact' }}')"
+           class="border">
     </a>
   </div>
   <div class="body">
@@ -10,4 +16,3 @@
     <a href="{{ product.url }}" class="price">{% if product.type == 'Helme' %}<small>ab</small> {% endif %}{{ product.price | money }}</a>
   </div>
 </li>
-
