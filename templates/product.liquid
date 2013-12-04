@@ -133,16 +133,29 @@
             {% include 'product_accordeon_panel' with 'features' %}
           {% endif %}
 
-          {%assign metafields = product.metafields.fitting %}
+          {% assign metafields = product.metafields.fitting %}
           {% if metafields.size > 0 %}
             {% assign product_accordeon_panel_title = 'Grössenangaben' %}
             {% capture product_accordeon_panel_body %}
               <ul>
-                {% for metafield in metafields %}
+                <li>
+                  {{ metafields.fitting_0 }}
+                </li>
+                {% if product.type == "Helme" %}
+                  {% assign fitting_image = 'fitting_helmets.png' %}
+                {% elsif product.type == "Hands" %}
+                  {% assign fitting_image = 'fitting_hands.png' %}
+                {% elsif product.type == "Pads" %}
+                  {% assign fitting_image = 'fitting_pads.png' %}
+                {% endif %}
+                {% if fitting_image %}
                   <li>
-                    {{ metafield | last }}
+                    <img src="{{ fitting_image | asset_url }}">
                   </li>
-                {% endfor %}
+                {% endif %}
+                <li>
+                  {{ metafields.fitting_1 }}
+                </li>
               </ul>
             {% endcapture %}
             {% include 'product_accordeon_panel' with 'fitting' %}
