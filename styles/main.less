@@ -325,13 +325,22 @@ hr {
     padding-left: 30px;
 
     ul.products {
+      position: absolute;
       .list-unstyled;
-      .hide;
+      height: 0;
+      opacity: 0;
+      margin: 0;
+      transition: opacity .5s ease-in-out;
+      -moz-transition: opacity .5s ease-in-out;
+      -webkit-transition: opacity .5s ease-in-out;
 
-      &.active { .show; }
+      &.active {
+        height: auto;
+        opacity: 1;
+      }
 
       li {
-        margin-bottom: 15px;
+        margin-bottom: 33px;
         .noborder, .body { .hide; }
         .border { .show; }
       }

@@ -1,19 +1,21 @@
 &.about {
   .list {
     .bglight-screws;
-    ul { .ul-reset; }
+    ul { .list-unstyled; }
     li {
+      min-width: 230px;
+      height: 430px;
       text-align: justify;
       float: left;
-      width: 25%;
-      padding: 15px 0 15px 30px;
+      max-width: 25%;
+      padding: 15px 30px 15px 0;
 
       img {
         .center-block;
       }
 
-      &:first-child {
-        padding-left: 0px;
+      &:last-child {
+        padding-right: 0px;
       }
     }
   }

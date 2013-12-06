@@ -47,7 +47,7 @@ end
 
 get '/assets/css_style.css' do
   content_type :css
-  style_css('checkout', 'checkout.css.liquid')
   css = style_css('main', 'css_style.css.liquid')
+  style_css('checkout', 'checkout.css.liquid')
   Liquid::Template.parse(css).render()
 end

@@ -11,8 +11,26 @@
   }
 }
 
-button {
-  border: 1px solid;
-  font-size: 16pt;
-  background-color: #fff;
+.checkout_buttons {
+  .pull-right;
+
+  .additional-checkout-buttons {
+    margin-right: 20px;
+    background: url("paypal.gif") right 10px no-repeat;
+    display: inline;
+    padding: 6px 0;
+
+    &:hover {
+      background: url("paypal_hover.gif") right 10px no-repeat;
+    }
+    input { opacity: 0; }
+  }
+
+  button {
+    .btn;
+    .btn-default;
+    border: 1px solid;
+    font-size: 16pt;
+    background-color: #fff;
+  }
 }

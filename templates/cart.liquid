@@ -61,7 +61,13 @@
             </tr>
           </tfoot>
         </table>
-        <button type="submit" name="checkout"  class="pull-right btn btn-default">zur Kasse</button>
+        <div class="checkout_buttons">
+          <button type="submit" name="checkout">zur Kasse</button>
+          oder
+          <div class="additional-checkout-buttons">
+            {{ content_for_additional_checkout_buttons }}
+          </div>
+        </div>
       </form>
 
     {% else %}

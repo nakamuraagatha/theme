@@ -94,7 +94,7 @@
 
           <div id="product-add">
             {% if product.available %}
-              <button type="submit" name="add" id="add" class="pull-right btn btn-default">In den Warenkorb</button>
+              <button type="submit" name="add">In den Warenkorb</button>
               {% if product.type == "Helme" %}
               <br><small>(ohne Facemask, <a href="/collections/zubehor-{{ product.handle }}">bitte hier wählen</a>)</small>
               {% endif  %}
