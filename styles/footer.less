@@ -1,4 +1,7 @@
-background: url('footer_deco2.png') top right no-repeat, url('bg_footer.jpg');
+background: url('bg_footer.jpg');
+@media (min-width: @screen-md-min) {
+  background: url('footer_deco2.png') top right no-repeat, url('bg_footer.jpg');
+}
 background-position: right 10px, left top;
 height: 220px;
 padding-top: 5px;
@@ -6,21 +9,34 @@ margin-top: 50px;
 font-size: 10pt;
 line-height: 15pt;
 
-ul { .ul-reset; }
+ul { .list-unstyled; }
 
 h4 {
   color: #000;
 }
 
 #footer-list >li {
-  &:first-child {
-    .hidden-xs;
-  }
   background: url('footer_deco.png') no-repeat;
   background-position: left 20px;
   float:left;
   padding-left: 30px;
-  margin-right: 80px;
+  margin-left: 60px;
+
+  &:first-child {
+    margin-left: 0px;
+    @media (max-width: 530px) {
+      .hide;
+    }
+  }
+
+  &.payment-methods {
+    .hidden-xs;
+    background: transparent;
+  }
+
+  &:last-child {
+    margin-right: 0px;
+  }
 
   .footer a:hover {
     text-decoration: none;
