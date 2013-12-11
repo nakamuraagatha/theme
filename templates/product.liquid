@@ -1,3 +1,4 @@
+{% assign cpage_title = product.vendor | append: " " | append: product.title  %}
 <div class="{{ product.type | downcase }} content-offset row" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
@@ -87,7 +88,7 @@
               {% else %}
                 <span class="product-price" itemprop="price">{{ product.price | money }}</span>
               {% endif %}
-              <br><small>Preis inkl. MwST, zzgl. <a href="/pages/versandkosten">Versand</a></small>
+              <br><small>Preis inkl. MwSt, zzgl. <a href="/pages/versandkosten">Versand</a></small>
               <br><small>Lieferzeit 3 - 5 Tage</small>
             </p>
           </div>

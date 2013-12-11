@@ -1,13 +1,13 @@
+{% capture main %}
+  {{ content_for_layout }}
+{% endcapture %}
+{% if cpage_title %}
+  {% assign page_title = cpage_title %}
+{% endif %}
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% if template == "404" %}
-      Page not found
-    {% elsif template == 'index' %}
-      Playmakers - Football Ausrüstung Shop
-    {% else %}
-      {{ page_title }} - {{ shop.name }}
-    {% endif %}</title>
+    <title>{{ page_title }} - {{ shop.name }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if page_description %}
@@ -86,7 +86,7 @@
       </header>
 
       <section class="{{ template | replace: '.', ' '}}">
-        {{ content_for_layout }}
+        {{ main }}
       </section>
 
       <footer>

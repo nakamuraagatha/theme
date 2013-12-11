@@ -17,7 +17,7 @@ GEM
       commonjs (~> 0.2.7)
     libv8 (3.16.14.3)
     liquid (2.6.0)
-    listen (2.2.0)
+    listen (2.4.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
