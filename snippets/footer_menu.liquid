@@ -1,8 +1,8 @@
-<li>
+<li class="{{ footer_menu }}">
   {% assign linklist = linklists[footer_menu] %}
   {% assign title = linklist.title | split: ';' %}
   <h4>{{ title[1] }}</h4>
-  <ul class="{{ footer_menu }}">
+  <ul>
     {% for link in linklist.links %}
       {% assign title = link.title | split: ';' %}
       <li class="{{ title[1] }} {% if link.active %}active{% endif %}">
