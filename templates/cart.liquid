@@ -27,16 +27,16 @@
                 </td>
                 <td>
                   <a href="{{ item.product.url | within: collections.all }}">
-                    <h3>{{ item.vendor }} {{ item.product.title }}</h3>
+                    <h2>{{ item.vendor }} {{ item.product.title }}</h2>
                   </a>
                   {% if item.product.variants.size > 0 %}
-                    {{ item.variant.title }}
+                    {% if item.product.options[0] %}{{ item.product.options[0] }}: {{ item.variant.option1 }} {% endif %}
+                    {% if item.product.options[1] %}/ {{ item.product.options[1] }}: {{ item.variant.option2 }} {% endif %}
+                    {% if item.product.options[2] %}/ {{ item.product.options[2] }}: {{ item.variant.option3 }} {% endif %}
                   {% endif %}
                 </td>
                 <td>{{ item.price | money }}</td>
-                <td>
-                  {{ item.quantity }}
-                </td>
+                <td>{{ item.quantity }}</td>
                 <td>{{ item.line_price | money }}</td>
                 <td>
                   <a href="/cart/change?line={{ forloop.index }}&quantity=0">Entfernen</a>

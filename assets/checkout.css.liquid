@@ -704,7 +704,7 @@ th.hidden-lg,td.hidden-lg{display:table-cell !important}
 .bglight{background-color:#909090;background:url('{{'bg_blog.jpg' | asset_url}}')}
 .bglight-screws{background-color:#909090;background:url('{{'bg_blog.jpg' | asset_url}}')}@media (min-width:992px){.bglight-screws{background:url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y,url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y,url('{{'bg_blog.jpg' | asset_url}}')}}
 .content-offset>div{padding-top:40px}
-.ul-reset{padding:0;list-style:none;margin-left:0}
+@media (max-width:530px){.hidden-xxs{display:none !important}}
 .product .head{background-color:#fff;width:100%}.product .head img{height:auto;display:block;max-width:100%;height:auto}.product .head img.noborder{margin:0 auto}
 .product .head img.border{width:100%;background-repeat:no-repeat;background-size:auto 75%;background-position:center center;background-clip:content-box;box-shadow:-1px 2px 4px #000}.product .head img.border:hover{background-size:auto 80%}
 .product .body{width:100%}.product .body a{float:left;color:#000}.product .body a.price{float:right;color:#fff}
@@ -720,35 +720,35 @@ hr{background-image:url('{{'hr.png' | asset_url}}');background-repeat:repeat-x;h
 .header-menu.nav-pills a{font-size:12pt;color:#fff;text-transform:uppercase;margin:0;margin-top:2px;padding:0 10px}.header-menu.nav-pills a:hover{background-color:transparent;color:#aaa}
 #menu{background-image:url('{{'bg_menu.png' | asset_url}}');background-repeat:repeat-x;background-position:0 30px;height:160px;width:100%;margin-top:50px;position:absolute;z-index:100}@media (min-width:992px){#menu.sticky{position:fixed;margin-top:0;top:0}}
 #menu div{padding:0}
-#menu #main-nav.nav-pills{padding:0}#menu #main-nav.nav-pills a{color:#fff;font-size:13pt;text-transform:uppercase;margin:2px 0;padding:1px 10px}#menu #main-nav.nav-pills a:hover{background:transparent}
+#menu #main-nav.nav-pills{padding:0}#menu #main-nav.nav-pills a{color:#fff;font-size:11pt;text-transform:uppercase;letter-spacing:1px;margin:2px 0;padding:1px 10px}#menu #main-nav.nav-pills a:hover{background:transparent}
 #menu #main-nav.nav-pills a.button{margin-top:30px;padding:65px 0 0 0;text-align:center;background-image:url('{{'button_sprite.png' | asset_url}}');width:80px;height:90px}
 #menu #main-nav.nav-pills .nav-logo{margin-right:20px}
-#menu #main-nav.nav-pills .nav-about .button{background-position:0 0}#menu #main-nav.nav-pills .nav-about .button:hover{background-position:80px 0}
+#menu #main-nav.nav-pills .nav-about{margin-left:10px}#menu #main-nav.nav-pills .nav-about .button{background-position:0 0}#menu #main-nav.nav-pills .nav-about .button:hover{background-position:80px 0}
 #menu #main-nav.nav-pills .nav-about.active .button{background-position:80px 0;background-color:transparent}
-#menu #main-nav.nav-pills .nav-about.margin-left{margin-left:50px}
+#menu #main-nav.nav-pills .nav-about.margin-left{margin-left:10px}@media (min-width:1200px){#menu #main-nav.nav-pills .nav-about.margin-left{margin-left:133px}}
+@media (min-width:1200px){#menu #main-nav.nav-pills .nav-about{margin-left:133px}}
 #menu #main-nav.nav-pills .nav-helmets .button{background-position:0 -90px}#menu #main-nav.nav-pills .nav-helmets .button:hover{background-position:80px -90px}
 #menu #main-nav.nav-pills .nav-helmets.active .button{background-position:80px -90px;background-color:transparent}
-#menu #main-nav.nav-pills .nav-helmets.margin-left{margin-left:50px}
+#menu #main-nav.nav-pills .nav-helmets.margin-left{margin-left:10px}@media (min-width:1200px){#menu #main-nav.nav-pills .nav-helmets.margin-left{margin-left:133px}}
+@media (max-width:530px){#menu #main-nav.nav-pills .nav-helmets{display:none !important}}
 #menu #main-nav.nav-pills .nav-hands .button{background-position:0 -180px}#menu #main-nav.nav-pills .nav-hands .button:hover{background-position:80px -180px}
 #menu #main-nav.nav-pills .nav-hands.active .button{background-position:80px -180px;background-color:transparent}
-#menu #main-nav.nav-pills .nav-hands.margin-left{margin-left:50px}
+#menu #main-nav.nav-pills .nav-hands.margin-left{margin-left:10px}@media (min-width:1200px){#menu #main-nav.nav-pills .nav-hands.margin-left{margin-left:133px}}
+@media (max-width:530px){#menu #main-nav.nav-pills .nav-hands{display:none !important}}
 #menu #main-nav.nav-pills .nav-pads .button{background-position:0 -270px}#menu #main-nav.nav-pills .nav-pads .button:hover{background-position:80px -270px}
 #menu #main-nav.nav-pills .nav-pads.active .button{background-position:80px -270px;background-color:transparent}
-#menu #main-nav.nav-pills .nav-pads.margin-left{margin-left:50px}
+#menu #main-nav.nav-pills .nav-pads.margin-left{margin-left:10px}@media (min-width:1200px){#menu #main-nav.nav-pills .nav-pads.margin-left{margin-left:133px}}
+@media (max-width:530px){#menu #main-nav.nav-pills .nav-pads{display:none !important}}
 #menu #main-nav.nav-pills .nav-boots .button{background-position:0 -360px}#menu #main-nav.nav-pills .nav-boots .button:hover{background-position:80px -360px}
 #menu #main-nav.nav-pills .nav-boots.active .button{background-position:80px -360px;background-color:transparent}
-#menu #main-nav.nav-pills .nav-boots.margin-left{margin-left:50px}
-#menu #main-nav.nav-pills .nav-kits{display:block !important}#menu #main-nav.nav-pills .nav-kits .button{background-position:0 -450px}#menu #main-nav.nav-pills .nav-kits .button:hover{background-position:80px -450px}
+#menu #main-nav.nav-pills .nav-boots.margin-left{margin-left:10px}@media (min-width:1200px){#menu #main-nav.nav-pills .nav-boots.margin-left{margin-left:133px}}
+@media (max-width:530px){#menu #main-nav.nav-pills .nav-boots{display:none !important}}
+#menu #main-nav.nav-pills .nav-kits{display:none !important;visibility:hidden !important}#menu #main-nav.nav-pills .nav-kits .button{background-position:0 -450px}#menu #main-nav.nav-pills .nav-kits .button:hover{background-position:80px -450px}
 #menu #main-nav.nav-pills .nav-kits.active .button{background-position:80px -450px;background-color:transparent}
-#menu #main-nav.nav-pills .nav-kits.margin-left{margin-left:50px}
-tr#menu #main-nav.nav-pills .nav-kits{display:table-row !important}
-th#menu #main-nav.nav-pills .nav-kits,td#menu #main-nav.nav-pills .nav-kits{display:table-cell !important}
-@media (max-width:767px){#menu #main-nav.nav-pills .nav-kits,tr#menu #main-nav.nav-pills .nav-kits,th#menu #main-nav.nav-pills .nav-kits,td#menu #main-nav.nav-pills .nav-kits{display:none !important}}@media (min-width:768px) and (max-width:991px){#menu #main-nav.nav-pills .nav-kits.hidden-sm,tr#menu #main-nav.nav-pills .nav-kits.hidden-sm,th#menu #main-nav.nav-pills .nav-kits.hidden-sm,td#menu #main-nav.nav-pills .nav-kits.hidden-sm{display:none !important}}
-@media (min-width:992px) and (max-width:1199px){#menu #main-nav.nav-pills .nav-kits.hidden-md,tr#menu #main-nav.nav-pills .nav-kits.hidden-md,th#menu #main-nav.nav-pills .nav-kits.hidden-md,td#menu #main-nav.nav-pills .nav-kits.hidden-md{display:none !important}}
-@media (min-width:1200px){#menu #main-nav.nav-pills .nav-kits.hidden-lg,tr#menu #main-nav.nav-pills .nav-kits.hidden-lg,th#menu #main-nav.nav-pills .nav-kits.hidden-lg,td#menu #main-nav.nav-pills .nav-kits.hidden-lg{display:none !important}}
-#menu #main-nav.nav-pills .nav-blog{display:block !important}#menu #main-nav.nav-pills .nav-blog .button{background-position:0 -540px}#menu #main-nav.nav-pills .nav-blog .button:hover{background-position:80px -540px}
+#menu #main-nav.nav-pills .nav-kits.margin-left{margin-left:10px}@media (min-width:1200px){#menu #main-nav.nav-pills .nav-kits.margin-left{margin-left:133px}}
+#menu #main-nav.nav-pills .nav-blog{display:none !important;visibility:hidden !important;display:block !important}#menu #main-nav.nav-pills .nav-blog .button{background-position:0 -540px}#menu #main-nav.nav-pills .nav-blog .button:hover{background-position:80px -540px}
 #menu #main-nav.nav-pills .nav-blog.active .button{background-position:80px -540px;background-color:transparent}
-#menu #main-nav.nav-pills .nav-blog.margin-left{margin-left:50px}
+#menu #main-nav.nav-pills .nav-blog.margin-left{margin-left:10px}@media (min-width:1200px){#menu #main-nav.nav-pills .nav-blog.margin-left{margin-left:133px}}
 tr#menu #main-nav.nav-pills .nav-blog{display:table-row !important}
 th#menu #main-nav.nav-pills .nav-blog,td#menu #main-nav.nav-pills .nav-blog{display:table-cell !important}
 @media (max-width:767px){#menu #main-nav.nav-pills .nav-blog,tr#menu #main-nav.nav-pills .nav-blog,th#menu #main-nav.nav-pills .nav-blog,td#menu #main-nav.nav-pills .nav-blog{display:none !important}}@media (min-width:768px) and (max-width:991px){#menu #main-nav.nav-pills .nav-blog.hidden-sm,tr#menu #main-nav.nav-pills .nav-blog.hidden-sm,th#menu #main-nav.nav-pills .nav-blog.hidden-sm,td#menu #main-nav.nav-pills .nav-blog.hidden-sm{display:none !important}}
@@ -756,13 +756,19 @@ th#menu #main-nav.nav-pills .nav-blog,td#menu #main-nav.nav-pills .nav-blog{disp
 @media (min-width:1200px){#menu #main-nav.nav-pills .nav-blog.hidden-lg,tr#menu #main-nav.nav-pills .nav-blog.hidden-lg,th#menu #main-nav.nav-pills .nav-blog.hidden-lg,td#menu #main-nav.nav-pills .nav-blog.hidden-lg{display:none !important}}
 #menu #main-nav.nav-pills .nav-contact{display:block !important}#menu #main-nav.nav-pills .nav-contact .button{background-position:0 -630px}#menu #main-nav.nav-pills .nav-contact .button:hover{background-position:80px -630px}
 #menu #main-nav.nav-pills .nav-contact.active .button{background-position:80px -630px;background-color:transparent}
-#menu #main-nav.nav-pills .nav-contact.margin-left{margin-left:50px}
+#menu #main-nav.nav-pills .nav-contact.margin-left{margin-left:10px}@media (min-width:1200px){#menu #main-nav.nav-pills .nav-contact.margin-left{margin-left:133px}}
 tr#menu #main-nav.nav-pills .nav-contact{display:table-row !important}
 th#menu #main-nav.nav-pills .nav-contact,td#menu #main-nav.nav-pills .nav-contact{display:table-cell !important}
 @media (max-width:767px){#menu #main-nav.nav-pills .nav-contact.hidden-xs,tr#menu #main-nav.nav-pills .nav-contact.hidden-xs,th#menu #main-nav.nav-pills .nav-contact.hidden-xs,td#menu #main-nav.nav-pills .nav-contact.hidden-xs{display:none !important}}
 @media (min-width:768px) and (max-width:991px){#menu #main-nav.nav-pills .nav-contact,tr#menu #main-nav.nav-pills .nav-contact,th#menu #main-nav.nav-pills .nav-contact,td#menu #main-nav.nav-pills .nav-contact{display:none !important}}@media (min-width:992px) and (max-width:1199px){#menu #main-nav.nav-pills .nav-contact.hidden-md,tr#menu #main-nav.nav-pills .nav-contact.hidden-md,th#menu #main-nav.nav-pills .nav-contact.hidden-md,td#menu #main-nav.nav-pills .nav-contact.hidden-md{display:none !important}}
 @media (min-width:1200px){#menu #main-nav.nav-pills .nav-contact.hidden-lg,tr#menu #main-nav.nav-pills .nav-contact.hidden-lg,th#menu #main-nav.nav-pills .nav-contact.hidden-lg,td#menu #main-nav.nav-pills .nav-contact.hidden-lg{display:none !important}}
 @media (max-width:767px){#menu #main-nav.nav-pills .nav-contact,tr#menu #main-nav.nav-pills .nav-contact,th#menu #main-nav.nav-pills .nav-contact,td#menu #main-nav.nav-pills .nav-contact{display:none !important}}
+#menu #main-nav.nav-pills .nav-banner{margin-top:23px;float:right !important;display:block !important}tr#menu #main-nav.nav-pills .nav-banner{display:table-row !important}
+th#menu #main-nav.nav-pills .nav-banner,td#menu #main-nav.nav-pills .nav-banner{display:table-cell !important}
+@media (max-width:767px){#menu #main-nav.nav-pills .nav-banner.hidden-xs,tr#menu #main-nav.nav-pills .nav-banner.hidden-xs,th#menu #main-nav.nav-pills .nav-banner.hidden-xs,td#menu #main-nav.nav-pills .nav-banner.hidden-xs{display:none !important}}
+@media (min-width:768px) and (max-width:991px){#menu #main-nav.nav-pills .nav-banner,tr#menu #main-nav.nav-pills .nav-banner,th#menu #main-nav.nav-pills .nav-banner,td#menu #main-nav.nav-pills .nav-banner{display:none !important}}@media (min-width:992px) and (max-width:1199px){#menu #main-nav.nav-pills .nav-banner.hidden-md,tr#menu #main-nav.nav-pills .nav-banner.hidden-md,th#menu #main-nav.nav-pills .nav-banner.hidden-md,td#menu #main-nav.nav-pills .nav-banner.hidden-md{display:none !important}}
+@media (min-width:1200px){#menu #main-nav.nav-pills .nav-banner.hidden-lg,tr#menu #main-nav.nav-pills .nav-banner.hidden-lg,th#menu #main-nav.nav-pills .nav-banner.hidden-lg,td#menu #main-nav.nav-pills .nav-banner.hidden-lg{display:none !important}}
+@media (max-width:767px){#menu #main-nav.nav-pills .nav-banner,tr#menu #main-nav.nav-pills .nav-banner,th#menu #main-nav.nav-pills .nav-banner,td#menu #main-nav.nav-pills .nav-banner{display:none !important}}
 #header{background-image:url('{{'bg_header.jpg' | asset_url}}');height:170px}
 #teaser #teaser-carousel{padding:0}#teaser #teaser-carousel .carousel-indicators{bottom:-5px}
 #teaser #teaser-products{display:block !important;padding:0;padding-left:30px}tr#teaser #teaser-products{display:table-row !important}
@@ -780,7 +786,8 @@ th#new-products .right div,td#new-products .right div{display:table-cell !import
 @media (min-width:768px) and (max-width:991px){#new-products .right div,tr#new-products .right div,th#new-products .right div,td#new-products .right div{display:none !important}}@media (min-width:992px) and (max-width:1199px){#new-products .right div.hidden-md,tr#new-products .right div.hidden-md,th#new-products .right div.hidden-md,td#new-products .right div.hidden-md{display:none !important}}
 @media (min-width:1200px){#new-products .right div.hidden-lg,tr#new-products .right div.hidden-lg,th#new-products .right div.hidden-lg,td#new-products .right div.hidden-lg{display:none !important}}
 @media (max-width:767px){#new-products .right div,tr#new-products .right div,th#new-products .right div,td#new-products .right div{display:none !important}}
-#new-products ul.products{padding-left:0;list-style:none;width:100%;margin-top:18px}#new-products ul.products li{width:20%;float:left;padding:5px}#new-products ul.products li .head{border:1px solid #000;box-shadow:inset 0 0 4px #000;padding:3px}#new-products ul.products li .head img{height:125px}#new-products ul.products li .head img.border{display:none !important}
+#new-products ul.products{padding-left:0;list-style:none;width:100%;margin-top:18px}#new-products ul.products li{width:20%;float:left;padding:5px}@media (max-width:530px){#new-products ul.products li{width:33%}}@media (max-width:530px){#new-products ul.products li:first-child,#new-products ul.products li:last-child{display:none !important}}
+#new-products ul.products li .head{border:1px solid #000;box-shadow:inset 0 0 4px #000;padding:3px}#new-products ul.products li .head img{height:125px}#new-products ul.products li .head img.border{display:none !important}
 #new-products ul.products li .head img.noborder{display:block !important}
 #new-products ul.products li h4{height:35px}
 .blog .date{font-family:"Titillium Web";font-weight:600;font-size:12pt;color:#000}
@@ -797,7 +804,8 @@ th.collection .description,td.collection .description{display:table-cell !import
 .collection ul.products li{width:30%;padding:15px}.collection ul.products li:first-child{padding-left:15px}
 .collection ul.products li .noborder{display:none !important}
 .collection ul.products li .border{display:block !important}
-.cart .table{padding:0}.cart .table td{vertical-align:middle}.cart .table td img{background-color:#fff;border:2px solid #000}
+.cart .table{padding:0}.cart .table td{vertical-align:top;padding-top:10px}.cart .table td img{background-color:#fff;border:2px solid #000}
+.cart .table td h2{font-family:"Titillium Web";font-weight:600;font-size:12pt;font-size:16pt;margin-top:-3px}
 .cart .checkout_buttons{float:right !important}.cart .checkout_buttons .additional-checkout-buttons{margin-right:20px;background:url("paypal.gif") right 10px no-repeat;display:inline;padding:6px 0}.cart .checkout_buttons .additional-checkout-buttons:hover{background:url("paypal_hover.gif") right 10px no-repeat}
 .cart .checkout_buttons .additional-checkout-buttons input{opacity:0}
 .cart .checkout_buttons button{display:inline-block;margin-bottom:0;font-weight:bold;text-align:center;vertical-align:middle;cursor:pointer;background-image:none;border:1px solid transparent;white-space:nowrap;padding:6px 12px;font-size:14px;line-height:1.428571429;border-radius:4px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none;color:#333;background-color:#fff;border-color:#ccc;border:1px solid;font-size:16pt;background-color:#fff}.cart .checkout_buttons button:focus{outline:thin dotted #333;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}
@@ -807,7 +815,7 @@ th.collection .description,td.collection .description{display:table-cell !import
 .cart .checkout_buttons button:hover,.cart .checkout_buttons button:focus,.cart .checkout_buttons button:active,.cart .checkout_buttons button.active,.open .dropdown-toggle.cart .checkout_buttons button{color:#333;background-color:#ebebeb;border-color:#adadad}
 .cart .checkout_buttons button:active,.cart .checkout_buttons button.active,.open .dropdown-toggle.cart .checkout_buttons button{background-image:none}
 .cart .checkout_buttons button.disabled,.cart .checkout_buttons button[disabled],fieldset[disabled] .cart .checkout_buttons button,.cart .checkout_buttons button.disabled:hover,.cart .checkout_buttons button[disabled]:hover,fieldset[disabled] .cart .checkout_buttons button:hover,.cart .checkout_buttons button.disabled:focus,.cart .checkout_buttons button[disabled]:focus,fieldset[disabled] .cart .checkout_buttons button:focus,.cart .checkout_buttons button.disabled:active,.cart .checkout_buttons button[disabled]:active,fieldset[disabled] .cart .checkout_buttons button:active,.cart .checkout_buttons button.disabled.active,.cart .checkout_buttons button[disabled].active,fieldset[disabled] .cart .checkout_buttons button.active{background-color:#fff;border-color:#ccc}
-.product form h1{font-family:"Titillium Web";font-weight:600;font-size:12pt;font-size:20pt;color:#000;background-repeat:no-repeat;height:85px;margin-top:0;padding-top:-2px;padding-left:5px;font-weight:999}
+.product form h1{font-family:"Titillium Web";font-weight:600;font-size:12pt;font-size:18pt;color:#000;background-repeat:no-repeat;height:85px;margin-top:0;padding-top:-2px;padding-left:5px;font-weight:999}
 .product form img{background-color:#fff;border:4px solid #000;margin:0 auto}
 .product form .thumbs{display:block !important;padding:0}tr.product form .thumbs{display:table-row !important}
 th.product form .thumbs,td.product form .thumbs{display:table-cell !important}
@@ -826,7 +834,7 @@ th.product form .thumbs,td.product form .thumbs{display:table-cell !important}
 .product form #product-add button:active,.product form #product-add button.active,.open .dropdown-toggle.product form #product-add button{background-image:none}
 .product form #product-add button.disabled,.product form #product-add button[disabled],fieldset[disabled] .product form #product-add button,.product form #product-add button.disabled:hover,.product form #product-add button[disabled]:hover,fieldset[disabled] .product form #product-add button:hover,.product form #product-add button.disabled:focus,.product form #product-add button[disabled]:focus,fieldset[disabled] .product form #product-add button:focus,.product form #product-add button.disabled:active,.product form #product-add button[disabled]:active,fieldset[disabled] .product form #product-add button:active,.product form #product-add button.disabled.active,.product form #product-add button[disabled].active,fieldset[disabled] .product form #product-add button.active{background-color:#fff;border-color:#ccc}
 .product #accordion{margin-top:50px}.product #accordion div{background-color:#909090;background:url('{{'bg_blog.jpg' | asset_url}}')}
-.product #accordion h2{font-size:24pt}
+.product #accordion h2{font-size:22pt}
 .product #accordion ul{padding-left:0;list-style:none}
 .product #accordion .features img{background-color:#fff;border:4px solid #000}
 .product #accordion .features li{float:left;position:relative;overflow:hidden;width:30%;margin:10px}.product #accordion .features li .caption{background-color:rgba(0,0,0,0.8);position:absolute;color:#fff;z-index:10;-webkit-transition:all 300ms ease-out;-moz-transition:all 300ms ease-out;-o-transition:all 300ms ease-out;-ms-transition:all 300ms ease-out;transition:all 300ms ease-out;display:block;padding:0 8px 8px 8px;margin-top:-37px}
@@ -835,6 +843,7 @@ th.product form .thumbs,td.product form .thumbs{display:table-cell !important}
 .product #accordion .accessories li ul li{margin:15px}
 .product #accordion .fitting ul{padding-left:0;list-style:none}.product #accordion .fitting ul>li{display:inline-block;padding-left:5px;padding-right:5px}.product #accordion .fitting ul>li:first-child{padding-left:0}
 .product #accordion .fitting ul li{width:30%;vertical-align:top}.product #accordion .fitting ul li img{height:auto;display:block;max-width:100%;height:auto}
+.product #accordion .fitting ul li:last-child{text-align:center}.product #accordion .fitting ul li:last-child img{margin-top:10px;display:inline}
 .product #accordion .fitting table{width:100%;margin-bottom:20px}.product #accordion .fitting table>thead>tr>th,.product #accordion .fitting table>tbody>tr>th,.product #accordion .fitting table>tfoot>tr>th,.product #accordion .fitting table>thead>tr>td,.product #accordion .fitting table>tbody>tr>td,.product #accordion .fitting table>tfoot>tr>td{padding:8px;line-height:1.428571429;vertical-align:top;border-top:1px solid #ddd}
 .product #accordion .fitting table>thead>tr>th{vertical-align:bottom;border-bottom:2px solid #ddd}
 .product #accordion .fitting table>caption+thead>tr:first-child>th,.product #accordion .fitting table>colgroup+thead>tr:first-child>th,.product #accordion .fitting table>thead:first-child>tr:first-child>th,.product #accordion .fitting table>caption+thead>tr:first-child>td,.product #accordion .fitting table>colgroup+thead>tr:first-child>td,.product #accordion .fitting table>thead:first-child>tr:first-child>td{border-top:0}
@@ -874,12 +883,12 @@ footer>div{background:url('{{'bg_footer.jpg' | asset_url}}');background-position
 footer>div h4{color:#000}
 footer>div #footer-list>li{background:url('{{'footer_deco.png' | asset_url}}') no-repeat;background-position:left 20px;float:left;padding-left:30px;margin-left:60px}footer>div #footer-list>li:first-child{margin-left:0}@media (max-width:530px){footer>div #footer-list>li:first-child{display:none !important}}
 @media (max-width:530px){footer>div #footer-list>li.footer{display:none !important}}
-footer>div #footer-list>li.footer-payment-methods{display:block !important;background:transparent}trfooter>div #footer-list>li.footer-payment-methods{display:table-row !important}
+footer>div #footer-list>li.footer-payment-methods{display:block !important;float:right !important;margin-right:0;background:transparent}trfooter>div #footer-list>li.footer-payment-methods{display:table-row !important}
 thfooter>div #footer-list>li.footer-payment-methods,tdfooter>div #footer-list>li.footer-payment-methods{display:table-cell !important}
 @media (max-width:767px){footer>div #footer-list>li.footer-payment-methods,trfooter>div #footer-list>li.footer-payment-methods,thfooter>div #footer-list>li.footer-payment-methods,tdfooter>div #footer-list>li.footer-payment-methods{display:none !important}}@media (min-width:768px) and (max-width:991px){footer>div #footer-list>li.footer-payment-methods.hidden-sm,trfooter>div #footer-list>li.footer-payment-methods.hidden-sm,thfooter>div #footer-list>li.footer-payment-methods.hidden-sm,tdfooter>div #footer-list>li.footer-payment-methods.hidden-sm{display:none !important}}
 @media (min-width:992px) and (max-width:1199px){footer>div #footer-list>li.footer-payment-methods.hidden-md,trfooter>div #footer-list>li.footer-payment-methods.hidden-md,thfooter>div #footer-list>li.footer-payment-methods.hidden-md,tdfooter>div #footer-list>li.footer-payment-methods.hidden-md{display:none !important}}
 @media (min-width:1200px){footer>div #footer-list>li.footer-payment-methods.hidden-lg,trfooter>div #footer-list>li.footer-payment-methods.hidden-lg,thfooter>div #footer-list>li.footer-payment-methods.hidden-lg,tdfooter>div #footer-list>li.footer-payment-methods.hidden-lg{display:none !important}}
-footer>div #footer-list>li:last-child{margin-right:0}
+@media (min-width:992px){footer>div #footer-list>li.footer-payment-methods{margin-right:40px}}
 footer>div #footer-list>li .footer a:hover{text-decoration:none;color:#fff}
 #blog-preview{background-color:#909090;background:url('{{'bg_blog.jpg' | asset_url}}');padding-bottom:40px}@media (min-width:992px){#blog-preview{background:url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y,url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y,url('{{'bg_blog.jpg' | asset_url}}')}}
 #header>h1 span.title,#header span.subtitle{border:0;font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}

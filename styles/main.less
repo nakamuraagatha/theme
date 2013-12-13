@@ -105,10 +105,10 @@
   padding-top: 40px;
 }
 
-.ul-reset {
-  padding: 0;
-  list-style: none;
-  margin-left: 0;
+.hidden-xxs {
+  @media (max-width: 530px) {
+    .hide;
+  }
 }
 
 .menu-button(@pos) {
@@ -124,7 +124,10 @@
   }
 
   &.margin-left {
-    margin-left: 50px;
+    margin-left: 10px;
+    @media (min-width: @screen-lg-min) {
+      margin-left: 133px;
+    }
   }
 }
 
@@ -273,8 +276,9 @@ hr {
 
     a {
       color: #ffffff;
-      font-size: 13pt;
+      font-size: 11pt;
       text-transform: uppercase;
+      letter-spacing: 1px;
       margin: 2px 0px;
       padding: 1px 10px;
 
@@ -293,14 +297,20 @@ hr {
     }
 
     .nav-logo    { margin-right: 20px; }
-    .nav-about   { .menu-button(0); }
-    .nav-helmets { .menu-button(1); }
-    .nav-hands   { .menu-button(2); }
-    .nav-pads    { .menu-button(3); }
-    .nav-boots   { .menu-button(4); }
-    .nav-kits    { .menu-button(5); .hidden-xs;}
-    .nav-blog    { .menu-button(6); .hidden-xs;}
+    .nav-about   { .menu-button(0); .margin-left; }
+    .nav-helmets { .menu-button(1); .hidden-xxs;}
+    .nav-hands   { .menu-button(2); .hidden-xxs;}
+    .nav-pads    { .menu-button(3); .hidden-xxs;}
+    .nav-boots   { .menu-button(4); .hidden-xxs;}
+    .nav-kits    { .menu-button(5); .hidden;}
+    .nav-blog    { .menu-button(6); display: none !important; .hidden; .hidden-xs;}
     .nav-contact { .menu-button(7); .hidden-sm; .hidden-xs;}
+    .nav-banner  {
+      margin-top: 23px;
+      .pull-right;
+      .hidden-sm;
+      .hidden-xs;
+    }
   }
 }
 
@@ -380,6 +390,12 @@ hr {
       width: 20%;
       float: left;
       padding: 5px;
+
+      @media (max-width: 530px) {
+        width: 33%;
+      }
+
+      &:first-child, &:last-child { .hidden-xxs }
 
       .head {
         border: 1px solid #000;

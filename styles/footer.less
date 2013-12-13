@@ -24,24 +24,21 @@ h4 {
 
   &:first-child {
     margin-left: 0px;
-    @media (max-width: 530px) {
-      .hide;
-    }
+    .hidden-xxs;
   }
 
   &.footer {
-    @media (max-width: 530px) {
-      .hide;
-    }
+    .hidden-xxs;
   }
 
   &.footer-payment-methods {
     .hidden-xs;
-    background: transparent;
-  }
-
-  &:last-child {
+    .pull-right;
     margin-right: 0px;
+    @media (min-width: @screen-md-min) {
+      margin-right: 40px;
+    }
+    background: transparent;
   }
 
   .footer a:hover {

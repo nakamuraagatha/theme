@@ -4,15 +4,16 @@
 {% if cpage_title %}
   {% assign page_title = cpage_title %}
 {% endif %}
+{% if cpage_description %}
+  {% assign page_description = cpage_description %}
+{% endif %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>{{ page_title }} - Football Shop Playmakers</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if page_description %}
     <meta name="description" content="{{ page_description }}">
-    {% endif %}
     <meta name="author" content="Playmakers - Pascal Heck">
 
     <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
@@ -38,7 +39,9 @@
           <div class="col-md-10 col-md-offset-1">
             <nav>
               <ul id="main-nav" class="nav nav-pills">
-                <li class="nav-logo"><a href="/"><img src="{{ 'logo.png' | asset_url }}"></a></li>
+                <li class="nav-logo">
+                  <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="Playmakers American Football Onlineshop Logo"></a>
+                </li>
                 {% assign linklist = linklists['main-menu'] %}
                 {% for link in linklist.links %}
                   {% assign title = link.title | split: ';' %}
@@ -53,6 +56,9 @@
                   {% endif %}
                   <li class="{{ title[1] }} {% if active %}active{% endif %}"><a class="button" href="{{ link.url }}">{{ title[0] }}</a></li>
                 {% endfor %}
+                 <li class="nav-banner">
+                  <a href="/"><img src="{{ 'banner.png' | asset_url }}" alt="Neueröffnung - Top Insights, Top Preise"></a>
+                </li>
               </ul>
             </nav>
           </div>
@@ -79,7 +85,9 @@
           <div class="col-xs-6 col-md-5 col-md-offset-2">
             <nav class="pull-right">
               <ul class="header-menu nav nav-pills">
+                {% if cart.item_count > 0 %}
                   <li><a href="/cart">Warenkorb <span class="badge">{{ cart.item_count }}</span></a></li>
+                {% endif %}
               </ul>
             </nav>
           </div>
@@ -99,7 +107,7 @@
               {% include 'footer_menu' with 'footer-info-menu' %}
               <li class="footer-payment-methods">
                 <h4>Bequem zahlen mit</h4>
-                <img src="{{ 'paypal_logo.png' | asset_url }}">
+                <img src="{{ 'paypal_logo.png' | asset_url }}" alt="Paypal Logo">
               </li>
             </ul>
           </div>

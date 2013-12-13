@@ -13,6 +13,6 @@
   <div class="body">
     <h4>{{ product.vendor }} {{ product.title }}</h4>
     <a href="{{ product.url }}"> &gt; Details</a>
-    <a href="{{ product.url }}" class="price">{% if product.type == 'Helme' %}<small>ab</small> {% endif %}{{ product.price | money }}</a>
+    <a href="{{ product.url }}" class="price">{% if product.price_varies %}<small>ab</small> {% endif %}{{ product.price | money }}</a>
   </div>
 </li>
