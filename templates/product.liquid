@@ -1,4 +1,7 @@
-{% assign cpage_title = product.vendor | append: " " | append: product.title  %}
+{% assign cpage_title = product.type | append: " von " | append: product.vendor | append: " " | append: product.title  %}
+
+{% capture cpage_description %}American Football {{ product.type }} von {{ product.vendor }} {{ product.title }} für die Positionen: {{ product.tags | join: ", " }}{% endcapture %}
+
 <div class="{{ product.type | downcase }} content-offset row" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
@@ -144,7 +147,7 @@
                 </li>
                 {% if product.type == "Helme" %}
                   {% assign fitting_image = 'fitting_helmets.png' %}
-                {% elsif product.type == "Hands" %}
+                {% elsif product.type == "Handschuhe" %}
                   {% assign fitting_image = 'fitting_hands.png' %}
                 {% elsif product.type == "Pads" %}
                   {% assign fitting_image = 'fitting_pads.png' %}
@@ -239,7 +242,7 @@
 {% elsif product.type == "Pads" %}
   {% assign collection = collections['zubehor-pads'] %}
 {% else %}
-  {% assign collection = collections['frontpage'] %}
+  {% assign collection = collections['american-football'] %}
 {% endif %}
 
 

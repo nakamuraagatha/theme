@@ -1,10 +1,11 @@
 {% assign cpage_title = "Warenkorb" %}
+{% assign collection = collections['american-football'] %}
+
 <div class="content-offset row">
   <div class="col-md-10 col-md-offset-1">
     <h1>Warenkorb</h1>
 
     {% if cart.item_count > 0 %}
-      {% assign collection = collections['frontpage'] %}
       <form action="/cart" method="post">
         <table class="table">
           <thead>
@@ -72,7 +73,6 @@
       </form>
 
     {% else %}
-      {% assign collection = collections['frontpage'] %}
       <div>
         Der Warenkorb ist leer.
       </div>

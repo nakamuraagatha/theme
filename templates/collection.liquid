@@ -1,3 +1,8 @@
+{% assign product_types = collection.all_types | join: ', '  %}
+{% assign vendors = collection.all_vendors | join: ', '  %}
+{% assign cpage_title = "American Football " | append: product_types %}
+{% assign tags = collection.all_tags | join: ', '  %}
+{% assign cpage_description = cpage_title | append: " von " | append: vendors | append: " für die Positionen: " | append: tags %}
 <div class="content-offset row">
   <div class="col-md-10 col-md-offset-1 ">
     <ul class="products">
