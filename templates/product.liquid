@@ -1,10 +1,9 @@
-{% assign cpage_title = product.type | append: " von " | append: product.vendor | append: " " | append: product.title  %}
-
-{% capture cpage_description %}American Football {{ product.type }} von {{ product.vendor }} {{ product.title }} für die Positionen: {{ product.tags | join: ", " }}{% endcapture %}
+{% assign cpage_title = product.title | append: " " | append: product.type | append: " von " | append: product.vendor %}
+{% capture cpage_description %}American Football {{ product.type }} {{ product.title }} von {{ product.vendor }}. {% endcapture %}
 
 <div class="{{ product.type | downcase }} content-offset row" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
-  <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
+  <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' }}" />
 
   <div class="col-md-10 col-md-offset-1">
     <form action="/cart/add" method="post" enctype="multipart/form-data">
@@ -38,7 +37,11 @@
           </ul>
         </div>
         <div class="col-md-6">
-          <h1 itemprop="name">{{ product.vendor }} {{ product.title }}</h1>
+          <div class="title">
+            <h2 itemprop="brand">{{ product.vendor }}</h2>
+            <h1 itemprop="name">{{ product.title }}</h1>
+            {% comment %}<span itemprop="category">{{ product.type }}</span>{% endcomment %}
+          </div>
 
           <hr>
 
@@ -120,10 +123,12 @@
           {%assign metafields = product.metafields.features %}
           {% if metafields.size > 0 %}
             {% assign product_accordeon_panel_title = 'Eigenschaften' %}
+            {% assign cpage_description = cpage_description | append: 'Mit den Eigenschaften: ' %}
             {% capture product_accordeon_panel_body %}
             <ul>
               {% for metafield in metafields %}
                 {% assign feature_details = metafield | last | split: '|' %}
+                {% assign cpage_description = cpage_description | append: feature_details[1] | append: ', ' %}
                 <li>
                   <img src="{{ feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
                   <span class="caption">
@@ -245,5 +250,6 @@
   {% assign collection = collections['american-football'] %}
 {% endif %}
 
+{% capture cpage_description %}{{ cpage_description }}Für die Positionen: {{ product.tags | join: ", " }}{% endcapture %}
 
 {% include 'related_products' with collection %}

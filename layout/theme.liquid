@@ -1,8 +1,9 @@
-{% capture main %}
-  {{ content_for_layout }}
-{% endcapture %}
+{% assign page_title_claim = ' - Playmakers, dein American Football Shop' %}
 {% if cpage_title %}
   {% assign page_title = cpage_title %}
+{% endif %}
+{% if cpage_title_claim %}
+  {% assign page_title_claim = cpage_title_claim %}
 {% endif %}
 {% if cpage_description %}
   {% assign page_description = cpage_description %}
@@ -10,16 +11,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ page_title }} - American Football Shop Playmakers</title>
+    <title>{{ page_title }}{{ page_title_claim }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ page_description }}">
+    <meta name="description" content="{{ page_description | truncate: 160 }}">
     <meta name="author" content="Playmakers - Pascal Heck">
 
     <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
-    {% include 'fb-open-graph-tags' %}
+    {% include 'facebook' %}
 
     <!--[if lt IE 9]>
       {{ 'js_html5shiv.js' | asset_url | script_tag }}
@@ -40,7 +41,7 @@
             <nav>
               <ul id="main-nav" class="nav nav-pills">
                 <li class="nav-logo">
-                  <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="Playmakers American Football Onlineshop Logo"></a>
+                  <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="Playmakers Logo - dein American Football Onlineshop"></a>
                 </li>
                 {% assign linklist = linklists['main-menu'] %}
                 {% for link in linklist.links %}
@@ -95,7 +96,7 @@
       </header>
 
       <section class="{{ template | replace: '.', ' '}}">
-        {{ main }}
+        {{ content_for_layout }}
       </section>
 
       <footer>

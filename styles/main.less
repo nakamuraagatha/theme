@@ -70,7 +70,7 @@
 
 /*------------- MIXINS ------------------ */
 
-.main_font {
+.main-font {
   font-family: "Titillium Web";
   font-weight: 600;
   font-size: 12pt;
@@ -178,7 +178,7 @@ body {
   background-color: #363636;
   background-image: url('background.jpg');
   color: @default;
-  .main_font;
+  .main-font;
   line-height: 15pt;
 }
 
@@ -208,13 +208,13 @@ h3 {
 }
 
 h4 {
-  .main_font;
+  .main-font;
   color: #F6F6F6;
   font-size: 12pt;
 }
 
 h5 {
-  .main_font;
+  .main-font;
   color: #F6F6F6;
   font-size: 11pt;
 }
@@ -391,11 +391,16 @@ hr {
       float: left;
       padding: 5px;
 
+      &:first-child, &:last-child { .hidden-xxs }
+      &:last-child { .hidden-xs }
+
+      @media (max-width: @container-sm) {
+        width: 25%;
+      }
+
       @media (max-width: 530px) {
         width: 33%;
       }
-
-      &:first-child, &:last-child { .hidden-xxs }
 
       .head {
         border: 1px solid #000;
@@ -419,7 +424,7 @@ hr {
 
 .blog {
   .date {
-    .main_font;
+    .main-font;
     color: @default;
   }
 }

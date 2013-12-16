@@ -1,23 +1,24 @@
-{% comment %}
-This is for widgets that share content on Facebook. See the Facebook Linter: http://developers.facebook.com/tools/debug
-{% endcomment %}
-
+{% comment %}<meta property="fb:app_id" content="187372008135546">{% endcomment %}
+<meta property="og:locale" content="de_DE">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Playmakers">
 {% if template contains 'product' %}
   <meta property="og:url" content="{{ shop.url }}{{ product.url }}" />
   <meta property="og:title" content="{{ cpage_title }}" />
-  <meta property="og:description" content="Playmakers Shop: {{ cpage_description | newline_to_br | strip_html | truncatewords: 100, '' | escape  }}" />
   <meta property="og:image" content="{{ product.featured_image | product_img_url: 'medium' | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://'}}" />
+  <meta property="og:description" content="Playmakers Shop: {{ cpage_description | newline_to_br | strip_html | truncatewords: 100, '' | escape  }}" />
 {% elsif template contains 'article' %}
   <meta property="og:url" content="{{ shop.url }}{{ article.url }}" />
   <meta property="og:title" content="{{ article.title }}" />
   <meta property="og:description" content="{{ article.excerpt_or_content | newline_to_br | strip_html | truncatewords: 100, '' | escape  }}" />
   {% if article.content contains "<img" %}
     {% assign src = article.content | split: 'src="' %}
-    {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:'  %}
+    {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
     {% if src %}<meta property="og:image" content="{{ src }}" />{% endif %}
  {% endif %}
 {% else %}
-  <meta property="og:url" content="{{ shop.url }}{{ product.url }}" />
+  <meta property="og:url" content="{{ shop.url }}" />
   <meta property="og:title" content="{{ cpage_title }}" />
   <meta property="og:image" content="{{ 'logo.png' | asset_url | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://'}}" />
+  <meta property="og:description" content="{{ page_description }}">
 {% endif %}

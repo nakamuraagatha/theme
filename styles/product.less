@@ -1,14 +1,18 @@
 form {
-  h1 {
-    .main_font;
+  h2, h1 {
+    .main-font;
     font-size: 18pt;
     color: #000;
-    background-repeat: no-repeat;
     height: 85px;
     margin-top: 0;
     padding-top: -2px;
     padding-left: 5px;
     font-weight: 999;
+  }
+
+  h2 {
+    float: left;
+    margin-right: 5px;
   }
 
   img {
@@ -150,7 +154,11 @@ form {
 }
 
 .extra(@type){
-  h1 { background-image: url('drips_@{type}.png'); }
+  .title {
+    background-image: url('drips_@{type}.png');
+    background-repeat: no-repeat;
+    span { .hide; }
+  }
   #add { background-color: #fff; }
   #accordion .panel-heading  {
     background: transparent;
