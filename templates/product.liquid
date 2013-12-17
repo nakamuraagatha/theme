@@ -43,7 +43,9 @@
             {% comment %}<span itemprop="category">{{ product.type }}</span>{% endcomment %}
           </div>
 
-          <hr>
+          {% if product.variants.size > 1 %}
+            <hr>
+          {% endif %}
 
           <ul id="options" class="list-unstyled list-inline">
             <li id="variants">
@@ -108,7 +110,7 @@
             {% endif %}
           </div>
           <div id="availability">
-            <p>Das Produkt ist zur Zeit leider vergriffen</p>
+            <p>Leider ist das Produkt zur Zeit vergriffen. Wir benachrichtigen Dich gerne sobald es verfügbar ist. <a href="http://www.play-makers.de/pages/contact?contact[body]=Bitte benachrichtigt mich wenn  ** {{ product.vendor}} {{ product.title }} ** wieder verfügbar ist">Nutze unseren Benachrichtigungs Service hier</a>.</p>
           </div>
         </div>
       </div>
@@ -203,7 +205,12 @@
         variant.key += norm_value;
         $('select.' + key).filter(function(select) {
           return $(this).find("option." + norm_value).length !== 1;
-        }).append('<option class="' + norm_value +'" value="' + norm_value + '">' + value + '</option>');
+        })
+          .append('<option class="' + norm_value +'" value="' + norm_value + '">' + value + '</option>')
+          .each(function(select) {
+            var toggle = $(this).find("option").size() > 1;
+            $(this).parent('li').toggle(toggle);
+          });
       });
       variants[variant.key] = variant;
     };

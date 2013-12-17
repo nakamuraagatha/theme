@@ -111,6 +111,18 @@
   }
 }
 
+.hyphenate {
+  -ms-word-break: break-all;
+  word-break: break-all;
+
+  // Non standard for webkit
+  word-break: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
 .menu-button(@pos) {
   .button {
     background-position: 0px -(@pos * 90px);
