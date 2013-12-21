@@ -10,11 +10,13 @@
         </a>
         <div class="media-body">
           <h3 class="media-heading">{{ article.title | link_to: article.url }}</h3>
-          <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
+          <p>{{ article.excerpt_or_content | strip_html | truncatewords: 30 }} <a href="{{article.url }}">(hier geht es weiter)</a></p>
+
         </div>
       </li>
     </ul>
 
-    <a href="/blogs/news">mehr...</a>
+    <a href="{{blog.url }}">Alle Beiträge lesen.</a>
+
   </div>
 </div>

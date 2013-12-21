@@ -112,11 +112,11 @@
 }
 
 .hyphenate {
-  -ms-word-break: break-all;
-  word-break: break-all;
+  // -ms-word-break: break-all;
+  // word-break: break-all;
 
-  // Non standard for webkit
-  word-break: break-word;
+  // // Non standard for webkit
+  // word-break: break-word;
 
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
@@ -138,7 +138,7 @@
   &.margin-left {
     margin-left: 10px;
     @media (min-width: @screen-lg-min) {
-      margin-left: 133px;
+      margin-left: 58px;
     }
   }
 }
@@ -309,13 +309,13 @@ hr {
     }
 
     .nav-logo    { margin-right: 20px; }
-    .nav-about   { .menu-button(0); .margin-left; }
     .nav-helmets { .menu-button(1); .hidden-xxs;}
     .nav-hands   { .menu-button(2); .hidden-xxs;}
     .nav-pads    { .menu-button(3); .hidden-xxs;}
     .nav-boots   { .menu-button(4); .hidden-xxs;}
     .nav-kits    { .menu-button(5); .hidden;}
-    .nav-blog    { .menu-button(6); display: none !important; .hidden; .hidden-xs;}
+    .nav-blog    { .menu-button(6); .margin-left; .hidden-sm; .hidden-xs;}
+    .nav-about   { .menu-button(0); }
     .nav-contact { .menu-button(7); .hidden-sm; .hidden-xs;}
     .nav-banner  {
       margin-top: 23px;
@@ -434,17 +434,11 @@ hr {
   }
 }
 
-.blog {
-  .date {
-    .main-font;
-    color: @default;
-  }
-}
-
 .collection { @import 'collection'; }
 .cart { @import 'cart'; }
 .product { @import 'product'; }
 .page { @import 'page'; }
+.blog, .article  { @import 'blog'; }
 footer >div { @import 'footer'; }
 
 #blog-preview {

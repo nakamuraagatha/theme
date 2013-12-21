@@ -1,0 +1,33 @@
+{% paginate article.comments by 50 %}
+<div class="content-offset row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+
+    <div class="media">
+      <div class="media-body">
+        <h1 class="media-heading">{{ article.title }}</h1>
+
+        <p class="meta">
+          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %d %Y' }}</time>
+          {% if article.comments_enabled? %}, <span>{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }}</span>{% endif %}
+          {% if article.tags.size > 0 %}
+            <span>, Tags:</span>
+            {% for tag in article.tags %}
+              {% if collections[tag].all_products_count != "" %}
+                {% assign collection = collections[tag] %}
+              {% else %}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </p>
+
+        <p>{{ article.content }}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endpaginate %}
+
+{% include 'related_products' with collection %}

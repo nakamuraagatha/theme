@@ -1,5 +1,5 @@
 {% assign collection = related_products %}
-
+{% if collection %}
 <div id="new-products" class="row">
   <div class="col-md-10 col-md-offset-1">
     <h2>{{ collection.title | split: ';' | last }}</h2>
@@ -11,3 +11,4 @@
   </div>
   <div class="col-md-1 right"><div></div></div>
 </div>
+{% endif %}

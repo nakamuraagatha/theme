@@ -11,6 +11,7 @@ Shopify Shop Template
 
 ## Debuger
 
-This is for widgets that share content on Facebook. See the Facebook Linter: http://developers.facebook.com/tools/debug
+This is for widgets that share content on Facebook. See the Facebook Linter:
+http://developers.facebook.com/tools/debug
 
 http://www.google.com/webmasters/tools/richsnippets
