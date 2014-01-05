@@ -19,8 +19,8 @@ h4 {
   background: url('footer_deco.png') no-repeat;
   background-position: left 20px;
   float:left;
-  padding-left: 20px;
-  margin-left: 60px;
+  padding-left: 25px;
+  margin-left: 40px;
 
   &:first-child {
     margin-left: 0px;
@@ -31,10 +31,18 @@ h4 {
     .hidden-xxs;
   }
 
-  &.footer-payment-methods {
+  &.socials {
+    .hidden-xs;
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
+  &.payment-methods {
     .hidden-xs;
     .pull-right;
     margin-right: 0px;
+    padding-left: 0px;
     @media (min-width: @screen-md-min) {
       margin-right: 40px;
     }

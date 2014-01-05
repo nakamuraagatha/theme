@@ -5,12 +5,18 @@
     <ul class="media-list">
       {% assign article = blog.articles.first %}
       <li class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" src="" alt="">
-        </a>
+        {% if article.content contains "<img" %}
+          {% assign src = article.content | split: 'src="' %}
+          {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
+          {% if src %}
+            <a class="pull-left" href="{{ article.url }}">
+             <img class="media-object" src="{{ src }}" width="150" alt="{{ article.title }}">
+            </a>
+          {% endif %}
+        {% endif %}
         <div class="media-body">
           <h3 class="media-heading">{{ article.title | link_to: article.url }}</h3>
-          <p>{{ article.excerpt_or_content | strip_html | truncatewords: 30 }} <a href="{{article.url }}">(hier geht es weiter)</a></p>
+          <p>{{ article.excerpt_or_content | strip_html | truncatewords: 30 }} <a href="{{article.url }}">(weiterlesen...)</a></p>
 
         </div>
       </li>

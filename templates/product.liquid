@@ -13,6 +13,7 @@
           <a class="fancybox" href="{{ product.featured_image.src | product_img_url: 'original' }}" title="{{ product.vendor }} {{ product.title }} {{ alt }}" rel="gallery">
             <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.vendor }} {{ product.title }} {{ alt }}" class="img-responsive"/>
           </a>
+          <div class="fb-like" data-href="{{ canonical_url }}" data-layout="button_count" data-action="recommend" data-show-faces="false" data-share="true"></div>
         </div>
         <div class="col-md-1 thumbs">
           <ul id="product-photo-thumbs" class="list-unstyled">

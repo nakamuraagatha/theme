@@ -15,7 +15,7 @@
     {% assign src = article.content | split: 'src="' %}
     {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
     {% if src %}<meta property="og:image" content="{{ src }}" />{% endif %}
- {% endif %}
+  {% endif %}
 {% else %}
   <meta property="og:url" content="{{ shop.url }}" />
   <meta property="og:title" content="{{ page_title }}" />

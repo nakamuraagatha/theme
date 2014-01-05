@@ -2,17 +2,16 @@
 <div class="content-offset row">
   <div class="col-md-10 col-md-offset-1">
     <h1>{{ blog.title }}</h1>
-
     {% for article in blog.articles %}
       <div class="media">
         <div class="media-body">
           <h2 class="media-heading"><a href="{{ article.url }}">{{ article.title }}</a></h2>
 
           <p class="meta">
-            <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %d %Y' }}</time>
-            {% if article.comments_enabled? %}, <span>{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }}</span>{% endif %}
+            <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d. %B %Y' }}</time>,&nbsp;
+            {% if article.comments_enabled? %}<span>{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }},&nbsp;</span>{% endif %}
             {% if article.tags.size > 0 %}
-              <span>, Tags:</span>
+              <span>Tags:</span>
               {% for tag in article.tags %}
                 {% if collections[tag].all_products_count != "" %}
                   {% assign collection = collections[tag] %}
@@ -23,7 +22,17 @@
             {% endif %}
           </p>
 
-          <p>{{ article.excerpt_or_content | strip_html | truncatewords: 100 }} <a href="{{article.url }}">(hier geht es weiter)</a></p>
+          {% if article.content contains "<img" %}
+            {% assign src = article.content | split: 'src="' %}
+            {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
+            {% if src %}
+              <a class="pull-left" href="{{ article.url }}">
+               <img class="media-object" src="{{ src }}" width="200" alt="{{ article.title }}">
+              </a>
+            {% endif %}
+          {% endif %}
+
+          <p>{{ article.excerpt_or_content | strip_html | truncatewords: 100 }} <a href="{{article.url }}">(weiterlesen...)</a></p>
         </div>
       </div>
       <hr class="divider" />

@@ -34,6 +34,14 @@
     {{ 'css_style.css' | asset_url | stylesheet_tag }}
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <div id="menu">
       <div class="container">
         <div class="row">
@@ -106,7 +114,19 @@
               {% include 'footer_menu' with 'footer-shop-menu' %}
               {% include 'footer_menu' with 'footer' %}
               {% include 'footer_menu' with 'footer-info-menu' %}
-              <li class="footer-payment-methods">
+              <li class="socials">
+                <h4>Folge uns auf</h4>
+                <ul>
+                 <li>
+                  <div class="fb-like" data-href="http://www.facebook.com/playmakers.shop" data-colorscheme="light" data-layout="button_count" data-show-faces="false"></div>
+                 </li>
+                 <li>
+                  <a href="https://twitter.com/playmakers_shop" class="twitter-follow-button" data-show-count="false" data-lang="de">@playmakers_shop folgen</a>
+                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                 </li>
+                </ul>
+              </li>
+              <li class="payment-methods">
                 <h4>Bequem zahlen mit</h4>
                 <img src="{{ 'paypal_logo.png' | asset_url }}" alt="Paypal Logo">
               </li>

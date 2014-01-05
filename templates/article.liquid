@@ -8,10 +8,10 @@
         <h1 class="media-heading">{{ article.title }}</h1>
 
         <p class="meta">
-          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %d %Y' }}</time>
-          {% if article.comments_enabled? %}, <span>{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }}</span>{% endif %}
+          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d. %B %Y' }}</time>,&nbsp;
+          {% if article.comments_enabled? %}, <span>{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }},&nbsp;</span>{% endif %}
           {% if article.tags.size > 0 %}
-            <span>, Tags:</span>
+            <span>Tags:</span>
             {% for tag in article.tags %}
               {% if collections[tag].all_products_count != "" %}
                 {% assign collection = collections[tag] %}
@@ -24,6 +24,15 @@
 
         <p>{{ article.content }}</p>
 
+        <ul class="socials">
+          <li>
+            <div class="fb-share-button" data-href="{{ canonical_url }}" data-type="button"></div>
+          </li>
+          <li>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ article.title }}" data-via="playmakers_shop" data-lang="de" data-count="none">Twittern</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          </li>
+        </p>
       </div>
     </div>
   </div>
