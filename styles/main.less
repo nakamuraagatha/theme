@@ -64,6 +64,8 @@
 @handschuhe: #00A237;
 @schuhe: #3F6AD0;
 @default: #000;
+@variant1: #D9DADA;
+@variant2: #F6F6F6;
 @a: #FFF;
 @a_hover: #AAA;
 @image_bg: #FFF;
@@ -203,31 +205,31 @@ a {
 
 h1 {
   .header_font;
-  color: #D9DADA;
+  color: @variant1;
   font-size: 35pt;
 }
 
 h2 {
   .header_font;
-  color: #F6F6F6;
+  color: @variant2;
   font-size: 18pt;
 }
 
 h3 {
   .header_font;
-  color: #F6F6F6;
+  color: @variant2;
   font-size: 16pt;
 }
 
 h4 {
   .main-font;
-  color: #F6F6F6;
+  color: @variant2;
   font-size: 12pt;
 }
 
 h5 {
   .main-font;
-  color: #F6F6F6;
+  color: @variant2;
   font-size: 11pt;
 }
 
@@ -244,6 +246,14 @@ hr {
   background-color: #7c7c7c;
   background-image: url('bg_content.jpg');
   box-shadow: 0px 0px 10px #000000;
+
+  section {
+    margin-bottom: 50px;
+
+    &.index {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .header-menu.nav-pills a {
@@ -435,8 +445,13 @@ hr {
 }
 
 #blog-preview {
+  margin-top: 30px;
+  h2 {
+    margin-top: 30px;
+  }
+
   ul {
-    margin-top: 20px;
+    margin-top: 25px;
 
     img {
       border: 1px solid #333;

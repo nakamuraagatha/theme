@@ -5,7 +5,7 @@
   <ul>
     {% for link in linklist.links %}
       {% assign title = link.title | split: ';' %}
-      <li class="{{ title[1] }} {% if link.active %}active{% endif %}">
+      <li>
         <a href="{{ link.url }}">{{ title[0] }}</a>
       </li>
     {% endfor %}
