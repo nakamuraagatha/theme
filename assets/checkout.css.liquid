@@ -800,6 +800,9 @@ th#new-products ul.products li:last-child,td#new-products ul.products li:last-ch
 #blog-preview ul{margin-top:20px}#blog-preview ul img{border:1px solid #333;box-shadow:0 0 5px #000}
 .collection .header{padding:0;height:370px}.collection .header img{position:absolute;clip:rect(0, 880px, 350px, 0)}
 .collection .header h1{display:none !important;visibility:hidden !important;margin-top:360px;margin-left:100px}
+.collection .thumbnail{background:transparent;border:0;text-align:center}
+.collection .thumbnail cite{font-style:italic;color:#000}.collection .thumbnail cite:before{content:"\201C"}
+.collection .thumbnail cite:after{content:"\201C"}
 .collection .description{display:block !important;padding:5px 15px}tr.collection .description{display:table-row !important}
 th.collection .description,td.collection .description{display:table-cell !important}
 @media (max-width:767px){.collection .description.hidden-xs,tr.collection .description.hidden-xs,th.collection .description.hidden-xs,td.collection .description.hidden-xs{display:none !important}}
@@ -807,8 +810,7 @@ th.collection .description,td.collection .description{display:table-cell !import
 @media (min-width:1200px){.collection .description.hidden-lg,tr.collection .description.hidden-lg,th.collection .description.hidden-lg,td.collection .description.hidden-lg{display:none !important}}
 @media (max-width:767px){.collection .description,tr.collection .description,th.collection .description,td.collection .description{display:none !important}}.collection .description img{display:block;height:auto;max-width:100%}
 .collection .description ul{padding-left:0;list-style:none;font-size:14px;line-height:20px}
-.collection ul.products{padding-left:0;list-style:none;width:100%}.collection ul.products>li{display:inline-block;padding-left:5px;padding-right:5px}.collection ul.products>li:first-child{padding-left:0}
-.collection ul.products li{width:30%;padding:15px}.collection ul.products li:first-child{padding-left:15px}
+.collection ul.products{padding-left:0;list-style:none;width:100%}.collection ul.products li{width:30%;padding:15px;float:left}.collection ul.products li:first-child{padding-left:15px}
 .collection ul.products li .noborder{display:none !important}
 .collection ul.products li .border{display:block !important}
 .cart .table{padding:0}.cart .table td{vertical-align:top;padding-top:10px}.cart .table td img{background-color:#fff;border:2px solid #000}
@@ -822,7 +824,7 @@ th.collection .description,td.collection .description{display:table-cell !import
 .cart .checkout_buttons button:hover,.cart .checkout_buttons button:focus,.cart .checkout_buttons button:active,.cart .checkout_buttons button.active,.open .dropdown-toggle.cart .checkout_buttons button{color:#333;background-color:#ebebeb;border-color:#adadad}
 .cart .checkout_buttons button:active,.cart .checkout_buttons button.active,.open .dropdown-toggle.cart .checkout_buttons button{background-image:none}
 .cart .checkout_buttons button.disabled,.cart .checkout_buttons button[disabled],fieldset[disabled] .cart .checkout_buttons button,.cart .checkout_buttons button.disabled:hover,.cart .checkout_buttons button[disabled]:hover,fieldset[disabled] .cart .checkout_buttons button:hover,.cart .checkout_buttons button.disabled:focus,.cart .checkout_buttons button[disabled]:focus,fieldset[disabled] .cart .checkout_buttons button:focus,.cart .checkout_buttons button.disabled:active,.cart .checkout_buttons button[disabled]:active,fieldset[disabled] .cart .checkout_buttons button:active,.cart .checkout_buttons button.disabled.active,.cart .checkout_buttons button[disabled].active,fieldset[disabled] .cart .checkout_buttons button.active{background-color:#fff;border-color:#ccc}
-.product form h2,.product form h1{font-family:"Titillium Web";font-weight:600;font-size:12pt;font-size:18pt;color:#000;height:85px;margin-top:-2px;padding-left:5px;font-weight:900}
+.product form h2,.product form h1{font-family:"Titillium Web";font-weight:600;font-size:12pt;font-size:18pt;color:#000;height:85px;margin-top:0;padding-top:0;padding-left:5px}
 .product form h2{float:left;margin-right:5px}
 .product form img{background-color:#fff;border:4px solid #000;margin:0 auto}
 .product form .thumbs{display:block !important;padding:0}tr.product form .thumbs{display:table-row !important}
@@ -889,6 +891,10 @@ textarea.page.contact input,textarea.page.contact textarea{height:auto}
 .page.contact .successForm{background:#bde0a8;color:#008000}
 .page.contact .errorForm{background:#eebdbd;color:#f00}
 .page.contact .feedback{padding:.5em .7em;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;margin-bottom:20px}.page.contact .feedback p{padding:5px}
+.page.pate small{margin-right:15px}.page.pate small:before{font-family:"Titillium Web";font-weight:600;font-size:12pt;font-weight:0;font-size:24pt;content:"#"}
+.page.pate .facts{margin-bottom:0}.page.pate .facts dt{width:80px}.page.pate .facts dt:after{content:":"}
+.page.pate h4{font-family:"Titillium Web";font-weight:600;font-size:12pt;color:#f6f6f6;font-size:12pt}
+.page.pate dt{float:left;clear:left;width:50px;font-weight:bold}
 .blog .meta,.article .meta{margin-bottom:20px}.blog .meta time,.article .meta time{font-family:"Titillium Web";font-weight:600;font-size:12pt;color:#000}
 .blog .media img,.article .media img{margin:20px;border:1px solid #333;box-shadow:0 0 5px #000}
 .blog .socials,.article .socials{float:right !important;padding-left:0;list-style:none}.blog .socials li,.article .socials li{float:left;margin-right:10px}
@@ -910,6 +916,8 @@ thfooter>div #footer-list>li.payment-methods,tdfooter>div #footer-list>li.paymen
 @media (min-width:992px){footer>div #footer-list>li.payment-methods{margin-right:40px}}
 footer>div #footer-list>li .footer a:hover{text-decoration:none;color:#fff}
 #blog-preview{background-color:#909090;background:url('{{'bg_blog.jpg' | asset_url}}');padding-bottom:40px}@media (min-width:992px){#blog-preview{background:url('{{'bg_blog_border.png' | asset_url}}') top left repeat-y,url('{{'bg_blog_border.png' | asset_url}}') top right repeat-y,url('{{'bg_blog.jpg' | asset_url}}')}}
+body.plain{background-color:#7c7c7c;background-image:url('{{'bg_content.jpg' | asset_url}}')}body.plain #main{box-shadow:none}
+body.plain #header,body.plain #menu,body.plain footer{display:none !important;visibility:hidden !important}
 #header>h1 span.title,#header span.subtitle{border:0;font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}
 #main{padding-top:10px;width:792px}
 #overview{background-color:#909090;background:url('{{'bg_blog.jpg' | asset_url}}');border:0}#overview h2{font-size:18pt;color:#f6f6f6}

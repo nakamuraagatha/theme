@@ -27,9 +27,7 @@
       {{ 'js_respond.min.js' | asset_url | script_tag }}
     <![endif]-->
 
-    <!-- content_for_header start -->
     {{ content_for_header }}
-    <!-- content_for_header end -->
 
     {{ 'css_style.css' | asset_url | stylesheet_tag }}
   </head>
@@ -145,11 +143,25 @@
     {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
 
     <script type="text/javascript">
+      function inIframe () {
+        try {
+          return window.self !== window.top;
+        } catch (err) {
+          return true;
+        }
+      }
+
+      if (inIframe()) {
+        $('body').addClass('plain');
+      }
+
       $(document).ready(function() {
         $('#teaser .carousel').carousel().on('slide.bs.carousel', function(event) {
           $("#teaser-products ul").removeClass("active");
           $('#' + event.relatedTarget.id + '-product').addClass("active");
         });
+
+        $('[data-fancybox-type]').fancybox();
 
         $('.fancybox').fancybox({
           openEffect: 'elastic',

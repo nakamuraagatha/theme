@@ -65,3 +65,38 @@
     }
   }
 }
+
+&.pate {
+  small {
+    margin-right: 15px;
+    &:before {
+      .main-font;
+      font-weight: 0;
+      font-size: 24pt;
+      content: "#";
+    }
+  }
+
+  .facts {
+    margin-bottom: 0;
+    dt {
+      width: 80px;
+      &:after {
+        content: ":";
+      }
+    }
+  }
+
+  h4 {
+    .main-font;
+    color: #F6F6F6;
+    font-size: 12pt;
+  }
+
+  dt {
+    float: left;
+    clear: left;
+    width: 50px;
+    font-weight: bold;
+  }
+}

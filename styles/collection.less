@@ -14,6 +14,29 @@
   }
 }
 
+.thumbnail {
+  background: transparent;
+  border: 0px;
+
+  text-align: center;
+
+  h4 {
+
+  }
+
+  cite {
+    font-style: italic;
+    color: @default;
+    &:before {
+      content: "\201C";
+    }
+
+    &:after {
+      content: "\201C";
+    }
+  }
+}
+
 .description {
   .hidden-sm;
   .hidden-xs;
@@ -35,12 +58,13 @@
 
 ul.products {
   .list-unstyled;
-  .list-inline;
+  // .list-inline;
   width: 100%;
 
   li {
     width: 30%;
     padding: 15px;
+    float: left;
     &:first-child {
       padding-left: 15px;
     }

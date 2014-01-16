@@ -11,8 +11,8 @@
     </a>
   </div>
   <div class="body">
-    <a href="{{ product.url }}"><h4>{{ product.vendor }} {{ product.title }}</h4></a>
-    <a href="{{ product.url }}" class="more"> &gt; Details</a>
+    <a href="{{ product.url | within: collection}}"><h4>{{ product.vendor }} {{ product.title }}</h4></a>
+    <a href="{{ product.url | within: collection}}" class="more"> &gt; Details</a>
     <span class="price">{% if product.price_varies %}<small>ab</small> {% endif %}{{ product.price | money }}</span>
   </div>
 </li>
