@@ -40,6 +40,7 @@ Liquid::Template.register_filter(TextFilter)
 def style_css(source, target)
   style = less "../styles/#{source}".to_sym, :compress => true
   style.gsub(/url\('([^)]+)'\)/, %q{url('{{'\1' | asset_url}}')}).tap do |content|
+    content.gsub!(' \9', '')
     File.open("assets/#{target}", 'w') { |file| file.write(content) }
   end
 end

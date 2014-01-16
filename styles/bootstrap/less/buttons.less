@@ -18,7 +18,7 @@
   border: 1px solid transparent;
   white-space: nowrap;
   .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-base);
-  .user-select(none);
+  // .user-select(none);
 
   &:focus {
     .tab-focus();
@@ -41,7 +41,7 @@
   &[disabled],
   fieldset[disabled] & {
     cursor: not-allowed;
-    pointer-events: none; // Future-proof disabling of clicks
+    // pointer-events: none; // Future-proof disabling of clicks
     .opacity(.65);
     .box-shadow(none);
   }
