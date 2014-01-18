@@ -18,9 +18,9 @@
 @import "bootstrap/less/buttons.less";
 
 // Components
-@import "bootstrap/less/component-animations.less";
+// @import "bootstrap/less/component-animations.less";
 // @import "bootstrap/less/glyphicons.less";
-@import "bootstrap/less/dropdowns.less";
+// @import "bootstrap/less/dropdowns.less";
 @import "bootstrap/less/button-groups.less";
 @import "bootstrap/less/input-groups.less";
 @import "bootstrap/less/navs.less";
@@ -28,9 +28,9 @@
 // @import "bootstrap/less/breadcrumbs.less";
 @import "bootstrap/less/pagination.less";
 @import "bootstrap/less/pager.less";
-@import "bootstrap/less/labels.less";
-@import "bootstrap/less/badges.less";
-@import "bootstrap/less/jumbotron.less";
+// @import "bootstrap/less/labels.less";
+// @import "bootstrap/less/badges.less";
+// @import "bootstrap/less/jumbotron.less";
 @import "bootstrap/less/thumbnails.less";
 @import "bootstrap/less/alerts.less";
 // @import "bootstrap/less/progress-bars.less";
@@ -41,9 +41,9 @@
 @import "bootstrap/less/close.less";
 
 // Components w/ JavaScript
-@import "bootstrap/less/modals.less";
+// @import "bootstrap/less/modals.less";
 // @import "bootstrap/less/tooltip.less";
-@import "bootstrap/less/popovers.less";
+// @import "bootstrap/less/popovers.less";
 @import "bootstrap/less/carousel.less";
 
 // Utility classes
@@ -460,7 +460,50 @@ hr {
   }
 }
 
-.collection { @import 'collection'; }
+.search-form {
+  .form-inline;
+
+  input, button {
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+
+  input {
+    width: 400px;
+  }
+}
+
+
+#searchbar {
+  text-align: right;
+
+  .search-form {
+    .form-inline;
+    .hidden-xs;
+    margin-top: 20px;
+
+    input, button {
+      z-index: 200;
+      height: 25px;
+      padding: 3px;
+      font-size: 12px;
+      background-color: #ddd;
+      border: 1px solid #ccc;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+    }
+
+    input {
+      width: 200px;
+    }
+  }
+}
+
+.search, .collection { @import 'collection'; }
 .cart { @import 'cart'; }
 .product { @import 'product'; }
 .page { @import 'page'; }
