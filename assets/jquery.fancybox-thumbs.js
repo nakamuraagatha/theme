@@ -157,6 +157,6 @@
 			this.list  = null;
 			this.width = 0;
 		}
-	}
+	};
 
 }(jQuery));
