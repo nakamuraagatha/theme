@@ -1,10 +1,13 @@
-background: url('bg_footer.jpg');
+background: url('bg_footer.png'), url('bg_footer.jpg');
+background-position: left top, left 26px;
+background-repeat: repeat-x, no-repeat;
 @media (min-width: @screen-md-min) {
-  background: url('footer_deco2.png') top right no-repeat, url('bg_footer.jpg');
+  background: url('footer_deco2.png'), url('bg_footer.png'), url('bg_footer.jpg');
+  background-position: right 36px, left top, left 26px;
+  background-repeat: no-repeat, repeat-x, no-repeat;
 }
-background-position: right 10px, left top;
-height: 220px;
-padding-top: 5px;
+height: 246px;
+padding-top: 30px;
 font-size: 10pt;
 line-height: 15pt;
 
@@ -44,6 +47,8 @@ h4 {
 
   &.payment-methods {
     .hidden-xs;
+    .hidden-sm;
+    .hidden-md;
     .pull-right;
     margin-right: 0px;
     padding-left: 0px;
