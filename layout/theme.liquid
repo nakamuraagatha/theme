@@ -16,7 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ page_description | truncate: 160 }}">
     <meta name="author" content="Playmakers - Pascal Heck">
-
+    <meta name="revisit-after" content="7 days">
+    <meta name="robots" content="index,follow">
+    <meta http-equiv="content-language" content="de">
     <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
@@ -47,7 +49,7 @@
             <nav>
               <ul id="main-nav" class="nav nav-pills">
                 <li class="nav-logo">
-                  <a href="/"><img width="129" height="162" src="{{ 'logo.png' | asset_url }}" alt="Playmakers Logo - dein American Football Shop"></a>
+                  <a href="/" title="Playmakers Logo - dein American Football Shop"><img width="129" height="162" src="{{ 'logo.png' | asset_url }}" alt="Playmakers Logo - dein American Football Shop"></a>
                 </li>
                 {% assign linklist = linklists['main-menu'] %}
                 {% for link in linklist.links %}
@@ -61,7 +63,7 @@
                       {% endif %}
                     {% endfor %}
                   {% endif %}
-                  <li class="{{ title[1] }} {% if active %}active{% endif %}"><a class="button" href="{{ link.url }}">{{ title[0] }}</a></li>
+                  <li class="{{ title[1] }} {% if active %}active{% endif %}"><a class="button" href="{{ link.url }}" title="{{ link.object.title }}">{{ title[0] }}</a></li>
                 {% endfor %}
                  <li class="nav-banner">
                   <a href="/"><img width="129" height="96" src="{{ 'banner.png' | asset_url }}" alt="Neueröffnung - Top Insights, Top Preise"></a>
@@ -124,13 +126,16 @@
               <li class="socials">
                 <h4>Folge uns auf</h4>
                 <ul>
-                 <li>
-                  <div class="fb-like" data-href="http://www.facebook.com/playmakers.shop" data-colorscheme="light" data-layout="button_count" data-show-faces="false"></div>
-                 </li>
-                 <li>
-                  <a href="https://twitter.com/playmakers_shop" class="twitter-follow-button" data-show-count="false" data-lang="de">@playmakers_shop folgen</a>
-                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                 </li>
+                  <li>
+                   <div class="fb-like" data-href="http://www.facebook.com/playmakers.shop" data-colorscheme="light" data-layout="button_count" data-show-faces="false"></div>
+                  </li>
+                  <li>
+                   <a href="https://twitter.com/playmakers_shop" class="twitter-follow-button" data-show-count="false" data-lang="de">@playmakers_shop</a>
+                   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                  </li>
+                  <li>
+                    <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="100"></div>
+                  </li>
                 </ul>
               </li>
               <li class="payment-methods">
@@ -195,6 +200,15 @@
           $('#menu').removeClass('sticky');
         }
       });
+    </script>
+    <script type="text/javascript">
+      window.___gcfg = {lang: 'de'};
+
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
     </script>
 
     {{ content_for_footer }}

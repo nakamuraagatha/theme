@@ -1,6 +1,7 @@
+{% capture link_title %}{{collection.title}} - {{ product.vendor }} {{ product.title }} - {{ product.price | money }}{% endcapture %}
 <li class="product">
   <div class="head">
-    <a href="{{ product.url | within: collection }}">
+    <a href="{{ product.url | within: collection }}" title="{{ link_title }}">
       <img src="{{ product.featured_image | product_img_url: 'compact' }}"
            alt="{{ product.featured_image.alt | escape }}"
            class="noborder">
@@ -11,8 +12,8 @@
     </a>
   </div>
   <div class="body">
-    <a href="{{ product.url | within: collection}}"><h4>{{ product.vendor }} {{ product.title }}</h4></a>
-    <a href="{{ product.url | within: collection}}" class="more"> &gt; Details</a>
+    <a href="{{ product.url | within: collection}}"  title="{{ link_title }}"><h4>{{ product.vendor }} {{ product.title }}</h4></a>
+    <a href="{{ product.url | within: collection}}"  title="{{ link_title }}" class="more"> &gt; Details</a>
     <span class="price">{% if product.price_varies %}<small>ab</small> {% endif %}{{ product.price | money }}</span>
   </div>
 </li>
