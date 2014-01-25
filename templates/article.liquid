@@ -20,13 +20,17 @@
               {% endif %}
             {% endfor %}
           {% endif %}
+          &nbsp;&nbsp;&nbsp;<span class="fb-like" data-href="{{ canonical_url }}" data-width="100" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></span>
         </p>
 
         <p>{{ article.content }}</p>
 
         <ul class="socials">
           <li>
-            <div class="fb-share-button" data-href="{{ canonical_url }}" data-type="button"></div>
+            <span class="fb-like" data-href="{{ canonical_url }}" data-width="100" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></span>
+          </li>
+          <li>
+            <span class="fb-share-button" data-href="{{ canonical_url }}" data-type="button"></span>
           </li>
           <li>
             <a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ article.title }}" data-via="playmakers_shop" data-lang="de" data-count="none">Twittern</a>
