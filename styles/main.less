@@ -58,6 +58,7 @@
 @import "fonts.less";
 
 /*------------- CFGS ------------------ */
+@brand-primary: #000;
 
 @helme: #DF0000;
 @pads: #FFC800;
@@ -69,6 +70,8 @@
 @a: #FFF;
 @a_hover: #AAA;
 @image_bg: #FFF;
+
+@input-border-focus: #000;
 
 /*------------- MIXINS ------------------ */
 
@@ -141,6 +144,43 @@
     margin-left: 10px;
     @media (min-width: @screen-lg-min) {
       margin-left: 58px;
+    }
+  }
+}
+
+.form {
+  input, textarea {
+    .form-control;
+    width: 550px;
+  }
+
+  textarea {
+    height: inherit;
+  }
+
+  label {
+    width: 150px;
+  }
+
+  .successForm {
+    background: #BDE0A8;
+    color: green;
+  }
+
+  .errorForm {
+    background: #EEBDBD;
+    color: red;
+  }
+
+  .feedback {
+    padding: 0.5em 0.7em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    p {
+      padding: 5px;
     }
   }
 }
@@ -462,8 +502,6 @@ hr {
 }
 
 .search-form {
-  .form-inline;
-
   input, button {
     background-color: #ddd;
     border: 1px solid #ccc;
@@ -472,34 +510,27 @@ hr {
     border-radius: 2px;
   }
 
-  input {
+  .input-group {
     width: 400px;
   }
 }
 
 
 #searchbar {
-  text-align: right;
-
   .search-form {
-    .form-inline;
-    .hidden-xs;
     margin-top: 20px;
 
     input, button {
+      position: relative;
       z-index: 200;
       height: 25px;
       padding: 3px;
       font-size: 12px;
-      background-color: #ddd;
-      border: 1px solid #ccc;
-      -webkit-border-radius: 2px;
-      -moz-border-radius: 2px;
-      border-radius: 2px;
     }
 
-    input {
-      width: 200px;
+    .input-group {
+      .pull-right;
+      width: 300px;
     }
   }
 }
