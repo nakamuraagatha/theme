@@ -1,130 +1,119 @@
-<p style="float: right; text-align: right; margin: 0;">
-  {{ "now" | date: "%m/%d/%y" }}<br />
-  Invoice for {{ order_name }}
-</p>
+{{ 'css_style.css' | asset_url | stylesheet_tag }}
 
-<div style="float: left; margin: 0 0 1.5em 0;" >
-  <strong style="font-size: 2em;">{{ shop_name }}</strong><br /><br />
-  {{ shop.address }}<br/>
-  {{ shop.city }} {{ shop.province_code }} {{ shop.zip | upcase }}<br/>
-  {{ shop.country }}
+<style>
+  .shop-address {
+    text-decoration: underline;
+    font-size: 9px;
+  }
+</style>
+
+<table width="100%">
+<tr>
+  <td class="shop-address">
+    PM 24 Trading UG (haftungsbeschränkt) | {{ shop.address }} | {{ shop.zip | upcase }} {{ shop.city }}
+  </td>
+  <td align="right">
+    {{ 'order_logo.png' | asset_url | img_tag }}
+  </td>
+</tr>
+</table>
+<br/>
+<div>
+  <strong>{{ shipping_address.name }}</strong><br/>
+  {% if shipping_address.company %}
+    {{ shipping_address.company }}<br/>
+  {% endif %}
+  {{ shipping_address.street }}<br/>
+  {{ shipping_address.zip | upcase }} {{ shipping_address.city }}<br/>
 </div>
 
-<hr />
+<table width="100%">
+<tr>
+  <td align="right">Rechnungsdatum:&nbsp;</td>
+  <td align="right">{{ created_at | date: "%d.%m.%Y" }}</td>
+</tr>
+<tr>
+  <td align="right">Liefer- bzw. Leistungsdatum:&nbsp;</td>
+  <td align="right">{{ "now" | date: "%d.%m.%Y" }}</td>
+</tr>
+<tr>
+  <td align="right">Rechnungs-Nr.:&nbsp;</td>
+  <td align="right">{{ order_name }}</td>
+</tr>
+</table>
 
-<h3 style="margin: 0 0 1em 0;">Item Details</h3>
+<h3>Vielen Dank für deine Bestellung!</h3>
 
-<table class="table-tabular" style="margin: 0 0 1.5em 0;">
+{% if shipping_address %}
+<h4>Lieferung an:</h4>
+
+<div>
+  <strong>{{ shipping_address.name }}</strong><br/>
+  {% if shipping_address.company %}
+    {{ shipping_address.company }}<br/>
+  {% endif %}
+  {{ shipping_address.street }}<br/>
+  {{ shipping_address.zip | upcase }} {{ shipping_address.city }}<br/>
+</div>
+{% endif %}
+
+<br/>
+<br/>
+
+<table width="100%">
   <thead>
     <tr>
-      <th>Quantity</th>
-      <th>Item</th>
-      {% if show_line_item_taxes %}
-      <th>Taxes</th>
-      {% endif %}
-      <th>Price</th>
+      <th><strong>Bezeichnung</strong></th>
+      <th><strong>Menge</strong></th>
+      <th align="center"><strong>Einzel/&euro;</strong></th>
+      <th align="center"><strong>Gesamt/&euro;</strong></th>
+    </tr>
+    <tr>
+      <td colspan="4"><hr></td>
     </tr>
   </thead>
   <tbody>
     {% for line_item in line_items %}
       <tr>
-        <td>{{ line_item.quantity }} x</td>
-        <td><b>{{ line_item.title }}</b></td>
-        {% if line_item.tax_lines %}
-          <td>
-            {% for tax_line in line_item.tax_lines %}
-              {{ tax_line.price | money }} {{ tax_line.title }}<br/>
-            {% endfor %}
-          </td>
-        {% endif %}
-        <td>{{ line_item.price | money }}</td>
+        <td>{{ line_item.title }}</td>
+        <td>{{ line_item.quantity }} Stück</td>
+        <td align="right">{{ line_item.price | money }}</td>
+        <td align="right">{{ line_item.line_price | money }}</td>
       </tr>
     {% endfor %}
+
+    <tr>
+      <td colspan="4">&nbsp;</td>
+    </tr>
+
+    {% for discount in discounts %}
+      <tr>
+        <td colspan="3" align="right">Gutscheincode '{{ discount.code }}'&nbsp;</td>
+        <td align="right"> - {{ discount.savings | money }}</td>
+      </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="3" align="right">Summe netto&nbsp;</td>
+      <td align="right">{{ subtotal_price | money }}</td>
+    </tr>
+    {% if shipping_address %}
+      <tr>
+        <td colspan="3" align="right">Versandkosten&nbsp;</td>
+        <td align="right">{{ shipping_price | money }}</td>
+      </tr>
+    {% endif %}
+    <tr>
+      <td colspan="3" align="right">Umsatzsteuer 19%&nbsp;</td>
+      <td align="right">{{ tax_price | money }}</td>
+    </tr>
+    <tr>
+      <td colspan="3" align="right"><strong>Rechnungsbetrag</strong>&nbsp;</td>
+      <td align="right"><strong>{{ total_price | money }}</strong></td>
+    </tr>
   </tbody>
 </table>
 
-{% if transactions.size > 1 %}
-  <h3 style="margin: 0 0 1em 0;">Transaction Details</h3>
-  <table class="table-tabular" style="margin: 0 0 1.5em 0;">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Amount</th>
-        <th>Kind</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for transaction in transactions %}
-        <tr>
-          <td>{{ transaction.gateway | payment_method }}</td>
-          <td>{{ transaction.amount | money }}</td>
-          <td>{{ transaction.kind }}</td>
-          <td>{{ transaction.status }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-{% endif %}
+<br>
+<br>
 
-<h3 style="margin: 0 0 1em 0;">Payment Details</h3>
-
-<table class="table-tabular" style="margin: 0 0 1.5em 0;">
-  <tr>
-    <td>Subtotal price:</td>
-    <td>{{ subtotal_price | money }}</td>
-  </tr>
-  {% for discount in discounts %}
-  <tr>
-    <td>Includes discount "{{ discount.code }}"</td>
-    <td>{{ discount.savings | money }}</td>
-  </tr>
-  {% endfor %}
-  <tr>
-    <td>Total tax:</td>
-    <td>{{ tax_price | money }}</td>
-  </tr>
-  {% if shipping_address %}
-    <tr>
-      <td>Shipping:</td>
-      <td>{{ shipping_price | money }}</td>
-    </tr>
-  {% endif %}
-  <tr>
-    <td><strong>Total price:</strong></td>
-    <td><strong>{{ total_price | money }}</strong></td>
-  </tr>
-  {% if total_paid != total_price %}
-    <tr>
-      <td><strong>Total paid:</strong></td>
-      <td><strong>{{ total_paid | money }}</strong></td>
-    </tr>
-    <tr>
-      <td><strong>Outstanding Amount:</strong></td>
-      <td><strong>{{ total_price | minus: total_paid | money }}</strong></td>
-    </tr>
-  {% endif %}
-</table>
-
-{% if note %}
-  <h3 style="margin: 0 0 1em 0;">Note</h3>
-  <p>{{ note }}</p>
-{% endif %}
-
-{% if shipping_address %}
-  <h3 style="margin: 0 0 1em 0;">Shipping Details</h3>
-
-  <div style="margin: 0 0 1em 0; padding: 1em; border: 1px solid black;">
-    <strong>{{ shipping_address.name }}</strong><br/>
-    {% if shipping_address.company %}
-      {{ shipping_address.company }}<br/>
-    {% endif %}
-    {{ shipping_address.street }}<br/>
-    {{ shipping_address.city }}
-    {{ shipping_address.province_code }}
-    {{ shipping_address.zip | upcase }}<br/>
-    {{ shipping_address.country }}
-  </div>
-{% endif %}
-
-<p>If you have any questions, please send an email to <u>{{ shop.email }}</u></p>
+Der Rechnungsbetrag wurde per {{ transactions.first.gateway | payment_method  }} beglichen.
