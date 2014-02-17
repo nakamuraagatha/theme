@@ -97,8 +97,8 @@
               {% else %}
                 <span class="product-price" itemprop="price">{{ product.price | money }}</span>
               {% endif %}
-              <br><small>Preis inkl. MwSt, zzgl. <a href="/pages/versandkosten">Versand</a></small>
-              <br><small>Lieferzeit 5 - 7 Tage</small>
+              <br><small>Preis inkl. MwSt., zzgl. <a href="/pages/versandkosten">Versand</a></small>
+              <br><small>{{ settings.shipping_period }}</small>
             </p>
           </div>
 
