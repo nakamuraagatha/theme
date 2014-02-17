@@ -9,7 +9,6 @@
 
           <p class="meta">
             <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d. %B %Y' }}</time>,&nbsp;
-            {% if article.comments_enabled? %}<span>{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }},&nbsp;</span>{% endif %}
             {% if article.tags.size > 0 %}
               <span>Tags:</span>
               {% for tag in article.tags %}
