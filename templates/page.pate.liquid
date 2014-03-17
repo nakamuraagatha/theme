@@ -1,7 +1,15 @@
-<div class="content-offset row">
+{% assign content = page.content | split: '<!-- split -->' %}
+<div class="content-offset row bgtop">
   <div class="col-md-10 col-md-offset-1">
-      <div class="media">
-        {{ page.content }}
-      </div>
+    <div class="media">
+      {{ content[0] }}
+    </div>
+  </div>
+</div>
+<div class="list row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="media">
+      {{ content[1] }}
+    </div>
   </div>
 </div>

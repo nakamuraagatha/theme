@@ -1,22 +1,62 @@
-{{ 'css_style.css' | asset_url | stylesheet_tag }}
-
 <style>
+    @font-face {
+        font-family: 'playmaker_3regular';
+        src: url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.eot');
+        src: url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.eot?#iefix') format('embedded-opentype'),
+             url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.woff') format('woff'),
+             url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.ttf') format('truetype'),
+             url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.svg#playmaker_3regular') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+
   .shop-address {
     text-decoration: underline;
-    font-size: 9px;
+    font-size: 10px;
+  }
+
+  h3.head {
+    font-family: 'playmaker_3regular';
+  }
+
+  th.right {
+    text-align: right;
+  }
+  tr {
+    height: 19px;
+  }
+
+  .products tbody tr {
+    height: 25px;
+  }
+  .products tfoot .final td {
+    padding-top: 15px;
+  }
+
+  /*
+  .footer {
+    position: fixed;
+    bottom: 0;
+  }
+  */
+
+  .footer td {
+    color: #DDD;
   }
 </style>
 
 <table width="100%">
 <tr>
-  <td class="shop-address">
-    PM 24 Trading UG (haftungsbeschränkt) | {{ shop.address }} | {{ shop.zip | upcase }} {{ shop.city }}
+  <td valign="bottom">
+    <div class="shop-address">PM 24 Trading UG (haftungsbeschränkt) | {{ shop.address }} | {{ shop.zip | upcase }} {{ shop.city }}</div>
   </td>
   <td align="right">
-    {{ 'order_logo.png' | asset_url | img_tag }}
+    <img src="http://cdn.shopify.com/s/files/1/0240/1531/files/order_logo.png?9252" height="140">
   </td>
 </tr>
 </table>
+
+<br/>
 <br/>
 <div>
   <strong>{{ shipping_address.name }}</strong><br/>
@@ -30,7 +70,7 @@
 <table width="100%">
 <tr>
   <td align="right">Rechnungsdatum:&nbsp;</td>
-  <td align="right">{{ created_at | date: "%d.%m.%Y" }}</td>
+  <td align="right" width="90">{{ created_at | date: "%d.%m.%Y" }}</td>
 </tr>
 <tr>
   <td align="right">Liefer- bzw. Leistungsdatum:&nbsp;</td>
@@ -42,7 +82,7 @@
 </tr>
 </table>
 
-<h3>Vielen Dank für deine Bestellung!</h3>
+<h3 class="head">Vielen Dank für deine Bestellung!</h3>
 
 {% if shipping_address %}
 <h4>Lieferung an:</h4>
@@ -60,13 +100,13 @@
 <br/>
 <br/>
 
-<table width="100%">
+<table width="100%" class="products">
   <thead>
     <tr>
       <th><strong>Bezeichnung</strong></th>
       <th><strong>Menge</strong></th>
-      <th align="center"><strong>Einzel/&euro;</strong></th>
-      <th align="center"><strong>Gesamt/&euro;</strong></th>
+      <th class="right"><strong>Einzel/&euro;</strong></th>
+      <th class="right" width="90"><strong>Gesamt/&euro;</strong></th>
     </tr>
     <tr>
       <td colspan="4"><hr></td>
@@ -81,7 +121,8 @@
         <td align="right">{{ line_item.line_price | money }}</td>
       </tr>
     {% endfor %}
-
+  </tbody>
+  <tfoot>
     <tr>
       <td colspan="4">&nbsp;</td>
     </tr>
@@ -92,28 +133,51 @@
         <td align="right"> - {{ discount.savings | money }}</td>
       </tr>
     {% endfor %}
-    <tr>
-      <td colspan="3" align="right">Summe netto&nbsp;</td>
-      <td align="right">{{ subtotal_price | money }}</td>
-    </tr>
     {% if shipping_address %}
       <tr>
         <td colspan="3" align="right">Versandkosten&nbsp;</td>
         <td align="right">{{ shipping_price | money }}</td>
       </tr>
     {% endif %}
+    <tr class="final">
+      <td colspan="3" align="right">Summe netto&nbsp;</td>
+      <td align="right">{{ total_price | minus: tax_price | money }}</td>
+    </tr>
     <tr>
       <td colspan="3" align="right">Umsatzsteuer 19%&nbsp;</td>
       <td align="right">{{ tax_price | money }}</td>
     </tr>
-    <tr>
+    <tr class="final">
       <td colspan="3" align="right"><strong>Rechnungsbetrag</strong>&nbsp;</td>
       <td align="right"><strong>{{ total_price | money }}</strong></td>
     </tr>
-  </tbody>
+  </tfoot>
 </table>
 
 <br>
 <br>
 
 Der Rechnungsbetrag wurde per {{ transactions.first.gateway | payment_method  }} beglichen.
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+<table width="100%" class="footer">
+<tr>
+  <td width="50%">
+    PM 24 Trading UG (haftungsbeschränkt)<br>
+    Web:&nbsp;&nbsp;&nbsp;{{ shop.domain }}<br>
+    Email:&nbsp;&nbsp;{{ shop.email }}
+  </td>
+  <td>
+    Deutsche Bank<br>
+    BLZ: 10070024<br>
+    KTO: 6682868<br>
+    Ust-IdNr.: DE815445839
+  </td>
+</tr>
+</table>

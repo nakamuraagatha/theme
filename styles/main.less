@@ -548,11 +548,16 @@ footer >div { @import 'footer'; }
 }
 
 body.plain {
-  background-color: #7c7c7c;
-  background-image: url('bg_content.jpg');
+  .container {
+    width: auto;
+  }
 
   #main {
+    background-color: #363636;
+    background-image: url('background.jpg');
     box-shadow: none;
+    padding: 0;
+    margin: 0;
   }
 
   #header, #menu, footer {

@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.5)
-    backports (3.5.0)
+    backports (3.6.0)
     commonjs (0.2.7)
     filewatcher (0.3.2)
       trollop (>= 1.16.2)
@@ -12,11 +12,11 @@ GEM
     json (1.5.5)
     launchy (2.4.2)
       addressable (~> 2.3)
-    less (2.4.0)
+    less (2.5.0)
       commonjs (~> 0.2.7)
     libv8 (3.16.14.3)
     liquid (2.6.1)
-    multi_json (1.8.4)
+    multi_json (1.9.0)
     multi_xml (0.5.5)
     rack (1.5.2)
     rack-protection (1.5.2)
@@ -24,7 +24,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     ref (1.0.5)
-    shopify_theme (0.0.15)
+    shopify_theme (0.0.16)
       filewatcher
       httparty (~> 0.10.0)
       json (~> 1.5.4)

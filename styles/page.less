@@ -34,6 +34,32 @@
 }
 
 &.pate {
+  .bgtop {
+    background-image: url('bg_pate.jpg');
+    background-repeat: repeat-x;
+    background-position: 0px 30px;
+  }
+
+  h1 {
+    &.helme { color: @helme; }
+    &.pads { color: @pads; }
+    &.handschuhe { color: @handschuhe; }
+    &.schuhe { color: @schuhe; }
+    text-shadow: 0px 0px 4px #000000;
+  }
+
+  h2 {
+    font-size: 13pt;
+    margin-top: 0px;
+    color: #AAA;
+  }
+
+  h3 {
+    color: #AAA;
+  }
+
+  .media { padding-left: 50px; }
+
   small {
     margin-right: 15px;
     &:before {
@@ -44,13 +70,31 @@
     }
   }
 
+  dt {
+    color: #AAA;
+    font-weight: bold;
+    &:after {
+      content: ":";
+    }
+  }
+  dd {
+    color: @variant2;
+  }
+
   .facts {
-    margin-bottom: 0;
+    -webkit-box-shadow: 0px 0px 20px 4px rgba(0,0,0,0.59);
+    -moz-box-shadow: 0px 0px 20px 4px rgba(0,0,0,0.59);
+    box-shadow: 0px 0px 20px 4px rgba(0,0,0,0.59);
+    background-color: #363636;
+    margin: 5px;
+    width: 300px;
+    padding: 5px;
     dt {
+      font-size: 10pt;
       width: 80px;
-      &:after {
-        content: ":";
-      }
+    }
+    dd {
+      font-size: 10pt;
     }
   }
 

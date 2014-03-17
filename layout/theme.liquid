@@ -177,12 +177,15 @@
           $('#' + event.relatedTarget.id + '-product').addClass("active");
         });
 
-        $('[data-fancybox-type]').fancybox();
+        $('[data-fancybox-type]').fancybox({
+          padding : 0
+        });
 
         $('.fancybox').fancybox({
           openEffect: 'elastic',
           prevEffect: 'fade',
           nextEffect: 'fade',
+          padding : 0,
           helpers: {
             thumbs: {
               width: 100,
