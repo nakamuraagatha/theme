@@ -1,7 +1,18 @@
 {% assign cpage_title = product.title | append: " " | append: product.type | append: " von " | append: product.vendor %}
 {% capture cpage_description %}American Football {{ product.type }} {{ product.title }} von {{ product.vendor }}. {% endcapture %}
 
-<div class="{{ product.type | downcase }} content-offset row" itemscope itemtype="http://schema.org/Product">
+<div class="row content-offset">
+  <div class="products col-md-10 col-md-offset-1 ">
+    <ol class="{{ product.type | downcase}} breadcrumb">
+      <li>Play Makers</li>
+      <li><a href="/">American Football Shop</a></li>
+      <li><a href="/collections/american-football-{{ product.type | downcase}}">{{ product.type }}</a></li>
+      <li class="active">{{ product.vendor }} {{ product.title }}</li>
+    </ol>
+  </div>
+</div>
+
+<div class="{{ product.type | downcase }} row" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' }}" />
 
@@ -98,7 +109,11 @@
                 <span class="product-price" itemprop="price">{{ product.price | money }}</span>
               {% endif %}
               <br><small>Preis inkl. MwSt., zzgl. <a href="/pages/versandkosten">Versand</a></small>
-              <br><small>{{ settings.shipping_period }}</small>
+              {% if product.type == "Pads" %}
+                <br><small>Lieferzeit 5 - 14 Tage</small>
+              {% else  %}
+                <br><small>{{ settings.shipping_period }}</small>
+              {% endif  %}
             </p>
           </div>
 

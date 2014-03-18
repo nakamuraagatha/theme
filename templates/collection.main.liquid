@@ -5,13 +5,30 @@
 {% assign tags = collection.all_tags | join: ', '  %}
 {% assign cpage_description = cpage_title | append: " für die Positionen: " | append: tags %}
 
+{% assign content = collection.description | split: '<cite>' %}
+
 <div class="{{ product_type | downcase}} row">
   <div class="header col-md-9">
     <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape }}" class="img-responsive">
     <h1>{{ collection.title }}</h1>
+
+    <blockquote>
+      <p>{{ content[1] | strip_html }}</p>
+      <p>{{ content[2] | strip_html }}</p>
+    </blockquote>
   </div>
   <div class="description col-md-3">
-    {{ collection.description }}
+    {{ content[0] }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="products col-md-10 col-md-offset-1 ">
+    <ol class="{{ product_type | downcase}} breadcrumb">
+      <li>Play Makers</li>
+      <li><a href="/">American Football Shop</a></li>
+      <li class="active">{{ product_type }}</li>
+    </ol>
   </div>
 </div>
 

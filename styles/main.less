@@ -25,7 +25,7 @@
 @import "bootstrap/less/input-groups.less";
 @import "bootstrap/less/navs.less";
 @import "bootstrap/less/navbar.less";
-// @import "bootstrap/less/breadcrumbs.less";
+@import "bootstrap/less/breadcrumbs.less";
 @import "bootstrap/less/pagination.less";
 @import "bootstrap/less/pager.less";
 // @import "bootstrap/less/labels.less";
@@ -319,7 +319,7 @@ hr {
   width: 100%;
   margin-top: 50px;
   position: absolute;
-  z-index: 100;
+  z-index: 200;
 
   &.sticky {
     @media (min-width: @screen-md-min) {
@@ -422,6 +422,38 @@ hr {
   }
 }
 
+.breadcrumb {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  background: none;
+
+  li {
+    font-size: 9pt;
+  }
+
+  .extra(@type) {
+    li:before {
+      content: "» ";
+      color: darken(@@type, 10%);
+    }
+
+    li:first-child:before {
+      content: "";
+    }
+
+    li, a {
+      opacity: 0.8;
+      color: darken(@@type, 10%);
+    }
+  }
+
+  &.helme      { .extra('helme'); }
+  &.pads       { .extra('pads'); }
+  &.handschuhe { .extra('handschuhe'); }
+  &.schuhe     { .extra('schuhe'); }
+}
+
 #new-products {
   background: url('bg_more_left.png') top left no-repeat, url('bg_more.png') top left repeat-x;
   background-position: 0 60px;
@@ -522,7 +554,7 @@ hr {
 
     input, button {
       position: relative;
-      z-index: 200;
+      z-index: 300;
       height: 28px;
       padding: 3px;
       font-size: 12px;
