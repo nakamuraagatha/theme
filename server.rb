@@ -45,8 +45,30 @@ def style_css(source, target)
   end
 end
 
+def combine_js
+  content = [
+    # 'vendor/jquery-1.11.0.min.js',
+    'vendor/bootstrap.min.js',
+    'vendor/api.min.js',
+    'vendor/jquery.fancybox.pack.js',
+    'vendor/jquery.fancybox-thumbs.pack.js',
+    # 'lib/option_selector.js',
+    'lib/option_selector-old.js',
+    'main.js',
+  ].map do |file_name|
+    File.read("javascripts/#{file_name}")
+  end.join("\n")
+
+  File.open("assets/js_script.js", 'w') { |file| file.write(content) }
+  content
+end
+
+get '/assets/script.js' do
+  combine_js
+end
 
 get '/assets/css_style.css' do
+  combine_js
   content_type :css
   css = style_css('main', 'css_style.css.liquid')
   style_css('checkout', 'checkout.css.liquid')

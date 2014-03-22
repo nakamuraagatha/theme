@@ -150,62 +150,9 @@
       </footer>
     </div>
 
-    {{ '//code.jquery.com/jquery-1.10.2.min.js' | script_tag }}
-    {{ 'js_bootstrap.min.js' | asset_url | script_tag }}
+    {{ '//code.jquery.com/jquery-1.11.0.min.js' | script_tag }}
+    {{ 'js_script.js' | asset_url | script_tag }}
 
-    {{ 'jquery.fancybox.pack.js' | asset_url | script_tag }}
-    {{ 'jquery.fancybox-thumbs.pack.js' | asset_url | script_tag }}
-
-    {{ 'js_api.min.js' | asset_url | script_tag }}
-
-    <script type="text/javascript">
-      function inIframe () {
-        try {
-          return window.self !== window.top;
-        } catch (err) {
-          return true;
-        }
-      }
-
-      if (inIframe()) {
-        $('body').addClass('plain');
-      }
-
-      $(document).ready(function() {
-        $('#teaser .carousel').carousel().on('slide.bs.carousel', function(event) {
-          $("#teaser-products ul").removeClass("active");
-          $('#' + event.relatedTarget.id + '-product').addClass("active");
-        });
-
-        $('[data-fancybox-type]').fancybox({
-          padding : 0
-        });
-
-        $('.fancybox').fancybox({
-          openEffect: 'elastic',
-          prevEffect: 'fade',
-          nextEffect: 'fade',
-          padding : 0,
-          helpers: {
-            thumbs: {
-              width: 100,
-              height: 100
-            }
-          }
-        });
-
-        $(".fancybox-launcher").on("click", function(){
-          $(".fancybox").eq(0).trigger("click");
-        });
-      }).on("scroll", function(){
-        if ($(window).scrollTop() >= 50) {
-          $('#menu').addClass('sticky');
-        }
-        else {
-          $('#menu').removeClass('sticky');
-        }
-      });
-    </script>
     <script type="text/javascript">
       window.___gcfg = {lang: 'de'};
 
