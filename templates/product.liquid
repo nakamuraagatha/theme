@@ -4,9 +4,9 @@
 <div class="row content-offset">
   <div class="products col-md-10 col-md-offset-1 ">
     <ol class="{{ product.type | downcase}} breadcrumb">
-      <li>Play Makers</li>
+      <li>Playmakers</li>
       <li><a href="/">American Football Shop</a></li>
-      <li><a href="/collections/american-football-{{ product.type | downcase}}">{{ product.type }}</a></li>
+      <li><a href="/collections/american-football-{{ product.type | handleize }}">{{ product.type }}</a></li>
       <li class="active">{{ product.vendor }} {{ product.title }}</li>
     </ol>
   </div>
@@ -17,7 +17,7 @@
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' }}" />
 
   <div class="col-md-10 col-md-offset-1">
-    <form action="/cart/add" method="post" enctype="multipart/form-data">
+    <form id="add" action="/cart/add" method="post" enctype="multipart/form-data">
       <div class="row">
         <div id="product-photo-container" class="col-md-5">
           {% assign alt = product.featured_image.alt | escape | replace: product.title %}
@@ -89,6 +89,7 @@
               <li>
                 <label for="{{ option | handleize}}">{{ option }}</label>
                 <select class="{{ option | handleize }} option form-control" name="{{ option | handleize}}"></select>
+                <div class="{{ option | handleize }} btn-group btn-group-sm" data-toggle="buttons"></div>
               </li>
             {% endfor %}
           </ul>
@@ -212,53 +213,10 @@
 {% capture content_for_footer %}
   {{ content_for_footer }}
   <script type="text/javascript">
-    var variants = {},
-    addVariant = function(variant){
-      $('#variants').hide();
-      variant.key = '';
-      $.each( variant.options, function(key, value) {
-        var norm_value = value.replace(' ', '').replace('/', '');
-        variant.key += norm_value;
-        $('select.' + key).filter(function(select) {
-          return $(this).find("option." + norm_value).length !== 1;
-        })
-          .append('<option class="' + norm_value +'" value="' + norm_value + '">' + value + '</option>')
-          .each(function(select) {
-            var toggle = $(this).find("option").size() > 1;
-            $(this).parent('li').toggle(toggle);
-          });
-      });
-      variants[variant.key] = variant;
-    };
-
-    $('#options select.option').on('change', function(event){
-      var key = $('#options select.option').map(function(index, option) {
-        return $(this).val();
-      }).toArray().join('');
-      $('#product-select').trigger('changeVariant', variants[key]);
-    });
-
-    $('#product-select').on('change', function(event, variant) {
-      var select = $(this),
-      id = select.val();
-      $.each(variants, function(key, variant) {
-        if(variant.id == id) {
-          select.trigger('changeVariant', variant);
-        }
-      });
-    }).on('changeVariant', function(event, variant) {
-      if(variant) {
-        $(this).val(variant.id);
-        $('form').toggleClass('unavailable', !variant.available);
-        $('.product-price').html(variant.price);
-      }
-      else {
-        $('form').addClass('unavailable');
-      }
-    });
-
     $(document).ready(function() {
       {{ product_variants }}
+      if(defaultVariant) { init(defaultVariant); }
+      $('#variants').hide();
     });
   </script>
 {% endcapture %}

@@ -429,13 +429,13 @@ hr {
   background: none;
 
   li {
-    font-size: 9pt;
+    font-size: 10pt;
   }
 
   .extra(@type) {
     li:before {
       content: "» ";
-      color: darken(@@type, 10%);
+      color: darken(@@type, 8%);
     }
 
     li:first-child:before {
@@ -444,7 +444,8 @@ hr {
 
     li, a {
       opacity: 0.8;
-      color: darken(@@type, 10%);
+      color: darken(@@type, 8%);
+      text-shadow: 0px 0px 9px #eee;
     }
   }
 

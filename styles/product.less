@@ -41,6 +41,54 @@ form {
 
   #options li {
     margin-right: 40px;
+
+    > label:after {
+      content: ": "
+    }
+
+    .btn-group {
+      .btn {
+        font-weight: bold;
+        margin-top: 1px;
+        margin-bottom: 6px;
+        width: 40px;
+        height: 30px;
+
+        &.active {
+          border-width: 2px;
+          border-color: #000;
+          // margin-top: 0px;
+          margin-bottom: 5px;
+        }
+
+        &.optionValueSchwarz    { background-color: #111;    color: #FFF; }
+        &.optionValueRot        { background-color: #aa031d; color: #000; }
+        &.optionValueGrun       { background-color: #1a401b; color: #000; }
+        &.optionValueSilber     { background-color: #d2d2d2; color: #000; }
+        &.optionValueNavy-Blau  { background-color: #04184b; color: #FFF; }
+        &.optionValueRoyal-Blau { background-color: #024aac; color: #FFF; }
+        &.optionValueGold       { background-color: #CFB52B; color: #FFF; }
+        &.optionValueLila       { background-color: #61017c; color: #FFF; }
+        &.optionValueWeis       { background-color: #eee;    color: #000; }
+        &.optionValueGelb       { background-color: #f8b003; color: #000; }
+      }
+
+      &.farbe {
+        .btn {
+          &.disabled {
+            .opacity(.3);
+          }
+
+          &:hover {
+            border-color: #222;
+          }
+
+          span {
+            .hidden;
+          }
+        }
+      }
+    }
   }
 
   #product-price {
@@ -163,7 +211,12 @@ form {
     background-repeat: no-repeat;
     span { .hide; }
   }
-  #add { background-color: #fff; }
+  #options {
+    .btn.active {
+      background-color: @@type;
+    }
+  }
+  button#add { background-color: #fff; }
   #accordion .panel-heading  {
     background: transparent;
     background-color: @@type;

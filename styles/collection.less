@@ -16,7 +16,6 @@
   }
 
   blockquote {
-    .hidden;
     .hidden-xxs;
     margin-top: 280px;
     z-index: 100;
@@ -49,7 +48,10 @@
       }
     }
   }
+}
 
+.description a:hover {
+  text-decoration: none;
 }
 
 .thumbnail {
@@ -61,6 +63,14 @@
   h4 {
     margin-top: 0px;
     margin-bottom: 25px;
+  }
+
+  button {
+    .btn;
+    .btn-default;
+    border: 1px solid;
+    font-weight: bold;
+    // font-size: 14pt;
   }
 }
 
@@ -104,12 +114,16 @@ ul.products {
 }
 
 .extra(@type) {
+  .thumbnail button {
+    background-color: fade(@@type, 90%);
+  }
+
   blockquote p {
     background-color: fade(@@type, 90%);
   }
 }
 
 .helme      { .extra('helme'); }
-.pads       { .extra('pads'); }
-.handschuhe { .extra('handschuhe'); }
-.schuhe     { .extra('schuhe'); }
+.pads       { .extra('pads'); blockquote, .thumbnail button { .hidden; } }
+.handschuhe { .extra('handschuhe'); blockquote, .thumbnail button { .hidden; } }
+.schuhe     { .extra('schuhe'); blockquote, .thumbnail button { .hidden; } }
