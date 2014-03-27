@@ -1,7 +1,7 @@
 {% assign blog = blogs[blog_preview] %}
 <div id="blog-preview" class="row bglight">
   <div class="col-md-10 col-md-offset-1">
-    <h2>Neuester Blogeintrag</h2>
+    <h2>Neuester Eintrag im Blog</h2>
     <ul class="media-list">
       {% assign article = blog.articles.first %}
       <li class="media">
@@ -10,19 +10,17 @@
           {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
           {% if src %}
             <a class="pull-left" href="{{ article.url }}">
-             <img class="media-object" src="{{ src }}" width="150" alt="{{ article.title }}">
+             <img class="media-object" src="{{ src | replace: '_grande', '_medium'}}" width="150" alt="{{ article.title }}">
             </a>
           {% endif %}
         {% endif %}
         <div class="media-body">
           <h3 class="media-heading">{{ article.title | link_to: article.url }}</h3>
-          <p>{{ article.excerpt_or_content | strip_html | truncatewords: 30 }} <a href="{{article.url }}">(weiterlesen...)</a></p>
-
+          <p>{{ article.excerpt_or_content | strip_html | truncatewords: 30 }} <a href="{{article.url }}" class="more">weiterlesen</a></p>
         </div>
       </li>
     </ul>
 
-    <a href="{{blog.url }}">Alle Beiträge lesen.</a>
-
+    <a href="{{ blog.url }}">&raquo; Alle Beiträge lesen.</a>
   </div>
 </div>

@@ -3,10 +3,17 @@
 {% assign cpage_title = "American Football " | append: product_types %}
 {% assign tags = collection.all_tags | join: ', '  %}
 {% assign cpage_description = cpage_title | append: " von " | append: vendors | append: " für die Positionen: " | append: tags %}
+{% assign product_type = collection.all_types | first %}
 
 <div class="content-offset row">
   <div class="col-md-10 col-md-offset-1 ">
     <h1>{{ collection.title }}</h1>
+
+    <ol class="breadcrumb default">
+      <li><a href="/">Playmakers &nbsp;&raquo;&nbsp; American Football Shop</a></li>
+      <li class="active">{{ collection.title }}</li>
+    </ol>
+
     <ul class="products">
       {% for product in collection.all_products %}
         {% include 'product' with product %}

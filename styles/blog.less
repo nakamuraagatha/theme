@@ -28,3 +28,57 @@
 }
 
 .form;
+
+.more {
+  font-size: 13px;
+  &:before {
+    content: "» ";
+  }
+}
+
+.sidebar {
+  .hidden-xs;
+  .hidden-sm;
+
+  .fb-like-box {
+    background-color: #fff;
+    height: 300px;
+    width: 250px;
+    border: 1px solid #363636;
+  }
+
+  a {
+    font-size: 12px;
+  }
+
+  .articles {
+    .hidden;
+  }
+
+  .fb-like-box, .articles, .tags {
+    margin-bottom: 30px;
+  }
+
+  ul {
+    .list-unstyled;
+    li {
+      margin-bottom: 20px;
+      &:before {
+        content: "» ";
+      }
+    }
+  }
+}
+
+
+.article {
+  .media img {
+    .img-responsive;
+    margin: 0px;
+  }
+
+  .articles {
+    .show;
+    visibility: visible !important;
+  }
+}

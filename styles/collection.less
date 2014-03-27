@@ -70,7 +70,10 @@
     .btn-default;
     border: 1px solid;
     font-weight: bold;
-    // font-size: 14pt;
+
+    &:before {
+      content: "» ";
+    }
   }
 }
 
@@ -124,6 +127,6 @@ ul.products {
 }
 
 .helme      { .extra('helme'); }
-.pads       { .extra('pads'); blockquote, .thumbnail button { .hidden; } }
+.pads       { .extra('pads'); }
 .handschuhe { .extra('handschuhe'); blockquote, .thumbnail button { .hidden; } }
 .schuhe     { .extra('schuhe'); blockquote, .thumbnail button { .hidden; } }
