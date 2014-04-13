@@ -52,8 +52,8 @@ def combine_js
     'vendor/api.min.js',
     'vendor/jquery.fancybox.pack.js',
     'vendor/jquery.fancybox-thumbs.pack.js',
-    # 'lib/option_selector.js',
-    'lib/option_selector-old.js',
+    'lib/option_selector.js',
+    # 'lib/option_selector-old.js',
     'main.js',
   ].map do |file_name|
     File.read("javascripts/#{file_name}")

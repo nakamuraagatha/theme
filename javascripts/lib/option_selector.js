@@ -55,7 +55,7 @@ currentVariantKey = function() {
 update = function() {
   var key = currentVariantKey(),
   variant = variants[key];
-  console.log(key);
+  // console.log(key);
   if (variant) {
     $('#product-select').val(variant.id);
     // $(this).val(variant.id);

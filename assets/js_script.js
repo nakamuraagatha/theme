@@ -58,50 +58,162 @@ d[0].offsetTop||15===d[0].offsetTop;d.remove();a.fixedPosition=e}f.extend(b.defa
 
 var variants = {},
 defaultVariant = null,
-addVariant = function(variant){
-  variant.key = '';
-  $.each(variant.options, function(key, value) {
-    var norm_value = value.replace(/ |\//g, '');
-    variant.key += norm_value;
-    $('select.' + key).filter(function(select) {
-      return $(this).find("option." + norm_value).length !== 1;
-    })
-      .append('<option class="' + norm_value +'" value="' + norm_value + '">' + value + '</option>')
-      .each(function(select) {
-        var toggle = $(this).find("option").size() > 1;
-        $(this).parent('li').toggle(toggle);
-      });
+
+values = function(hash) {
+  return $.map(hash, function(value, key) {
+    return value;
   });
-  variants[variant.key] = variant;
 },
-showVariantDetails = function(event, variant) {
-  if(variant) {
-    $(this).val(variant.id);
-    $('form').toggleClass('unavailable', !variant.available);
+
+norm = function(value) {
+  return value.replace(/[ .\/]/g, '').replace(/ß/, 's').replace(/ü/, 'u');
+},
+
+addVariant = function(variant){
+  var key = variantKey(variant);
+
+  if (variant.available && !defaultVariant) {
+    defaultVariant = variant;
+  }
+  renderButtons(variant);
+  variants[key] = variant;
+},
+
+optionKeys = function() {
+  return $('#options div').map(function() {
+    return $(this).first().find('input').attr('name');
+  });
+},
+
+option = function(optionKey, optionValue) {
+  return $('#options .' + optionKey + ' .btn').filter(function() {
+    return $(this).find('input[value=' + norm(optionValue) + ']')[0];
+  });
+},
+
+variantKey = function(variant) {
+  return $.map(variant.options, function(optionValue, optionKey) {
+    return norm(optionValue);
+  }).join('-');
+},
+
+currentOptionValue = function(optionKey) {
+  var elements = $('#options .' + optionKey + ' .btn'),
+  element = elements.filter('.over')[0] || elements.filter('.active')[0];
+
+  return $(element).find('input').val();
+},
+
+currentVariantKey = function() {
+  return $.map(optionKeys(), function(optionKey) {
+    return currentOptionValue(optionKey);
+  }).join('-');
+},
+
+update = function() {
+  var key = currentVariantKey(),
+  variant = variants[key];
+  // console.log(key);
+  if (variant) {
+    $('#product-select').val(variant.id);
+    // $(this).val(variant.id);
+    $('form#add').toggleClass('unavailable', !variant.available);
     $('.product-price').html(variant.price);
   }
   else {
-    $('form').addClass('unavailable');
+    $('form#add').addClass('unavailable');
   }
-};
+},
 
-$('#options select.option').on('change', function(event){
-  var key = $('#options select.option').map(function(index, option) {
-    return $(this).val();
-  }).toArray().join('');
-  $('#product-select').trigger('changeVariant', variants[key]);
-});
+setAvailability = function(optionKey, possibleVariants) {
+  var elements = $('#options .' + optionKey + ' .btn'),
+  sibblingVariants = [];
 
-
-$('#product-select').on('change', function(event, variant) {
-  var select = $(this),
-  id = select.val();
-  $.each(variants, function(key, variant) {
-    if(variant.id == id) {
-      select.trigger('changeVariant', variant);
-    }
+  elements.trigger('availability', false);
+  sibblingVariants = $.grep(possibleVariants, function(variant) {
+    return option(optionKey, variant.options[optionKey])
+      .trigger('availability', variant.available)
+      .hasClass('active');
   });
-}).on('changeVariant', showVariantDetails);
+  elements.trigger('resolveAvailabilityConflict');
+  return sibblingVariants;
+},
+
+setAvailabilites = function() {
+  var possibleVariants = values(variants);
+
+  $.each(optionKeys(), function(index, optionKey) {
+    possibleVariants = setAvailability(optionKey, possibleVariants);
+  });
+},
+
+toggleClassName = function(node, className) {
+  return node.addClass(className).siblings().removeClass(className).end();
+},
+
+renderButton = function(optionKey, optionValue, display) {
+  var button = $('<input type="radio" name="' + optionKey + '" value="' + optionValue +'">');
+
+  return $('<label class="btn btn-default optionValue' + optionValue + '">')
+    .attr('title', optionKey + ': ' + display)
+    .append(button, $('<span>' + display + '</span>'))
+    .on('click', function(event) {
+      $(this).not('.unavailable').not('.active').each(function() {
+        toggleClassName($(this), 'active')
+          .find('input:radio')
+            .prop('checked', true)
+            .siblings()
+            .prop('checked', false);
+        update();
+        setAvailabilites();
+      });
+    }).on('mouseover', function() {
+      $(this).not('.unavailable').not('.active').each(function() {
+        toggleClassName($(this), 'over');
+        update();
+      });
+    }).on('mouseout', function() {
+      $(this).not('.unavailable').not('.active').each(function() {
+        $(this).removeClass('over');
+        update();
+      });
+    })
+    .on('availability', function(event, available) {
+      $(this)
+        .toggleClass('unavailable', !available)
+        .toggleClass('disabled', !available)
+        .find('input:radio')
+          .attr('disabled', !available);
+    })
+    .on('resolveAvailabilityConflict', function() {
+      $(this).filter('.active.unavailable').each(function() {
+        $(this)
+          .siblings().not('.unavailable').first()
+          .click();
+      });
+    });
+},
+
+renderButtons = function(variant) {
+  $.each(variant.options, function(optionKey, value) {
+    var optionValue = norm(value);
+    $('#options div.' + optionKey)
+      .filter(function() {
+        return !$(this).find('input[value=' + optionValue + ']')[0];
+      })
+      .append(function() {
+        return renderButton(optionKey, optionValue, value);
+      });
+  });
+},
+
+init = function(variant) {
+  $.each(variant.options, function(optionKey, optionValue) {
+    $('#options select.' + optionKey).hide();
+    option(optionKey, optionValue)
+      .click();
+  });
+};
 
 var inIframe = function() {
   try {

@@ -34,6 +34,8 @@
 }
 
 &.pate {
+  body.plain #main & { padding: 0px; }
+
   .bgtop {
     background-image: url('bg_pate.jpg');
     background-repeat: repeat-x;
@@ -42,7 +44,7 @@
 
   h1 {
     &.helme { color: @helme; }
-    &.pads { color: @pads; }
+    &.schulterpolster { color: @schulterpolster; }
     &.handschuhe { color: @handschuhe; }
     &.schuhe { color: @schuhe; }
     text-shadow: 0px 0px 4px #000000;
@@ -57,6 +59,12 @@
 
   h3 {
     color: #AAA;
+  }
+
+  h4 {
+    .main-font;
+    color: #F6F6F6;
+    font-size: 12pt;
   }
 
   .media { padding-left: 50px; }
@@ -74,10 +82,14 @@
   dt {
     color: #AAA;
     font-weight: bold;
+    float: left;
+    clear: left;
+    width: 50px;
     &:after {
       content: ":";
     }
   }
+
   dd {
     color: @variant2;
   }
@@ -97,18 +109,5 @@
     dd {
       font-size: 10pt;
     }
-  }
-
-  h4 {
-    .main-font;
-    color: #F6F6F6;
-    font-size: 12pt;
-  }
-
-  dt {
-    float: left;
-    clear: left;
-    width: 50px;
-    font-weight: bold;
   }
 }

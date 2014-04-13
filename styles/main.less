@@ -61,7 +61,7 @@
 @brand-primary: #000;
 
 @helme: #DF0000;
-@pads: #FFC800;
+@schulterpolster: #FFC800;
 @handschuhe: #00A237;
 @schuhe: #3F6AD0;
 @default: #000;
@@ -74,6 +74,12 @@
 @input-border-focus: #000;
 
 /*------------- MIXINS ------------------ */
+.vendor(@property, @value) {
+  -webkit-@{property}: @value;
+   -khtml-@{property}: @value;
+     -moz-@{property}: @value;
+           @property : @value;
+}
 
 .main-font {
   font-family: "Titillium Web";
@@ -122,10 +128,7 @@
 
   // // Non standard for webkit
   // word-break: break-word;
-
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
+  .vendor(hyphens, auto);
 }
 
 .menu-button(@pos) {
@@ -141,7 +144,10 @@
   }
 
   &.margin-left {
-    margin-left: 10px;
+    margin-left: 0px;
+    @media (min-width: @screen-sm-min) {
+      margin-left: 10px;
+    }
     @media (min-width: @screen-lg-min) {
       margin-left: 58px;
     }
@@ -174,9 +180,7 @@
 
   .feedback {
     padding: 0.5em 0.7em;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    .vendor(border-radius, 5px);
     margin-bottom: 20px;
 
     p {
@@ -340,6 +344,10 @@ hr {
   #main-nav.nav-pills {
     padding: 0;
 
+    li {
+      margin: 0;
+    }
+
     a {
       color: #ffffff;
       font-size: 11pt;
@@ -362,20 +370,22 @@ hr {
       }
     }
 
-    .nav-logo    { margin-right: 20px; }
+    // .nav-logo    { margin-right: 15px; }
     .nav-helmets { .menu-button(1); .hidden-xxs;}
     .nav-hands   { .menu-button(2); .hidden-xxs;}
     .nav-pads    { .menu-button(3); .hidden-xxs;}
     .nav-boots   { .menu-button(4); .hidden-xxs;}
-    .nav-kits    { .menu-button(5); .hidden;}
-    .nav-blog    { .menu-button(6); .margin-left; .hidden-sm; .hidden-xs;}
+    .nav-more    { .menu-button(5); .hidden-xxs;}
+    .nav-blog    { .menu-button(6); .margin-left; .hidden-xs;}
     .nav-about   { .menu-button(0); }
     .nav-contact { .menu-button(7); .hidden-sm; .hidden-xs;}
     .nav-banner  {
       margin-top: 23px;
+      margin-right: 25px;
       .pull-right;
       .hidden-sm;
       .hidden-xs;
+      .hidden-md;
     }
   }
 }
@@ -406,9 +416,7 @@ hr {
       height: 0;
       opacity: 0;
       margin: 0;
-      transition: opacity .5s ease-in-out;
-      -moz-transition: opacity .5s ease-in-out;
-      -webkit-transition: opacity .5s ease-in-out;
+      .vendor(transition,opacity .5s ease-in-out);
       z-index: 1;
 
       &.active {
@@ -453,11 +461,11 @@ hr {
     }
   }
 
-  &.helme      { .extra('helme'); }
-  &.pads       { .extra('pads'); }
-  &.handschuhe { .extra('handschuhe'); }
-  &.schuhe     { .extra('schuhe'); }
-  &.default    { .extra('default'); }
+  &.helme           { .extra('helme'); }
+  &.schulterpolster { .extra('schulterpolster'); }
+  &.handschuhe      { .extra('handschuhe'); }
+  &.schuhe          { .extra('schuhe'); }
+  &.default         { .extra('default'); }
 }
 
 #new-products {
@@ -550,9 +558,7 @@ hr {
   input, button {
     background-color: #ddd;
     border: 1px solid #ccc;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
+    .vendor(border-radius, 2px);
   }
 
   .input-group {
@@ -580,19 +586,14 @@ hr {
   }
 }
 
-.search, .collection { @import 'collection'; }
-.cart { @import 'cart'; }
-.product { @import 'product'; }
-.page { @import 'page'; }
-.blog, .article  { @import 'blog'; }
-footer >div { @import 'footer'; }
-
 #blog-preview {
   .bglight-screws;
   padding-bottom: 40px;
 }
 
 body.plain {
+  color: #EEE;
+
   .container {
     width: auto;
   }
@@ -603,6 +604,11 @@ body.plain {
     box-shadow: none;
     padding: 0;
     margin: 0;
+
+    .page {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
 
   #header, #menu, footer {
@@ -621,3 +627,10 @@ body.plain {
   height: 20px;
   overflow: hidden;
 }
+
+.search, .collection { @import 'collection'; }
+.cart { @import 'cart'; }
+.product { @import 'product'; }
+.page { @import 'page'; }
+.blog, .article  { @import 'blog'; }
+footer >div { @import 'footer'; }

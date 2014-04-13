@@ -70,9 +70,9 @@
                       id: {{variant.id}},
                       price: '{{variant.price | money}}',
                       options: {
-                        {% if product.options[0] %} {{product.options[0] | handleize}}: '{{variant.option1}}'{% endif %}
-                        {% if product.options[1] %},{{product.options[1] | handleize}}: '{{variant.option2}}'{% endif %}
-                        {% if product.options[2] %},{{product.options[2] | handleize}}: '{{variant.option3}}'{% endif %}
+                        {% if product.options[0] %} {{product.options[0] | handleize | replace: '-', ''}}: '{{variant.option1}}'{% endif %}
+                        {% if product.options[1] %},{{product.options[1] | handleize | replace: '-', ''}}: '{{variant.option2}}'{% endif %}
+                        {% if product.options[2] %},{{product.options[2] | handleize | replace: '-', ''}}: '{{variant.option3}}'{% endif %}
                       },
                       available: {{variant.available}}
                     });
@@ -86,9 +86,10 @@
             </li>
             {% for option in product.options %}
               <li>
-                <label for="{{ option | handleize}}">{{ option }}</label>
-                <select class="{{ option | handleize }} option form-control" name="{{ option | handleize}}"></select>
-                <div class="{{ option | handleize }} btn-group btn-group-sm" data-toggle="buttons"></div>
+                {% capture handle %}{{ option | handleize | replace: '-', ''}}{% endcapture %}
+                <label for="{{ handle }}">{{ option }}</label>
+                <select class="{{ handle }} option form-control" name="{{ handle }}"></select>
+                <div class="{{ handle }} btn-group btn-group-sm" data-toggle="buttons"></div>
               </li>
             {% endfor %}
           </ul>
@@ -108,7 +109,7 @@
               {% else %}
                 <span class="product-price" itemprop="price">{{ product.price | money }}</span>
               {% endif %}
-              <br><small>Preis inkl. MwSt., zzgl. <a href="/pages/versandkosten">Versand</a></small>
+              <br><small>Preis inkl. MwSt., zzgl. <a href="/pages/versandkosten" data-fancybox-type="iframe">Versand</a></small>
               {% if product.type == "Pads" %}
                 <br><small>Lieferzeit 5 - 14 Tage</small>
               {% else  %}

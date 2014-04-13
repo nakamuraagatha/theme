@@ -13,6 +13,8 @@ guard :shell do
   end
 
   watch(%r{styles\/.+\.less})
+  watch(%r{javascripts/lib/.+\.js})
+  watch('server.rb')
 
   callback(:run_on_modifications_end) { render }
   callback(:run_all_end) { render }
