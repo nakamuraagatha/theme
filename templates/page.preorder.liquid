@@ -1,0 +1,41 @@
+<div class="content-offset row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.content }}</p>
+
+    <hr>
+
+    {% form 'contact' %}
+      {% if form.errors %}
+        <div class="errorForm feedback">
+          <p>Da ist etwas schief gelaufen! Bitte achte darauf, dass sowohl Email-, als auch das Nachrichtenfeld ausgefüllt sind.</p>
+        </div>
+      {% endif %}
+
+      {% if form.posted_successfully? %}
+        <div class="successForm feedback">
+          <p>Danke für deine Vorbestellung. Wir werden uns so schnell wie möglich mit einer Bestätigung bei dir melden.</p>
+        </div>
+      {% else %}
+        <div class="form-group">
+          <label>Produkt:</label>
+          {{ form.body }}
+          <input type="hidden" id="contactFormName" name="contact[body]" value="Vorbestellung für: {{ form.body }}"/>
+        </div>
+        <div class="form-group">
+          <label>Dein Name:</label>
+          <input type="text" id="contactFormName" name="contact[name]" value="{{ form.name }}"/>
+        </div>
+        <div class="form-group">
+          <label>Deine Emailadresse:*</label>
+          <input type="email" id="contactFormEmail" name="contact[email]" value="{{ form.email }}" required />
+        </div>
+
+        <div class="form-group">
+          <button type="submit" id="contactFormSubmit" class="btn btn-default">unverbindlich Vorbestellen</button>
+        </div>
+      {% endif %}
+    {% endform %}
+  </div>
+</div>
+

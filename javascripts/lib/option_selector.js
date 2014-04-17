@@ -14,9 +14,10 @@ norm = function(value) {
 addVariant = function(variant){
   var key = variantKey(variant);
 
-  if (variant.available && !defaultVariant) {
+  if (!defaultVariant || !defaultVariant.available) {
     defaultVariant = variant;
   }
+
   renderButtons(variant);
   variants[key] = variant;
 },
@@ -59,7 +60,8 @@ update = function() {
   if (variant) {
     $('#product-select').val(variant.id);
     // $(this).val(variant.id);
-    $('form#add').toggleClass('unavailable', !variant.available);
+    $('form#add').toggleClass('unavailable', variant.quantity < 1 && !variant.available);
+    $('form#add').toggleClass('preorder',    variant.quantity < 1 && variant.available);
     $('.product-price').html(variant.price);
   }
   else {

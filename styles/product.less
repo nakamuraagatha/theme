@@ -1,3 +1,8 @@
+.breadcrumb {
+  margin-bottom: 10px;
+  display: block;
+}
+
 form {
   h2, h1 {
     .main-font;
@@ -6,7 +11,7 @@ form {
     height: 85px;
     margin-top: 0px;
     padding-top: 0px;
-    padding-left: 5px;
+    padding-left: 10px;
     // font-weight: 900;
   }
 
@@ -108,11 +113,11 @@ form {
     }
   }
 
-  #product-add {
+  #product-add, #product-preorder {
     .pull-right;
     margin-top: -8px;
 
-    button {
+    button, a {
       .pull-right;
       .btn;
       .btn-default;
@@ -228,23 +233,33 @@ form {
   #accordion .panel-heading  {
     background: transparent;
     background-color: @@type;
-    opacity:0.6;
+    opacity: 0.6;
   }
 }
 
-#availability {
+#product-preorder, #product-notify {
   .hide;
 }
 
 .unavailable {
-  #product-add, #product-price {
+  #product-add, #product-preorder, #product-price {
     .hide;
   }
-  #availability {
+  #product-notify {
     .show;
   }
 }
 
+.preorder {
+  #product-add, #product-notify, #product-price {
+    .hide;
+  }
+  #product-preorder {
+    .show;
+  }
+}
+
+div { .extra('zubehoer'); }
 .helme           { .extra('helme'); }
 .schulterpolster { .extra('schulterpolster'); }
 .handschuhe      { .extra('handschuhe'); }

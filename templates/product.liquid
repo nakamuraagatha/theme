@@ -3,15 +3,16 @@
 
 <div class="row content-offset">
   <div class="products col-md-10 col-md-offset-1 ">
-    <ol class="{{ product.type | downcase}} breadcrumb">
+    <ol class="{{ product.type | handleize | downcase}} breadcrumb">
       <li><a href="/">Playmakers &nbsp;&raquo;&nbsp; American Football Shop</a></li>
-      <li><a href="/collections/american-football-{{ product.type | handleize }}">{{ product.type }}</a></li>
-      <li class="active">{{ product.vendor }} {{ product.title }}</li>
+      <li><a href="/collections/american-football-{{ product.type | handleize | downcase}}">{{ product.type }}</a></li>
+      <li>{{ product.vendor | link_to_vendor }}</li>
+      <li class="active">{{ product.title }}</li>
     </ol>
   </div>
 </div>
 
-<div class="{{ product.type | downcase }} row" itemscope itemtype="http://schema.org/Product">
+<div class="{{ product.type | handleize | downcase }} row" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' }}" />
 
@@ -74,7 +75,8 @@
                         {% if product.options[1] %},{{product.options[1] | handleize | replace: '-', ''}}: '{{variant.option2}}'{% endif %}
                         {% if product.options[2] %},{{product.options[2] | handleize | replace: '-', ''}}: '{{variant.option3}}'{% endif %}
                       },
-                      available: {{variant.available}}
+                      available: {{variant.available}},
+                      quantity: {% if variant.inventory_quantity > 0 %}1{% else %}0{% endif %}
                     });
                   {% endcapture %}
 
@@ -88,7 +90,6 @@
               <li>
                 {% capture handle %}{{ option | handleize | replace: '-', ''}}{% endcapture %}
                 <label for="{{ handle }}">{{ option }}</label>
-                <select class="{{ handle }} option form-control" name="{{ handle }}"></select>
                 <div class="{{ handle }} btn-group btn-group-sm" data-toggle="buttons"></div>
               </li>
             {% endfor %}
@@ -126,8 +127,11 @@
               {% endif  %}
             {% endif %}
           </div>
-          <div id="availability">
-            <p>Leider ist das Produkt zur Zeit vergriffen. Wir benachrichtigen Dich gerne sobald es verfügbar ist. <a href="http://www.play-makers.de/pages/contact?contact[body]=Bitte benachrichtigt mich wenn  ** {{ product.vendor}} {{ product.title }} ** wieder verfügbar ist">Nutze unseren Benachrichtigungs Service hier</a>.</p>
+          <div id="product-preorder">
+            <a href="/pages/produkt-vorbestellung?contact[body]=groesse:L,farbe:blau" data-fancybox-type="iframe">unverbindlich Vorbestellen</a>
+          </div>
+          <div id="product-notify">
+            <p>Leider ist das Produkt zur Zeit vergriffen. Wir benachrichtigen Dich gerne sobald es verfügbar ist. <a href="/pages/contact?contact[body]=Bitte benachrichtigt mich wenn  ** {{ product.vendor}} {{ product.title }} ** wieder verfügbar ist">Nutze unseren Benachrichtigungs Service hier</a>.</p>
           </div>
         </div>
       </div>
@@ -135,76 +139,76 @@
 
     <div class="row">
       <div id="accordion" class="panel-group col-md-12" itemprop="description">
-          {% assign product_accordeon_panel_title = 'Produktbeschreibung' %}
-          {% assign product_accordeon_panel_body = product.description %}
-          {% include 'product_accordeon_panel' with 'Infos' %}
+        {% assign product_accordeon_panel_title = 'Produktbeschreibung' %}
+        {% assign product_accordeon_panel_body = product.description %}
+        {% include 'product_accordeon_panel' with 'Infos' %}
 
-          {%assign metafields = product.metafields.features %}
-          {% if metafields.size > 0 %}
-            {% assign product_accordeon_panel_title = 'Eigenschaften' %}
-            {% assign cpage_description = cpage_description | append: 'Mit den Eigenschaften: ' %}
-            {% capture product_accordeon_panel_body %}
+        {%assign metafields = product.metafields.features %}
+        {% if metafields.size > 0 %}
+          {% assign product_accordeon_panel_title = 'Eigenschaften' %}
+          {% assign cpage_description = cpage_description | append: 'Mit den Eigenschaften: ' %}
+          {% capture product_accordeon_panel_body %}
+          <ul>
+            {% for metafield in metafields %}
+              {% assign feature_details = metafield | last | split: '|' %}
+              {% assign cpage_description = cpage_description | append: feature_details[1] | append: ', ' %}
+              <li>
+                <img src="{{ feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
+                <span class="caption">
+                  <h4>{{ feature_details[1] }}</h4>
+                  <p>{{ feature_details[2] }}</p>
+                </span>
+              </li>
+            {% endfor %}
+          </ul>
+          {% endcapture %}
+          {% include 'product_accordeon_panel' with 'features' %}
+        {% endif %}
+
+        {% assign metafields = product.metafields.fitting %}
+        {% if metafields.size > 0 %}
+          {% assign product_accordeon_panel_title = 'Grössenangaben' %}
+          {% capture product_accordeon_panel_body %}
             <ul>
-              {% for metafield in metafields %}
-                {% assign feature_details = metafield | last | split: '|' %}
-                {% assign cpage_description = cpage_description | append: feature_details[1] | append: ', ' %}
+              <li>
+                {{ metafields.fitting_0 }}
+              </li>
+              {% if product.type == "Helme" %}
+                {% assign fitting_image = 'fitting_helmets.png' %}
+              {% elsif product.type == "Handschuhe" %}
+                {% assign fitting_image = 'fitting_hands.png' %}
+              {% elsif product.type == "Pads" %}
+                {% assign fitting_image = 'fitting_pads.png' %}
+              {% endif %}
+              {% if fitting_image %}
                 <li>
-                  <img src="{{ feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
-                  <span class="caption">
-                    <h4>{{ feature_details[1] }}</h4>
-                    <p>{{ feature_details[2] }}</p>
-                  </span>
+                  <img src="{{ fitting_image | asset_url }}">
                 </li>
-              {% endfor %}
+              {% endif %}
+              <li>
+                {{ metafields.fitting_1 }}
+              </li>
             </ul>
-            {% endcapture %}
-            {% include 'product_accordeon_panel' with 'features' %}
-          {% endif %}
+          {% endcapture %}
+          {% include 'product_accordeon_panel' with 'fitting' %}
+        {% endif %}
 
-          {% assign metafields = product.metafields.fitting %}
-          {% if metafields.size > 0 %}
-            {% assign product_accordeon_panel_title = 'Grössenangaben' %}
-            {% capture product_accordeon_panel_body %}
-              <ul>
-                <li>
-                  {{ metafields.fitting_0 }}
-                </li>
-                {% if product.type == "Helme" %}
-                  {% assign fitting_image = 'fitting_helmets.png' %}
-                {% elsif product.type == "Handschuhe" %}
-                  {% assign fitting_image = 'fitting_hands.png' %}
-                {% elsif product.type == "Pads" %}
-                  {% assign fitting_image = 'fitting_pads.png' %}
-                {% endif %}
-                {% if fitting_image %}
-                  <li>
-                    <img src="{{ fitting_image | asset_url }}">
-                  </li>
-                {% endif %}
-                <li>
-                  {{ metafields.fitting_1 }}
-                </li>
-              </ul>
-            {% endcapture %}
-            {% include 'product_accordeon_panel' with 'fitting' %}
-          {% endif %}
-
-          {% if product.metafields.accessories.size > 0 %}
-            {% assign product_accordeon_panel_title = 'Zubehör' %}
-            {% capture product_accordeon_panel_body %}
-              <ul>
-              {% for accessorie in product.metafields.accessories %}
-                <li><ul>
-                  {% assign accessories = accessorie | last | split: ',' %}
-                  {% for accessorie_id in accessories %}
-                    <li>{% include 'product_accessorie' with accessorie_id %}</li>
-                  {% endfor %}
-                </ul></li>
-              {% endfor %}
-              </ul>
-            {% endcapture %}
-            {% include 'product_accordeon_panel' with 'accessories' %}
-          {% endif %}
+        {% if product.metafields.accessories.size > 0 %}
+          {% assign product_accordeon_panel_title = 'Zubehör' %}
+          {% capture product_accordeon_panel_body %}
+            <ul>
+            {% for accessorie in product.metafields.accessories %}
+              <li><ul>
+                {% assign accessories = accessorie | last | split: ',' %}
+                {% for accessorie_id in accessories %}
+                  <li>{% include 'product_accessorie' with accessorie_id %}</li>
+                {% endfor %}
+              </ul></li>
+            {% endfor %}
+            </ul>
+          {% endcapture %}
+          {% include 'product_accordeon_panel' with 'accessories' %}
+        {% endif %}
       </div>
     </div>
   </div>
