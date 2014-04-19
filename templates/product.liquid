@@ -128,7 +128,7 @@
             {% endif %}
           </div>
           <div id="product-preorder">
-            <a href="/pages/produkt-vorbestellung?contact[body]=groesse:L,farbe:blau" data-fancybox-type="iframe">unverbindlich Vorbestellen</a>
+            <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=groesse:L,farbe:blau" data-fancybox-type="iframe">unverbindlich Vorbestellen</a>
           </div>
           <div id="product-notify">
             <p>Leider ist das Produkt zur Zeit vergriffen. Wir benachrichtigen Dich gerne sobald es verfügbar ist. <a href="/pages/contact?contact[body]=Bitte benachrichtigt mich wenn  ** {{ product.vendor}} {{ product.title }} ** wieder verfügbar ist">Nutze unseren Benachrichtigungs Service hier</a>.</p>

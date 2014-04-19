@@ -296,7 +296,7 @@ hr {
   background-image: url('bg_content.jpg');
   box-shadow: 0px 0px 10px #000000;
 
-  section {
+  #content {
     margin-bottom: 50px;
 
     &.index {
@@ -612,7 +612,7 @@ body.plain {
     }
   }
 
-  #header, #menu, footer {
+  #header, #menu, #vendor, footer {
     .hidden;
   }
 }
@@ -627,6 +627,16 @@ body.plain {
   width: 60px;
   height: 20px;
   overflow: hidden;
+}
+
+#vendor {
+  width: 800px;
+  margin: 20px auto 10px;
+  text-align: center;
+  ul {
+    .list-inline;
+    img { height: 40px; }
+  }
 }
 
 .search, .collection { @import 'collection'; }

@@ -7,7 +7,7 @@ Shopify Shop Template
 * http://getbootstrap.com
 * http://fancybox.net
 * http://demo.hongkiat.com/css3-image-captions/index.html
-* https://github.com/Shopify/skeleton-theme
+* https://github.com/Shopify/timber
 
 ## Debuger
 

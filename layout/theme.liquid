@@ -19,6 +19,7 @@
     <meta name="revisit-after" content="7 days">
     <meta name="robots" content="index,follow">
     <meta http-equiv="content-language" content="de">
+    <meta name="msvalidate.01" content="98A9D8B3C93FC3932BCF4681EA02E831" />
     <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
@@ -114,8 +115,22 @@
         </div>
       </header>
 
-      <section class="{{ template | replace: '.', ' '}}">
+      <section id="content" class="{{ template | replace: '.', ' '}}">
         {{ content_for_layout }}
+      </section>
+
+      <section id="vendor">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+            <ul>
+              <li><a href="{{'Nike' | url_for_vendor }}"         ><img src="{{ 'american_football_nike.jpg' | asset_url }}"        alt="Wir führen American Football Produkte von Nike"></a></li>
+              <li><a href="{{'Adidas' | url_for_vendor }}"       ><img src="{{ 'american_football_adidas.jpg' | asset_url }}"      alt="Wir führen American Football Produkte von Adidas"></a></li>
+              <li><a href="{{'Under Armour' | url_for_vendor }}" ><img src="{{ 'american_football_underarmour.jpg' | asset_url }}" alt="Wir führen American Football Produkte von Under Armour"></a></li>
+              <li><a href="{{'Riddell' | url_for_vendor }}"      ><img src="{{ 'american_football_riddell.jpg' | asset_url }}"     alt="Wir führen American Football Produkte von Riddell"></a></li>
+              <li><a href="{{'Rawlings' | url_for_vendor }}"     ><img src="{{ 'american_football_rawlings.jpg' | asset_url }}"    alt="Wir führen American Football Produkte von Rawlings"></a></li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <footer>

@@ -1,11 +1,11 @@
 <div class="content-offset row">
   <div class="col-md-10 col-md-offset-1">
-    <h1>{{ page.title }}</h1>
-    <p>{{ page.content }}</p>
-
-    <hr>
-
     {% form 'contact' %}
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.content | replace: '[produkt]', form.product }}</p>
+
+      <hr>
+
       {% if form.errors %}
         <div class="errorForm feedback">
           <p>Da ist etwas schief gelaufen! Bitte achte darauf, dass sowohl Email-, als auch das Nachrichtenfeld ausgefüllt sind.</p>
@@ -18,9 +18,9 @@
         </div>
       {% else %}
         <div class="form-group">
-          <label>Produkt:</label>
-          {{ form.body }}
-          <input type="hidden" id="contactFormName" name="contact[body]" value="Vorbestellung für: {{ form.body }}"/>
+          Hiermit bestelle ich {{ form.product }} unverbindlich vor:
+          <input type="hidden" name="contact[product]" value="Vorbestellung für: {{ form.product }}"/>
+          <input type="hidden" name="contact[body]" value="Vorbestellung"/>
         </div>
         <div class="form-group">
           <label>Dein Name:</label>
