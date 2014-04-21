@@ -209,6 +209,13 @@
           {% endcapture %}
           {% include 'product_accordeon_panel' with 'accessories' %}
         {% endif %}
+
+        {% assign product_accordeon_panel_title = 'Erfahrungsberichte' %}
+        {% capture product_accordeon_panel_body %}
+          <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+        {% endcapture %}
+        {% include 'product_accordeon_panel' with 'reviews' %}
+
       </div>
     </div>
   </div>
