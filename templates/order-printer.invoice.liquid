@@ -42,6 +42,7 @@
 
   .footer td {
     color: #DDD;
+    font-size: 10px;
   }
 </style>
 
@@ -74,7 +75,7 @@
 </tr>
 <tr>
   <td align="right">Liefer- bzw. Leistungsdatum:&nbsp;</td>
-  <td align="right">{{ "now" | date: "%d.%m.%Y" }}</td>
+  <td align="right">{{ fulfillments.first.created_at | date: "%d.%m.%Y" }}</td>
 </tr>
 <tr>
   <td align="right">Rechnungs-Nr.:&nbsp;</td>
@@ -159,8 +160,6 @@
 
 Der Rechnungsbetrag wurde per {{ transactions.first.gateway | payment_method  }} beglichen.
 
-<br>
-<br>
 <br>
 <br>
 
