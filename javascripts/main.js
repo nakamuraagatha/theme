@@ -16,6 +16,11 @@ $(document).ready(function() {
     $('#' + event.relatedTarget.id + '-product').addClass("active");
   });
 
+  $('#product-preorder a').click(function() {
+    var selection = $('#product-select').val();
+    $(this).attr('href', $(this).attr('href') + selection);
+  });
+
   $('[data-fancybox-type]').fancybox({
     padding : 0,
     width : 800,

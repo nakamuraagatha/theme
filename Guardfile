@@ -13,6 +13,7 @@ guard :shell do
   end
 
   watch(%r{styles\/.+\.less})
+  watch(%r{javascripts/.+\.js})
   watch(%r{javascripts/lib/.+\.js})
   watch('server.rb')
 

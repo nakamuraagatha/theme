@@ -59,11 +59,15 @@
             <hr>
           {% endif %}
 
+          {% assign quantity_available = false %}
           <ul id="options" class="list-unstyled list-inline">
             <li id="variants">
               <label for="id">Optionen</label>
               <select id="product-select" class="form-control" name="id">
                 {% for variant in product.variants %}
+                  {% if variant.inventory_quantity > 0 %}
+                    {% assign quantity_available = true %}
+                  {% endif %}
                   <option value="{{ variant.id }}">{{ variant.title }}</option>
                   {% capture product_variants %}
                     {{ product_variants }}
@@ -111,27 +115,28 @@
                 <span class="product-price" itemprop="price">{{ product.price | money }}</span>
               {% endif %}
               <br><small>Preis inkl. MwSt., zzgl. <a href="/pages/versandkosten" data-fancybox-type="iframe">Versand</a></small>
-              {% if product.type == "Pads" %}
-                <br><small>Lieferzeit 5 - 14 Tage</small>
+              {% if product.type == "Schulterpolster" %}
+                <br><small class="deliver">Lieferzeit 5 - 14 Tage</small>
               {% else  %}
-                <br><small>{{ settings.shipping_period }}</small>
+                <br><small class="deliver">{{ settings.shipping_period }}</small>
               {% endif  %}
             </p>
           </div>
-
           <div id="product-add">
             {% if product.available %}
-              <button type="submit" name="add">In den Warenkorb</button>
-              {% if product.type == "Helme" %}
-              <br><small>(ohne Facemask, <a href="/collections/zubehor-{{ product.handle }}">bitte hier wählen</a>)</small>
-              {% endif  %}
+              {% if quantity_available) %}
+                <button type="submit" name="add">In den Warenkorb</button>
+                {% if product.type == "Helme" %}
+                  <br><small>(ohne Facemask, <a href="/collections/zubehor-{{ product.handle }}">bitte hier wählen</a>)</small>
+                {% endif  %}
+              {% endif %}
             {% endif %}
           </div>
           <div id="product-preorder">
-            <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=groesse:L,farbe:blau" data-fancybox-type="iframe">unverbindlich Vorbestellen</a>
+            <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=" data-fancybox-type="iframe">unverbindlich Vorbestellen</a>
           </div>
           <div id="product-notify">
-            <p>Leider ist das Produkt zur Zeit vergriffen. Wir benachrichtigen Dich gerne sobald es verfügbar ist. <a href="/pages/contact?contact[body]=Bitte benachrichtigt mich wenn  ** {{ product.vendor}} {{ product.title }} ** wieder verfügbar ist">Nutze unseren Benachrichtigungs Service hier</a>.</p>
+            <p>Leider ist das Produkt zur Zeit vergriffen.</p>
           </div>
         </div>
       </div>
@@ -236,7 +241,7 @@
 {% if product.type == "Helme" %}
   {% assign collection_name = 'zubehor-' | append: product.handle %}
   {% assign collection = collections[collection_name] %}
-{% elsif product.type == "Pads" %}
+{% elsif product.type == "Schulterpolster" %}
   {% assign collection = collections['zubehor-pads'] %}
 {% else %}
   {% assign collection = collections['american-football'] %}

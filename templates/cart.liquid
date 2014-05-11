@@ -46,7 +46,7 @@
               {% if item.product.type == "Helme" %}
                 {% assign collection_name = 'zubehor-' | append: item.product.handle %}
                 {% assign collection = collections[collection_name] %}
-              {% elsif item.product.type == "Pads" %}
+              {% elsif item.product.type == "Schulterpolster" %}
                 {% assign collection = collections['zubehor-pads'] %}
               {% endif %}
             {% endfor %}
