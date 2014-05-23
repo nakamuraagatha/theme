@@ -1,21 +1,77 @@
-<div style="margin: 0 0 1.5em 0; padding: 1.5em; border: 1px solid black;">
-  <h2 style="margin: 0 0 1em 0;">Sender</h2>
-  <strong>{{ shop.name }}</strong><br/>
-  {{ shop.owner }}<br/>
-  {{ shop.address }}<br/>
-  {{ shop.city }} {{ shop.province_code }} {{ shop.zip | upcase }}<br/>
-  {{ shop.country }}
+<style>
+  @page { size:landscape }
+  @font-face {
+      font-family: 'playmaker_3regular';
+      src: url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.eot');
+      src: url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.eot?#iefix') format('embedded-opentype'),
+           url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.woff') format('woff'),
+           url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.ttf') format('truetype'),
+           url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.svg#playmaker_3regular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+  }
+  @media print {
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #FAFAFA;
+    }
+
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    .slip {
+      padding-left: 5mm;
+      padding-top: 18mm;
+    }
+  }
+
+  .slip {
+    width: 148mm;
+    height: 105mm;
+    border: 1px solid black;
+  }
+
+  .slip p {
+    height: 10mm;
+    margin: 0;
+    padding: 0;
+    font-size: 5mm;
+    padding-bottom: 3mm;
+    font-family: 'playmaker_3regular';
+    overflow: hidden;
+  }
+
+  .sender {
+    width: 55mm;
+    margin-right: 10mm;
+    border: 1px solid black;
+    float: left;
+  }
+  .recipient {
+    width: 75mm;
+    border: 1px solid black;
+    float: left;
+  }
+
+  .printer-preview-content {
+    padding: 0px;
+  }
+</style>
+<div class="slip">
+  <div class="sender">
+    <p>{{ shop.name }}</p>
+    <p>{{ shop.address }}</p>
+    <p>{{ shop.zip | upcase }} {{ shop.city | upcase}}</p>
+    <p>{{ shop.country }}</p>
+  </div>
+  <div class="recipient">
+    <p>{{ shipping_address.name }}</p>
+    <p>{{ shipping_address.street }}</p>
+    <p>{{ shipping_address.zip | upcase }} {{ shipping_address.city | upcase}}</p>
+    <p>{{ shipping_address.country | upcase}}</p>
+  </div>
 </div>
 
-{% if shipping_address %}
-<div style="padding: 1.5em; border: 1px solid black;">
-  <h2 style="margin: 0 0 1em 0;">Recipient</h2>
-  <strong>{{ shipping_address.name }}</strong><br/>
-  {% if shipping_address.company %}
-    {{ shipping_address.company }}<br/>
-  {% endif %}
-  {{ shipping_address.street }}<br/>
-  {{ shipping_address.city }} {{ shipping_address.province_code }} {{ shipping_address.zip | upcase }}<br/>
-  {{ shipping_address.country }}
-</div>
-{% endif %}

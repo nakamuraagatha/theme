@@ -127,13 +127,13 @@
               {% if quantity_available) %}
                 <button type="submit" name="add">In den Warenkorb</button>
                 {% if product.type == "Helme" %}
-                  <br><small>(ohne Facemask, <a href="/collections/zubehor-{{ product.handle }}">bitte hier wählen</a>)</small>
+                  <br><small>(ohne Facemask, <a href="/collections/zubehor-{{ product.handle }}" data-fancybox-type="iframe">bitte hier wählen</a>)</small>
                 {% endif  %}
               {% endif %}
             {% endif %}
           </div>
           <div id="product-preorder">
-            <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=" data-fancybox-type="iframe">unverbindlich Vorbestellen</a>
+            <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=" data-fancybox-type="iframe" class="preorder">unverbindlich Vorbestellen</a>
           </div>
           <div id="product-notify">
             <p>Leider ist das Produkt zur Zeit vergriffen.</p>
