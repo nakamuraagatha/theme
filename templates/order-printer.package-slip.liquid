@@ -1,5 +1,4 @@
 <style>
-  @page { size:landscape }
   @font-face {
       font-family: 'playmaker_3regular';
       src: url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.eot');
@@ -22,20 +21,22 @@
       -moz-box-sizing: border-box;
     }
 
-    .slip {
-      padding-left: 5mm;
-      padding-top: 18mm;
+    .sliiip {
+      padding-left: 18mm;
+      padding-top: 5mm;
     }
   }
 
   .slip {
-    width: 148mm;
-    height: 105mm;
+    width: 105mm;
+    height: 148mm;
     border: 1px solid black;
+    background-image: url(http://cdn.shopify.com/s/files/1/0240/1531/files/bg.png?13893);
+    background-size: 100% auto;
   }
 
   .slip p {
-    height: 10mm;
+    line-height: 7mm;
     margin: 0;
     padding: 0;
     font-size: 5mm;
@@ -45,33 +46,57 @@
   }
 
   .sender {
-    width: 55mm;
-    margin-right: 10mm;
-    border: 1px solid black;
-    float: left;
+    height: 60mm;
+    margin-top: 15mm;
+    background-color: #ddffdd;
+    margin-left: 10mm;
+    width: 45mm;
   }
   .recipient {
-    width: 75mm;
-    border: 1px solid black;
-    float: left;
+    height: 75mm;
+    background-color: #aaddff;
+    width: 45mm;
+    margin-left: 10mm;
   }
 
   .printer-preview-content {
     padding: 0px;
   }
+
+ .rotate {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    position: relative;
+ }
+
+ .recipient .rotate {
+   top: 30mm;
+ }
+
+.sender .rotate {
+  top: 10mm;
+  width: 55mm;
+  left: -5mm;
+ }
 </style>
 <div class="slip">
-  <div class="sender">
-    <p>{{ shop.name }}</p>
-    <p>{{ shop.address }}</p>
-    <p>{{ shop.zip | upcase }} {{ shop.city | upcase}}</p>
-    <p>{{ shop.country }}</p>
-  </div>
-  <div class="recipient">
-    <p>{{ shipping_address.name }}</p>
-    <p>{{ shipping_address.street }}</p>
-    <p>{{ shipping_address.zip | upcase }} {{ shipping_address.city | upcase}}</p>
-    <p>{{ shipping_address.country | upcase}}</p>
-  </div>
+    <div class="recipient">
+        <div class="rotate">
+          <p>{{ shipping_address.name }}<br>
+          {{ shipping_address.street }}<br>
+          {{ shipping_address.zip | upcase }} {{ shipping_address.city | upcase}}<br>
+          {{ shipping_address.country | upcase}}</p>
+        </div>
+    </div>
+    <div class="sender">
+        <div class="rotate">
+            <p>{{ shop.name }}</br>
+            {{ shop.address }}<br>
+           {{ shop.zip | upcase }} {{ shop.city | upcase}}<br>
+          {{ shop.country }}</p>
+        </div>
+    </div>
 </div>
-
