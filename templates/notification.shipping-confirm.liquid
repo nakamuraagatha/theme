@@ -1,0 +1,31 @@
+# Versandbestätigung für die Bestellung {{ name }}
+
+Hallo {{ billing_address.name }},
+
+heute haben wir die von dir bestellten Produkte:
+
+{% for line in fulfillment.line_items %}{{ line.quantity }}x {{ line.title }}
+{% endfor %}
+
+verschickt an:
+
+{{ shipping_address.name }}
+{{ shipping_address.address1 }}
+{{ shipping_address.address2 }}
+{{ shipping_address.zip }} {{ shipping_address.city }}
+
+{% if fulfillment.tracking_number %}
+Von DHL haben wir folgende Versandnummer erhalten, mit der du deine Sendung verfolgen kannst:
+{% for tracking_number in fulfillment.tracking_numbers %}
+  {{ tracking_number }}
+{% endfor %}
+{% else %}
+Die Lieferung wurde kürzlich an DHL übergeben, so dass sie in den nächsten Tagen bei dir eintreffen sollte.
+{% endif %}
+
+Wir wünschen dir viel Spaß mit den neuen Produkten und weiterhin eine erfolgreiche Saison 2014.
+
+Gruß
+Pascal
+---
+Playmakers.de - Dein American Football Shop
