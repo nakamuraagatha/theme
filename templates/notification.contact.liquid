@@ -2,12 +2,12 @@
 
 Hallo {{ billing_address.first_name }}
 
+{% if financial_status != 'paid' %}
 ########## ZAHLUNGSEINGANG OK ##########
-zunächst nochmal vielen Dank für deine Bestellung in unserem Onlineshop. Mit dieser Mail möchten wir dich darüber informieren, dass der Rechnungsbetrag {% if gateway == 'paypal' %}auf deine Freigabe hin unserem Paypal-Konto gutgeschrieben haben.{% else %}nun unserem Bankkonto gutgeschrieben wurde.{% endif %} Wir können deine Bestellung jetzt weiter bearbeiten.
+zunächst nochmal vielen Dank für deine Bestellung in unserem Onlineshop. Mit dieser Mail möchten wir dich darüber informieren, dass der Rechnungsbetrag {% if gateway == 'paypal' %}auf deine Freigabe hin unserem Paypal-Konto gutgeschrieben haben{% else %}nun auf unserem Bankkonto gutgeschrieben wurde{% endif %}. Wir können deine Bestellung jetzt weiter bearbeiten.
 
 Wir werden dich weiterhin über den Status deiner Bestellung auf dem Laufenden halten. Besuche uns doch in der Zwischenzeit mal auf Facebook. Dort findest du stets unsere aktuellen Equipment-Insights, sowie News zu unserem Team Playmakers.
 
-{% if financial_status != 'paid' %}
 ########## ZAHLUNGSEINGANG FEHLT ##########
 zunächst nochmal vielen Dank für deine Bestellung in unserem Onlineshop! Bei der Bearbeitung deiner Bestellung ist uns aufgefallen, dass wir bisher leider keinen Zahlungseingang auf unserem Bankkonto festellen konnten. Daher wollte ich nun einmal nachfragen, ob möglicherweise Fragen offengeblieben sind oder wir noch weiter helfen können. Möglicherweise hast du auch nicht mehr die Konto-Daten vorliegen, weshalb ich sie hier einfach nochmal aufführe:
 
@@ -24,6 +24,13 @@ Leider können wir deine neues Equipment erst an dich verschicken, wenn der Betr
 
 Wir freuen uns über eine kurze Rückmeldung!
 {% else %}
+########## LIEFERVERZÖGERUNG ##########
+mit dieser Nachricht möchten wir dir nochmal ein kurzes Update zum Status deiner Bestellung geben. Bei der Bearbeitung ist uns nämlich aufgefallen, dass deine Bestellung bei uns vergriffen waren. Dies ist aber grundsätzlich kein Problem, da wir zwischenzeitlich bereits eine erneute Zulieferung veranlasst haben, worunter sich auch dein neues Equipment befindet.
+
+Trotzdem möchten wir uns entschuldigen, dass es nun zu einer kleinen Verzögerung kommt. Wir erwarten den Wareneingang aber bereits in den nächsten Tage/am ######## und werden dann deine Bestellung unmittelbar an dich versenden.
+
+Vielen Dank für deine Geduld!
+
 ########## BEWERTEN ##########
 es ist nun bereits etwas her, seit wir dir die bestellten PRODUKTGRUPPE an dich verschickt haben. Du hattest ja sicher die Möglichkeit deine neuen PRODUKTNAME zu testen und einen guten Eindruck davon zu gewinnen. Daher würden wir uns freuen, wenn du diese Erfahrungen mit den anderen Playmakers teilst und eine Bewertung auf der Produktseite abgibst:
 
