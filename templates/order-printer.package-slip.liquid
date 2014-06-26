@@ -28,11 +28,13 @@
   }
 
   .slip {
-    width: 105mm;
+    width: 55mm;
     height: 148mm;
     border: 1px solid black;
-    background-image: url(http://cdn.shopify.com/s/files/1/0240/1531/files/bg.png?13893);
+    /* background-image: url(http://cdn.shopify.com/s/files/1/0240/1531/files/bg.png?13893); */
+    background-image: url(http://cdn.shopify.com/s/files/1/0240/1531/files/bg.png);
     background-size: 100% auto;
+    padding-left: 50mm;
   }
 
   .slip p {
@@ -46,15 +48,13 @@
   }
 
   .sender {
-    height: 60mm;
+    height: 65mm;
+    width: 55mm;
     margin-top: 15mm;
-    margin-left: 10mm;
-    width: 45mm;
   }
   .recipient {
     height: 75mm;
-    width: 45mm;
-    margin-left: 10mm;
+    width: 55mm;
   }
 
   .printer-preview-content {
@@ -62,39 +62,39 @@
   }
 
  .rotate {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
     position: relative;
  }
 
+/*
  .recipient .rotate {
-   top: 30mm;
+   top: 15mm;
  }
 
 .sender .rotate {
   top: 10mm;
   width: 55mm;
   left: -5mm;
- }
+ } */
 </style>
 <div class="slip">
+   <div class="sender">
+        <div class="rotate">
+            <p>{{ shop.name }}</br>
+            {{ shop.address }}<br>
+           {{ shop.zip | upcase }} {{ shop.city | upcase}}</p>
+        </div>
+    </div>
     <div class="recipient">
         <div class="rotate">
           <p>{{ shipping_address.name }}<br>
           {{ shipping_address.street }}<br>
           {{ shipping_address.zip | upcase }} {{ shipping_address.city | upcase}}<br>
           {{ shipping_address.country | upcase}}</p>
-        </div>
-    </div>
-    <div class="sender">
-        <div class="rotate">
-            <p>{{ shop.name }}</br>
-            {{ shop.address }}<br>
-           {{ shop.zip | upcase }} {{ shop.city | upcase}}<br>
-          {{ shop.country }}</p>
         </div>
     </div>
 </div>
