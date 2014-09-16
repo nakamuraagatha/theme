@@ -110,7 +110,7 @@
             {% endif %}
             <p>
               {% if product.compare_at_price > product.price %}
-                <span class="product-price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="product-compare-price">{{ product.compare_at_price_max | money }}</span>
+                <span class="product-price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;<span class="product-compare-price">{{ product.compare_at_price_max | money }}</span>
               {% else %}
                 <span class="product-price" itemprop="price">{{ product.price | money }}</span>
               {% endif %}
