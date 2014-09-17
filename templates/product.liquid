@@ -102,17 +102,11 @@
           <hr>
 
           <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-            <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
-            {% if product.available %}
-              <link itemprop="availability" href="http://schema.org/InStock" />
-            {% else %}
-              <link itemprop="availability" href="http://schema.org/OutOfStock" />
-            {% endif %}
             <p>
               {% if product.compare_at_price > product.price %}
-                <span class="product-price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;<span class="product-price-compare-at">{{ product.compare_at_price_max | money }}</span>
+                <span class="product-price on-sale">{{ product.price | money }}</span>&nbsp;<span class="product-price-compare-at">{{ product.compare_at_price_max | money }}</span>
               {% else %}
-                <span class="product-price" itemprop="price">{{ product.price | money }}</span>
+                <span class="product-price">{{ product.price | money }}</span>
               {% endif %}
               <br><small>Preis inkl. MwSt., zzgl. <a href="/pages/versandkosten" data-fancybox-type="iframe">Versand</a></small>
               {% if product.type == "Schulterpolster" %}
