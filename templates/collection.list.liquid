@@ -1,48 +1,53 @@
-{% assign product_type = collection.all_types | first %}
+{% paginate collection.products by 20 %}
 
-{% assign vendors = collection.all_vendors | join: ', '  %}
-{% assign cpage_title = "American Football " | append: product_type | append: " von " | append: vendors %}
-{% assign tags = collection.all_tags | join: ', '  %}
-{% assign cpage_description = cpage_title | append: " für die Positionen: " | append: tags %}
+{% include 'breadcrumb' %}
 
-{% assign content = collection.description | split: '<cite>' %}
+<div class="grid grid-border collection-list">
 
-<div class="{{ product_type | downcase}} row">
-  <div class="header col-md-9">
-    <img src="{{ collection.image.src | collection_img_url: 'original' }}" alt="{{ collection.title | escape }}" class="img-responsive">
-    <h1>{{ collection.title }}</h1>
+{% comment %}
+  <aside class="sidebar grid__item large--one-fifth collection-filters" id="collectionFilters">
+    {% include 'collection-sidebar' %}
+  </aside>
+{% endcomment %}
 
-    <blockquote>
-      <p>{{ content[1] | strip_html }}</p>
-      <p>{{ content[2] | strip_html }}</p>
-    </blockquote>
-  </div>
-  <div class="description col-md-3">
-    {{ content[0] }}
-  </div>
-</div>
+  <div class="grid__item grid-border--left">
 
-<div class="row">
-  <div class="products col-md-10 col-md-offset-1 ">
-    <ol class="breadcrumb">
-      <li><a href="/">Playmakers &nbsp;&raquo;&nbsp; American Football Shop</a></li>
-      <li class="active">{{ product_type }}</li>
-    </ol>
-  </div>
-</div>
+    <header class="section-header">
+      <h1 class="section-header__left">{{ collection.title }}</h1>
+      <div class="section-header__right small--hide">
+        {% include 'collection-views' %}
+      </div>
+    </header>
+    <hr class="hr--offset-left">
 
-<div class="{{ product_type | downcase }} row">
-  <div class="products col-md-10 col-md-offset-1 ">
-    <ul class="products">
-      {% for product in collection.all_products %}
-        {% include 'product' with product %}
+    <div class="grid-uniform">
+
+      {% for product in collection.products %}
+        {% include 'product-list-item' %}
+      {% else %}
+
+        <div class="grid__item">
+          <p>{{ 'collections.general.no_matches' | t }}</p>
+        </div>
+
       {% endfor %}
-    </ul>
+
+    </div>
+
   </div>
+
+  {% if paginate.pages > 1 %}
+  <div class="grid__item pagination-border-top">
+    <div class="grid">
+      <div class="grid__item large--four-fifths push--large--one-fifth">
+          <div class="text-center">
+            {% include 'pagination-custom' %}
+          </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
 </div>
 
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <hr class="dots">
-  </div>
-</div>
+{% endpaginate %}

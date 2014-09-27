@@ -1,0 +1,8 @@
+<div class="collection-view">
+  <a href="?view=grid" title="Grid view" class="change-view{% unless template contains 'list' %} collection-view--active{% endunless %}" data-view="grid">
+    {{ 'collection-view-grid.svg' | asset_url | img_tag | alt="Grid View" }}
+  </a>
+  <a href="?view=list" title="List view" class="change-view{% if template contains 'list' %} collection-view--active{% endif %}" data-view="list">
+    {{ 'collection-view-list.svg' | asset_url | img_tag | alt="List View" }}
+  </a>
+</div>

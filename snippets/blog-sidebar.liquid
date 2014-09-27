@@ -1,0 +1,23 @@
+<iframe class="fb-likes" src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fplaymakers.shop&amp;width=240&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:320px;" allowTransparency="true"></iframe>
+
+<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+<h4>Newsletter:</h4>
+<form action="http://play-makers.us8.list-manage.com/subscribe/post?u=f8ccf2679d516fd2e247579b3&amp;id=22a6088452" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form" target="_blank" novalidate>
+  <label for="mce-EMAIL">Trage dich in unseren Newsletter ein, um Expertentipps &amp; News zu erhalten.</label>
+  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Deine Emailaddresse" required>
+  <div style="position: absolute; left: -51234px;"><input type="text" name="b_f8ccf2679d516fd2e247579b3_22a6088452" value=""></div>
+  <div class="clear">
+    <input type="submit" value="Eintragen" name="subscribe" id="mc-embedded-subscribe" class="btn button">
+  </div>
+</form>
+
+<h4>{{ 'blogs.sidebar.recent_articles' | t }}</h4>
+{% for article in blog.articles limit:6 %}
+  <p>
+    <a href="{{ article.url }}">{{ article.title }}</a>
+    <br>
+    <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+      <em class="text-light">{{ article.published_at | date: format: 'month_day_year' }}</em>
+    </time>
+  </p>
+{% endfor %}

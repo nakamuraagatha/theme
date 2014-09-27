@@ -1,0 +1,38 @@
+{% unless grid_item_width %}
+  {% assign grid_item_width = 'large--one-quarter medium-down--one-half' %}
+{% endunless %}
+
+{% assign image_size = settings.collection_prod_image_sizes %}
+
+<div class="grid__item {{ grid_item_width }} article-grid-item">
+
+  <a href="{{ article.url }}" class="product-grid__item text-left">
+    <div class="product-grid-image">
+      <div class="product-grid-image--centered">
+        {% if article.excerpt contains "<img" %}
+          {% assign src = article.excerpt | split: 'src="' %}
+          {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
+          {% if src %}
+            <img src="{{src }}" alt="{{ article.title | escape }}">
+          {% endif %}
+        {% else %}
+         {% if article.content contains "<img" %}
+            {% assign src = article.content | split: 'src="' %}
+            {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
+            {% if src %}
+              <img src="{{src }}" alt="{{ article.title | escape }}">
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+      </div>
+    </div>
+
+    <p><strong>{{ article.title }}</strong></p>
+
+    <div class="atricle-item--text">
+      {{ article.excerpt | strip_html }}
+    </div>
+
+  </a>
+</div>

@@ -1,78 +1,86 @@
-{% if page_title contains '|' %}
-{% assign cpage_title = page_title %}
-{% assign cpage_description = page_description %}
-{% else %}
-{% assign cpage_title = product.vendor | append: " " | append: product.title | append: " | " | append: product.type  %}
-{% capture cpage_description %}Kaufe den {{ product.vendor }} {{ product.title }} American Football {{ product.type }}{% endcapture %}
-{% endif %}
-<div class="row content-offset">
-  <div class="products col-md-10 col-md-offset-1 ">
-    <ol class="breadcrumb">
-      <li><a href="/">Playmakers &nbsp;&raquo;&nbsp; American Football Shop</a></li>
-      <li><a href="/collections/american-football-{{ product.type | handleize | downcase}}">{{ product.type }}</a></li>
-      <li>{{ product.vendor | link_to_vendor }}</li>
-      <li class="active">{{ product.title }}</li>
-    </ol>
-  </div>
-</div>
+{% include 'breadcrumb' %}
 
-<div class="{{ product.type | handleize | downcase }} row" itemscope itemtype="http://schema.org/Product">
-  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
-  <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' }}" />
+<div class="grid" itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
-  <div class="col-md-10 col-md-offset-1">
-    <form id="add" action="/cart/add" method="post" enctype="multipart/form-data">
-      <div class="row">
-        <div id="product-photo-container" class="col-md-5">
-          {% assign alt = product.featured_image.alt | escape | replace: product.title %}
-          <a class="fancybox" href="{{ product.featured_image.src | product_img_url: 'original' }}" title="{{ product.vendor }} {{ product.title }} {{ alt }}" rel="gallery">
-            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.vendor }} {{ product.title }} {{ alt }}" class="img-responsive"/>
-          </a>
-          <div class="fb-like" data-href="{{ canonical_url }}" data-layout="button_count" data-action="recommend" data-show-faces="false" data-share="true"></div>
+  <div class="grid__item large--one-half text-right">
+    <div class="grid">
+      <div class="grid__item large--eleven-twelfths text-center">
+        <div class="product-photo-container" id="productPhoto">
+          {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+          <img id="productPhotoImg" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" {% if settings.product_image_zoom_enable %} data-zoom="{{ featured_image | img_url: 'grande' }}"{% endif %}>
         </div>
-        <div class="col-md-1 thumbs">
-          <ul id="product-photo-thumbs" class="list-unstyled">
-            {% for image in product.images offset:1 %}
-              {% if forloop.index < 4 %}
-                {% assign class = "" %}
-              {% else %}
-                {% assign class = "hidden" %}
-              {% endif %}
-              <li class="product-photo-thumb {{ class }}">
-                {% assign alt = image.alt | escape | replace: product.title %}
-                <a class="fancybox" href="{{ image.src | product_img_url: 'original' }}" title="{{ product.vendor }} {{ product.title }} {{ alt }}" rel="gallery">
-                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ product.vendor }} {{ product.title }} {{ alt }}" class="thumbnail img-responsive" />
+        {% if product.images.size > 1 %}
+          <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
+
+            {% for image in product.images limit: 5 %}
+              <li class="grid__item one-quarter">
+                <a href="{{ image.src | img_url: 'large' }}" class="product-photo-thumb">
+                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
                 </a>
               </li>
-              {% if forloop.index == 4 %}
-                <li class="product-photo-thumb">
-                  <a class="fancybox-launcher" href="#">mehr...</a>
-                </li>
-              {% endif %}
             {% endfor %}
           </ul>
-        </div>
-        <div class="col-md-6">
-          <div class="title">
-            <h2 itemprop="brand">{{ product.vendor }}</h2>
-            <h1 itemprop="name">{{ product.title }}</h1>
-            {% comment %}<span itemprop="category">{{ product.type }}</span>{% endcomment %}
-          </div>
+          <a href="#">{{ 'products.product.more_gallery' | t }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 
-          {% if product.variants.size > 1 %}
-            <br><br>
-          {% endif %}
+  <div class="grid__item large--one-half text-left">
+    <ul class="inline-list product-header">
+      <li class="product-vendor" itemprop="brand">{{ product.vendor }}</li>
+      <li><h2 class="product-title" itemprop="name">{{ product.title }}</h2></li>
+      {% if settings.product_reviews_enable %}
+      <li class="product-reviews" >
+        <a href="#reviews">
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
 
-          {% assign quantity_available = false %}
-          <ul id="options" class="list-unstyled list-inline">
-            <li id="variants">
-              <label for="id">Optionen</label>
-              <select id="product-select" class="form-control" name="id">
-                {% for variant in product.variants %}
-                  {% if variant.inventory_quantity > 0 %}
-                    {% assign quantity_available = true %}
-                  {% endif %}
-                  <option value="{{ variant.id }}">{{ variant.title }}</option>
+    <div class="product-teaser">
+      {{ page_description }} <a href="#description">{{ 'products.product.more_description' | t }}</a>
+    </div>
+
+    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      {% assign variant = product.selected_or_first_available_variant %}
+      <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+      <meta itemprop="price" content="{{ variant.price | money }}">
+
+      {% capture shipping_key %}{% if variant.price < 10000 %}products.product.shipping_html{% else %}products.product.shipping_free_html{% endif %}{% endcapture %}
+      <ul class="inline-list product-price">
+        <li>
+          <span id="productPrice" class="h1">
+            {% include 'price' with variant.price %}
+          </span>
+        </li>
+        {% if product.compare_at_price_max > product.price %}
+        <li>
+          <span id="comparePrice" class="sale-tag large">
+            {% assign compare_price = variant.compare_at_price %}
+            {% assign product_price = variant.price %}
+            {% include 'price-sale' %}
+          </span>
+        </li>
+        {% endif %}
+      </ul>
+      <div>{{ 'products.product.mwst' | t }}{{ shipping_key | t }}</div>
+
+      <hr id="variantBreak" class="hr--clear hr--small">
+
+      <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+      <form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm">
+        <ul id="options">
+          <li id="variants">
+            <select name="id" id="productSelect" class="product-variants">
+              {% for variant in product.variants %}
+                {% if variant.available %}
+
+                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
                   {% capture product_variants %}
                     {{ product_variants }}
                     addVariant({
@@ -90,142 +98,190 @@
                       quantity: {% if variant.inventory_quantity > 0 %}1{% else %}0{% endif %}
                     });
                   {% endcapture %}
-
-                {% endfor %}
-                {% if item.product.variants.size < 1 %}
-                  <option value="{{ product.id }}">{{ product.vendor }} {{ product.title }}</option>
+                {% else %}
+                  <option disabled="disabled">
+                    {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                  </option>
                 {% endif %}
-              </select>
+              {% endfor %}
+            </select>
+          </li>
+          {% for option in product.options %}
+            <li>
+              {% capture handle %}{{ option | handleize | replace: '-', ''}}{% endcapture %}
+              <label for="{{ handle }}">{{ option }}</label>
+              <div class="{{ handle }} btn-group btn-group-sm" data-toggle="buttons"></div>
             </li>
-            {% for option in product.options %}
-              <li>
-                {% capture handle %}{{ option | handleize | replace: '-', ''}}{% endcapture %}
-                <label for="{{ handle }}">{{ option }}</label>
-                <div class="{{ handle }} btn-group btn-group-sm" data-toggle="buttons"></div>
-              </li>
-            {% endfor %}
-          </ul>
+          {% endfor %}
+        </ul>
 
-          <br><br>
-
-          <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-            <p>
-              {% if product.compare_at_price > product.price %}
-                <span class="product-price on-sale">{{ product.price | money }}</span>&nbsp;<span class="product-price-compare-at">{{ product.compare_at_price_max | money }}</span>
-              {% else %}
-                <span class="product-price">{{ product.price | money }}</span>
-              {% endif %}
-              <br><small>Preis inkl. MwSt., zzgl. <a href="/pages/versandkosten" data-fancybox-type="iframe">Versand</a></small>
-              {% if product.type == "Schulterpolster" %}
-                <br><small class="deliver">Lieferzeit 5 - 14 Tage</small>
-              {% else  %}
-                <br><small class="deliver">{{ settings.shipping_period }}</small>
-              {% endif  %}
-            </p>
-          </div>
-          <div id="product-add">
-            {% if product.available %}
-              {% if quantity_available) %}
-                <button type="submit" name="add">In den Warenkorb</button>
-                {% if product.type == "Helme" %}
-                  <br><small>(ohne Facemask, <a href="/collections/zubehor-{{ product.handle }}" data-fancybox-type="iframe">bitte hier wählen</a>)</small>
-                {% endif  %}
-              {% endif %}
-            {% endif %}
-          </div>
-          <div id="product-preorder">
-            <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=" data-fancybox-type="iframe" class="preorder">unverbindlich Vorbestellen</a>
-          </div>
-          <div id="product-notify">
-            <p>Leider ist das Produkt zur Zeit vergriffen.</p>
-          </div>
-        </div>
-      </div>
-    </form>
-
-    <div class="row">
-      <div id="accordion" class="panel-group col-md-12" itemprop="description">
-        {% assign product_accordeon_panel_title = 'Produktbeschreibung' %}
-        {% assign product_accordeon_panel_body = product.description %}
-        {% include 'product_accordeon_panel' with 'Infos' %}
-
-        {%assign metafields = product.metafields.features %}
-        {% if metafields.size > 0 %}
-          {% assign product_accordeon_panel_title = 'Eigenschaften' %}
-          {% assign cpage_description = cpage_description | append: 'Mit den Eigenschaften: ' %}
-          {% capture product_accordeon_panel_body %}
-          <ul>
-            {% for metafield in metafields %}
-              {% assign feature_details = metafield | last | split: '|' %}
-              {% assign cpage_description = cpage_description | append: feature_details[1] | append: ', ' %}
-              <li>
-                <img src="{{ feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
-                <span class="caption">
-                  <h4>{{ feature_details[1] }}</h4>
-                  <p>{{ feature_details[2] }}</p>
-                </span>
-              </li>
-            {% endfor %}
-          </ul>
-          {% endcapture %}
-          {% include 'product_accordeon_panel' with 'features' %}
+        {% if settings.product_quantity_enable %}
+          <label for="quantity" class="quantity-selector">">{{ 'products.product.quantity' | t }}</label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
         {% endif %}
 
-        {% assign metafields = product.metafields.fitting %}
-        {% if metafields.size > 0 %}
-          {% assign product_accordeon_panel_title = 'Grössenangaben' %}
-          {% capture product_accordeon_panel_body %}
-            <ul>
-              <li>
-                {{ metafields.fitting_0 }}
-              </li>
-              {% if product.type == "Helme" %}
-                {% assign fitting_image = 'fitting_helmets.png' %}
-              {% elsif product.type == "Handschuhe" %}
-                {% assign fitting_image = 'fitting_hands.png' %}
-              {% elsif product.type == "Pads" %}
-                {% assign fitting_image = 'fitting_pads.png' %}
-              {% endif %}
-              {% if fitting_image %}
-                <li>
-                  <img src="{{ fitting_image | asset_url }}">
-                </li>
-              {% endif %}
-              <li>
-                {{ metafields.fitting_1 }}
-              </li>
-            </ul>
-          {% endcapture %}
-          {% include 'product_accordeon_panel' with 'fitting' %}
-        {% endif %}
-
-        {% if product.metafields.accessories.size > 0 %}
-          {% assign product_accordeon_panel_title = 'Zubehör' %}
-          {% capture product_accordeon_panel_body %}
-            <ul>
-            {% for accessorie in product.metafields.accessories %}
-              <li><ul>
-                {% assign accessories = accessorie | last | split: ',' %}
-                {% for accessorie_id in accessories %}
-                  <li>{% include 'product_accessorie' with accessorie_id %}</li>
-                {% endfor %}
-              </ul></li>
-            {% endfor %}
-            </ul>
-          {% endcapture %}
-          {% include 'product_accordeon_panel' with 'accessories' %}
-        {% endif %}
-
-        {% assign product_accordeon_panel_title = 'Erfahrungsberichte' %}
-        {% capture product_accordeon_panel_body %}
-          <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-        {% endcapture %}
-        {% include 'product_accordeon_panel' with 'reviews' %}
-
-      </div>
+        <button type="submit" name="add" id="addToCart" class="btn">
+          <span class="icon icon-cart"></span>
+          <span id="addToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+        </button>
+      </form>
     </div>
   </div>
 </div>
+
+<hr>
+
+<div class="grid">
+  <div class="grid__item large--two-thirds push--large--one-sixth">
+    {%assign metafields = product.metafields.features %}
+    {% if metafields.size > 0 %}
+      <span class="h1">{{ 'products.product.features' | t }}:</span>
+      <ul class="inline-list product-features">
+        {% for metafield in metafields %}
+          {% assign feature_details = metafield | last | split: '|' %}
+          {% assign cpage_description = cpage_description | append: feature_details[1] | append: ', ' %}
+          <li>
+            <img src="{{ feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
+            <span class="caption">
+              <h4>{{ feature_details[1] }}</h4>
+              <p>{{ feature_details[2] }}</p>
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+      <hr>
+    {% endif %}
+
+    <div id="description" class="product-description rte" itemprop="description">
+      {{ product.description }}
+    </div>
+
+    {% if settings.social_sharing_products %}
+      {% include 'social-sharing' %}
+    {% endif %}
+
+    {% if settings.related_products_enable %}
+      {% if product.type == "Helme" %}
+        {% assign collection_name = 'zubehor-' | append: product.handle %}
+        {% assign collection = collections[collection_name] %}
+      {% elsif product.type == "Schulterpolster" %}
+        {% assign collection = collections['zubehor-pads'] %}
+      {% else %}
+        {% assign collection = collections['american-football'] %}
+      {% endif %}
+      {% assign grid_item_width = 'large--one-quarter medium--one-half small--one-half' %}
+      {% include 'related-products' %}
+    {% endif %}
+
+    {% if settings.product_reviews_enable %}
+      <hr id="reviews">
+      <div id="shopify-product-reviews" data-id="{{ product.id }}">
+        {{ product.metafields.spr.reviews }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+<script>
+
+  // Pre-loading product images, to avoid a lag when a thumbnail is clicked, or
+  // when a variant is selected that has a variant image.
+  Shopify.Image.preload({{ product.images | json }}, 'large');
+
+  var selectCallback = function(variant, selector) {
+
+    var $addToCart = $('#addToCart'),
+        $productPrice = $('#productPrice'),
+        $comparePrice = $('#comparePrice'),
+        $variantQuantity = $('#variantQuantity'),
+        $quantityElements = $('.quantity-selector, label + .js-qty'),
+        $addToCartText = $('#addToCartText'),
+        $featuredImage = $('#productPhotoImg');
+
+    if (variant) {
+      // Update variant image, if one is set
+      // Call timber.switchImage function in shop.js
+      if (variant.featured_image) {
+        var newImg = variant.featured_image,
+            el = $featuredImage[0];
+        Shopify.Image.switchImage(newImg, el, timber.switchImage);
+      }
+
+      // Select a valid variant if available
+      if (variant.available) {
+        // We have a valid product variant, so enable the submit button
+        $addToCart.removeClass('disabled').prop('disabled', false);
+        $addToCartText.html({{ 'products.product.add_to_cart' | t | json }});
+
+        // Show how many items are left, if below 10
+        if (variant.inventory_management) {
+          if (variant.inventory_quantity < 10 && variant.inventory_quantity > 0) {
+            $variantQuantity.html('Only ' + variant.inventory_quantity + ' left!').show();
+          } else {
+            $variantQuantity.hide();
+          }
+        }
+
+
+        $quantityElements.show();
+      } else {
+        // Variant is sold out, disable the submit button
+        $addToCart.addClass('disabled').prop('disabled', true);
+        $addToCartText.text('Sold Out');
+        $variantQuantity.hide();
+        $quantityElements.hide();
+      }
+
+      // Regardless of stock, update the product price
+      var customPriceFormat = timber.formatMoney( Shopify.formatMoney(variant.price, "{{ shop.money_format }}") );
+      $productPrice.html(customPriceFormat);
+
+      // Also update and show the product's compare price if necessary
+      if ( variant.compare_at_price > variant.price ) {
+        var priceSaving = timber.formatSaleTag( Shopify.formatMoney(variant.compare_at_price - variant.price, "{{ shop.money_format }}") );
+        {% comment %}
+        priceSaving += ' (' + ( (variant.compare_at_price - variant.price)*100/(variant.compare_at_price) ).toFixed(0) + '%)';
+        {% endcomment %}
+        $comparePrice.html('Save ' + priceSaving).show();
+      } else {
+        $comparePrice.hide();
+      }
+
+    } else {
+      // The variant doesn't exist, disable submit button.
+      // This may be an error or notice that a specific variant is not available.
+      $addToCart.addClass('disabled').prop('disabled', true);
+      $addToCartText.text('Unavailable');
+      $variantQuantity.hide();
+      $quantityElements.hide();
+    }
+  };
+
+  // jQuery(function($) {
+  //   new Shopify.OptionSelectors('productSelect', {
+  //     product: {{ product | json }},
+  //     onVariantSelected: selectCallback,
+  //     enableHistoryState: true
+  //   });
+
+  //   // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+  //   {% if product.options.size == 1 and product.options.first != 'Title' %}
+  //     $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first | escape }}</label>');
+  //   {% endif %}
+
+  //   // Hide selectors if we only have 1 variant and its title contains 'Default'.
+  //   {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+  //     $('.selector-wrapper').hide();
+  //   {% else %}
+  //     $('#variantBreak').removeClass('hr--clear');
+  //   {% endif %}
+  // });
+</script>
+
+{% if settings.product_image_zoom_enable %}
+  {{ 'jquery.zoom.min.js' | asset_url | script_tag }}
+{% endif %}
 
 {% capture content_for_footer %}
   {{ content_for_footer }}
@@ -237,17 +293,3 @@
     });
   </script>
 {% endcapture %}
-
-
-{% if product.type == "Helme" %}
-  {% assign collection_name = 'zubehor-' | append: product.handle %}
-  {% assign collection = collections[collection_name] %}
-{% elsif product.type == "Schulterpolster" %}
-  {% assign collection = collections['zubehor-pads'] %}
-{% else %}
-  {% assign collection = collections['american-football'] %}
-{% endif %}
-
-{% capture cpage_description %}{{ cpage_description }}Für die Positionen: {{ product.tags | join: ", " }}{% endcapture %}
-
-{% include 'related_products' with collection %}

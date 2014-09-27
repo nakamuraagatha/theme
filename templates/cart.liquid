@@ -1,88 +1,134 @@
-{% assign cpage_title = "Warenkorb" %}
-{% assign collection = collections['american-football'] %}
+{% if cart.item_count > 0 %}
+  <form action="/cart" method="post" novalidate>
 
-<div class="content-offset row">
-  <div class="col-md-10 col-md-offset-1">
-    <h1>Warenkorb</h1>
+    <h1 class="h2">{{ 'cart.general.title' | t }}</h1 class="h2">
 
-    {% if cart.item_count > 0 %}
-      <form action="/cart" method="post">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Artikel</th>
-              <th>&nbsp;</th>
-              <th>Preis</th>
-              <th>Anzahl</th>
-              <th>Gesamt</th>
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in cart.items %}
-              <tr class="id{{ item.product.id }} variant{{ item.variant.id }}">
-                <td>
-                  <a href="{{ item.product.url | within: collections.all }}">
-                    {% if item.variant.featured_image.src %}
-                      <img src="{{ item.variant.featured_image.src | product_img_url: 'compact' }}" alt="{{ item.title | escape }}" />
+    {% for item in cart.items %}
+    <div class="cart__row" data-id="{{ item.id }}">
+      <div class="grid">
+
+        <div class="grid__item one-half" >
+          <div class="grid">
+
+            <div class="grid__item one-third large--one-quarter">
+              <a href="{{ item.url | within: collections.all }}" class="cart-image">
+
+                <img src="{{ item | img_url: 'medium' }}"  alt="{{ item.title | escape }}">
+              </a>
+            </div>
+
+            <div class="grid__item two-thirds large--three-quarters">
+              <a href="{{ item.url }}">
+                {{ item.product.vendor }} {{ item.product.title }}
+              </a>
+              {% unless item.variant.title contains 'Default' %}
+                <br>
+                <small>{{ item.variant.vendor }} {{ item.variant.title }}</small>
+              {% endunless %}
+
+              {% if item.properties.size > 0 %}
+              <p>
+                {% for p in item.properties %}
+                  {% unless p.last == blank %}
+                    {{ p.first }}:
+
+                    {% if p.last contains '/uploads/' %}
+                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
                     {% else %}
-                      <img src="{{ item.product.featured_image.src | product_img_url: 'compact' }}" alt="{{ item.title | escape }}" />
+                      {{ p.last }}
                     {% endif %}
-                  </a>
-                </td>
-                <td>
-                  <a href="{{ item.product.url | within: collections.all }}">
-                    <h2>{{ item.vendor }} {{ item.product.title }}</h2>
-                  </a>
-                  {% if item.product.variants.size > 0 %}
-                    {% if item.product.options[0] %}{{ item.product.options[0] }}: {{ item.variant.option1 }} {% endif %}
-                    {% if item.product.options[1] %}/ {{ item.product.options[1] }}: {{ item.variant.option2 }} {% endif %}
-                    {% if item.product.options[2] %}/ {{ item.product.options[2] }}: {{ item.variant.option3 }} {% endif %}
-                  {% endif %}
-                </td>
-                <td>{{ item.price | money }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.line_price | money }}</td>
-                <td>
-                  <a href="/cart/change?line={{ forloop.index }}&quantity=0">Entfernen</a>
-                </td>
-              </tr>
-              {% if item.product.type == "Helme" %}
-                {% assign collection_name = 'zubehor-' | append: item.product.handle %}
-                {% assign collection = collections[collection_name] %}
-              {% elsif item.product.type == "Schulterpolster" %}
-                {% assign collection = collections['zubehor-pads'] %}
+
+                    <br>
+                  {% endunless %}
+                {% endfor %}
+              </p>
               {% endif %}
-            {% endfor %}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4">&nbsp;</td>
-              <td>
-                Gesamt:
-              </td>
-              <td>
-                {{ cart.total_price | money }}
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-        <div class="checkout_buttons">
-          <button type="submit" name="checkout">zur Kasse</button>
-          oder
-          <div class="additional-checkout-buttons">
-            {{ content_for_additional_checkout_buttons }}
+            </div>
+
           </div>
         </div>
-      </form>
 
-    {% else %}
-      <div>
-        Der Warenkorb ist leer.
+        <div class="grid__item one-half details">
+          <div class="grid">
+
+            <div class="grid__item quantity large--hide medium--hide small--two-fifths small--show text-right">
+              {{ item.quantity }} x
+            </div>
+
+            <div class="grid__item five-eighths small--hide text-right">
+              <input type="number" class="quantity_selector" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
+            </div>
+
+            <div class="grid__item two-eighths small--two-fifths text-right">
+              <span class="h2 price">
+                {% include 'price' with item.price %}
+              </span>
+            </div>
+
+            <div class="grid__item one-eighth small--one-fifth text-right">
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}" class="icon-fallback-text btn--secondary remove">
+                <span class="icon icon-x" aria-hidden="true"></span>
+                <span class="fallback-text">{{ 'cart.general.remove' | t }}</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
       </div>
-    {% endif %}
-  </div>
-</div>
+    </div>
 
+    {% endfor %}
 
-{% include 'related_products' with collection %}
+    <div class="cart__row">
+      <div class="grid">
+        <div class="grid__item large--one-half">
+          {% if settings.cart_notes_enable %}
+            <label for="cartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+            <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
+          {% else %}
+            <div>Sicher zahlen mit</div>
+            <ul class="legal-links inline-list payment-icons">
+              {% for type in shop.enabled_payment_types %}
+                <li>
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-{{ type }}" aria-hidden="true"></span>
+                    <span class="fallback-text">{{ type | replace: '_',' ' }}</span>
+                  </span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        <div class="grid__item text-right large--one-half">
+
+          <div class="cart-subtotal">
+            {{ 'cart.general.subtotal' | t }}
+            <span class="h1 cart-subtotal--price">
+              {% include 'price' with cart.total_price %}
+            </span>
+            <div>
+              {% capture shipping_key %}{% if cart.total_price < 10000 %}cart.general.shipping{% else %}cart.general.shipping_free{% endif %}{% endcapture %}
+              {{ 'cart.general.mwst' | t }}{{ shipping_key | t }}
+            </div>
+          </div>
+
+          <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
+
+          <button type="submit" name="checkout" class="btn">
+            <span class="icon icon-cart"></span>
+            {{ 'cart.general.checkout' | t }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </form>
+
+{% else %}
+
+  <h2>{{ 'cart.general.empty' | t }}</h2>
+  <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+
+{% endif %}

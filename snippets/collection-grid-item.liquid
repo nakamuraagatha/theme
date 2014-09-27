@@ -1,0 +1,22 @@
+{% unless collection_item_width %}
+  {% assign collection_item_width = 'medium--one-half large--one-third' %}
+{% endunless %}
+
+<div class="grid__item {{ collection_item_width }} text-center">
+
+  {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+
+  <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+    {% if collection.image %}
+      {{ collection.image.src | img_url: 'large' | img_tag: collection_title }}
+    {% else %}
+      {{ collection.products.first.featured_image | img_url: 'large' | img_tag: collection_title }}
+    {% endif %}
+  </a>
+
+  <h3 class="h5">
+    <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">{{ collection.title }}</a>
+    <small>({{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }})</small>
+  </h3>
+
+</div>
