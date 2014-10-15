@@ -2,12 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.6)
-    backports (3.6.0)
+    backports (3.6.3)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     coderay (1.1.0)
     commonjs (0.2.7)
-    ffi (1.9.3)
+    ffi (1.9.6)
     filewatcher (0.3.4)
       trollop (~> 2.0)
     formatador (0.2.5)
@@ -30,7 +30,7 @@ GEM
       commonjs (~> 0.2.7)
     libv8 (3.16.14.7)
     liquid (2.6.1)
-    listen (2.7.9)
+    listen (2.7.11)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
