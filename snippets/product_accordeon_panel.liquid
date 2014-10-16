@@ -14,11 +14,11 @@
 
 <div class="{{ product_accordeon_panel | downcase }} panel panel-default">
   <div class="panel-heading">
-    <h2 class="panel-title">
+    <span class="panel-title">
       <a data-toggle="" data-parent="#accordion" href="#collapse{{product_accordeon_panel_count}}">
         {{ product_accordeon_panel_title }}
       </a>
-    </h2>
+    </span>
   </div>
   <div id="collapse{{product_accordeon_panel_count}}" class="panel-collapse collapse {{active}}">
     <div id="{{ product_accordeon_panel | downcase }}" class="panel-body">

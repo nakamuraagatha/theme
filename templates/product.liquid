@@ -1,9 +1,13 @@
-{% assign cpage_title = product.title | append: " " | append: product.type | append: " von " | append: product.vendor %}
-{% capture cpage_description %}American Football {{ product.type }} {{ product.title }} von {{ product.vendor }}. {% endcapture %}
-
+{% if page_title contains '|' %}
+{% assign cpage_title = page_title %}
+{% assign cpage_description = page_description %}
+{% else %}
+{% assign cpage_title = product.vendor | append: " " | append: product.title | append: " | " | append: product.type  %}
+{% capture cpage_description %}Kaufe den {{ product.vendor }} {{ product.title }} American Football {{ product.type }}{% endcapture %}
+{% endif %}
 <div class="row content-offset">
   <div class="products col-md-10 col-md-offset-1 ">
-    <ol class="{{ product.type | handleize | downcase}} breadcrumb">
+    <ol class="breadcrumb">
       <li><a href="/">Playmakers &nbsp;&raquo;&nbsp; American Football Shop</a></li>
       <li><a href="/collections/american-football-{{ product.type | handleize | downcase}}">{{ product.type }}</a></li>
       <li>{{ product.vendor | link_to_vendor }}</li>
@@ -56,7 +60,7 @@
           </div>
 
           {% if product.variants.size > 1 %}
-            <hr>
+            <br><br>
           {% endif %}
 
           {% assign quantity_available = false %}
@@ -80,6 +84,9 @@
                         {% if product.options[2] %},{{product.options[2] | handleize | replace: '-', ''}}: '{{variant.option3}}'{% endif %}
                       },
                       available: {{variant.available}},
+                      {% if variant.featured_image.src %}
+                      image: '{{variant.featured_image.src | product_img_url: 'grande'}}',
+                      {% endif %}
                       quantity: {% if variant.inventory_quantity > 0 %}1{% else %}0{% endif %}
                     });
                   {% endcapture %}
@@ -99,7 +106,7 @@
             {% endfor %}
           </ul>
 
-          <hr>
+          <br><br>
 
           <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
             <p>

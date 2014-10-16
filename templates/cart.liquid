@@ -23,7 +23,11 @@
               <tr class="id{{ item.product.id }} variant{{ item.variant.id }}">
                 <td>
                   <a href="{{ item.product.url | within: collections.all }}">
-                    <img src="http://playmakers-app.herokuapp.com/products/{{ item.product.id }}/variants/{{ item.variant.id }}/image.png?shop=playmaker.myshopify.com&url=http:{{ item.product.featured_image.src | product_img_url: 'compact' }}" alt="{{ item.title | escape }}" />
+                    {% if item.variant.featured_image.src %}
+                      <img src="{{ item.variant.featured_image.src | product_img_url: 'compact' }}" alt="{{ item.title | escape }}" />
+                    {% else %}
+                      <img src="{{ item.product.featured_image.src | product_img_url: 'compact' }}" alt="{{ item.title | escape }}" />
+                    {% endif %}
                   </a>
                 </td>
                 <td>

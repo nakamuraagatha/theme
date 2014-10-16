@@ -445,32 +445,20 @@ hr {
   padding: 0;
   background: none;
 
-  li {
+  li a, li.active {
     font-size: 10pt;
+    color: #333;
   }
 
-  .extra(@type) {
-    li:before {
-      content: "» ";
-      color: darken(@@type, 8%);
-    }
-
-    li:first-child:before {
-      content: "";
-    }
-
-    li, a {
-      opacity: 0.8;
-      color: darken(@@type, 8%);
-      text-shadow: 0px 0px 9px #eee;
-    }
+  li:before, li + li:before {
+    content: "»";
+    color: #333;
   }
 
-  &.helme              { .extra('helme'); }
-  &.schulterpolster    { .extra('schulterpolster'); }
-  &.handschuhe         { .extra('handschuhe'); }
-  &.schuhe             { .extra('schuhe'); }
-  &.default, &.zubehor { .extra('default'); }
+  li:first-child:before {
+    content: "";
+    color: #333;
+  }
 }
 
 #new-products {

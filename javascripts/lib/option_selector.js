@@ -1,5 +1,13 @@
 var variants = {},
+images = new Array(),
 defaultVariant = null,
+
+preload = function(url) {
+  if (url) {
+    images[url] = new Image();
+    images[url].src = url;
+  }
+},
 
 values = function(hash) {
   return $.map(hash, function(value, key) {
@@ -17,7 +25,7 @@ addVariant = function(variant){
   if (!defaultVariant || !defaultVariant.available) {
     defaultVariant = variant;
   }
-
+  preload(variant.image);
   renderButtons(variant);
   variants[key] = variant;
 },
@@ -59,6 +67,9 @@ update = function() {
   // console.log(key);
   if (variant) {
     $('#product-select').val(variant.id);
+    if (variant.image) {
+      $('img[src*="/products/"]:first').attr('src', variant.image);
+    }
     // $(this).val(variant.id);
     $('form#add').toggleClass('unavailable', variant.quantity < 1 && !variant.available);
     $('form#add').toggleClass('preorder',    variant.quantity < 1 && variant.available);
