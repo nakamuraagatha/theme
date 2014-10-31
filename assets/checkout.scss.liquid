@@ -1,0 +1,63 @@
+
+@font-face {
+    font-family: 'playmaker_3regular';
+    src: url({{'playmaker_3-webfont.eot' | asset_url}});
+    src: url({{'playmaker_3-webfont.eot?#iefix' | asset_url}}) format('embedded-opentype'),
+         url({{'playmaker_3-webfont.woff' | asset_url}}) format('woff'),
+         url({{'playmaker_3-webfont.ttf' | asset_url}}) format('truetype'),
+         url({{'playmaker_3-webfont.svg#playmaker_3regular' | asset_url}}) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.shop__name {
+  font-family: 'playmaker_3regular';
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #FFF;
+  padding-bottom: 10px;
+}
+
+body, .header, .boxshadow  div.footer {
+  background-color: #363636;
+  background-image: url({{'background.jpg' | asset_url}});
+  color: #000;
+  line-height: 15pt;
+}
+
+.header {
+  background-color: #363636;
+  background-image: url({{'bg_header.jpg' | asset_url}});
+  color: #000;
+}
+
+#checkout {
+  background-color: #7c7c7c;
+  background-image: url({{'bg_content.jpg' | asset_url}});
+  box-shadow: 0px 0px 10px #000000;
+  border-radius: 4px;
+
+  div {
+    padding-left: 20px;
+    padding-right: 10px;
+  }
+}
+
+.payment-method-name, p strong {
+  color: #FFF;
+}
+
+.step--completed, .section--thank-you, .section__summary {
+  p, label, p.address {
+    color: #FFF;
+  }
+}
+
+
+.order-summary-recap {
+  display: none;
+}
+
+.chrome input[type="radio"], .safari input[type="radio"] {
+  margin-left: -25px;
+}

@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     addressable (2.3.6)
     backports (3.6.3)
@@ -11,7 +11,7 @@ GEM
     filewatcher (0.3.4)
       trollop (~> 2.0)
     formatador (0.2.5)
-    guard (2.6.1)
+    guard (2.7.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)

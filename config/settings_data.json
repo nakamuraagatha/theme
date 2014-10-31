@@ -1,6 +1,13 @@
 {
   "current": {
-    "customer_layout": "customer_area",
-    "shipping_period": "Lieferzeit 5 - 7 Tage"
+    "shipping_period": "Lieferzeit 5 - 7 Tage",
+    "checkout_use_header_image": false,
+    "checkout_banner_background_color": "#363636",
+    "checkout_logo": "",
+    "checkout_headline": "",
+    "checkout_accent_color": "#cfcfcf",
+    "checkout_button_color": "#ebebeb",
+    "checkout_call_to_action_color": "#c26969",
+    "customer_layout": "customer_area"
   }
 }
