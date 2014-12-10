@@ -1,29 +1,56 @@
-{% assign product_types = collection.all_types | join: ', '  %}
-{% assign vendors = collection.all_vendors | join: ', '  %}
-{% assign cpage_title = "American Football " | append: product_types %}
-{% assign tags = collection.all_tags | join: ', '  %}
-{% assign cpage_description = cpage_title | append: " von " | append: vendors | append: " für die Positionen: " | append: tags %}
-{% assign product_type = collection.all_types | first %}
+{% paginate collection.products by 20 %}
 
-<div class="content-offset row">
-  <div class="col-md-10 col-md-offset-1 ">
-    <h1>{{ collection.title }}</h1>
+{% include 'breadcrumb' %}
 
-    <ol class="breadcrumb default">
-      <li><a href="/">Playmakers &nbsp;&raquo;&nbsp; American Football Shop</a></li>
-      <li class="active">{{ collection.title }}</li>
-    </ol>
+<div class="grid grid-border">
 
-    <ul class="products">
-      {% for product in collection.all_products %}
-        {% include 'product' with product %}
+{% comment %}
+  <aside class="sidebar grid__item large--one-fifth collection-filters" id="collectionFilters">
+    {% include 'collection-sidebar' %}
+  </aside>
+{% endcomment %}
+
+  <div class="grid__item grid-border--left">
+
+    <header class="section-header">
+      <h1 class="section-header__left">{{ collection.title }}</h1>
+      <div class="section-header__right small--hide">
+        {% include 'collection-views' %}
+      </div>
+    </header>
+    <hr class="hr--offset-left">
+
+    <div class="grid-uniform">
+
+      {% for product in collection.products %}
+
+        {% assign grid_item_width = 'large--one-third medium--one-third small--one-half' %}
+        {% include 'product-grid-item' %}
+
+      {% else %}
+
+        <div class="grid__item">
+          <p>{{ 'collections.general.no_matches' | t }}</p>
+        </div>
+
       {% endfor %}
-    </ul>
+
+    </div>
+
   </div>
+
+  {% if paginate.pages > 1 %}
+  <div class="grid__item pagination-border-top">
+    <div class="grid">
+      <div class="grid__item large--four-fifths push--large--one-fifth">
+          <div class="text-center">
+            {% include 'pagination-custom' %}
+          </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
 </div>
 
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <hr class="dots">
-  </div>
-</div>
+{% endpaginate %}

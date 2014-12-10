@@ -1,27 +1,69 @@
-{% assign product_types = collection.all_types | join: ', '  %}
-{% assign vendors = collection.all_vendors | join: ', '  %}
-{% assign cpage_title = "American Football " | append: product_types %}
-{% assign tags = collection.all_tags | join: ', '  %}
-{% assign cpage_description = cpage_title | append: " von " | append: vendors | append: " für die Positionen: " | append: tags %}
-<div class="content-offset row">
-  <div class="col-md-10 col-md-offset-1 ">
-    <h1>American Football Product Suche</h1>
-    <h2>Ergebnisse für: "{{ search.terms | escape }}"</h2>
+{% assign grid_results = true %}
 
-    {% if search.results.size > 0 %}
-      <ul class="products">
-        {% for item in search.results %}
-          {% include 'product' with item %}
-        {% endfor %}
-      </ul>
-    {% else %}
-      Es wurden keine Produkte gefunden
-    {% endif %}
-  </div>
-</div>
+{% assign respond_js_secret_key = shop.domain | md5 %}
+{% unless search.terms == respond_js_secret_key %}
 
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <hr class="dots">
+  <div class="grid">
+    <div class="grid-item">
+
+      <hr class="hr--clear hr--small">
+
+      {% if search.performed %}
+
+        {% paginate search.results by 20 %}
+
+          {% if search.results_count == 0 %}
+
+            <h2 class="text-center">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h2>
+            {% include 'search-bar' %}
+
+          {% else %}
+
+            <h2 class="text-center">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h2>
+            {% include 'search-bar' %}
+            <hr class="hr--clear">
+
+            {% if grid_results == false %}
+
+              {% for item in search.results %}
+                {% include 'search-result' %}
+              {% endfor %}
+
+            {% else %}
+
+              <div class="grid-uniform">
+                {% for item in search.results %}
+                  {% assign grid_item_width = 'large--one-fifth medium--one-third small--one-half' %}
+                  {% include 'search-result-grid' %}
+                {% endfor %}
+              </div>
+
+            {% endif %}
+
+          {% endif %}
+
+          {% if paginate.pages > 1 %}
+            <div class="text-center">
+              {% include 'pagination-custom' %}
+            </div>
+          {% endif %}
+
+        {% endpaginate %}
+
+      {% else %}
+
+        {% comment %}
+          If search.performed is false, someone either accessed the page without the q parameter, or it was blank.
+        {% endcomment %}
+        <h2 class="text-center">{{ 'general.search.title' | t }}</h2>
+        {% include 'search-bar' %}
+
+      {% endif %}
+
+    </div>
   </div>
-</div>
+
+{% else %}
+  {% include 'respond' %}
+  {% layout none %}
+{% endunless %}

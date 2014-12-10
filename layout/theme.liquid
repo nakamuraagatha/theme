@@ -1,217 +1,186 @@
-{% assign page_title_claim = ' | Playmakers, dein American Football Shop' %}
-{% if cpage_title %}
-  {% assign page_title = cpage_title %}
-{% endif %}
-{% if cpage_title_claim %}
-  {% assign page_title_claim = cpage_title_claim %}
-{% endif %}
-{% if cpage_description %}
-  {% assign page_description = cpage_description %}
-{% endif %}
-<!DOCTYPE html>
-<html lang="de">
-  <head>
-    <title>{{ page_title }}{{ page_title_claim }}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ page_description | truncate: 160 }}">
-    <meta name="author" content="Playmakers American Football Shop">
-    <meta name="revisit-after" content="3 days">
-    <meta name="robots" content="index,follow">
-    <meta http-equiv="content-language" content="de">
-    <meta name="msvalidate.01" content="98A9D8B3C93FC3932BCF4681EA02E831" />
-    <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
-    <link rel="canonical" href="{{ canonical_url }}">
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-touch no-js"> <!--<![endif]-->
+<head>
 
-    {{ 'css_style.css' | asset_url | stylesheet_tag }}
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    {% include 'facebook' %}
+  {% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  {% endif %}
 
-    <!--[if lt IE 9]>
-      {{ 'js_html5shiv.js' | asset_url | script_tag }}
-      {{ 'js_respond.min.js' | asset_url | script_tag }}
-    <![endif]-->
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
 
-    {{ content_for_header }}
-    <script type="text/javascript">
-      var _sift = _sift || [];
-      (function() {
-        var _session_id = '';
-        var dc = document.cookie;
-        var prefix = '_shopify_s=';
-        var begin = dc.indexOf(prefix);
-        if (begin !== -1) {
-          var end = dc.indexOf(";", begin);
-          if (end === -1) {
-            end = dc.length;
-          }
-          _session_id = decodeURI(dc.substring(begin + prefix.length, end));
-        }
-        _sift.push(['_setAccount', '718f18fbe2']);
-        _sift.push(['_setUserId', '{{customer.email}}']);
-        _sift.push(['_setSessionId', _session_id]);
-        _sift.push(['_trackPageview']);
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
 
-        function ls() {
-          var e = document.createElement('script');
-          e.type = 'text/javascript';
-          e.async = true;
-          e.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.siftscience.com/s.js';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(e, s);
-        }
-        if (window.attachEvent) {
-          window.attachEvent('onload', ls);
-        } else {
-          window.addEventListener('load', ls, false);
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <div id="menu">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-11 col-lg-11 col-md-offset-1">
-            <nav>
-              <ul id="main-nav" class="nav nav-pills">
-                <li class="nav-logo">
-                  <a href="/" title="Playmakers Logo - dein American Football Shop"><img width="129" height="162" src="{{ 'logo.png' | asset_url }}" alt="Playmakers Logo - dein American Football Shop"></a>
-                </li>
-                {% assign linklist = linklists['main-menu'] %}
-                {% for link in linklist.links %}
-                  {% assign title = link.title | split: ';' %}
-                  {% assign active = link.active %}
-                  {% if product && link.type == 'collection_link' %}
-                    {% assign active = false %}
-                    {% for collection in product.collections %}
-                      {% if active == false and collection.handle == link.object.handle %}
-                        {% assign active = true %}
-                      {% endif %}
-                    {% endfor %}
+  <!-- Product meta ================================================== -->
+  {% include 'open-graph-tags' %}
+  {% include 'twitter-card' %}
+
+  <!-- Helpers ================================================== -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  {% if settings.ajax_cart_enable %}
+  <!-- Ajaxify Cart Plugin ================================================== -->
+  {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+
+  <!-- CSS ================================================== -->
+  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+  {% include 'google-fonts' %}
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+
+  {% include 'oldIE-js' %}
+
+  {% comment %}
+    If you store has customers disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+  {{ 'modernizr.min.js' | asset_url | script_tag }}
+  {{ 'visual_options.js' | asset_url | script_tag }}
+</head>
+
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+  <header class="site-header" role="banner">
+    <div class="wrapper header">
+
+      <div class="grid--full">
+        {% capture tag %}{% if template == 'index' %}h1{% else %}div{% endif %}{% endcapture %}
+        <{{ tag }} class="h1 header-logo large--left" itemscope itemtype="http://schema.org/Organization">
+          <a href="/" itemprop="url"><img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">Playmakers Football</a>
+        </{{ tag }}>
+
+        <div class="header-special">Versandkosten frei ab 100 EUR</div>
+
+        <div class="header-nav large--text-right">
+          {% if settings.header_message != blank or shop.customer_accounts_enabled %}
+            <div class="site-header--text-links{% if settings.header_message == blank %} medium-down--hide{% endif %}">
+              {% if settings.header_message != blank %}
+                {{ settings.header_message }}
+              {% endif %}
+
+              {% if shop.customer_accounts_enabled %}
+                <span class="site-header--meta-links medium-down--hide">
+                  {% if customer %}
+                    {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                    {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }} &middot; {{ 'layout.customer.log_out' | t | customer_logout_link }}
+                  {% else %}
+                    {{ 'layout.customer.sign_in' | t | customer_login_link }}
+                    {% if shop.customer_accounts_optional %}
+                      <span class="site-header--spacer">or</span>
+                      {{ 'layout.customer.create_account' | t | customer_register_link }}
+                    {% endif %}
                   {% endif %}
-                  <li class="{{ title[1] }} {% if active %}active{% endif %}"><a class="button" href="{{ link.url }}" title="{{ link.object.title }}">{{ title[0] }}</a></li>
-                {% endfor %}
-                 <li class="nav-banner">
-                  <a href="/collections/sales"><img width="129" height="96" src="{{ 'banner_sale.png' | asset_url }}" alt="Playmakers Football Sale"></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+                </span>
+              {% endif %}
+            </div>
+
+            <br class="medium-down--hide">
+          {% endif %}
+
+          <a href="/cart" class="header-cart-btn cart-toggle right">
+            <span class="icon icon-cart"></span>
+            {{ 'layout.cart.cart' | t }} <span id="cartCount" {% if cart.item_count == 0 %}class="hidden-count"{% endif %}>{{ cart.item_count }}</span>
+          </a>
+
+          {% for link in linklists.menu-header.links %}
+            <a href="{{ link.url }}" class="btn link--{{ link.title | handleize }}">
+              {{ link.title }}
+            </a>
+          {% endfor %}
         </div>
       </div>
+
     </div>
+  </header>
 
-    <div id="main" class="container">
-      <header>
-        <div id="header" class="row">
-          <div class="col-xs-4 col-md-4 col-md-offset-1">
-            <nav>
-              <ul class="header-menu nav nav-pills hidden">
-                {% assign linklist = linklists['header-menu'] %}
-                {% for link in linklist.links %}
-                  {% assign title = link.title | split: ';' %}
-                  <li class="{{ title[1] }} {% if link.active %}active{% endif %}">
-                    <a href="{{ link.url }}">{{ title[0] }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            </nav>
-          </div>
-          <div id="searchbar" class="col-xs-8 col-md-7">
-            <nav>
-              <ul class="header-menu nav nav-pills pull-right">
-                {% if cart.item_count > 0 %}
-                  <li><a href="/cart">Warenkorb <span class="badge">{{ cart.item_count }}</span></a></li>
-                {% endif %}
-              </ul>
-            </nav>
-            <br>
-            <form action="/search" method="get" class="search-form" role="search">
-              <input type="hidden" name="type" value="product" />
-              <div class="input-group">
-                <label class="sr-only" for="searchterms">Suche</label>
-                <input type="text" class="form-control" id="searchterms" name="q" value="{{ search.terms | escape }}" placeholder="Playmakers durchsuchen nach..." />
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="submit">Suchen!</button>
-                </span>
-              </div>
-            </form>
-          </div>
-        </div>
-      </header>
-
-      <section id="content" class="{{ template | replace: '.', ' '}}">
-        {{ content_for_layout }}
-      </section>
-
-      <section id="vendor">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
-            <ul>
-              <li><a href="{{'Nike' | url_for_vendor }}"         ><img src="{{ 'american_football_nike.jpg' | asset_url }}"        alt="Wir führen American Football Produkte von Nike"></a></li>
-              <li><a href="{{'Adidas' | url_for_vendor }}"       ><img src="{{ 'american_football_adidas.jpg' | asset_url }}"      alt="Wir führen American Football Produkte von Adidas"></a></li>
-              <li><a href="{{'Under Armour' | url_for_vendor }}" ><img src="{{ 'american_football_underarmour.jpg' | asset_url }}" alt="Wir führen American Football Produkte von Under Armour"></a></li>
-              <li><a href="{{'Riddell' | url_for_vendor }}"      ><img src="{{ 'american_football_riddell.jpg' | asset_url }}"     alt="Wir führen American Football Produkte von Riddell"></a></li>
-              <li><a href="{{'Rawlings' | url_for_vendor }}"     ><img src="{{ 'american_football_rawlings.jpg' | asset_url }}"    alt="Wir führen American Football Produkte von Rawlings"></a></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
-            <ul id="footer-list">
-              {% include 'footer_menu' with 'footer-shop-menu' %}
-              {% include 'footer_menu' with 'footer' %}
-              {% include 'footer_menu' with 'footer-info-menu' %}
-              <li class="socials">
-                <h4>Folge uns auf</h4>
-                <ul>
-                  <li>
-                   <div class="fb-like" data-href="http://www.facebook.com/playmakers.shop" data-colorscheme="light" data-layout="button_count" data-show-faces="false"></div>
-                  </li>
-                  <li>
-                   <a href="https://twitter.com/playmakers_shop" class="twitter-follow-button" data-show-count="false" data-lang="de">@playmakers_shop</a>
-                   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                  </li>
-                  <li>
-                    <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="100"></div>
-                  </li>
-                </ul>
-              </li>
-              <li class="payment-methods">
-                <h4>Sicher zahlen mit</h4>
-                <img width="100" height="52" src="{{ 'paypal_logo.png' | asset_url }}" alt="Paypal Logo">
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+  <div id="mobileNavBar">
+    <div class="display-table-cell">
+      <a class="menu-toggle mobileNavBar-link">{{ 'layout.navigation.mobile_menu' | t }}</a>
     </div>
+    <div class="display-table-cell text-center text-logo">
+      <a href="/">
+        <img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">Playmakers Football
+      </a>
+    </div>
+    <div class="display-table-cell">
+      <a href="/cart" class="cart-toggle mobileNavBar-link">
+        <span class="icon icon-cart"></span>
+      </a>
+    </div>
+  </div>
 
-    {{ '//code.jquery.com/jquery-1.11.0.min.js' | script_tag }}
-    {{ 'js_script.js' | asset_url | script_tag }}
+  <nav class="nav-bar" role="navigation">
+    <div class="wrapper header">
+      {% include 'search-bar' %}
+      {% include 'site-nav' %}
+    </div>
+  </nav>
 
-    <script type="text/javascript">
-      window.___gcfg = {lang: 'de'};
+  <main class="wrapper main-content" role="main">
+    {{ content_for_layout }}
+  </main>
 
-      (function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/platform.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
-    </script>
+  {% include 'footer' %}
 
-    {{ content_for_footer }}
-  </body>
+  {% if settings.slider_home_enable %}
+    {{ 'jquery.flexslider.min.js' | asset_url | script_tag }}
+  {% endif %}
+
+  {{ 'shop.js' | asset_url | script_tag }}
+  <script>
+  var moneyFormat = '{{ shop.money_format }}';
+  </script>
+
+  {{ 'handlebars.min.js' | asset_url | script_tag }}
+  {% include 'ajax-cart-template' %}
+  {{ 'ajaxify.js' | asset_url | script_tag }}
+  <script>
+    jQuery(function($) {
+      ajaxifyShopify.init({
+        method: '{{ settings.ajax_cart_method }}',
+        wrapperClass: 'wrapper',
+        formSelector: '#addToCartForm',
+        addToCartSelector: '#addToCart',
+        cartCountSelector: '#cartCount',
+        toggleCartButton: '.cart-toggle',
+        useCartTemplate: true,
+        btnClass: 'btn',
+        moneyFormat: {{ shop.money_format | json }},
+        disableAjaxCart: false,
+        enableQtySelectors: true
+      });
+
+      var vid = document.getElementById("bgvid");
+      if (vid) {
+        vid.playbackRate = 0.4;
+      }
+      $("#bgvid").bind('ended', function(){
+       this.play();
+      });
+
+      // $("img.lazy").lazyload();
+    });
+  </script>
+
+  {{ content_for_footer }}
+</body>
 </html>

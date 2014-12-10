@@ -1,136 +1,171 @@
-{% paginate article.comments by 50 %}
-<div class="content-offset row article">
-  <div class="col-md-7 col-md-offset-1">
-    <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+{% assign number_of_comments = article.comments_count %}
 
-    <div class="media">
-      <div class="media-body">
-        <h1 class="media-heading">{{ article.title }}</h1>
-
-        <p class="meta">
-          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d. %B %Y' }}</time><a href="https://plus.google.com/102819553851891645617" style="display: none;" target="_blank" rel="author">Pascal Heck</a><span style="display: none;">,&nbsp;
-          {% if article.tags.size > 0 %}
-            <span>Tags:</span>
-            {% for tag in article.tags %}
-              {% if collections[tag].all_products_count != "" %}
-                {% assign collection = collections[tag] %}
-              {% else %}
-                <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-              {% endif %}
-            {% endfor %}
-          {% endif %}
-          </span>
-        </p>
-
-        <p>{{ article.content }}</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3 sidebar">
-    {% include 'blog_sidebar' %}
-  </div>
-</div>
-
-<div class="content-offset row">
-  <div class="col-md-7 col-md-offset-1">
-    <ul class="socials">
-      <li>
-        <a href="#add-comment">Kommentar hinzufügen</a>
-      </li>
-      <li>
-        <span class="fb-like" data-href="{{ canonical_url }}" data-width="100" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></span>
-      </li>
-      <li>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ article.title }}" data-via="playmakers_shop" data-lang="de" data-count="none">Twittern</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<div class="content-offset row">
-  <div class="col-md-10 col-md-offset-1">
-    {% if article.comments_count > 0 %}
-      <h3>Kommentare:</h3>
-      {% if comment and comment.created_at %}
-        <script>window.location.hash = '#{{ comment.id }}';</script>
-      {% endif %}
-      <ul class="comments media-list">
-        {% for comment in article.comments %}
-        <li id="{{ comment.id }}" class="media">
-          <div class="media-body">
-            <h4 class="media-heading">{{ comment.author }}</h4><small>{{ comment.created_at | date: "%d. %B %Y" }}</small>
-            {{ comment.content }}
-        </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
-    {% if paginate.pages > 1 %}
-      <div id="pagination">
-        {{ paginate | default_pagination }}
-      </div>
-    {% endif %}
-  </div>
-</div>
-{% endpaginate %}
-
-{% include 'related_products' with collection %}
-
-{% if blog.comments_enabled? %}
-  <div class="content-offset row">
-    <div id="add-comment" class="col-md-10 col-md-offset-1">
-      {% form article %}
-        <h3>Kommentar schreiben</h3>
-
-        {% if form.errors %}
-          <script>
-            window.location.hash = '#add-comment';
-          </script>
-          <div class="errorForm feedback">
-            <p>Da ist etwas schief gelaufen! Bitte achte darauf, dass sowohl Email-, als auch das Nachrichtenfeld ausgefüllt sind.</p>
-          </div>
-        {% endif %}
-
-        {% if comment and comment.created_at %}
-          <p class="successForm feedback">
-            {% if blog.moderated? %}
-            Dein Kommentar wurde gespeichert - vielen Dank! Wir werden ihn schnellst möglichst freischalten.
-            {% else %}
-            Dein Kommentar wurde gespeichert - vielen Dank!
-            {% endif %}
-          </p>
-        {% else %}
-          <div class="form-group">
-            <label>Dein Name:</label>
-            <input type="text" id="contactFormAuthor" name="comment[author]" value="{{ form.author }}"/>
-          </div>
-          <div class="form-group">
-            <label>Deine Emailadresse:*</label>
-            <input type="email" id="contactFormEmail" name="comment[email]" placeholder="deine@email.de" value="{{ form.email }}" />
-          </div>
-          <div class="form-group">
-            <label>Nachricht:*</label><br/>
-            <textarea class="form-control" rows="5" cols="75" id="contactFormMessage" name="comment[body]">{{ form.body }}</textarea>
-          </div>
-          <div class="form-group">
-            <button type="submit" id="contactFormSubmit" class="btn btn-default">Abschicken</button>
-          </div>
-        {% endif %}
-      {% endform %}
-    </div>
-  </div>
+{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count | plus: 1 %}
 {% endif %}
 
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <ul class="pagination clearfix">
-      {% if blog.previous_article %}
-        <li>{{ '&larr; Vorheriger Beitrag' | link_to: blog.previous_article }}</li>
-      {% endif %}
-      {% if blog.next_article %}
-        <li>{{ 'Nächster Beitrag &rarr;' | link_to: blog.next_article }}</li>
-      {% endif %}
-    </ul>
+{% include 'breadcrumb' %}
+
+<div class="grid grid-border">
+
+  <div class="grid__item large--four-fifths grid-border--right article-content">
+    <div class="grid">
+      <div class="grid__item large--ten-twelfths push--large--one-twelfth">
+
+        <header class="section-header">
+          <div class="section-header__left">
+            <h1>{{ article.title }}</h1>
+              <p class="text-light">
+                {% capture date %}<strong><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time></strong>{% endcapture %}
+                {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
+                {{ 'blogs.article.author_on_date_html' | t: author: author, date: date }}
+            </p>
+          </div>
+        </header>
+
+        <div class="rte">
+          {{ article.content }}
+        </div>
+
+        {% if settings.social_sharing_blog %}
+          <hr class="hr--clear">
+          <h3>{{ 'blogs.article.share_this_post' | t }}</h3>
+          {% include 'social-sharing' %}
+          <hr>
+        {% endif %}
+
+        <ul class="inline-list">
+          {% if blog.comments_enabled? %}
+          <li>
+            <a href="#comments">
+              {{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}
+              -
+              <a href="#write-comment">{{ 'blogs.comments.title' | t }} &rsaquo;</a>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+
+        {% if blog.next_article or blog.previous_article %}
+        <hr>
+
+        <p class="clearfix">
+          {% if blog.previous_article %}
+            <span class="left">
+              {{ 'blogs.article.older_post' | t | prepend: '← ' | link_to: blog.previous_article }}
+            </span>
+          {% endif %}
+          {% if blog.next_article %}
+            <span class="right">
+              {{ 'blogs.article.newer_post' | t | append: ' →' | link_to: blog.next_article }}
+            </span>
+          {% endif %}
+        </p>
+        {% endif %}
+
+        {% if blog.comments_enabled? %}
+
+          <hr>
+
+          {% paginate article.comments by 5 %}
+
+          <div id="comments">
+
+            {% if comment and comment.created_at %}
+            <p class="note form-success">
+              {% if blog.moderated? %}
+                {{ 'blogs.comments.success_moderated' | t }}
+              {% else %}
+                {{ 'blogs.comments.success' | t }}
+              {% endif %}
+            </p>
+            {% endif %}
+
+            {% if number_of_comments > 0 %}
+              <ul>
+                {% if comment and comment.created_at %}
+                <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+
+                  {% include 'comment' %}
+
+                </li>
+                {% endif %}
+
+                {% for comment in article.comments %}
+                <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+
+                  {% include 'comment' %}
+
+                </li>
+                {% endfor %}
+
+              </ul>
+
+              <hr>
+
+              {% if paginate.pages > 1 %}
+              <div class="text-center">
+                {% include 'pagination-custom' %}
+              </div>
+              {% endif %}
+
+            {% endif %}
+
+            <div id="write-comment">
+              {% form 'new_comment', article %}
+
+                <p class="h1" id="add-comment-title">{{ 'blogs.comments.title' | t }}</p>
+
+                {% include 'form-errors-custom' %}
+
+                <div class="grid">
+
+                  <div class="grid__item large--one-half">
+                    <label for="comment-author" class="hidden-label">{{ 'blogs.comments.name' | t }}</label>
+                    <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{{ 'blogs.comments.name' | t }}" id="comment-author" value="{{ form.author }}" autocapitalize="words">
+
+                    <label for="comment-email" class="hidden-label">{{ 'blogs.comments.email' | t }}</label>
+                    <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{{ 'blogs.comments.email' | t }}" id="comment-email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                  </div>
+
+                  <div class="grid__item">
+                    <label for="comment-body" class="hidden-label">{{ 'blogs.comments.message' | t }}</label>
+                    <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>
+                  </div>
+
+                </div>
+
+                {% if blog.moderated? %}
+                  <p class="text-light"><em>{{ 'blogs.comments.moderated' | t }}</em></p>
+                {% endif %}
+
+                <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
+
+                {% if form.errors %}
+                  <script>
+                    window.location.hash = '#add-comment-title';
+                  </script>
+                {% endif %}
+
+                {% if form.posted_successfully? %}
+                  <script>
+                    window.location.hash = '#comments';
+                  </script>
+                {% endif %}
+
+              {% endform %}
+            </div>
+
+          </div>
+
+          {% endpaginate %}
+
+        {% endif %}
+      </div>
+    </div>
   </div>
+
+  <aside class="sidebar grid__item large--one-fifth">
+    {% include 'blog-sidebar' %}
+  </aside>
 </div>

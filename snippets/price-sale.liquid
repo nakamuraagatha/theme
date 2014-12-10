@@ -1,0 +1,17 @@
+{% capture saved_amount %}
+{% if shop.money_format == '${{amount}}' %}
+  {{ compare_price | minus: product_price | money | replace: '.','<sup>' }}</sup>
+{% elsif shop.money_format == '${{amount_with_comma_separator}}' %}
+  {{ compare_price | minus: product_price | money | replace: ',','<sup>' }}</sup>
+{% else %}
+  {{ compare_price | minus: product_price | money }}
+{% endif %}
+{% endcapture %}
+{% assign saved_amount = saved_amount | strip %}
+{{ 'products.general.save_html' | t: saved_amount: saved_amount }}
+
+{% comment %}
+{% if compare_price > product_price %}
+Save {{ compare_price | minus: product_price | times: 100 | divided_by: compare_price | round }}%
+{% endif %}
+{% endcomment %}

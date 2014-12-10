@@ -1,0 +1,51 @@
+<ul class="site-nav" id="AccessibleNav">
+  <li class="large--hide"><a href="/">Home</a></li>
+  {% for link in linklists.menu-new.links %}
+    {% assign child_list_handle = link.title | handleize %}
+    {% if child_list_handle != 'sale' && link.object.products != blank %}
+      <li class="site-nav--has-dropdown site-nav--{{ child_list_handle }}{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
+        <a href="{{ link.url }}">
+          {{ link.title }}
+          <span class="icon-fallback-text">
+            <span class="icon icon-arrow-down" aria-hidden="true"></span>
+          </span>
+        </a>
+        <ul class="site-nav__dropdown">
+          {% for product in link.object.products %}
+            <li {% if childlink.active %}class="site-nav--active"{% endif %}><a href="{{ product.url | within: link.object }}">
+              <img id="productPhotoImg" class="lazy" height="25" data-original="{{ product.featured_image | product_img_url: 'thumb' }}"> {{ product.vendor | escape }} {{ product.title | escape }}
+            </a></li>
+          {% endfor %}
+          {% assign collection_name = link.object.handle | append: '-zubehor'  %}
+          {% assign collection = collections[collection_name] %}
+          {% if collection != empty %}
+            <li {% if link.active %}class="site-nav--active"{% endif %}>
+              <a href="{{ collection.url }}">{{ collection.title }}</a>
+            </li>
+          {% endif %}
+        </ul>
+      </li>
+    {% else %}
+      <li class="site-nav--{{ child_list_handle }}{% if link.active %}site-nav--active{% endif %}">
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+  {% for link in linklists.menu-header.links %}
+    <li class="large--hide {% if link.active %}site-nav--active{% endif %}">
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    </li>
+  {% endfor %}
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      <li class="customer-navlink large--hide"><a href="/account">View Account</a></li>
+      <li class="customer-navlink large--hide">{{ 'Log out' | customer_logout_link }}</li>
+    {% else %}
+      <li class="customer-navlink large--hide">{{ 'Sign in' | customer_login_link }}</li>
+      {% if shop.customer_accounts_optional %}
+      <li class="customer-navlink large--hide">{{ 'Create an Account' | customer_register_link }}</li>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+</ul>

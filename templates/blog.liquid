@@ -1,46 +1,35 @@
-{% paginate blog.articles by 10 %}
-<div class="content-offset row">
-  <div class="col-md-7 col-md-offset-1">
-    <h1>{{ blog.title }}</h1>
-    {% for article in blog.articles %}
-      <div class="media">
-        <div class="media-body">
-          <h2 class="media-heading"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+{% paginate blog.articles by 9 %}
 
-          <p class="meta">
-            <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d. %B %Y' }}</time>,&nbsp;
-            {% if article.tags.size > 0 %}
-              <span>Tags:</span>
-              {% for tag in article.tags %}
-                {% if collections[tag].all_products_count != "" %}
-                  {% assign collection = collections[tag] %}
-                {% else %}
-                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-          </p>
+{% include 'breadcrumb' %}
 
-          {% if article.content contains "<img" %}
-            {% assign src = article.content | split: 'src="' %}
-            {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
-            {% if src %}
-              <a class="pull-left" href="{{ article.url }}">
-               <img class="media-object" src="{{ src | replace: '_grande', '_medium' }}" width="200" alt="{{ article.title }}">
-              </a>
-            {% endif %}
-          {% endif %}
+<div class="grid grid-border">
 
-          <p>{{ article.excerpt_or_content | strip_html | truncatewords: 100 }} <a href="{{article.url }}" class="more">weiterlesen</a></p>
-        </div>
-      </div>
-      <hr class="divider" />
-    {% endfor %}
+  <div class="grid__item large--four-fifths grid-border--right">
+    {% if current_tags %}
+      <h1>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h1>
+    {% else %}
+      <h1>{{ blog.title }}</h1>
+    {% endif %}
 
-    {% include 'pagination' %}
+    <div class="grid-uniform">
+      {% for article in blog.articles %}
+        {% assign grid_item_width = 'large--one-third medium--one-third small--one-half' %}
+        {% include 'article-grid-item' %}
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+    <hr>
+    <div class="text-center">
+      {% include 'pagination-custom' %}
+    </div>
+    {% endif %}
+
   </div>
-  <div class="col-md-3 sidebar">
-    {% include 'blog_sidebar' %}
-  </div>
+
+  <aside class="sidebar grid__item large--one-fifth">
+    {% include 'blog-sidebar' %}
+  </aside>
 </div>
+
 {% endpaginate %}
