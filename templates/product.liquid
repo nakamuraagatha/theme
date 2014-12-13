@@ -124,6 +124,9 @@
           <span class="icon icon-cart"></span>
           <span id="addToCartText">{{ 'products.product.add_to_cart' | t }}</span>
         </button>
+        {% if product.type == "Helme" %}
+          <br><small>(inkl. Soft-Cup Chinstrap, exkl. Facemask, <a href="{{ 'Zubehör ' | append: product.type | url_for_type}}" data-fancybox-type="iframe">bitte hier wählen</a>)</small>
+        {% endif  %}
       </form>
     </div>
   </div>

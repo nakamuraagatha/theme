@@ -53,16 +53,15 @@
   <hr>
   {% assign featured_row = settings.home_featured_row1 %}
   {% assign row_limit_setting = settings.home_featured_row1_number %}
-
   {% include 'featured-row' %}
   <hr>
 {% endif %}
 
 <div class="articles fullsize">
   <div class="section-header">
-      <p class="h1 section-header__left">Neueste Einträge in {{ blogs['news'].title }}</p>
+      <p class="h1 section-header__left">{{ 'homepage.featured_articles.heading' | t: title: blogs['news'].title }}</p>
       <div class="section-header__right">
-        <a href="{{ blogs['news'].url }}">Alle Beiträge lesen &rsaquo;</a>
+        <a href="{{ blogs['news'].url }}">{{ 'homepage.featured_articles.more' | t }} &rsaquo;</a>
       </div>
   </div>
 

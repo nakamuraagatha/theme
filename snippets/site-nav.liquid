@@ -26,7 +26,7 @@
         </ul>
       </li>
     {% else %}
-      <li class="site-nav--{{ child_list_handle }}{% if link.active %}site-nav--active{% endif %}">
+      <li class="site-nav--{{ child_list_handle }}{% if link.active %} site-nav--active{% endif %}">
         <a href="{{ link.url }}">{{ link.title }}</a>
       </li>
     {% endif %}

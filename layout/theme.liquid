@@ -145,6 +145,8 @@
     {{ 'jquery.flexslider.min.js' | asset_url | script_tag }}
   {% endif %}
 
+  {{ 'jquery.fancybox.pack.js' | asset_url | script_tag }}
+
   {{ 'shop.js' | asset_url | script_tag }}
   <script>
   var moneyFormat = '{{ shop.money_format }}';
@@ -154,6 +156,18 @@
   {% include 'ajax-cart-template' %}
   {{ 'ajaxify.js' | asset_url | script_tag }}
   <script>
+    var inIframe = function() {
+      try {
+        return window.self !== window.top;
+      } catch (err) {
+        return true;
+      }
+    };
+
+    if (inIframe()) {
+      $('body').addClass('plain');
+    }
+
     jQuery(function($) {
       ajaxifyShopify.init({
         method: '{{ settings.ajax_cart_method }}',
@@ -177,6 +191,8 @@
        this.play();
       });
 
+      $('a[data-fancybox-type="iframe"]').fancybox();
+      $('.fancybox').fancybox();
       // $("img.lazy").lazyload();
     });
   </script>

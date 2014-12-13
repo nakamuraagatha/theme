@@ -238,10 +238,13 @@
     "featured_collection_rows": {
       "heading": "Ausgewählte Zusammenstellung",
       "more": "Mehr",
-      "no_products_in_collection_html": "Sie haben keine Artikel in Ihrer {{ collection_title }}-Zusammenstellung.",
       "add_a_product": "Artikel hinzufügen",
       "example_product_title": "Beispielhafter Produkttitel",
       "more_in_collection": "Weitere {{ collection_title }}"
+    },
+    "featured_articles": {
+      "heading": " Neueste Einträge im {{ title }}",
+      "more": "Alle Beiträge lesen"
     }
   },
   "layout": {
@@ -259,7 +262,7 @@
     "navigation": {
       "more": "Mehr",
       "mobile_menu": "Menü",
-      "special_html": "<a href=\"/pages/versandkosten\" class=\"header-special\">Versandkosten frei ab 100 EUR</a>"
+      "special_html": "<a href=\"/pages/versandkosten\" class=\"header-special fancybox fancybox.iframe\">Versandkosten frei ab 100 EUR</a>"
     },
     "search_bar": {
       "placeholder": "Alle Artikel durchsuchen...",
@@ -295,8 +298,8 @@
       "quantity": "Menge",
       "add_to_cart": "In den Einkaufswagen legen",
       "mwst": "Preise inkl. 19% MwSt.",
-      "shipping_html": ", <a href=\"/pages/versandkosten\">zzgl. Versand</a>",
-      "shipping_free_html": ", <a href=\"/pages/versandkosten\">KOSTENLOSER Versand</a>",
+      "shipping_html": ", <a href=\"/pages/versandkosten\" class=\"fancybox fancybox.iframe\">zzgl. Versand</a>",
+      "shipping_free_html": ", <a href=\"/pages/versandkosten\" class=\"fancybox fancybox.iframe\">KOSTENLOSER Versand</a>",
       "features": "Eigenschaften"
     }
   },

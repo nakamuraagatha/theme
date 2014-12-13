@@ -100,7 +100,7 @@
           {% include 'newsletter-form' %}
         {% else %}
           <h3>{{ 'layout.footer.pay_save' | t }}</h3>
-          <ul class="legal-links inline-list payment-icons">
+          <ul class="inline-list payment-icons">
             {% for type in shop.enabled_payment_types %}
               <li>
                 <span class="icon-fallback-text">

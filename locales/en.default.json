@@ -235,7 +235,6 @@
     "featured_collection_rows": {
       "heading": "Featured Collection",
       "more": "More",
-      "no_products_in_collection_html": "You have no products in your {{ collection_title }} collection.",
       "add_a_product": "Add a Product",
       "example_product_title": "Example Product Title",
       "more_in_collection": "More {{ collection_title }}"
