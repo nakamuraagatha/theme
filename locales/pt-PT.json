@@ -236,7 +236,6 @@
       "heading": "Coleção em Destaque",
       "more": "Mais",
       "no_products_in_collection_html": "Não tem produtos na sua coleção {{ collection_title }}.",
-      "instructions_to_add_products_to_collection_html": "Esta imagem de preenchimento será exibida até <a href=\"{{ collection_admin_url }}\">adicionar um produto a esta coleção</a> ou desativar <em>Fila de Destaque 1</em> nas suas definições de tema.",
       "add_a_product": "Adicionar um Produto",
       "example_product_title": "Título do Produto Exemplo",
       "more_in_collection": "Mais {{ collection_title }}"
@@ -264,8 +263,6 @@
     },
     "footer": {
       "theme_settings": "Definições de Tema",
-      "instructions_for_linklist_html": "Escolha uma lista de links para exibir aqui no seu {{ theme_settings_link }}, sob {{ theme_settings_footer_linklist_path }}.",
-      "instructions_for_text_content_html": "Adicione algum texto para exibit aqui no seu {{ theme_settings_link }}.",
       "quick_links": "Links Rápidos",
       "get_in_touch": "Entre em Contacto",
       "store_on_social_network": "{{ store_name }} no {{ social_network }}",

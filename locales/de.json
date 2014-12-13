@@ -239,7 +239,6 @@
       "heading": "Ausgewählte Zusammenstellung",
       "more": "Mehr",
       "no_products_in_collection_html": "Sie haben keine Artikel in Ihrer {{ collection_title }}-Zusammenstellung.",
-      "instructions_to_add_products_to_collection_html": "Dieser Platzhalter verschwindet, wenn Sie <a href=\"{{ collection_admin_url }}\">dieser Zusammenstellung einen Artikel hinzufügen</a> oder <em>Ausgewählte Reihe 1</em> in Ihren Theme-Einstellungen deaktivieren.",
       "add_a_product": "Artikel hinzufügen",
       "example_product_title": "Beispielhafter Produkttitel",
       "more_in_collection": "Weitere {{ collection_title }}"
@@ -259,7 +258,8 @@
     },
     "navigation": {
       "more": "Mehr",
-      "mobile_menu": "Menü"
+      "mobile_menu": "Menü",
+      "special_html": "<a href=\"/pages/versandkosten\" class=\"header-special\">Versandkosten frei ab 100 EUR</a>"
     },
     "search_bar": {
       "placeholder": "Alle Artikel durchsuchen...",
@@ -267,10 +267,9 @@
     },
     "footer": {
       "theme_settings": "Theme-Einstellungen",
-      "instructions_for_linklist_html": "Wählen Sie eine Link-Liste, die hier angezeigt werden soll, in Ihren {{ theme_settings_link }} unter {{ theme_settings_footer_linklist_path }} aus.",
-      "instructions_for_text_content_html": "Fügen Sie einen Text, der hier angezeigt werden soll, in Ihren {{ theme_settings_link }} aus.",
       "quick_links": "Quick Links",
-      "get_in_touch": "Bleibe in Verbindung",
+      "get_in_touch": "Folge Playmakers Football auf",
+      "pay_save": "Sicher zahlen mit",
       "store_on_social_network": "{{ store_name }} auf {{ social_network }}",
       "newsletter_title": "Newsletter",
       "newsletter_sign_up": "Registrieren",
@@ -311,6 +310,22 @@
       "redeem": "Nutzen Sie an der Kasse diesen Code, um Ihre Geschenkkarte einzulösen",
       "shop_link": "Einkauf beginnen",
       "print": "Drucken"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "order_summary": {
+        "payment_due_label": "Zu Zahlen",
+        "taxes_label": "19% MwSt.",
+        "title": "Deine Bestellung",
+        "show_discount_form_link_label": "Gebe hier deinen Rabatt-Code ein",
+        "free_shipping_discount_label": "Kostenloser Versand",
+        "shipping_label": "Versandkosten"
+      },
+      "shipping": {
+        "please_enter_your_shipping_information_notice": "Bitte gebe deine Lieferadresse ein",
+        "select_placeholder": "Bitte wähle die Versandart"
+      }
     }
   }
 }

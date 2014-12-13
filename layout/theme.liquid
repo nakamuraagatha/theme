@@ -68,7 +68,7 @@
           <a href="/" itemprop="url"><img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">Playmakers Football</a>
         </{{ tag }}>
 
-        <div class="header-special">Versandkosten frei ab 100 EUR</div>
+        {{ 'layout.navigation.special_html' | t }}
 
         <div class="header-nav large--text-right">
           {% if settings.header_message != blank or shop.customer_accounts_enabled %}
@@ -96,13 +96,13 @@
             <br class="medium-down--hide">
           {% endif %}
 
-          <a href="/cart" class="header-cart-btn cart-toggle right">
+          <a href="/cart" class="header-btn cart-toggle right">
             <span class="icon icon-cart"></span>
             {{ 'layout.cart.cart' | t }} <span id="cartCount" {% if cart.item_count == 0 %}class="hidden-count"{% endif %}>{{ cart.item_count }}</span>
           </a>
 
-          {% for link in linklists.menu-header.links %}
-            <a href="{{ link.url }}" class="btn link--{{ link.title | handleize }}">
+          {% for link in linklists['menu-header'].links %}
+            <a href="{{ link.url }}" class="header-btn link--{{ link.title | handleize }}">
               {{ link.title }}
             </a>
           {% endfor %}

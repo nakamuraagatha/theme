@@ -1,6 +1,6 @@
 <ul class="site-nav" id="AccessibleNav">
   <li class="large--hide"><a href="/">Home</a></li>
-  {% for link in linklists.menu-new.links %}
+  {% for link in linklists['main-menu'].links %}
     {% assign child_list_handle = link.title | handleize %}
     {% if child_list_handle != 'sale' && link.object.products != blank %}
       <li class="site-nav--has-dropdown site-nav--{{ child_list_handle }}{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
@@ -16,11 +16,11 @@
               <img id="productPhotoImg" class="lazy" height="25" data-original="{{ product.featured_image | product_img_url: 'thumb' }}"> {{ product.vendor | escape }} {{ product.title | escape }}
             </a></li>
           {% endfor %}
-          {% assign collection_name = link.object.handle | append: '-zubehor'  %}
-          {% assign collection = collections[collection_name] %}
-          {% if collection != empty %}
+
+          {% assign type_name =  'Zubehör ' | append: link.object.products.first.type  %}
+          {% if shop.types contains type_name %}
             <li {% if link.active %}class="site-nav--active"{% endif %}>
-              <a href="{{ collection.url }}">{{ collection.title }}</a>
+              <a href="{{ type_name | url_for_type }}">{{ type_name }}</a>
             </li>
           {% endif %}
         </ul>
@@ -31,7 +31,7 @@
       </li>
     {% endif %}
   {% endfor %}
-  {% for link in linklists.menu-header.links %}
+  {% for link in linklists['menu-header'].links %}
     <li class="large--hide {% if link.active %}site-nav--active{% endif %}">
       <a href="{{ link.url }}">{{ link.title }}</a>
     </li>

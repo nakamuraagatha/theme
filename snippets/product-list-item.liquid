@@ -31,24 +31,25 @@
         </div>
       </div>
       <div class="grid__item large--one-fifth medium--two-thirds">
-        <div class="product-item--price text-center">
-          {% if product.price_varies %}<small class="price-varies medium-down--left">ab</small> {% endif %}
-          <p class="h1 medium-down--left">
-            {% include 'price' with product.price %}
-          </p>
-
-          {% if on_sale %}
-            <span class="sale-tag medium-down--right{% if settings.product_reviews_enable %} has-reviews{% endif %}">
-              {% assign compare_price = product.compare_at_price %}
-              {% assign product_price = product.price %}
-              {% include 'price-sale' %}
-            </span>
+        <span class="medium--left small--left">
+          {% if product.compare_at_price > product.price %}
+            {% assign product_price = product.compare_at_price %}
+          {% else %}
+            {% assign product_price = product.price %}
           {% endif %}
 
-          {% if settings.product_reviews_enable %}
-            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-          {% endif %}
-        </div>
+          <div class="product-item--price">
+            {% if product.price_varies %}<small>ab</small>{% endif %}
+            <span class="h1">{{ product_price | money }}</span>
+
+            {% if on_sale %}
+              <span class="sale-price">{{ product.price | money }}</span>
+            {% endif %}
+          </div>
+        </span>
+        <span class="medium--right small--right">
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+        </span>
       </div>
     </div>
   </a>

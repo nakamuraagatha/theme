@@ -236,7 +236,6 @@
       "heading": "Featured Collection",
       "more": "More",
       "no_products_in_collection_html": "You have no products in your {{ collection_title }} collection.",
-      "instructions_to_add_products_to_collection_html": "This placeholder will appear until you <a href=\"{{ collection_admin_url }}\">add a product to this collection</a> or disable <em>Featured Row 1</em> in your theme settings.",
       "add_a_product": "Add a Product",
       "example_product_title": "Example Product Title",
       "more_in_collection": "More {{ collection_title }}"
@@ -264,8 +263,6 @@
     },
     "footer": {
       "theme_settings": "Theme Settings",
-      "instructions_for_linklist_html": "Pick a link list to show here in your {{ theme_settings_link }} under {{ theme_settings_footer_linklist_path }}.",
-      "instructions_for_text_content_html": "Add some text to show here in your {{ theme_settings_link }}.",
       "quick_links": "Quick Links",
       "get_in_touch": "Get In Touch",
       "store_on_social_network": "{{ store_name }} on {{ social_network }}",

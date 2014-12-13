@@ -47,8 +47,6 @@
     "footer_newsletter_enable": false,
     "footer_newsletter_title": "Newsletter",
     "mailing_list_form_action": "",
-    "footer_legallinks_enable": true,
-    "footer_legallinks_linklist": "footer-info-menu",
     "slider_home_enable": false,
     "slider_home_auto": true,
     "slider_home_rate": "5000",

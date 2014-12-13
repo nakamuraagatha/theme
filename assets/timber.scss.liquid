@@ -1168,7 +1168,7 @@ html input[disabled] {
   {% if settings.type_button_transform %}
   text-transform: uppercase;
   {% endif %}
-  @include transition(background-color 0.2s ease-out);
+  @include transition(background-color 0.1s ease-out);
 
   &.btn--small {
     padding: 8px 12px 7px;
@@ -1187,6 +1187,7 @@ html input[disabled] {
   }
 
   &:hover {
+    background-color: darken($colorBtnPrimary, 5%);
     .template-blog main &, .template-article main & {
       background-color: darken($colorAccentBlog, 5%);
     }
@@ -2176,7 +2177,6 @@ $shareBorderColor: #ececec;
     color: color-control($headerButtonAndSearch);
     margin-bottom: 20px;
     float: right;
-    margin-left: 4px;
   }
 }
 
@@ -2194,6 +2194,10 @@ $shareBorderColor: #ececec;
   margin-left: 20px;
   margin-top: 10px;
   font-weight: bold;
+
+  &:hover, &:focus {
+    text-decoration: none;
+  }
 }
 
 .site-header--text-links {
@@ -2217,11 +2221,12 @@ $shareBorderColor: #ececec;
 
 a.btn.link--blog {
   color: $colorAccentBlog;
+  font-weight: bold;
 }
 
-.header-cart-btn {
+.header-btn {
   @extend .btn;
-  margin-right: 5px;
+  margin: 1px;
   padding-left: 10px;
   position: relative;
   line-height: 26px;
@@ -2238,7 +2243,12 @@ a.btn.link--blog {
   &:focus {
     color: color-control($headerButtonAndSearch);
     background-color: darken($headerButtonAndSearch, 5%);
+    text-decoration: none;
   }
+}
+
+.cart-toggle {
+  margin-right: 5px;
 }
 
 #cartCount {
@@ -2403,7 +2413,7 @@ a.btn.link--blog {
   }
 
   & > li > a {
-    padding: 8px 10px 5px 10px;
+    padding: 8px 10px 5px 20px;
   }
 
   .customer-navlink {
@@ -2499,24 +2509,13 @@ a.btn.link--blog {
       position: relative;
       display: inline-block;
 
-      &.site-nav--playmakers-wear {
-        margin-left: 20px;
+      & > a {
+        white-space: nowrap;
+        padding: 5px 10px;
       }
-    }
-
-    a {
-      white-space: nowrap;
     }
   }
 }
-
-// TBD
-// @include at-query ($min, 1050px) {
-//   .site-nav > li.site-nav--playmakers-wear {
-//     margin-left: 20px;
-//     display: inline-block;
-//   }
-// }
 
 /*================ Dropdowns ================*/
 .icon-arrow-down {
@@ -2563,10 +2562,18 @@ a.btn.link--blog {
       @include transition(all 90ms);
     }
 
+    .site-nav--playmakers-wear & {
+      right: 0;
+      left: inherit;
+    }
+
     a {
       color: #000;
       text-transform: none;
-      padding: 5px $gutter*1.5 5px $gutter/2;
+      padding: 5px 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 250px;
 
       &:hover,
       &:active,
@@ -2578,6 +2585,12 @@ a.btn.link--blog {
         background-color: darken($colorBody, 5%);
       }
     }
+  }
+}
+
+@include at-query ('', $large, 1000px) {
+  .site-nav > li.site-nav--playmakers-wear {
+    display: none;
   }
 }
 
@@ -2791,7 +2804,19 @@ a.btn.link--blog {
 }
 
 .on-sale {
+  .product-item--price span {
+    &:first-child {
+      text-decoration: line-through;
+      font-size: 12pt;
+      font-weight: normal;
+    }
 
+    &.sale-price {
+      font-size: 16pt;
+      color: $colorAccent;
+      font-weight: bold;
+    }
+  }
 }
 
 @include at-query ($max, $medium) {
@@ -3322,7 +3347,7 @@ $innerFilterIconWidth: 6px;
       z-index: 10;
       @include transition(all 300ms ease-out);
       display: block;
-      padding: 8px 8px 8px 8px;
+      padding: 8px;
       margin-top: -38px;
       height: 30px;
       overflow: hidden;
@@ -3487,6 +3512,9 @@ $innerFilterIconWidth: 6px;
   display: inline;
 }
 
+.cart-express-checkout {
+  display: none;
+}
 /*================ Remove from cart icon ================*/
 $removeIconWidth: 19px;
 

@@ -12,9 +12,6 @@
 {% assign sold_out = true %}
 {% if product.available  %}{% assign sold_out = false %}{% endif %}
 
-{% comment %}
-  Select the product image size from settings.
-{% endcomment %}
 {% assign image_size = settings.collection_prod_image_sizes %}
 
 <div class="grid__item {{ grid_item_width }}{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
@@ -30,25 +27,20 @@
     </div>
 
     <p>{{ product.vendor }} {{ product.title }}</p>
+    {% if product.compare_at_price > product.price %}
+      {% assign product_price = product.compare_at_price %}
+    {% else %}
+      {% assign product_price = product.price %}
+    {% endif %}
 
     <div class="product-item--price">
-      {% if product.price_varies %}<small>ab</small> {% endif %}
-      <span class="h1">
-        {% include 'price' with product.price %}
-      </span>
+      {% if product.price_varies %}<small>ab</small>{% endif %}
+      <span class="h1">{{ product_price | money }}</span>
 
       {% if on_sale %}
-        <span class="sale-tag medium--right{% if settings.product_reviews_enable %} has-reviews{% endif %}">
-          {% assign compare_price = product.compare_at_price %}
-          {% assign product_price = product.price %}
-          {% include 'price-sale' %}
-        </span>
+        <span class="sale-price">{{ product.price | money }}</span>
       {% endif %}
     </div>
-
-    {% if settings.product_reviews_enable %}
-      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-    {% endif %}
+    <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
   </a>
-
 </div>
