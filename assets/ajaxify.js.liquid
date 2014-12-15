@@ -445,8 +445,8 @@ var ajaxifyShopify = (function(module, $) {
     $modalOverlay.on('click', hideModal);
 
     // Create a close modal button
-    $modalContainer.prepend('<button type="button" class="ajaxcart__close" title="Close Cart">Close Cart</button>');
-    $closeCart = $('.ajaxcart__close');
+    $modalContainer.prepend('<button type="button" class="ajaxifyCart__close" title="' + {{ 'cart.general.close_cart' | t | json }} + '">' + {{ 'cart.general.close_cart' | t | json }} + '</button>');
+    $closeCart = $('.ajaxifyCart__close');
     $closeCart.on('click', hideModal);
 
     // Add a class if CSS translate isn't available

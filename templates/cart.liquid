@@ -114,12 +114,13 @@
           </div>
 
           <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
-
+          <button name="continue" class="btn--secondary cart-continue">
+            {{ 'cart.general.continue' | t }}
+          </button>
           <button type="submit" name="checkout" class="btn">
             <span class="icon icon-cart"></span>
             {{ 'cart.general.checkout' | t }}
           </button>
-          <p class="cart-express-checkout">{{ content_for_additional_checkout_buttons }}</p>
         </div>
 
       </div>

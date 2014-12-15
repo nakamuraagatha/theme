@@ -62,6 +62,7 @@
       "note": "Besondere Hinweise an den Verkäufer",
       "subtotal": "Zwischensumme",
       "update": "Einkaufswagen aktualisieren",
+      "continue": "Weiter Einkaufen",
       "checkout": "Zur Kasse",
       "empty": "Dein Einkaufswagen ist im Moment leer.",
       "continue_browsing_html": "Mit der Suche <a href=\"/collections/all\">hier</a> fortfahren.",
