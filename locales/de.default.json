@@ -261,6 +261,7 @@
       "or": "oder"
     },
     "navigation": {
+      "language":"de",
       "more": "Mehr",
       "mobile_menu": "Menü",
       "special_html": "<a href=\"/pages/versandkosten\" class=\"header-special fancybox fancybox.iframe\">Versandkosten frei ab 100 EUR</a>"

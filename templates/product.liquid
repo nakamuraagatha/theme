@@ -144,7 +144,7 @@
           {% assign feature_details = metafield | last | split: '|' %}
           {% assign cpage_description = cpage_description | append: feature_details[1] | append: ', ' %}
           <li>
-            <img src="{{ feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
+            <img src="{{ 'feature_' | append: feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
             <span class="caption">
               <h4>{{ feature_details[1] }}</h4>
               <p>{{ feature_details[2] }}</p>

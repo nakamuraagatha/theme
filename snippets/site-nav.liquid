@@ -13,7 +13,8 @@
         <ul class="site-nav__dropdown">
           {% for product in link.object.products %}
             <li {% if childlink.active %}class="site-nav--active"{% endif %}><a href="{{ product.url | within: link.object }}">
-              <img id="productPhotoImg" class="lazy" height="25" data-original="{{ product.featured_image | product_img_url: 'thumb' }}"> {{ product.vendor | escape }} {{ product.title | escape }}
+              {% comment %}<img id="productPhotoImg" class="lazy" height="25" data-original="{{ product.featured_image | product_img_url: 'thumb' }}">{% endcomment %}
+              {{ product.vendor | escape }} {{ product.title | escape }}
             </a></li>
           {% endfor %}
 

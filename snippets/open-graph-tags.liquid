@@ -1,6 +1,6 @@
 {% if template contains 'product' %}
   <meta property="og:type" content="product">
-  <meta property="og:title" content="{{ product.title | strip_html | escape }}">
+  <meta property="og:title" content="{{ product.vendor}} {{ product.title | strip_html | escape }}">
   {% for image in product.images limit:3 %}
   <meta property="og:image" content="http:{{ image.src | img_url: 'grande' }}">
   <meta property="og:image:secure_url" content="https:{{ image.src | img_url: 'grande' }}">
@@ -11,8 +11,8 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{ article.title | strip_html | escape }}">
   {% assign img_tag = '<' | append: 'img' %}
-  {% if article.content contains img_tag %}
-    {% assign src = article.content | split: 'src="' %}
+  {% if article.excerpt_or_content contains img_tag %}
+    {% assign src = article.excerpt_or_content | split: 'src="' %}
     {% assign src = src[1] | split: '"' | first | remove: 'https:' | remove: 'http:' %}
     {% if src %}
   <meta property="og:image" content="http:{{ src }}">

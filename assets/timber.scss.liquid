@@ -1187,6 +1187,7 @@ html input[disabled] {
   }
 
   &:hover {
+    text-decoration: none;
     background-color: darken($colorBtnPrimary, 5%);
     .template-blog main &, .template-article main & {
       background-color: darken($colorAccentBlog, 5%);
@@ -1209,12 +1210,14 @@ html input[disabled] {
 }
 
 .btn--secondary,
-input.btn--secondary {
+input.btn--secondary,
+a.btn--secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
   color: $colorTextBody;
 
   &:hover {
+    background-color: darken($colorBtnSecondary, 5%);
     color: #000;
   }
   // &:active {
@@ -3470,15 +3473,11 @@ $innerFilterIconWidth: 6px;
 
   a {
     color: $colorTextBody;
-
-    &:hover {
-      color: $colorPrimary;
-    }
   }
 
-   .details .grid__item {
+  .details .grid__item {
       padding-left: 10px;
-   }
+  }
 
   .quantity {
     padding-top: 3px;

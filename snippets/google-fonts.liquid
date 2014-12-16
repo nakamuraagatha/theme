@@ -3,13 +3,6 @@
   {% capture baseGoogleUrl %}{{ type_base_parts[1] }}:{{ type_base_parts[2] }}{% endcapture %}
   {{ '//fonts.googleapis.com/css?family=' | append: baseGoogleUrl | stylesheet_tag }}
 {% endif %}
-{% if settings.type_header_family contains 'Google' %}
-  {% unless settings.type_header_family contains type_base_parts[1] %}
-    {% assign type_header_parts = settings.type_header_family | split: '_' %}
-    {% capture headerGoogleUrl %}{{ type_header_parts[1] }}:{{ type_header_parts[2] }}{% endcapture %}
-    {{ '//fonts.googleapis.com/css?family=' | append: headerGoogleUrl | stylesheet_tag }}
-  {% endunless %}
-{% endif %}
 {% if settings.type_accent_family contains 'Google' %}
   {% unless settings.type_accent_family contains type_base_parts[1] or settings.type_accent_family contains type_header_parts[1] %}
     {% assign type_accent_parts = settings.type_accent_family | split: '_' %}

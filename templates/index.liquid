@@ -11,29 +11,13 @@
   </ul>
 </div> -->
 <div class="banner grid-uniform fullsize">
-  <div class="grid__item one-half push--large--one-half push--medium--one-half small--one-whole text-right banner-img">
+  <div class="grid__item one-half push--large--one-half medium--one-whole small--one-whole text-right banner-img">
     <img src="{{ 'banner.jpg' | asset_url }}" alt="enrico martini, swarco raiders/deutsche nationalmannschaft">
   </div>
-  <div class="grid__item one-half pull--large--one-half pull--medium--one-half small--one-whole main">
-    <span>
-      <p>
-        Playmakers Football arbeitet eng mit den <strong>besten Spielern Europas</strong> zusammen, um dir die <strong>besten Insights</strong> rund um deine Ausrüstung zu bieten.
-      </p>
-      <form class="medium--hide" action="http://play-makers.us8.list-manage.com/subscribe/post?u=f8ccf2679d516fd2e247579b3&id=22a6088452" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form" target="_blank" novalidate>
-        <label for="mce-EMAIL">Sicher dir ab jetzt alle <strong>Produktvideos und Equipment-Tipps</strong> per kostenlosem Newsletter.</label>
-        <ul class="inline-list">
-          <li>
-            <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Deine Emailaddresse" required>
-            <div style="position: absolute; left: -51234px;"><input type="text" name="b_f8ccf2679d516fd2e247579b3_22a6088452" value=""></div>
-          </li>
-          <li>
-            <input type="submit" value="Ich bin dabei!" name="subscribe" id="mc-embedded-subscribe" class="btn button">
-          </li>
-        </ul>
-      </form>
-    </span>
-  </div>
-  <div class="grid__item one-whole large--hide small--hide main">
+  <div class="grid__item one-half pull--large--one-half medium--one-whole small--one-whole main">
+    <p>
+      Playmakers Football arbeitet eng mit den <strong>besten Spielern Europas</strong> zusammen, um dir die <strong>besten Insights</strong> rund um deine Ausrüstung zu bieten.
+    </p>
     <form action="http://play-makers.us8.list-manage.com/subscribe/post?u=f8ccf2679d516fd2e247579b3&amp;id=22a6088452" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form" target="_blank" novalidate>
       <label for="mce-EMAIL">Sicher dir ab jetzt alle <strong>Produktvideos und Equipment-Tipps</strong> per kostenlosem Newsletter.</label>
       <ul class="inline-list">
@@ -106,9 +90,9 @@
 </div>
 
 <div class="grid-uniform vendors">
-  {% assign vendors = 'Bike,Cutters,Nike,Rawlings,Riddell,Under Armour,Warrior,Xenith' | split: ',' %}
+  {% assign vendors = 'Russel Athletic,Bike,Cutters,Nike,Rawlings,Adidas,Riddell,Under Armour,Warrior,Xenith' | split: ',' %}
   {% for product_vendor in vendors %}
-    <div class="grid__item large--one-quarter  medium--one-quarter small--one-third">
+    <div class="grid__item large--one-fifth medium--one-quarter small--one-third">
       <div class="product-grid-image">
         <div class="product-grid-image--centered">
           <a href="{{ product_vendor | url_for_vendor }}" title="{{ product_vendor }}">

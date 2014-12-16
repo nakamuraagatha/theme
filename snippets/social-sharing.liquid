@@ -4,7 +4,7 @@
 
 {% elsif template contains 'product' %}
   {% capture permalinkURL %}{{ shop.url }}{{ product.url }}{% endcapture %}
-  {% capture shareTitle %}{{ product.title }}{% endcapture %}
+  {% capture shareTitle %}{{ product.vendor }} {{ product.title }}{% endcapture %}
 
 {% endif %}
 

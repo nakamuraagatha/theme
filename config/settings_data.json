@@ -17,8 +17,6 @@
     "color_footer_social_link": "#bbbbbb",
     "type_base_family": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
     "type_base_size": "15px",
-    "type_header_family": "Google_Open+Sans_700_sans",
-    "type_header_transform": true,
     "type_accent_family": "Google_Dosis_600_sans",
     "type_navigation_size": "18px",
     "type_navigation_transform": true,
