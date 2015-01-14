@@ -1,5 +1,5 @@
 var variants = {},
-images = new Array(),
+images = [],
 defaultVariant = null,
 
 preload = function(url) {
@@ -63,19 +63,21 @@ currentVariantKey = function() {
 
 update = function() {
   var key = currentVariantKey(),
+  toggleElement = $('#product'),
   variant = variants[key];
   if (variant) {
     $('#productSelect').val(variant.id);
     if (variant.image) {
       $('#productPhoto img[src*="/products/"]:first').attr('src', variant.image);
     }
-    // $(this).val(variant.id);
-    $('form#add').toggleClass('unavailable', variant.quantity < 1 && !variant.available);
-    $('form#add').toggleClass('preorder',    variant.quantity < 1 && variant.available);
+    toggleElement.toggleClass('unavailable', variant.quantity < 1 && !variant.available);
+    toggleElement.toggleClass('preorder',    variant.quantity < 1 && variant.available);
+    toggleElement.toggleClass('on-sale',     variant.onSale);
     $('#productPrice').html(variant.price);
+    $('#comparePrice').html(variant.comparePrice);
   }
   else {
-    $('form#add').addClass('unavailable');
+    toggleElement.addClass('unavailable');
   }
 },
 

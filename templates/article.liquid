@@ -37,11 +37,10 @@
         <ul class="inline-list">
           {% if blog.comments_enabled? %}
           <li>
-            <a href="#comments">
-              {{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}
-              -
-              <a href="#write-comment">{{ 'blogs.comments.title' | t }} &rsaquo;</a>
-            </a>
+            <a href="#comments">{{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}</a> -
+          </li>
+          <li>
+            <a href="#write-comment">{{ 'blogs.comments.title' | t }} &rsaquo;</a>
           </li>
           {% endif %}
         </ul>
@@ -122,10 +121,10 @@
 
                   <div class="grid__item large--one-half">
                     <label for="comment-author" class="hidden-label">{{ 'blogs.comments.name' | t }}</label>
-                    <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{{ 'blogs.comments.name' | t }}" id="comment-author" value="{{ form.author }}" autocapitalize="words">
+                    <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{{ 'blogs.comments.name' | t }}" id="comment-author" value="{{ form.author }}">
 
                     <label for="comment-email" class="hidden-label">{{ 'blogs.comments.email' | t }}</label>
-                    <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{{ 'blogs.comments.email' | t }}" id="comment-email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                    <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{{ 'blogs.comments.email' | t }}" id="comment-email" value="{{ form.email }}">
                   </div>
 
                   <div class="grid__item">

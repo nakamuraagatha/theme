@@ -97,7 +97,7 @@
         <div class="product-grid-image--centered">
           <a href="{{ product_vendor | url_for_vendor }}" title="{{ product_vendor }}">
             {% capture image_name %}vendor_{{ product_vendor | handleize }}.png{% endcapture %}
-            <img class="grayscale" src="{{ image_name | asset_url }}" alt="product_vendor">
+            <img class="grayscale" src="{{ image_name | asset_url }}" alt="{{ product_vendor }}">
           </a>
         </div>
       </div>

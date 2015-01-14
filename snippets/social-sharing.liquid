@@ -1,10 +1,8 @@
 {% if template contains 'article' or template contains 'blog' %}
   {% capture permalinkURL %}{{ shop.url }}{{ article.url }}{% endcapture %}
-  {% capture shareTitle %}{{ article.title }}{% endcapture %}
 
 {% elsif template contains 'product' %}
   {% capture permalinkURL %}{{ shop.url }}{{ product.url }}{% endcapture %}
-  {% capture shareTitle %}{{ product.vendor }} {{ product.title }}{% endcapture %}
 
 {% endif %}
 
@@ -23,7 +21,7 @@
   {% endif %}
 
   {% if settings.share_twitter %}
-    <a target="_blank" href="//twitter.com/share?url={{ permalinkURL }}&amp;text={{ shareTitle }}" class="share-twitter">
+    <a target="_blank" href="//twitter.com/share?url={{ permalinkURL }}" class="share-twitter">
       <span class="icon icon-twitter"></span>
       <span class="share-title">{{ 'products.general.share_on_twitter' | t }}</span>
       {% if settings.social_sharing_count %}

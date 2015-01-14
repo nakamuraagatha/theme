@@ -1128,11 +1128,22 @@ a {
   &:hover,
   &:focus {
     color: $colorLinkHover;
-    text-decoration: underline;
+
+    aside &, .site-footer &, .breadcrumb &, .rte &, .article-content & {
+      text-decoration: underline;
+    }
 
     .template-blog &, .template-article & {
       color: $colorAccentBlog;
     }
+  }
+}
+
+.h6 {
+  margin: 0 0 15px 0;
+
+  a:hover  & {
+    text-decoration: underline;
   }
 }
 
@@ -2746,6 +2757,13 @@ a.btn.link--blog {
   }
 }
 
+.ec_vorkasse {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  opacity: 0.5;
+}
+
 .legal-links {
   margin-bottom: 0;
 
@@ -2807,10 +2825,24 @@ a.btn.link--blog {
 }
 
 .on-sale {
+  .badge--on-sale {
+    display: block;
+    position: relative;
+    top: 40px;
+    right: -60px;
+    margin-top: 0px;
+
+    span {
+      color: $colorAccent;
+      padding: 0 5px;
+    }
+  }
+
   .product-item--price span {
     &:first-child {
       text-decoration: line-through;
       font-size: 12pt;
+      color: #585858;
       font-weight: normal;
     }
 
@@ -3012,6 +3044,10 @@ a.product-grid__item,
     margin: 0;
   }
 
+  li:first-child {
+    float: left;
+    margin-right: 10px;
+  }
 
   .main {
     p, ul, label {
@@ -3076,6 +3112,10 @@ a.product-grid__item,
 .fb-likes {
   background-color: #FFF;
   margin-bottom: 30px;
+  border: none;
+  overflow: hidden;
+  width: 240px;
+  height: 320px;
 }
 
 /*============================================================================
@@ -3286,8 +3326,20 @@ $innerFilterIconWidth: 6px;
 }
 
 #productPrice {
+  @extend h1;
   font-size: 32px;
   margin-bottom: 0;
+}
+
+#comparePrice {
+  display: none;
+  text-decoration: line-through;
+  font-size: 18px;
+
+  .on-sale & {
+    margin-right: 5px;
+    display: block;
+  }
 }
 
 /*================ Notice of < 10 items left ================*/
@@ -4234,4 +4286,12 @@ body.plain {
   footer, .site-header, nav, #mobileNavBar {
     display: none;
   }
+}
+
+
+.ajaxcart__qty:after {
+  content: 'x';
+  position: absolute;
+  margin-top: -26px;
+  margin-left: 10px;
 }

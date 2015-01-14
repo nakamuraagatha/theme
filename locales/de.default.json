@@ -51,7 +51,11 @@
       }
     },
     "sidebar": {
-      "recent_articles": "Neueste Artikel",
+      "recent_articles": "Neueste Artikel im Fooball Blog",
+      "newsletter": "Football Newsletter",
+      "newsletter_text": "Trage dich in unseren Newsletter ein, um weitere Expertentipps & Neuigkeiten zu erhalten.",
+      "newsletter_email": "Deine Emailaddresse",
+      "newsletter_button": "Eintragen",
       "categories": "Kategorien"
     }
   },
@@ -275,6 +279,8 @@
       "quick_links": "Quick Links",
       "get_in_touch": "Folge Playmakers Football auf",
       "pay_save": "Sicher zahlen mit",
+      "pay_save_ec_img": "ec_vorkasse.png",
+      "pay_save_ec_alt": "Sicher mit Vorkasse zahlen",
       "store_on_social_network": "{{ store_name }} auf {{ social_network }}",
       "newsletter_title": "Newsletter",
       "newsletter_sign_up": "Registrieren",
@@ -295,11 +301,12 @@
       "more_description": "Mehr...",
       "more_gallery": "Weitere Bilder...",
       "sold_out": "Ausverkauft",
+      "on_sale": "Sale",
       "unavailable": "Nicht verfügbar",
       "only_left": "Nur noch {{ count }} übrig!",
       "quantity": "Menge",
       "add_to_cart": "In den Einkaufswagen legen",
-      "mwst": "Preise inkl. 19% MwSt.",
+      "mwst": "Preis inkl. 19% MwSt.",
       "shipping_html": ", <a href=\"/pages/versandkosten\" class=\"fancybox fancybox.iframe\">zzgl. Versand</a>",
       "shipping_free_html": ", <a href=\"/pages/versandkosten\" class=\"fancybox fancybox.iframe\">KOSTENLOSER Versand</a>",
       "features": "Eigenschaften"
@@ -307,12 +314,12 @@
   },
   "gift_cards": {
     "issued": {
-      "title": "Hier ist Ihre {{ value }} Geschenkkarte für {{ shop }}!",
-      "subtext": "Hier ist Ihre Geschenkkarte!",
+      "title": "Hier ist Deine {{ value }} Geschenkkarte für {{ shop }}!",
+      "subtext": "Hier ist Deine Geschenkkarte!",
       "disabled": "Deaktiviert",
       "expired": "Abgelaufen am {{ expiry }}",
       "active": "Läuft ab am {{ expiry }}",
-      "redeem": "Nutzen Sie an der Kasse diesen Code, um Ihre Geschenkkarte einzulösen",
+      "redeem": "Nutzen Sie an der Kasse diesen Code, um Deine Geschenkkarte einzulösen",
       "shop_link": "Einkauf beginnen",
       "print": "Drucken"
     }

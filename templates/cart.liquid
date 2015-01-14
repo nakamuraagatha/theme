@@ -1,7 +1,6 @@
 {% if cart.item_count > 0 %}
   <form action="/cart" method="post" novalidate>
-
-    <h1 class="h2">{{ 'cart.general.title' | t }}</h1 class="h2">
+    <h1>{{ 'cart.general.title' | t }}</h1>
 
     {% for item in cart.items %}
     <div class="cart__row" data-id="{{ item.id }}">
@@ -12,7 +11,6 @@
 
             <div class="grid__item one-third large--one-quarter">
               <a href="{{ item.url | within: collections.all }}" class="cart-image">
-
                 <img src="{{ item | img_url: 'medium' }}"  alt="{{ item.title | escape }}">
               </a>
             </div>
@@ -87,7 +85,7 @@
             <label for="cartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
             <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
           {% else %}
-            <div>Sicher zahlen mit</div>
+            <div class="h6">{{ 'layout.footer.pay_save' | t }}</div>
             <ul class="legal-links inline-list payment-icons">
               {% for type in shop.enabled_payment_types %}
                 <li>
@@ -97,6 +95,9 @@
                   </span>
                 </li>
               {% endfor %}
+              <li class="ec_vorkasse">
+                <img src="{{ 'layout.footer.pay_save_ec_img' | t | asset_url }}" aria-hidden="true" alt="{{ 'layout.footer.pay_save_ec_alt' | t }}">
+              </li>
             </ul>
           {% endif %}
         </div>

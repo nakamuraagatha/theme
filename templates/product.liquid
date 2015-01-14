@@ -1,6 +1,11 @@
 {% include 'breadcrumb' %}
 
-<div class="grid" itemscope itemtype="http://schema.org/Product">
+{% assign variant = product.selected_or_first_available_variant %}
+
+{% assign on_sale = false %}
+{% if variant.compare_at_price > variant.price %}{% assign on_sale = true %}{% endif %}
+
+<div class="grid" id="product" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
@@ -46,26 +51,18 @@
     </div>
 
     <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-      {% assign variant = product.selected_or_first_available_variant %}
       <meta itemprop="priceCurrency" content="{{ shop.currency }}">
       <meta itemprop="price" content="{{ variant.price | money }}">
 
       {% capture shipping_key %}{% if variant.price < 10000 %}products.product.shipping_html{% else %}products.product.shipping_free_html{% endif %}{% endcapture %}
+
       <ul class="inline-list product-price">
         <li>
-          <span id="productPrice" class="h1">
-            {% include 'price' with variant.price %}
-          </span>
+          <span id="comparePrice">{{ variant.compare_at_price | money }}</span>
         </li>
-        {% if product.compare_at_price_max > product.price %}
         <li>
-          <span id="comparePrice" class="sale-tag large">
-            {% assign compare_price = variant.compare_at_price %}
-            {% assign product_price = variant.price %}
-            {% include 'price-sale' %}
-          </span>
+          <span id="productPrice">{{ variant.price | money }}</span>
         </li>
-        {% endif %}
       </ul>
       <div>{{ 'products.product.mwst' | t }}{{ shipping_key | t }}</div>
 
@@ -86,6 +83,8 @@
                     addVariant({
                       id: {{variant.id}},
                       price: '{{variant.price | money}}',
+                      comparePrice: '{{variant.compare_at_price | money}}',
+                      onSale: {{ on_sale }},
                       options: {
                         {% if product.options[0] %} {{product.options[0] | handleize | replace: '-', ''}}: '{{variant.option1}}'{% endif %}
                         {% if product.options[1] %},{{product.options[1] | handleize | replace: '-', ''}}: '{{variant.option2}}'{% endif %}
@@ -109,7 +108,7 @@
           {% for option in product.options %}
             <li>
               {% capture handle %}{{ option | handleize | replace: '-', ''}}{% endcapture %}
-              <label for="{{ handle }}">{{ option }}</label>
+              <span>{{ option }}</span>
               <div class="{{ handle }} btn-group btn-group-sm" data-toggle="buttons"></div>
             </li>
           {% endfor %}
@@ -130,11 +129,11 @@
       </form>
     </div>
   </div>
-</div>
 
-<hr>
+  <div class="grid__item one-whole">
+    <hr>
+  </div>
 
-<div class="grid">
   <div class="grid__item large--two-thirds push--large--one-sixth">
     {%assign metafields = product.metafields.features %}
     {% if metafields.size > 0 %}

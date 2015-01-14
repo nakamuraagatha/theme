@@ -22,12 +22,15 @@
         {% if sold_out %}
           <div class="badge badge--sold-out"><span class="badge-label">{{ 'products.product.sold_out' | t }}</span></div>
         {% endif %}
+        {% if on_sale %}
+          <div class="badge badge--on-sale"><span class="badge-label">{{ 'products.product.on_sale' | t }}</span></div>
+        {% endif %}
         <img src="{{ product.featured_image.src | img_url: image_size }}" alt="{{ product.featured_image.alt | escape }}">
       </div>
     </div>
 
-    <p>{{ product.vendor }} {{ product.title }}</p>
-    {% if product.compare_at_price > product.price %}
+    <p class="h6">{{ product.vendor }} {{ product.title }}</p>
+    {% if on_sale %}
       {% assign product_price = product.compare_at_price %}
     {% else %}
       {% assign product_price = product.price %}

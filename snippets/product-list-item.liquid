@@ -32,7 +32,7 @@
       </div>
       <div class="grid__item large--one-fifth medium--two-thirds">
         <span class="medium--left small--left">
-          {% if product.compare_at_price > product.price %}
+          {% if on_sale %}
             {% assign product_price = product.compare_at_price %}
           {% else %}
             {% assign product_price = product.price %}
