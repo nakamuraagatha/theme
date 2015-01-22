@@ -1,15 +1,3 @@
-<!-- <div class="flexslider fullsize" id="heroSlider">
-  <ul class="slides">
-    <li>
-      <a href="#" class="slide-link">
-        <video autoplay autobuffer loop muted poster="{{ 'slide_1.jpg' | asset_url }}" id="bgvid">
-          <source src="{{ 'slide_1.webm' | asset_url }}" type="video/webm">
-          <source src="{{ 'slide_1.mp4' | asset_url }}" type="video/mp4">
-        </video>
-      </a>
-    </li>
-  </ul>
-</div> -->
 <div class="banner grid-uniform fullsize">
   <div class="grid__item one-half push--large--one-half medium--one-whole small--one-whole text-right banner-img">
     <img src="{{ 'banner.jpg' | asset_url }}" alt="enrico martini, swarco raiders/deutsche nationalmannschaft">
@@ -41,6 +29,43 @@
   <hr>
 {% endif %}
 
+<div class="section-header partners">
+  <p class="h1 section-header__left">Unsere Mediapartner</p>
+  <div class="section-header__right"></div>
+</div>
+
+<div class="grid-uniform partners" >
+  <div class="grid__item one-third">
+    <div class="product-grid-image">
+      <div class="product-grid-image--centered">
+        <a href="http://www.football-aktuell.de/cgi-bin/ehuddle.pl" target="_blank" title="E-Huddle">
+          <img src="{{ 'partner-ehuddle.png' | asset_url }}" alt="E-Huddle">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="grid__item one-third">
+    <div class="product-grid-image">
+      <div class="product-grid-image--centered">
+        <a href="http://www.football-aktuell.de" target="_blank" title="Football Aktuell">
+          <img src="{{ 'partner-football-aktuell.png' | asset_url }}" alt="Football Aktuell">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="grid__item one-third">
+    <div class="product-grid-image">
+      <div class="product-grid-image--centered">
+        <a href="http://www.huddle-verlag.de" target="_blank" title="Huddle">
+          <img src="{{ 'partner-huddle.png' | asset_url }}" style="padding-top: 25px" alt="Huddle">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="partners">
+
 <div class="articles fullsize">
   <div class="section-header">
       <p class="h1 section-header__left">{{ 'homepage.featured_articles.heading' | t: title: blogs['news'].title }}</p>
@@ -60,7 +85,7 @@
 <hr>
 
 <div class="section-header">
-    <p class="h1 section-header__left">Das ist Playmakers Football</p>
+    <p class="h1 section-header__left">{{ 'homepage.about.heading' | t }}</p>
     <div class="section-header__right"></div>
 </div>
 
@@ -85,7 +110,7 @@
 <hr>
 
 <div class="section-header">
-  <p class="h1 section-header__left">Unsere Equipment Partner</p>
+  <p class="h1 section-header__left">{{ 'homepage.vendors.heading' | t }}</p>
   <div class="section-header__right"></div>
 </div>
 

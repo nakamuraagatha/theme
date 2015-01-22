@@ -3095,6 +3095,26 @@ a.product-grid__item,
   color: #585858 !important;
 }
 
+.partners {
+  display: none;
+
+  div > div {
+    height: 120px;
+  }
+
+  img {
+    max-height: 80%;
+  }
+
+  .template-blog &, .template-article & {
+    margin-bottom: 20px;
+
+    img {
+      border: 5px solid #FFF;
+    }
+  }
+}
+
 .vendors .grid__item a {
   display: block;
   opacity: 0.3;
@@ -3336,7 +3356,7 @@ $innerFilterIconWidth: 6px;
   text-decoration: line-through;
   font-size: 18px;
 
-  .on-sale & {
+  .onsale & {
     margin-right: 5px;
     display: block;
   }
@@ -3356,10 +3376,6 @@ $innerFilterIconWidth: 6px;
 .product-photo-container {
   margin-bottom: $gutter;
   max-width: 100%;
-}
-
-.product-photo-thumbs li:first-child {
-  display: none;
 }
 
 .product-photo-container,

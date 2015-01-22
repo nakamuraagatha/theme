@@ -10,6 +10,21 @@
   </div>
 </form>
 
+<h4 class="partners">Unsere Mediapartner:</h4>
+<div class="partners">
+  <a href="http://www.football-aktuell.de/cgi-bin/ehuddle.pl" target="_blank" title="E-Huddle">
+    <img src="{{ 'partner-ehuddle.png' | asset_url }}" alt="E-Huddle">
+  </a>
+
+  <a href="http://www.football-aktuell.de" target="_blank" title="Football Aktuell">
+    <img src="{{ 'partner-football-aktuell_quer.png' | asset_url }}" alt="Football Aktuell">
+  </a>
+
+  <a href="http://www.huddle-verlag.de" target="_blank" title="Huddle">
+    <img src="{{ 'partner-huddle.png' | asset_url }}" alt="Huddle">
+  </a>
+</div>
+
 <h4>{{ 'blogs.sidebar.recent_articles' | t }}:</h4>
 {% for article in blog.articles limit:8 %}
   <p>

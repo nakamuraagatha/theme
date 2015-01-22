@@ -25,7 +25,7 @@
         {% if on_sale %}
           <div class="badge badge--on-sale"><span class="badge-label">{{ 'products.product.on_sale' | t }}</span></div>
         {% endif %}
-        <img src="{{ product.featured_image.src | img_url: image_size }}" alt="{{ product.featured_image.alt | escape }}">
+        <img src="{{ product.featured_image.src | img_url: image_size }}" alt="{{ product.vendor }} {{ product.featured_image.alt | escape }} preview">
       </div>
     </div>
 

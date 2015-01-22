@@ -53,7 +53,7 @@
     "sidebar": {
       "recent_articles": "Neueste Artikel im Fooball Blog",
       "newsletter": "Football Newsletter",
-      "newsletter_text": "Trage dich in unseren Newsletter ein, um weitere Expertentipps & Neuigkeiten zu erhalten.",
+      "newsletter_text": "Trage dich in unseren Newsletter ein um weitere Expertentipps & Neuigkeiten zu erhalten.",
       "newsletter_email": "Deine Emailaddresse",
       "newsletter_button": "Eintragen",
       "categories": "Kategorien"
@@ -250,6 +250,12 @@
     "featured_articles": {
       "heading": " Neueste Einträge im {{ title }}",
       "more": "Alle Beiträge lesen"
+    },
+    "about" : {
+      "heading": "Das ist Playmakers Football"
+    },
+    "vendors" : {
+      "heading": "Unsere Equipment Partner"
     }
   },
   "layout": {

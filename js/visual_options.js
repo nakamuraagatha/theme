@@ -72,7 +72,7 @@ update = function() {
     }
     toggleElement.toggleClass('unavailable', variant.quantity < 1 && !variant.available);
     toggleElement.toggleClass('preorder',    variant.quantity < 1 && variant.available);
-    toggleElement.toggleClass('on-sale',     variant.onSale);
+    toggleElement.toggleClass('onsale',     variant.onSale);
     $('#productPrice').html(variant.price);
     $('#comparePrice').html(variant.comparePrice);
   }

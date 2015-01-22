@@ -19,15 +19,21 @@
         {% if product.images.size > 1 %}
           <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
 
-            {% for image in product.images limit: 5 %}
-              <li class="grid__item one-quarter">
-                <a href="{{ image.src | img_url: 'large' }}" class="product-photo-thumb">
-                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-                </a>
-              </li>
+            {% for image in product.images offset: 1 %}
+              {% if forloop.index < 5 %}
+                <li class="grid__item one-quarter">
+                  <a href="{{ image.src | img_url: 'large' }}" rel="fancybox-thumb" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ image.alt | escape }}">
+                    <img src="{{ image.src | img_url: 'small' }}" alt="{{ product.vendor }} {{ image.alt | escape }}">
+                  </a>
+                </li>
+              {% else %}
+                <li class="grid__item one-quarter hidden">
+                  <a href="{{ image.src | img_url: 'large' }}" rel="fancybox-thumb" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ image.alt | escape }}"></a>
+                </li>
+              {% endif %}
             {% endfor %}
           </ul>
-          <a href="#">{{ 'products.product.more_gallery' | t }}</a>
+          <a href="{{ product.images[1] | img_url: 'large' }}" rel="fancybox-thumb" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ product.title | escape }}">{{ 'products.product.more_gallery' | t }}</a>
         {% endif %}
       </div>
     </div>
@@ -184,101 +190,20 @@
   </div>
 </div>
 
-{{ 'option_selection.js' | shopify_asset_url | script_tag }}
 <script>
+  Shopify.Image = {
+    preload: function (images, size) {
+      for (var i=0; i < images.length; i++) {
+        var image = images[i];
 
-  // Pre-loading product images, to avoid a lag when a thumbnail is clicked, or
-  // when a variant is selected that has a variant image.
-  Shopify.Image.preload({{ product.images | json }}, 'large');
-
-  var selectCallback = function(variant, selector) {
-
-    var $addToCart = $('#addToCart'),
-        $productPrice = $('#productPrice'),
-        $comparePrice = $('#comparePrice'),
-        $variantQuantity = $('#variantQuantity'),
-        $quantityElements = $('.quantity-selector, label + .js-qty'),
-        $addToCartText = $('#addToCartText'),
-        $featuredImage = $('#productPhotoImg');
-
-    if (variant) {
-      // Update variant image, if one is set
-      // Call timber.switchImage function in shop.js
-      if (variant.featured_image) {
-        var newImg = variant.featured_image,
-            el = $featuredImage[0];
-        Shopify.Image.switchImage(newImg, el, timber.switchImage);
+        this.loadImage(this.getSizedImageUrl(image, size));
       }
+    },
 
-      // Select a valid variant if available
-      if (variant.available) {
-        // We have a valid product variant, so enable the submit button
-        $addToCart.removeClass('disabled').prop('disabled', false);
-        $addToCartText.html({{ 'products.product.add_to_cart' | t | json }});
-
-        // Show how many items are left, if below 10
-        if (variant.inventory_management) {
-          if (variant.inventory_quantity < 10 && variant.inventory_quantity > 0) {
-            $variantQuantity.html('Only ' + variant.inventory_quantity + ' left!').show();
-          } else {
-            $variantQuantity.hide();
-          }
-        }
-
-
-        $quantityElements.show();
-      } else {
-        // Variant is sold out, disable the submit button
-        $addToCart.addClass('disabled').prop('disabled', true);
-        $addToCartText.text('Sold Out');
-        $variantQuantity.hide();
-        $quantityElements.hide();
-      }
-
-      // Regardless of stock, update the product price
-      var customPriceFormat = timber.formatMoney( Shopify.formatMoney(variant.price, "{{ shop.money_format }}") );
-      $productPrice.html(customPriceFormat);
-
-      // Also update and show the product's compare price if necessary
-      if ( variant.compare_at_price > variant.price ) {
-        var priceSaving = timber.formatSaleTag( Shopify.formatMoney(variant.compare_at_price - variant.price, "{{ shop.money_format }}") );
-        {% comment %}
-        priceSaving += ' (' + ( (variant.compare_at_price - variant.price)*100/(variant.compare_at_price) ).toFixed(0) + '%)';
-        {% endcomment %}
-        $comparePrice.html('Save ' + priceSaving).show();
-      } else {
-        $comparePrice.hide();
-      }
-
-    } else {
-      // The variant doesn't exist, disable submit button.
-      // This may be an error or notice that a specific variant is not available.
-      $addToCart.addClass('disabled').prop('disabled', true);
-      $addToCartText.text('Unavailable');
-      $variantQuantity.hide();
-      $quantityElements.hide();
-    }
-  };
-
-  // jQuery(function($) {
-  //   new Shopify.OptionSelectors('productSelect', {
-  //     product: {{ product | json }},
-  //     onVariantSelected: selectCallback,
-  //     enableHistoryState: true
-  //   });
-
-  //   // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
-  //   {% if product.options.size == 1 and product.options.first != 'Title' %}
-  //     $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first | escape }}</label>');
-  //   {% endif %}
-
-  //   // Hide selectors if we only have 1 variant and its title contains 'Default'.
-  //   {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
-  //     $('.selector-wrapper').hide();
-  //   {% else %}
-  //     $('#variantBreak').removeClass('hr--clear');
-  //   {% endif %}
-  // });
+    loadImage: function (path) {
+      new Image().src = path;
+    },
+  }
 </script>
 
 {% if settings.product_image_zoom_enable %}
