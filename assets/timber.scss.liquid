@@ -3955,6 +3955,29 @@ html[xmlns] .slides { display: block; }
   }
 }
 
+#product-preorder, #product-unavailable  {
+  display: none;
+}
+
+.preorder {
+  #product-preorder {
+    display: block;
+  }
+
+  #product-add, #product-unavailable {
+    display: none;
+  }
+}
+
+.unavailable {
+  #product-unavailable {
+    display: block;
+  }
+
+  #product-add,  #product-preorder{
+    display: none;
+  }
+}
 
 #options li {
   > label {

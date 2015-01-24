@@ -11,9 +11,9 @@
   {% endfor %}
 {% endif %}
 
-{% if collection and collection.products_count > 1 %}
+{% if collection and collection.products_count > 0 %}
   <hr>
-  <span class="h1">{{ 'products.general.related_products' | t }}</span>
+  <span class="h1">{{ collection.title }}</span>
   <div class="grid-uniform">
     {% assign current_product = product %}
     {% assign current_product_found = false %}
@@ -21,9 +21,9 @@
       {% if product.handle == current_product.handle %}
         {% assign current_product_found = true %}
       {% else %}
-        {% unless current_product_found == false and forloop.last %}
+        {% if current_product_found == true or !forloop.last or collection.products_count < number_of_products_to_fetch %}
           {% include 'product-grid-item' %}
-        {% endunless %}
+        {% endif %}
       {% endif %}
     {% endfor %}
   </div>

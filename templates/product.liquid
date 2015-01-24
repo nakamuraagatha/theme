@@ -125,12 +125,20 @@
           <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
         {% endif %}
 
-        <button type="submit" name="add" id="addToCart" class="btn">
-          <span class="icon icon-cart"></span>
-          <span id="addToCartText">{{ 'products.product.add_to_cart' | t }}</span>
-        </button>
+        <div id="product-add">
+          <button type="submit" name="add" id="addToCart" class="btn">
+            <span class="icon icon-cart"></span>
+            <span id="addToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+          </button>
+        </div>
+        <div id="product-preorder">
+          <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=" data-fancybox-type="iframe" class="btn preorder">unverbindlich Vorbestellen</a>
+        </div>
+        <div id="product-unavailable">
+          <p>Leider ist das Produkt zur Zeit vergriffen.</p>
+        </div>
         {% if product.type == "Helme" %}
-          <br><small>(inkl. Soft-Cup Chinstrap, exkl. Facemask, <a href="{{ 'Zubehör ' | append: product.type | url_for_type}}" data-fancybox-type="iframe">bitte hier wählen</a>)</small>
+          <small>(inkl. Soft-Cup Chinstrap, exkl. Facemask, <a href="{{ 'Zubehör ' | append: product.type | url_for_type}}" data-fancybox-type="iframe">bitte hier wählen</a>)</small>
         {% endif  %}
       </form>
     </div>
