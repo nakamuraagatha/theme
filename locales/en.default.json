@@ -68,23 +68,12 @@
       "or": "or",
       "view_cart": "View Cart",
       "close_cart": "Close Cart"
-    },
-    "label": {
-      "product": "Product",
-      "price": "Price",
-      "quantity": "Quantity",
-      "total": "Total"
     }
   },
   "collections": {
     "general": {
       "no_matches": "Sorry, there are no products matching your search.",
       "link_title": "Browse our {{ title }} collection",
-      "items_count": {
-        "zero": "item",
-        "one": "item",
-        "other": "items"
-      },
       "items_with_count": {
         "zero": "0 item",
         "one": "1 item",
@@ -139,7 +128,6 @@
       "title": "Your Addresses",
       "default": "Default",
       "add_new": "Add a New Address",
-      "edit_address": "Edit address",
       "first_name": "First Name",
       "last_name": "Last Name",
       "company": "Company",
@@ -203,8 +191,7 @@
       "email": "Email",
       "submit": "Submit",
       "cancel": "Cancel",
-      "subtext": "We will send you an email to reset your password.",
-      "success": "We've sent you an email with a link to update your password."
+      "subtext": "We will send you an email to reset your password."
     },
     "reset_password": {
       "title": "Reset account password",
@@ -281,7 +268,6 @@
       "share_on_pinterest": "Pin it",
       "share_on_fancy": "Fancy",
       "related_products": "We Also Recommend",
-      "from": "From",
       "save_html": "Save {{ saved_amount }}"
     },
     "product": {

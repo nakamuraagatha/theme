@@ -1,5 +1,13 @@
 {% include 'slider' %}
 
+{% unless settings.home_content == blank or pages[settings.home_content].empty? or pages[settings.home_content].content == blank %}
+  {% assign page = pages[settings.home_content] %}
+  <div class="rte">
+    {{ page.content }}
+  </div>
+  <hr>
+{% endunless %}
+
 {% if settings.home_featured_collections_enable %}
   <div class="section-header">
     <h2 class="h1 section-header--left">{{ 'homepage.featured_collections.heading' | t }}</h2>
@@ -133,7 +141,9 @@
 {% endif %}
 
 {% unless settings.home_featured_row1_enable == false or settings.home_featured_row1 == blank or collections[settings.home_featured_row1].empty? %}
+  {% if settings.home_featured_collections_enable %}
   <hr>
+  {% endif %}
   {% assign featured_row = settings.home_featured_row1 %}
   {% assign row_limit_setting = settings.home_featured_row1_number %}
 

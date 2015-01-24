@@ -68,23 +68,12 @@
       "or": "ou",
       "view_cart": "Voir le panier",
       "close_cart": "Fermer le panier"
-    },
-    "label": {
-      "product": "Produit",
-      "price": "Prix",
-      "quantity": "Quantité",
-      "total": "Total"
     }
   },
   "collections": {
     "general": {
       "no_matches": "Désolé, aucun produit ne correspond à votre recherche.",
       "link_title": "Parcourir notre collection {{ title }}",
-      "items_count": {
-        "zero": "article",
-        "one": "article",
-        "other": "articles"
-      },
       "items_with_count": {
         "zero": "0 article",
         "one": "1 article",
@@ -139,7 +128,6 @@
       "title": "Vos adresses",
       "default": "Défaut",
       "add_new": "Ajouter une nouvelle adresse",
-      "edit_address": "Modifier l'Adresse",
       "first_name": "Prénom",
       "last_name": "Nom",
       "company": "Entreprise",
@@ -203,8 +191,7 @@
       "email": "Courriel",
       "submit": "Soumettre",
       "cancel": "Annuler",
-      "subtext": "Nous vous enverrons un courriel pour réinitialiser votre mot de passe.",
-      "success": "Nous vous avons envoyé un courriel contenant un lien pour mettre à jour votre mot de passe."
+      "subtext": "Nous vous enverrons un courriel pour réinitialiser votre mot de passe."
     },
     "reset_password": {
       "title": "Réinitialiser le mot de passe du compte",
@@ -281,7 +268,6 @@
       "share_on_pinterest": "Épingler",
       "share_on_fancy": "Partager sur Fancy",
       "related_products": "Nous vous recommandons également",
-      "from": "De",
       "save_html": "Épargnez {{ saved_amount }}"
     },
     "product": {

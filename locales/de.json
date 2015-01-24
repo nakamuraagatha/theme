@@ -68,23 +68,12 @@
       "or": "oder",
       "view_cart": "Einkaufswagen ansehen",
       "close_cart": "Einkaufswagen schließen"
-    },
-    "label": {
-      "product": "Artikel",
-      "price": "Preis",
-      "quantity": "Menge",
-      "total": "Gesamt"
     }
   },
   "collections": {
     "general": {
       "no_matches": "Es tut uns leid, aber Ihre Suche nach Produkten hat keine Treffer ergeben.",
       "link_title": "Durchsuchen Sie unsere {{ title }}-Zusammenstellung",
-      "items_count": {
-        "zero": "Produkte",
-        "one": "Produkt",
-        "other": "Produkte"
-      },
       "items_with_count": {
         "zero": "0 Produkte",
         "one": "1 Produkt",
@@ -139,7 +128,6 @@
       "title": "Ihre Adressen",
       "default": "Standard",
       "add_new": "Neue Adresse hinzufügen",
-      "edit_address": "Adresse bearbeiten",
       "first_name": "Vorname",
       "last_name": "Nachname",
       "company": "Firma",
@@ -203,8 +191,7 @@
       "email": "E-Mail",
       "submit": "Absenden",
       "cancel": "Abbrechen",
-      "subtext": "Wir werden Ihnen eine E-Mail zum Zurücksetzen des Passworts schicken.",
-      "success": "Wir haben Ihnen eine E-Mail mit einem Link zum Aktualisieren des Passworts geschickt."
+      "subtext": "Wir werden Ihnen eine E-Mail zum Zurücksetzen des Passworts schicken."
     },
     "reset_password": {
       "title": "Account-Passwort zurücksetzen",
@@ -281,7 +268,6 @@
       "share_on_pinterest": "Pin it",
       "share_on_fancy": "Fancy",
       "related_products": "Wir empfehlen außerdem",
-      "from": "Von",
       "save_html": "Speichern {{ saved_amount }}"
     },
     "product": {

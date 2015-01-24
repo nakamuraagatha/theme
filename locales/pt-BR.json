@@ -68,23 +68,12 @@
       "or": "ou",
       "view_cart": "Ver carrinho",
       "close_cart": "Fechar carrinho"
-    },
-    "label": {
-      "product": "Produto",
-      "price": "Preço",
-      "quantity": "Quantidade",
-      "total": "Total"
     }
   },
   "collections": {
     "general": {
       "no_matches": "Desculpe, mas não há produtos correspondentes à sua busca.",
       "link_title": "Explore a nossa coleção {{ title }}",
-      "items_count": {
-        "zero": "itens",
-        "one": "item",
-        "other": "itens"
-      },
       "items_with_count": {
         "zero": "0 itens",
         "one": "1 item",
@@ -139,7 +128,6 @@
       "title": "Seus endereços",
       "default": "Padrão",
       "add_new": "Adicionar um novo endereço",
-      "edit_address": "Editar endereço",
       "first_name": "Nome",
       "last_name": "Sobrenome",
       "company": "Empresa",
@@ -203,8 +191,7 @@
       "email": "E-mail",
       "submit": "Enviar",
       "cancel": "Cancelar",
-      "subtext": "Enviaremos a você um e-mail para redefinir a sua senha.",
-      "success": "Nós lhe enviamos um e-mail com o link para atualizar a sua senha."
+      "subtext": "Enviaremos a você um e-mail para redefinir a sua senha."
     },
     "reset_password": {
       "title": "Redefinir sua senha",
@@ -281,7 +268,6 @@
       "share_on_pinterest": "Pin it",
       "share_on_fancy": "Fancy",
       "related_products": "Recomendamos também",
-      "from": "A partir de",
       "save_html": "Economize {{ saved_amount }}"
     },
     "product": {

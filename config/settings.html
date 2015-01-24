@@ -46,7 +46,7 @@
       <th>
         <label for="color_body_bg">Body Background</label>
       </th>
-      <td colspan="2"><input id="color_body_bg" name="color_body_bg" class="color" type="text" value="#fffff" /></td>
+      <td colspan="2"><input id="color_body_bg" name="color_body_bg" class="color" type="text" value="#ffffff" /></td>
     </tr>
     <tr>
       <th>
@@ -677,6 +677,19 @@
     </tr>
   </table>
 
+  <!-- Page content -->
+  <table>
+    <tr>
+      <td colspan="2">
+        <h3 class="heading">Content</h3>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="home_content">Add this page to the home page</label></th>
+      <td><select class="page" name="home_content" id="home_content" /></td>
+    </tr>
+  </table>
+
   <!-- Featured Collections -->
   <table>
     <tr>
@@ -901,11 +914,6 @@
   </table>
 </fieldset>
 
-<!-- Blog Pages -->
-<!-- <fieldset>
-  <legend>Blog Pages</legend>
-</fieldset> -->
-
 <!-- Cart Page -->
 <fieldset>
   <legend>Cart Page</legend>
@@ -1008,6 +1016,27 @@
           </tr>
         </table>
       </td>
+    </tr>
+  </table>
+</fieldset>
+
+<!-- Price Format -->
+<fieldset>
+  <legend>Price Format</legend>
+  <table>
+    <tr>
+      <th>
+        <label for="remove_dollar_symbol">Remove dollar symbol</label>
+        <small>Remove the '$' symbol from all prices.</small>
+      </th>
+      <td><input type="checkbox" id="remove_dollar_symbol" name="remove_dollar_symbol" value="1" /></td>
+    </tr>
+    <tr>
+      <th>
+        <label for="superscript_decimals">Apply superscript styling to cents</label>
+        <small>Show cents half a character above the normal line and in a smaller font.</small>
+      </th>
+      <td><input type="checkbox" id="superscript_decimals" name="superscript_decimals" value="1" /></td>
     </tr>
   </table>
 </fieldset>
