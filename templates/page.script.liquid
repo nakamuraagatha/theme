@@ -50,6 +50,11 @@ jQuery(function($) {
     }
   });
 
+  $('#product-preorder a').click(function() {
+    var selection = $('#productSelect').val();
+    $(this).attr('href', $(this).attr('href') + selection);
+  });
+
   $('.cart-continue').click(function(e) {
     e.preventDefault();
     $('.ajaxifyCart__close').click();

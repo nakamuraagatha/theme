@@ -1883,21 +1883,27 @@ jQuery(function($) {
   $('a[data-fancybox-type="iframe"]').fancybox();
   $('.fancybox').fancybox();
   $('.fancybox-thumb').fancybox({
-      prevEffect: 'none',
-      nextEffect: 'none',
-      helpers: {
-        thumbs: {
-          width: 50,
-          height: 50
-        }
+    prevEffect: 'none',
+    nextEffect: 'none',
+    helpers: {
+      thumbs: {
+        width: 50,
+        height: 50
       }
-    });
+    }
+  });
+
+  $('#product-preorder a').click(function() {
+    var selection = $('#productSelect').val();
+    $(this).attr('href', $(this).attr('href') + selection);
+  });
+
   $('.cart-continue').click(function(e) {
     e.preventDefault();
     $('.ajaxifyCart__close').click();
   });
 
-  if(window.location.href.indexOf("huddle") > -1) {
+  if (window.location.href.indexOf("huddle") > -1) {
     $('.partners').show();
     $('.partners a').click(function(event){
       event = event || window.event;
@@ -1905,7 +1911,5 @@ jQuery(function($) {
       console.log(target.attr('href'));
       ga('send', 'event', 'link', 'click', target.attr('href'));
     });
-
   }
-  // $("img.lazy").lazyload();
 });

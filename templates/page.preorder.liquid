@@ -4,8 +4,6 @@
       <h1>{{ page.title }}</h1>
       <p>{{ page.content | replace: '[produkt]', form.product }}</p>
 
-      <hr>
-
       {% if form.errors %}
         <div class="errorForm feedback">
           <p>Da ist etwas schief gelaufen! Bitte achte darauf, dass sowohl Email-, als auch das Nachrichtenfeld ausgefüllt sind.</p>
@@ -14,11 +12,10 @@
 
       {% if form.posted_successfully? %}
         <div class="successForm feedback">
-          <p>Danke für deine Vorbestellung. Wir melden uns sobald du {{ form.product }} bei Playmakers bestellen kannst.</p>
+          <p>Danke für deine Vorbestellung. Wir benachrichtigen dich sobald du <strong>{{ form.product }}</strong> wieder bei Playmakers Football bestellen kannst.</p>
         </div>
       {% else %}
         <div class="form-group">
-          Hiermit bestelle ich {{ form.product }} unverbindlich vor:
           <input type="hidden" name="contact[product]" value="Vorbestellung für: {{ form.product }}"/>
           <input type="hidden" name="contact[body]" value="Variant ID: {{ form.body }}"/>
         </div>

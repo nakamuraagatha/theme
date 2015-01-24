@@ -21,7 +21,7 @@
           {% assign type_name =  'Zubehör ' | append: link.object.products.first.type  %}
           {% if shop.types contains type_name %}
             <li {% if link.active %}class="site-nav--active"{% endif %}>
-              <a href="{{ type_name | url_for_type }}">{{ type_name }}</a>
+              <a href="{{ link.url }}-zubehoer">{{ type_name }}</a>
             </li>
           {% endif %}
         </ul>
