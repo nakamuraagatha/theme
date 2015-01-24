@@ -44,8 +44,6 @@
   {% endcomment %}
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
-  {{ 'modernizr.min.js' | asset_url | script_tag }}
-  {{ 'visual_options.js' | asset_url | script_tag }}
 
   <script type="application/ld+json">
     {
@@ -140,20 +138,12 @@
 
   {% include 'footer' %}
 
-  {% if settings.slider_home_enable %}
-    {{ 'jquery.flexslider.min.js' | asset_url | script_tag }}
-  {% endif %}
-
-  {{ 'jquery.fancybox.pack.js' | asset_url | script_tag }}
-
-  {{ 'shop.js' | asset_url | script_tag }}
-  <script>
-  var moneyFormat = '{{ shop.money_format }}';
-  </script>
-
-  {{ 'handlebars.min.js' | asset_url | script_tag }}
   {% include 'ajax-cart-template' %}
-  {{ 'ajaxify.js' | asset_url | script_tag }}
+
+  {{ 'scripts2.js' | asset_url | script_tag }}
+
+  {{ content_for_footer }}
+
   <script>
     var inIframe = function() {
       try {
@@ -166,62 +156,8 @@
     if (inIframe()) {
       $('body').addClass('plain');
     }
-
-    jQuery(function($) {
-      ajaxifyShopify.init({
-        method: '{{ settings.ajax_cart_method }}',
-        wrapperClass: 'wrapper',
-        formSelector: '#addToCartForm',
-        addToCartSelector: '#addToCart',
-        cartCountSelector: '#cartCount',
-        toggleCartButton: '.cart-toggle',
-        useCartTemplate: true,
-        btnClass: 'btn',
-        moneyFormat: {{ shop.money_format | json }},
-        disableAjaxCart: false,
-        enableQtySelectors: true
-      });
-
-      var vid = document.getElementById("bgvid");
-      if (vid) {
-        vid.playbackRate = 0.4;
-      }
-      $("#bgvid").bind('ended', function(){
-       this.play();
-      });
-
-      $('a[data-fancybox-type="iframe"]').fancybox();
-      $('.fancybox').fancybox();
-      $('.fancybox-thumb').fancybox({
-          prevEffect: 'none',
-          nextEffect: 'none',
-          helpers: {
-            thumbs: {
-              width: 50,
-              height: 50
-            }
-          }
-        });
-      $('.cart-continue').click(function(e) {
-        e.preventDefault();
-        $('.ajaxifyCart__close').click();
-      });
-
-      if(window.location.href.indexOf("huddle") > -1) {
-        $('.partners').show();
-        $('.partners a').click(function(event){
-          event = event || window.event;
-          var target = $(event.target).parent('a');
-          console.log(target.attr('href'));
-          ga('send', 'event', 'link', 'click', target.attr('href'));
-        });
-
-      }
-      // $("img.lazy").lazyload();
-    });
   </script>
 
-  {{ content_for_footer }}
   <a href="https://plus.google.com/+PlaymakersDeShop" rel="publisher"></a>
 </body>
 </html>
