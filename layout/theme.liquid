@@ -34,12 +34,10 @@
 
   {% include 'oldIE-js' %}
 
-  {% comment %}
-    {% if template contains 'customers' %}
-      {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-      {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
-    {% endif %}
-  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
 
@@ -56,7 +54,6 @@
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
   <header class="site-header" role="banner">
     <div class="wrapper header">
-
       <div class="grid--full">
         {% capture tag %}{% if template == 'index' %}h1{% else %}div{% endif %}{% endcapture %}
         <{{ tag }} class="h1 header-logo large--left" itemscope itemtype="http://schema.org/Organization">
@@ -66,31 +63,6 @@
         {{ 'layout.navigation.special_html' | t }}
 
         <div class="header-nav large--text-right">
-          {% if settings.header_message != blank or shop.customer_accounts_enabled %}
-            <div class="site-header--text-links{% if settings.header_message == blank %} medium-down--hide{% endif %}">
-              {% if settings.header_message != blank %}
-                {{ settings.header_message }}
-              {% endif %}
-
-              {% if shop.customer_accounts_enabled %}
-                <span class="site-header--meta-links medium-down--hide">
-                  {% if customer %}
-                    {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                    {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }} &middot; {{ 'layout.customer.log_out' | t | customer_logout_link }}
-                  {% else %}
-                    {{ 'layout.customer.sign_in' | t | customer_login_link }}
-                    {% if shop.customer_accounts_optional %}
-                      <span class="site-header--spacer">or</span>
-                      {{ 'layout.customer.create_account' | t | customer_register_link }}
-                    {% endif %}
-                  {% endif %}
-                </span>
-              {% endif %}
-            </div>
-
-            <br class="medium-down--hide">
-          {% endif %}
-
           <a href="/cart" class="header-btn cart-toggle right">
             <span class="icon icon-cart"></span>
             {{ 'layout.cart.cart' | t }} <span id="cartCount" {% if cart.item_count == 0 %}class="hidden-count"{% endif %}>{{ cart.item_count }}</span>

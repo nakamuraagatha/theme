@@ -125,6 +125,20 @@
           {% for link in linklists['footer'].links %}
             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
+          {% if shop.customer_accounts_enabled %}
+            <li class="legal-links--account">
+            {% if customer %}
+              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }} &middot; {{ 'layout.customer.log_out' | t | customer_logout_link }}
+            {% else %}
+              {{ 'layout.customer.sign_in' | t | customer_login_link }}
+              {% if shop.customer_accounts_optional %}
+              <span class="site-header--spacer">{{ 'layout.customer.or' | t }}</span>
+              {{ 'layout.customer.create_account' | t | customer_register_link }}
+              {% endif %}
+            {% endif %}
+            </li>
+          {% endif %}
           <li class="legal-links--copyright">
             &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}
           </li>
