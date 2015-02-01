@@ -60,13 +60,10 @@ jQuery(function($) {
     $('.ajaxifyCart__close').click();
   });
 
-  if (window.location.href.indexOf("huddle") > -1) {
-    $('.partners').show();
-    $('.partners a').click(function(event){
-      event = event || window.event;
-      var target = $(event.target).parent('a');
-      console.log(target.attr('href'));
-      ga('send', 'event', 'link', 'click', target.attr('href'));
-    });
-  }
+  $('.partners a').click(function(event){
+    event = event || window.event;
+    var target = $(event.target).parent('a');
+    console.log(target.attr('href'));
+    ga('send', 'event', 'link', 'click', target.attr('href'));
+  });
 });

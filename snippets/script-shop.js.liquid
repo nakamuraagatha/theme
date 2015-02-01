@@ -69,7 +69,7 @@ timber.accessibleNav = function () {
       $allLinks = $nav.find('a'),
       $topLevel = $nav.children('li').find('a'),
       $parents = $nav.find('.site-nav--has-dropdown'),
-      $subMenuLinks = $nav.find('.site-nav__dropdown').find('a'),
+      $subMenuLinks = $nav.find('.site-nav--dropdown').find('a'),
       activeClass = 'nav-hover',
       focusClass = 'nav-focus';
 
@@ -106,7 +106,7 @@ timber.accessibleNav = function () {
   function handleFocus ($el) {
     var $subMenu = $el.next('ul'),
         hasSubMenu = $subMenu.hasClass('sub-nav') ? true : false,
-        isSubItem = $('.site-nav__dropdown').has($el).length,
+        isSubItem = $('.site-nav--dropdown').has($el).length,
         $newFocus = null;
 
     // Add focus class for top level items, or keep menu shown
@@ -191,7 +191,7 @@ timber.alignMenu = function () {
     $nav.append(
       '<li id="moreMenu" class="site-nav--has-dropdown">'
         + '<a href="#">' + {{ 'layout.navigation.more' | t | json }} + '<span class="icon icon-arrow-down" aria-hidden="true"></span></a>'
-        + '<ul id="moreMenu--list" class="site-nav__dropdown">' + menuhtml + '</ul></li>'
+        + '<ul id="moreMenu--list" class="site-nav--dropdown">' + menuhtml + '</ul></li>'
     );
 
     if (i <= 1) {

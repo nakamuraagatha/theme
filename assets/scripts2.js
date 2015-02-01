@@ -315,11 +315,11 @@ timber.init = function () {
   //   timber.responsiveNav();
   // });
 
-  
 
-  
+
+
     timber.socialSharing();
-  
+
 };
 
 timber.accessibleNav = function () {
@@ -327,7 +327,7 @@ timber.accessibleNav = function () {
       $allLinks = $nav.find('a'),
       $topLevel = $nav.children('li').find('a'),
       $parents = $nav.find('.site-nav--has-dropdown'),
-      $subMenuLinks = $nav.find('.site-nav__dropdown').find('a'),
+      $subMenuLinks = $nav.find('.site-nav--dropdown').find('a'),
       activeClass = 'nav-hover',
       focusClass = 'nav-focus';
 
@@ -364,7 +364,7 @@ timber.accessibleNav = function () {
   function handleFocus ($el) {
     var $subMenu = $el.next('ul'),
         hasSubMenu = $subMenu.hasClass('sub-nav') ? true : false,
-        isSubItem = $('.site-nav__dropdown').has($el).length,
+        isSubItem = $('.site-nav--dropdown').has($el).length,
         $newFocus = null;
 
     // Add focus class for top level items, or keep menu shown
@@ -449,7 +449,7 @@ timber.alignMenu = function () {
     $nav.append(
       '<li id="moreMenu" class="site-nav--has-dropdown">'
         + '<a href="#">' + "Mehr" + '<span class="icon icon-arrow-down" aria-hidden="true"></span></a>'
-        + '<ul id="moreMenu--list" class="site-nav__dropdown">' + menuhtml + '</ul></li>'
+        + '<ul id="moreMenu--list" class="site-nav--dropdown">' + menuhtml + '</ul></li>'
     );
 
     if (i <= 1) {
@@ -580,11 +580,11 @@ timber.switchImage = function (src, imgObject, el) {
   var $el = $(el);
   $el.attr('src', src);
 
-  
+
 };
 
 timber.productImageZoom = function () {
-  
+
 };
 
 timber.socialSharing = function () {
@@ -1903,13 +1903,10 @@ jQuery(function($) {
     $('.ajaxifyCart__close').click();
   });
 
-  if (window.location.href.indexOf("huddle") > -1) {
-    $('.partners').show();
-    $('.partners a').click(function(event){
-      event = event || window.event;
-      var target = $(event.target).parent('a');
-      console.log(target.attr('href'));
-      ga('send', 'event', 'link', 'click', target.attr('href'));
-    });
-  }
+  $('.partners a').click(function(event){
+    event = event || window.event;
+    var target = $(event.target).parent('a');
+    console.log(target.attr('href'));
+    ga('send', 'event', 'link', 'click', target.attr('href'));
+  });
 });

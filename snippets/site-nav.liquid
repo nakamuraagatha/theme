@@ -10,7 +10,7 @@
             <span class="icon icon-arrow-down" aria-hidden="true"></span>
           </span>
         </a>
-        <ul class="site-nav__dropdown">
+        <ul class="site-nav--dropdown">
           {% for product in link.object.products %}
             <li {% if childlink.active %}class="site-nav--active"{% endif %}><a href="{{ product.url | within: link.object }}">
               {% comment %}<img id="productPhotoImg" class="lazy" height="25" data-original="{{ product.featured_image | product_img_url: 'thumb' }}">{% endcomment %}
