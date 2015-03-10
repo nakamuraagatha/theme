@@ -1,3 +1,5 @@
 .rvmrc
 config.yml
 examples
+vendor/
+.bundle/config
