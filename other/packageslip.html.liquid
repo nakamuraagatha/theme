@@ -1,0 +1,80 @@
+<style>
+  @font-face {
+      font-family: 'playmaker_3regular';
+      src: url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.eot');
+      src: url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.eot?#iefix') format('embedded-opentype'),
+           url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.woff') format('woff'),
+           url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.ttf') format('truetype'),
+           url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.svg#playmaker_3regular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  @page {
+    size: 210mm 148mm;
+  }
+
+  .slip {
+    width: 180mm;
+    max-height: 148mm;
+  }
+
+  .slip div {
+    min-height: 12mm;
+  }
+
+  .slip p,
+  .slip ul {
+    line-height: 7mm;
+    margin: 0;
+    padding: 0;
+    font-size: 5mm;
+    padding-bottom: 3mm;
+    font-family: 'playmaker_3regular';
+    overflow: hidden;
+  }
+
+  .slip .recipient p {
+    font-size: 8mm;
+  }
+
+  .slip .sender,
+  .slip .url {
+    margin-top: 15mm;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .slip img {
+    float: left;
+    width: 40mm;
+    margin: 2mm 10mm;
+  }
+
+  .printer-preview-content {
+    padding: 0px;
+  }
+</style>
+
+<div class="slip">
+   <div class="sender">
+      <p>
+        Absender: PM 24 Trading UG, Schwedter Str. 45, 10435 Berlin
+      </p>
+    </div>
+    <div class="recipient">
+      <img src="//cdn.shopify.com/s/files/1/0240/1531/t/6/assets/logo.svg?4097732530389191659">
+      <ul>Empfänger:</ul>
+      <p>
+        {{ shipping_address.name }}<br>
+        {{ shipping_address.street }}<br>
+        {{ shipping_address.zip | upcase }} {{ shipping_address.city | upcase}}<br>
+        {{ shipping_address.country | upcase}}
+      </p>
+    </div>
+    <div class="url">
+      <p>
+        www.playmakers<span class="fix">-</span>football.de
+      </p>
+    </div>
+</div>

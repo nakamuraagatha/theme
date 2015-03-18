@@ -1,0 +1,57 @@
+Hallo {{ billing_address.first_name }},
+
+vielen Dank für deine Bestellung bei Playmakers! Diese E-Mail ist eine automatische Eingangsbestätigung deiner Bestellung.
+
+Bestellübersicht:
+
+  Datum: {{ date | date: "%d.%m.%Y" }}
+
+  Lieferadresse:
+    {{ shipping_address.name }}
+    {{ shipping_address.street }}
+    {{ shipping_address.zip }} {{ shipping_address.city }}
+
+  Rechnungsadresse:
+    {{ billing_address.name }}
+    {{ billing_address.street }}
+    {{ billing_address.zip }} {{ billing_address.city }}
+
+
+  Bestellte Produkte:
+{% for line     in line_items %}    {{ line.quantity }}x {{line.vendor}} {{line.title }} für {{ line.price | money_with_currency }} pro Stück
+{% endfor %}
+{% if discounts.size > 0 %}
+  Discounts:
+{% for discount in discounts  %}    Code: {{ discount.code }} -{{ discount.savings | money_with_currency }}
+{% endfor %}{% endif %}
+  Zwischensumme: {{ subtotal_price | money_with_currency  }}
+{% for tax_line in tax_lines  %}    {{ tax_line.title }}: {{ tax_line.price | money_with_currency  }}
+{% endfor %}
+  Versand: {{ shipping_price | money_with_currency }}
+
+  Endbetrag inkl. MwSt.: {{ total_price | money_with_currency }}
+
+Solltest du Banküberweisung gewählt haben, überweise bitte den Gesamtbetrag von {{ total_price | money_with_currency }} auf folgendes Konto:
+Empfänger: PM 24 Trading UG
+Kontonr.: 6682868
+Deutsche Bank
+BLZ: 10070024
+IBAN: DE90 1007 0024 0668 2868 00
+BIC: DEUTDEDBBER
+
+Wir werden dich im weiteren Verlauf über den Status deiner Bestellung auf dem Laufenden halten.
+
+Gruß
+Pascal
+
+---
+Playmakers-Football.de - Dein American Football Shop
+
+Like us on Facebook: https://www.facebook.com/playmakers.shop
+Follow us on Twitter:  https://twitter.com/playmakers_shop
+
+
+PM 24 Trading UG (haftungsbeschränkt)
+Geschäftsführer: Pascal Heck
+Handelsregister: Amtsgericht Charlottenburg, HRB 151649 B
+Sitz der Gesellschaft: Berlin
