@@ -17,7 +17,7 @@
       {% else %}
         <div class="form-group">
           <input type="hidden" name="contact[product]" value="Vorbestellung für: {{ form.product }}"/>
-          <input type="hidden" name="contact[body]" value="Variant ID: {{ form.body }}"/>
+          <input type="hidden" name="contact[body]" value="{{ form.body }}"/>
         </div>
         <div class="form-group">
           <label>Dein Name:</label>

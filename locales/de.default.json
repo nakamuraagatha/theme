@@ -315,6 +315,9 @@
       "mwst": "Preis inkl. 19% MwSt.",
       "shipping_html": ", <a href=\"\/pages\/versandkosten\" class=\"fancybox fancybox.iframe\">zzgl. 3,50&euro; Versand<\/a>",
       "shipping_free_html": ", <a href=\"\/pages\/versandkosten\" class=\"fancybox fancybox.iframe\">KOSTENLOSER Versand<\/a>",
+      "delivery": ", Lieferzeit: 3-5 Werktage*",
+      "delivery_extra": "* gilt für Lieferungen innerhalb Deutschlands, Lieferzeiten für andere Länder entnehmen Sie bitte der Schaltfläche mit den Versandinformationen",
+      "preorder" : "unverbindlich Vorbestellen",
       "features": "Eigenschaften"
     }
   },

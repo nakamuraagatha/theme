@@ -51,8 +51,11 @@ jQuery(function($) {
   });
 
   $('#product-preorder a').click(function() {
-    var selection = $('#productSelect').val();
-    $(this).attr('href', $(this).attr('href') + selection);
+    var selected_value = $('#productSelect').val(),
+    selected_text = $('#productSelect option:selected').text(),
+    text = selected_text + " - variant id: " + selected_value;
+
+    $(this).attr('href', $(this).attr('href') + text);
   });
 
   $('.cart-continue').click(function(e) {

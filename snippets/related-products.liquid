@@ -21,7 +21,7 @@
       {% if product.handle == current_product.handle %}
         {% assign current_product_found = true %}
       {% else %}
-        {% if current_product_found == true or !forloop.last or collection.products_count < number_of_products_to_fetch %}
+        {% if current_product_found == true or forloop.last == false or collection.products_count < number_of_products_to_fetch %}
           {% include 'product-grid-item' %}
         {% endif %}
       {% endif %}

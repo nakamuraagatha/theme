@@ -70,7 +70,7 @@
           <span id="productPrice">{{ variant.price | money }}</span>
         </li>
       </ul>
-      <div>{{ 'products.product.mwst' | t }}{{ shipping_key | t }}</div>
+      <div>{{ 'products.product.mwst' | t }}{{ shipping_key | t }}{{ 'products.product.delivery' | t }}</div>
 
       <hr id="variantBreak" class="hr--clear hr--small">
 
@@ -132,7 +132,7 @@
           </button>
         </div>
         <div id="product-preorder">
-          <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=" data-fancybox-type="iframe" class="btn preorder">unverbindlich Vorbestellen</a>
+          <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=" data-fancybox-type="iframe" class="btn preorder">{{ 'products.product.preorder' | t }}</a>
         </div>
         <div id="product-unavailable">
           <p>Leider ist das Produkt zur Zeit vergriffen.</p>
@@ -149,7 +149,7 @@
   </div>
 
   <div class="grid__item large--two-thirds push--large--one-sixth">
-    {%assign metafields = product.metafields.features %}
+    {% assign metafields = product.metafields.features %}
     {% if metafields.size > 0 %}
       <span class="h1">{{ 'products.product.features' | t }}:</span>
       <ul class="inline-list product-features">
@@ -170,6 +170,8 @@
 
     <div id="description" class="product-description rte" itemprop="description">
       {{ product.description }}
+      <br>
+      {{ 'products.product.delivery_extra' | t }}
     </div>
 
     {% if settings.social_sharing_products %}
@@ -181,7 +183,7 @@
         {% assign collection_name = 'zubehor-' | append: product.handle %}
         {% assign collection = collections[collection_name] %}
       {% elsif product.type == "Schulterpolster" %}
-        {% assign collection = collections['zubehor-pads'] %}
+        {% assign collection = collections['american-football-schulterpolster-zubehoer'] %}
       {% else %}
         {% assign collection = collections['american-football'] %}
       {% endif %}
