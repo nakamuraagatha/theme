@@ -204,6 +204,22 @@ $socialIconFontStack: 'icons';
   #{$property}: #{$value};
 }
 
+@mixin flexbox-display-flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flexbox($cmd, $direction) {
+  -webkit-box-#{$cmd}: $direction;
+  -moz-box-#{$cmd}: $direction;
+  -webkit-#{$cmd}: $direction;
+  -ms-flex-#{$cmd}: $direction;
+  #{$cmd}: $direction;
+}
+
 @mixin transition($transition: 0.1s all) {
   @include prefix('transition', #{$transition});
 }
@@ -3031,25 +3047,13 @@ a.product-grid__item,
   padding-top: $gutter;
 }
 
-.banner {
-  background-color: #EEE;
-  padding: 0;
-
+.banner, .banner2 {
   .banner-img {
     margin-bottom: -5px;
   }
 
   img {
     width: 100%
-  }
-
-  form, ul {
-    margin: 0;
-  }
-
-  li:first-child {
-    float: left;
-    margin-right: 10px;
   }
 
   .main {
@@ -3079,6 +3083,76 @@ a.product-grid__item,
   .grid__item {
     padding: 0;
   }
+}
+
+.banner {
+  background-color: #EEE;
+  padding: 0;
+
+  form, ul {
+    margin: 0;
+  }
+
+  li:first-child {
+    float: left;
+    margin-right: 10px;
+  }
+}
+
+.banner2 {
+  @include flexbox-display-flex;
+  @include flexbox(flex-direction, row);
+  @include flexbox(flex-wrap, wrap);
+
+  & > div {
+    @include flexbox(flex, 1);
+    min-width: 390px;
+
+    &.teaser {
+      @include flexbox(align-self, center);
+      @include at-query ($min, $large) {
+        @include flexbox(order, -1);
+      }
+      text-align: center;
+    }
+  }
+
+  .iwrapper {
+    text-align: left;
+    display: inline-block;
+    padding: 10px;
+  }
+
+  p {
+    font-size: 17pt;
+    color: black;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    max-width: 500px;
+    padding-bottom: 10px;
+  }
+
+  .header {
+    display: inline-block;
+    font-family: 'playmakers';
+    font-size: 37pt;
+    color: black;
+    font-weight: normal;
+    line-height: 1.2;
+  }
+
+  ul {
+    text-align: center;
+  }
+
+  a {
+    min-width: 300px;
+  }
+}
+
+.hidden {
+  display: none;
 }
 
 .article-content {
