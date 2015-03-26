@@ -317,7 +317,7 @@
       "shipping_free_html": ", <a href=\"\/pages\/versandkosten\" class=\"fancybox fancybox.iframe\">KOSTENLOSER Versand<\/a>",
       "delivery": ", Lieferzeit: 3-5 Werktage*",
       "delivery_extra": "* gilt für Lieferungen innerhalb Deutschlands, Lieferzeiten für andere Länder entnehmen Sie bitte der Schaltfläche mit den Versandinformationen",
-      "preorder" : "unverbindlich Vorbestellen",
+      "preorder": "unverbindlich Vorbestellen",
       "features": "Eigenschaften"
     }
   },
@@ -356,6 +356,9 @@
       "newsletter": {
         "subscription_checkbox": "Unseren Newsletter abonnieren",
         "subscription_checkbox_tooltip": "Wir senden dir Nachrichten und Angebote bezüglich unserer  Produkte. Du kannst den Newsletter jederzeit kostenlos abbestellen. Die Kontaktdaten hierzu findest Du in unserem Impressum."
+      },
+      "payment": {
+        "gift_card_code_label": "Geschenkgutschein:"
       }
     },
     "links": {
