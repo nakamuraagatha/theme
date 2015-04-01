@@ -1,12 +1,14 @@
 {% layout settings.customer_layout %}
 
+{% include 'breadcrumb' %}
+
 <h1>{{ 'customer.account.title' | t }}</h1>
 
 <hr class="hr--small">
 
 <div class="grid">
 
-  <div class="grid-item large--two-thirds push--large--one-sixth medium-down--one-whole">
+  <div class="grid__item large--two-thirds push--large--one-sixth medium-down--one-whole">
     <h4>{{ 'customer.orders.title' | t }}</h4>
 
     {% if customer.orders.size != 0 %}

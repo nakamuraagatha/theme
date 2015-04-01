@@ -15,13 +15,15 @@
 
 {% layout settings.customer_layout %}
 
+{% include 'breadcrumb' %}
+
 <h1>{{ 'customer.account.title' | t }}</h1>
 
 <p><a href="/account">{{ 'customer.account.return' | t }}</a></p>
 
 <div class="grid">
 
-  <div class="grid-item large--two-thirds push--large--one-sixth medium-down--one-whole">
+  <div class="grid__item large--two-thirds push--large--one-sixth medium-down--one-whole">
     <h4>{{ 'customer.order.title' | t: name: order.name }}</h4>
 
     {% capture date %}<strong>{{ order.created_at | date: format: 'long' }}</strong>{% endcapture %}

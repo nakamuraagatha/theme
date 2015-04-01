@@ -1,11 +1,13 @@
 {% layout settings.customer_layout %}
 
+{% include 'breadcrumb' %}
+
 <div class="grid">
 
-  <div class="grid-item large--one-third push--large--one-third text-center">
+  <div class="grid__item large--two-thirds push--large--one-sixth">
 
     <div class="note form-success" id="resetSuccess" style="display:none;">
-      We've sent you an email with a link to update your password.
+      {{ 'customer.recover_password.success' | t }}
     </div>
 
     {% form 'customer_login' %}
@@ -31,14 +33,8 @@
         <p>
           <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
         </p>
-        {{ 'customer.login.or' | t }} <a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
-
     {% endform %}
 
-
-    {% comment %}
-      This page uses JavaScript to show/hide the recover password form
-    {% endcomment %}
     <div id="recover_password" style="display: none;">
 
       <h2>{{ 'customer.recover_password.title' | t }}</h2>
@@ -58,23 +54,9 @@
         <p>
           <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
         </p>
-        {{ 'customer.login.or' | t }} <a href="#" onclick="hideRecoverPasswordForm();return false;">{{ 'customer.recover_password.cancel' | t }}</a>
-
       {% endform %}
 
     </div>
-
-    {% if shop.checkout.guest_login %}
-      <hr>
-
-      <h2>{{ 'customer.login.guest_title' | t }}</h2>
-
-      {% form 'guest_login' %}
-        <input  type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
-      {% endform %}
-
-    {% endif %}
-
   </div>
 
 </div>

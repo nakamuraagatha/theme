@@ -144,7 +144,7 @@
       "cancel": "Einladung ablehnen"
     },
     "addresses": {
-      "title": "Ihre Adressen",
+      "title": "Deine Adressen",
       "default": "Standard",
       "add_new": "Neue Adresse hinzufügen",
       "edit_address": "Adresse bearbeiten",
@@ -164,13 +164,13 @@
       "cancel": "Abbrechen",
       "edit": "Bearbeiten",
       "delete": "Löschen",
-      "delete_confirm": "Sind Sie sicher, dass Sie diese Adresse löschen möchten?"
+      "delete_confirm": "Bist Du sicher, dass Du diese Adresse löschen möchtest?"
     },
     "login": {
       "title": "Login",
       "email": "E-Mail",
       "password": "Passwort",
-      "forgot_password": "Haben Sie Ihr Passwort vergessen?",
+      "forgot_password": "Hast Du dein Passwort vergessen?",
       "sign_in": "Anmelden",
       "or": "oder",
       "cancel": "Zurück zum Shop",
@@ -184,7 +184,7 @@
       "payment_status": "Zahlungsstatus",
       "fulfillment_status": "Lieferstatus",
       "total": "Gesamt",
-      "none": "Sie haben noch keine Bestellungen aufgegeben."
+      "none": "Du hast noch keine Bestellungen aufgegeben."
     },
     "order": {
       "title": "Bestellung {{ name }}",
@@ -211,12 +211,12 @@
       "email": "E-Mail",
       "submit": "Absenden",
       "cancel": "Abbrechen",
-      "subtext": "Wir werden Ihnen eine E-Mail zum Zurücksetzen des Passworts schicken.",
-      "success": "Wir haben Ihnen eine E-Mail mit einem Link zum Aktualisieren des Passworts geschickt."
+      "subtext": "Wir schicken Dir eine E-Mail zum Zurücksetzen des Passworts.",
+      "success": "Wir haben Dir eine E-Mail mit einem Link zum Aktualisieren des Passworts geschickt."
     },
     "reset_password": {
       "title": "Account-Passwort zurücksetzen",
-      "subtext": "Geben Sie ein neues Passwort für {{ email }} ein",
+      "subtext": "Gebe Dein ein neues Passwort für {{ email }} ein",
       "password": "Passwort",
       "password_confirm": "Passwort bestätigen",
       "submit": "Passwort zurücksetzen"
@@ -328,7 +328,7 @@
       "disabled": "Deaktiviert",
       "expired": "Abgelaufen am {{ expiry }}",
       "active": "Läuft ab am {{ expiry }}",
-      "redeem": "Nutzen Sie an der Kasse diesen Code, um Deine Geschenkkarte einzulösen",
+      "redeem": "Nutze an der Kasse diesen Code, um Deine Geschenkkarte einzulösen",
       "shop_link": "Einkauf beginnen",
       "print": "Drucken"
     }

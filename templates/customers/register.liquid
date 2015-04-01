@@ -1,8 +1,10 @@
 {% layout settings.customer_layout %}
 
+{% include 'breadcrumb' %}
+
 <div class="grid">
 
-  <div class="grid-item large--one-third push--large--one-third text-center">
+  <div class="grid__item large--two-thirds push--large--one-sixth">
 
     <h1>{{ 'customer.register.title' | t }}</h1>
 
@@ -24,7 +26,6 @@
       <p>
         <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
       </p>
-      {{ 'customer.register.or' | t }} <a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
 
     {% endform %}
 

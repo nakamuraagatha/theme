@@ -1,5 +1,7 @@
 {% layout settings.customer_layout %}
 
+{% include 'breadcrumb' %}
+
 <header class="section-header">
   <h1 class="section-header--left">{{ 'customer.account.title' | t }}</h1>
   <div class="section-header--right">
@@ -11,7 +13,7 @@
 
 <div class="grid">
 
-  <div class="grid-item large--two-thirds push--large--one-sixth medium-down--one-whole">
+  <div class="grid__item large--two-thirds push--large--one-sixth medium-down--one-whole">
     <p><a href="/account">{{ 'customer.account.return' | t }}</a></p>
   </div>
   <div class="grid-item large--two-thirds push--large--one-sixth medium-down--one-whole">
