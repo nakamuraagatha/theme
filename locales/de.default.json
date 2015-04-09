@@ -339,10 +339,12 @@
         "payment_due_label": "Zu Zahlen",
         "taxes_label": "19% MwSt.",
         "title": "Deine Bestellung",
-        "show_discount_form_link_label": "Gebe hier deinen Rabatt-Code ein",
+        "show_discount_form_link_label": "Gebe hier deinen Geschenkgutschein Code ein",
         "free_shipping_discount_label": "Kostenloser Versand",
         "shipping_label": "Versandkosten",
-        "total_label": "Gesamtpreis inkl. Mwst."
+        "total_label": "Gesamtpreis inkl. Mwst.",
+        "discount_placeholder": "Code",
+        "discount_label": "Geschenkgutschein"
       },
       "shipping": {
         "please_enter_your_shipping_information_notice": "Bitte gebe deine Lieferadresse ein",
