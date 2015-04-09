@@ -79,8 +79,8 @@ update = function() {
     if (variant.image) {
       $('#productPhoto img[src*="/products/"]:first').attr('src', variant.image);
     }
-    toggleElement.toggleClass('unavailable', variant.quantity < 1 && !variant.available);
-    toggleElement.toggleClass('preorder',    variant.quantity < 1 && variant.available);
+    // toggleElement.toggleClass('unavailable', variant.quantity < 1 && !variant.available);
+    toggleElement.toggleClass('preorder',  !variant.available);
     toggleElement.toggleClass('onsale',     variant.onSale);
     $('#productPrice').html(variant.price);
     $('#comparePrice').html(variant.comparePrice);
@@ -145,10 +145,10 @@ renderButton = function(optionKey, optionValue, display) {
     })
     .on('availability', function(event, available) {
       $(this)
-        .toggleClass('unavailable', !available)
-        .toggleClass('disabled', !available)
-        .find('input:radio')
-          .attr('disabled', !available);
+        .toggleClass('preorder', !available)
+        // .toggleClass('disabled', !available)
+        // .find('input:radio')
+        //   .attr('disabled', !available);
     })
     .on('resolveAvailabilityConflict', function() {
       $(this).filter('.active.unavailable').each(function() {

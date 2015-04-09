@@ -316,7 +316,7 @@
       "shipping_html": ", <a href=\"\/pages\/versandkosten\" class=\"fancybox fancybox.iframe\">zzgl. 3,50&euro; Versand<\/a>",
       "shipping_free_html": ", <a href=\"\/pages\/versandkosten\" class=\"fancybox fancybox.iframe\">KOSTENLOSER Versand<\/a>",
       "delivery": ", Lieferzeit: 3-5 Werktage*",
-      "delivery_extra": "* gilt für Lieferungen innerhalb Deutschlands, Lieferzeiten für andere Länder entnehmen Sie bitte der Schaltfläche mit den Versandinformationen",
+      "delivery_extra_html": "* gilt für Lieferungen innerhalb Deutschlands, Lieferzeiten für andere Länder unter <a href=\"\/pages\/versandkosten\" class=\"fancybox fancybox.iframe\">Zahlung und Versand<\/a>",
       "preorder": "unverbindlich Vorbestellen",
       "features": "Eigenschaften"
     }

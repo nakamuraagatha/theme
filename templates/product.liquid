@@ -81,33 +81,33 @@
           <li id="variants">
             <select name="id" id="productSelect" class="product-variants">
               {% for variant in product.variants %}
-                {% if variant.available %}
-
-                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
-                  {% capture product_variants %}
-                    {{ product_variants }}
-                    addVariant({
-                      id: {{variant.id}},
-                      price: '{{variant.price | money}}',
-                      comparePrice: '{{variant.compare_at_price | money}}',
-                      onSale: {{ on_sale }},
-                      options: {
-                        {% if product.options[0] %} {{product.options[0] | handleize | replace: '-', ''}}: '{{variant.option1}}'{% endif %}
-                        {% if product.options[1] %},{{product.options[1] | handleize | replace: '-', ''}}: '{{variant.option2}}'{% endif %}
-                        {% if product.options[2] %},{{product.options[2] | handleize | replace: '-', ''}}: '{{variant.option3}}'{% endif %}
-                      },
-                      available: {{variant.available}},
-                      {% if variant.featured_image.src %}
-                      image: '{{variant.featured_image.src | product_img_url: 'grande'}}',
-                      {% endif %}
-                      quantity: {% if variant.inventory_quantity > 0 %}1{% else %}0{% endif %}
-                    });
-                  {% endcapture %}
-                {% else %}
-                  <option disabled="disabled">
-                    {{ variant.title }} - {{ 'products.product.sold_out' | t }}
-                  </option>
-                {% endif %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                  {{ variant.title }} -
+                  {% if variant.available %}
+                    {{ variant.price | money_with_currency }}
+                  {% else %}
+                    {{ 'products.product.sold_out' | t }}
+                  {% endif %}
+                </option>
+                {% capture product_variants %}
+                  {{ product_variants }}
+                  addVariant({
+                    id: {{variant.id}},
+                    price: '{{variant.price | money}}',
+                    comparePrice: '{{variant.compare_at_price | money}}',
+                    onSale: {{ on_sale }},
+                    options: {
+                      {% if product.options[0] %} {{product.options[0] | handleize | replace: '-', ''}}: '{{variant.option1}}'{% endif %}
+                      {% if product.options[1] %},{{product.options[1] | handleize | replace: '-', ''}}: '{{variant.option2}}'{% endif %}
+                      {% if product.options[2] %},{{product.options[2] | handleize | replace: '-', ''}}: '{{variant.option3}}'{% endif %}
+                    },
+                    available: {{variant.available}},
+                    {% if variant.featured_image.src %}
+                    image: '{{variant.featured_image.src | product_img_url: 'grande'}}',
+                    {% endif %}
+                    quantity: {% if variant.inventory_quantity > 0 %}1{% else %}0{% endif %}
+                  });
+                {% endcapture %}
               {% endfor %}
             </select>
           </li>
@@ -170,13 +170,15 @@
 
     <div id="description" class="product-description rte" itemprop="description">
       {{ product.description }}
-      <br>
-      {{ 'products.product.delivery_extra' | t }}
     </div>
 
     {% if settings.social_sharing_products %}
       {% include 'social-sharing' %}
     {% endif %}
+
+    <div class="delivery_extra">
+      {{ 'products.product.delivery_extra_html' | t }}
+    </div>
 
     {% if settings.related_products_enable %}
       {% if product.type == "Helme" %}

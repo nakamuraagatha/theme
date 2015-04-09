@@ -11,7 +11,7 @@
   {% endfor %}
 {% endif %}
 
-{% if collection and collection.products_count > 0 %}
+{% if collection != empty and collection.products_count > 0 %}
   <hr>
   <span class="h1">{{ collection.title }}</span>
   <div class="grid-uniform">

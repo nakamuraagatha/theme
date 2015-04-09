@@ -1234,6 +1234,10 @@ html input[disabled] {
     color: $disabledBorder;
     background-color: $disabledGrey;
   }
+
+  &.preorder {
+    opacity: 0.6;
+  }
 }
 
 .btn--secondary,
@@ -1811,6 +1815,11 @@ label.error {
       @include transition(color 0.05s ease-in);
     }
   }
+}
+
+.delivery_extra {
+  margin: 20px 0;
+  font-size: 10pt;
 }
 
 /*================ Social share buttons ================*/
