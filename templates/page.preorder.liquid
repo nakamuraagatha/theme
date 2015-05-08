@@ -6,13 +6,13 @@
 
       {% if form.errors %}
         <div class="errorForm feedback">
-          <p>Da ist etwas schief gelaufen! Bitte achte darauf, dass sowohl Email-, als auch das Nachrichtenfeld ausgefüllt sind.</p>
+          <p>Da ist etwas schief gelaufen! Bitte achte darauf, dass deine Email Adresse stimmt.</p>
         </div>
       {% endif %}
 
       {% if form.posted_successfully? %}
         <div class="successForm feedback">
-          <p>Danke für deine Vorbestellung. Wir benachrichtigen dich sobald du <strong>{{ form.product }}</strong> wieder bei Playmakers Football bestellen kannst.</p>
+          <p>Danke für dein Interesse. Wir benachrichtigen dich sobald du <strong>{{ form.product }}</strong> wieder bei Playmakers Football bestellen kannst.</p>
         </div>
       {% else %}
         <div class="form-group">
@@ -30,7 +30,7 @@
 
         <div class="form-group">
           <br>
-          <button type="submit" id="contactFormSubmit" class="btn btn-default">unverbindlich Vorbestellen</button>
+          <button type="submit" id="contactFormSubmit" class="btn btn-default">Verfügbarkeitsbenachrichtigung aktivieren</button>
         </div>
       {% endif %}
     {% endform %}

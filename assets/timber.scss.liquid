@@ -2868,6 +2868,10 @@ a.btn.link--blog {
 
   .product-item--price span {
     &:first-child {
+      &:before {
+        content: 'bisher: ';
+      }
+
       text-decoration: line-through;
       font-size: 12pt;
       color: #585858;
@@ -2875,9 +2879,16 @@ a.btn.link--blog {
     }
 
     &.sale-price {
+      &:before {
+        content: 'jetzt: ';
+        font-size: 12pt;
+        color: #585858;
+      }
+
       font-size: 16pt;
       color: $colorAccent;
       font-weight: bold;
+      display: block;
     }
   }
 }
@@ -3429,6 +3440,14 @@ $innerFilterIconWidth: 6px;
   @extend h1;
   font-size: 32px;
   margin-bottom: 0;
+
+  .onsale & {
+    &:before {
+      content: 'jetzt: ';
+      font-size: 18px;
+      color: #585858;
+    }
+  }
 }
 
 #comparePrice {
@@ -3437,6 +3456,9 @@ $innerFilterIconWidth: 6px;
   font-size: 18px;
 
   .onsale & {
+    &:before {
+      content: 'bisher: ';
+    }
     margin-right: 5px;
     display: block;
   }
