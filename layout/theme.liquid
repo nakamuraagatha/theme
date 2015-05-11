@@ -110,7 +110,7 @@
 
   {% include 'ajax-cart-template' %}
 
-  {{ 'scripts2.js' | asset_url | script_tag }}
+  {{ 'scripts2.js?123456' | asset_url | script_tag }}
 
   {{ content_for_footer }}
 

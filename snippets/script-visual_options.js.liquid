@@ -136,10 +136,10 @@ renderButton = function(optionKey, optionValue, display) {
     })
     .on('availability', function(event, available) {
       $(this)
-        .toggleClass('unavailable', !available)
-        .toggleClass('disabled', !available)
-        .find('input:radio')
-          .attr('disabled', !available);
+        .toggleClass('preorder', !available)
+        // .toggleClass('disabled', !available)
+        // .find('input:radio')
+        //  .attr('disabled', !available);
     })
     .on('resolveAvailabilityConflict', function() {
       $(this).filter('.active.unavailable').each(function() {

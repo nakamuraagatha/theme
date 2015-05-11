@@ -1,5 +1,5 @@
 {% if cart.item_count > 0 %}
-  <form action="/cart" method="post" novalidate>
+  <form action="/cart" method="post" id="cart_form" novalidate>
     <h1>{{ 'cart.general.title' | t }}</h1>
 
     {% for item in cart.items %}
@@ -80,7 +80,32 @@
 
     <div class="cart__row">
       <div class="grid">
-        <div class="grid__item large--one-half">
+
+        <div class="grid__item text-right cart__total large--seven-twelfths  push--large--five-twelfths">
+          <div class="cart-subtotal">
+            {{ 'cart.general.subtotal' | t }}
+            <span class="h1 cart-subtotal--price">
+              {% include 'price' with cart.total_price %}
+            </span>
+            <div>
+              {% capture shipping_key %}{% if cart.total_price < 10000 %}cart.general.shipping{% else %}cart.general.shipping_free{% endif %}{% endcapture %}
+              {{ 'cart.general.mwst' | t }}{{ shipping_key | t }}
+            </div>
+          </div>
+
+          <div class="cart-accept">
+            <input id="accept" type="checkbox"> {{ 'cart.general.accept_html' | t }}
+          </div>
+
+          <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
+          <a href="?continue" class="btn--secondary cart-continue">{{ 'cart.general.continue' | t }}</a>
+          <button type="submit" name="checkout" class="btn">
+            <span class="icon icon-cart"></span>
+            {{ 'cart.general.checkout' | t }}
+          </button>
+        </div>
+
+        <div class="grid__item large--five-twelfths pull--large--seven-twelfths">
           {% if settings.cart_notes_enable %}
             <label for="cartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
             <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
@@ -100,26 +125,6 @@
               </li>
             </ul>
           {% endif %}
-        </div>
-        <div class="grid__item text-right large--one-half">
-
-          <div class="cart-subtotal">
-            {{ 'cart.general.subtotal' | t }}
-            <span class="h1 cart-subtotal--price">
-              {% include 'price' with cart.total_price %}
-            </span>
-            <div>
-              {% capture shipping_key %}{% if cart.total_price < 10000 %}cart.general.shipping{% else %}cart.general.shipping_free{% endif %}{% endcapture %}
-              {{ 'cart.general.mwst' | t }}{{ shipping_key | t }}
-            </div>
-          </div>
-
-          <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
-          <a href="?continue" class="btn--secondary">{{ 'cart.general.continue' | t }}</a>
-          <button type="submit" name="checkout" class="btn">
-            <span class="icon icon-cart"></span>
-            {{ 'cart.general.checkout' | t }}
-          </button>
         </div>
 
       </div>

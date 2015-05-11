@@ -55,12 +55,7 @@ jQuery(function($) {
     selected_text = $('#productSelect option:selected').text(),
     text = selected_text + " - variant id: " + selected_value;
 
-    $(this).attr('href', $(this).attr('href') + text);
-  });
-
-  $('.cart-continue').click(function(e) {
-    e.preventDefault();
-    $('.ajaxifyCart__close').click();
+    $(this).attr('href', $(this).attr('href') + encodeURIComponent(text));
   });
 
   $('.partners a').click(function(event){

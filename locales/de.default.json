@@ -71,6 +71,7 @@
       "empty": "Dein Einkaufswagen ist im Moment leer.",
       "continue_browsing_html": "Mit der Suche <a href=\"\/collections\/all\">hier<\/a> fortfahren.",
       "or": "oder",
+      "accept_html": "Ich bestätige die <a href=\"\/pages\/agb\" target=\"_blank\">Allgemeinen Geschäftsbedingungen.<\/a>",
       "view_cart": "Einkaufswagen ansehen",
       "close_cart": "Einkaufswagen schließen",
       "mwst": "Preise inkl. MwSt.",

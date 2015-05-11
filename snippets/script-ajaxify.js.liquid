@@ -22,16 +22,6 @@
 if ((typeof Shopify) === 'undefined') { Shopify = {}; }
 
 /*============================================================================
-  Basic JS Helper Functions
-==============================================================================*/
-function urlParams (name) {
-  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.search);
-  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-/*============================================================================
   API Helper Functions
 ==============================================================================*/
 function attributeToString(attribute) {
@@ -266,7 +256,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Default settings
     settings = {
-      method: 'drawer', // Method options are drawer, modal, and flip. Default is drawer.
+      method: 'modal',
       formSelector: 'form[action^="/cart/add"]',
       addToCartSelector: 'input[type="submit"]',
       cartCountSelector: null,
@@ -284,11 +274,6 @@ var ajaxifyShopify = (function(module, $) {
 
     // Override defaults with arguments
     $.extend(settings, options);
-
-    // If method parameter is set, override the defined method (used for demos)
-    if (urlParams('method')) {
-      settings.method = urlParams('method');
-    }
 
     // Make sure method is lower case
     settings.method = settings.method.toLowerCase();
@@ -330,31 +315,15 @@ var ajaxifyShopify = (function(module, $) {
     if (!settings.disableAjaxCart) {
       // Handle each case add to cart method
       switch (settings.method) {
-        case 'flip':
-          flipSetup();
-          break;
-
         case 'modal':
           modalSetup();
-          break;
-
-        case 'drawer':
-          drawerSetup();
           break;
       }
 
       // Escape key closes cart
       $(document).keyup(function (evt) {
         if (evt.keyCode == 27) {
-          switch (settings.method) {
-            case 'flip':
-            case 'drawer':
-              hideDrawer();
-              break;
-            case 'modal':
-              hideModal();
-              break;
-          }
+          hideModal();
         }
       });
 
@@ -379,53 +348,6 @@ var ajaxifyShopify = (function(module, $) {
     if ($cartCostSelector) {
       $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
     }
-  };
-
-  flipSetup = function () {
-    // Build and append the drawer in the DOM
-    drawerSetup();
-
-    // Stop if there is no add to cart button
-    if (!$addToCart.length) {
-      return
-    }
-
-    // Wrap the add to cart button in a div
-    $addToCart.addClass('flip__front').wrap('<div class="flip"></div>');
-
-    // Write a (hidden) Checkout button, a loader, and the extra view cart button
-    var checkoutBtn = $('<a href="/cart" class="flip__back" style="background-color: #C00; color: #fff;" class="flip__checkout">Checkout</a>').addClass($btnClass),
-        flipLoader = $('<span class="ajaxcart__flip-loader"></span>'),
-        flipExtra = $('<div class="flip__extra"><a href="#" class="flip__cart">View Cart (<span></span>)</a></div>');
-
-    // Append checkout button and loader
-    checkoutBtn.insertAfter($addToCart);
-    flipLoader.insertAfter(checkoutBtn);
-
-    // Setup new selectors
-    $flipContainer = $('.flip');
-
-    if (!$cssTransforms3d) {
-      $flipContainer.addClass('no-transforms')
-    }
-
-    // Setup extra selectors once appended
-    flipExtra.insertAfter($flipContainer);
-    $flipCart = $('.flip__cart');
-
-    $flipCart.on('click', function(e) {
-      e.preventDefault();
-      showDrawer(true);
-    });
-
-    // Reset the button if a user changes a variation
-    $('input[type="checkbox"], input[type="radio"], select', $formContainer).on('click', function() {
-      revertFlipButton();
-    })
-  };
-
-  revertFlipButton = function () {
-    $flipContainer.removeClass('is-flipped');
   };
 
   modalSetup = function () {
@@ -523,95 +445,6 @@ var ajaxifyShopify = (function(module, $) {
     });
   };
 
-  drawerSetup = function () {
-    // Create drawer DOM elements with handlebars.js template
-    var source   = $("#DrawerTemplate").html(),
-        template = Handlebars.compile(source),
-        data = {
-          wrapperClass: $wrapperClass
-        };
-
-    // Append drawer (defaults to body)
-    $prependDrawerTo.prepend(template(data));
-
-    // Drawer selectors
-    $drawerContainer = $('#AjaxifyDrawer');
-    $cartContainer   = $('#AjaxifyCart');
-    $drawerCaret     = $('.ajaxcart__caret > span');
-
-    // Toggle drawer with cart button
-    setToggleButtons();
-
-    // Position caret and size drawer on resize if drawer is visible
-    var timeout;
-    $(window).resize(function() {
-      clearTimeout(timeout);
-      timeout = setTimeout(function(){
-        if ($drawerContainer.hasClass('is-visible')) {
-          positionCaret();
-          sizeDrawer();
-        }
-      }, 500);
-    });
-
-    // Position the caret the first time
-    positionCaret();
-
-    // Position the caret
-    function positionCaret() {
-      if ($toggleCartButton.offset()) {
-        // Get the position of the toggle button to align the caret with
-        var togglePos = $toggleCartButton.offset(),
-            toggleWidth = $toggleCartButton.outerWidth(),
-            toggleMiddle = togglePos.left + toggleWidth/2;
-
-        $drawerCaret.css('left', toggleMiddle + 'px');
-      }
-    }
-  };
-
-  showDrawer = function (toggle) {
-    // If we're toggling with the flip method, use a special callback
-    if (settings.method == 'flip') {
-      Shopify.getCart(flipCartUpdateCallback);
-    }
-    // opening the drawer for the first time
-    else if (!cartInit && toggle) {
-      Shopify.getCart(cartUpdateCallback);
-    }
-    // simple toggle? just size it
-    else if (cartInit && toggle) {
-      sizeDrawer();
-    }
-
-    // Show the drawer
-    $drawerContainer.addClass('is-visible');
-
-    scrollTop();
-
-    toggleCallback({
-      'is_visible': true
-    });
-  };
-
-  hideDrawer = function () {
-    $drawerContainer.removeAttr('style').removeClass('is-visible');
-    scrollTop();
-    toggleCallback({
-      'is_visible': false
-    });
-  };
-
-  sizeDrawer = function ($empty) {
-    if ($empty) {
-      $drawerContainer.css('height', '0px');
-    } else {
-      $drawerHeight = $cartContainer.outerHeight();
-      $('.cart__row img').css('width', 'auto'); // fix Chrome image size bug
-      $drawerContainer.css('height',  $drawerHeight + 'px');
-    }
-  };
-
   loadCartImages = function () {
     // Size cart once all images are loaded
     var cartImages = $('img', $cartContainer),
@@ -622,15 +455,7 @@ var ajaxifyShopify = (function(module, $) {
       index++;
 
       if (index==count) {
-        switch (settings.method) {
-          case 'modal':
-            sizeModal();
-            break;
-          case 'flip':
-          case 'drawer':
-            sizeDrawer();
-            break;
-        }
+        sizeModal();
       }
     });
   };
@@ -646,39 +471,16 @@ var ajaxifyShopify = (function(module, $) {
       $('.qty-error').remove();
 
       Shopify.addItemFromForm(e.target, itemAddedCallback, itemErrorCallback);
-
-      // Set the flip button to a loading state
-      switch (settings.method) {
-        case 'flip':
-          $flipContainer.addClass('flip--is-loading');
-          break;
-      }
     });
   };
 
   itemAddedCallback = function (product) {
     $addToCart.removeClass('is-adding').addClass('is-added');
-
-    // Slight delay of flip to mimic a longer load
-    switch (settings.method) {
-      case 'flip':
-        setTimeout(function () {
-          $flipContainer.removeClass('flip--is-loading').addClass('is-flipped');
-        }, 600);
-        break;
-    }
     Shopify.getCart(cartUpdateCallback);
   };
 
   itemErrorCallback = function (XMLHttpRequest, textStatus) {
     var data = eval('(' + XMLHttpRequest.responseText + ')');
-
-    switch (settings.method) {
-      case 'flip':
-        $flipContainer.removeClass('flip--is-loading');
-        break;
-    }
-
     if (!!data.message) {
       if (data.status == 422) {
         $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>')
@@ -689,23 +491,7 @@ var ajaxifyShopify = (function(module, $) {
   cartUpdateCallback = function (cart) {
     // Update quantity and price
     updateCountPrice(cart);
-
-    switch (settings.method) {
-      case 'flip':
-        $('.flip__cart span').html(cart.item_count);
-        break;
-      case 'modal':
-        buildCart(cart);
-        break;
-      case 'drawer':
-        buildCart(cart);
-        if (!$drawerContainer.hasClass('is-visible')) {
-          showDrawer();
-        } else {
-          scrollTop();
-        }
-        break;
-    }
+    buildCart(cart);
   };
 
   setToggleButtons = function () {
@@ -719,32 +505,14 @@ var ajaxifyShopify = (function(module, $) {
       // Toggle the cart, based on the method
       $toggleCartButton.on('click', function(e) {
         e.preventDefault();
-
-        switch (settings.method) {
-          case 'modal':
-            if ($modalContainer.hasClass('is-visible')) {
-              hideModal();
-            } else {
-              showModal(true);
-            }
-            break;
-          case 'drawer':
-          case 'flip':
-            if ($drawerContainer.hasClass('is-visible')) {
-              hideDrawer();
-            } else {
-              showDrawer(true);
-            }
-            break;
+        if ($modalContainer.hasClass('is-visible')) {
+          hideModal();
+        } else {
+          showModal(true);
         }
-
       });
 
     }
-  };
-
-  flipCartUpdateCallback = function (cart) {
-    buildCart(cart);
   };
 
   buildCart = function (cart) {
@@ -759,19 +527,7 @@ var ajaxifyShopify = (function(module, $) {
         .append('<h2>' + {{ 'cart.general.empty' | t | json }} + '</h2>')
         .append('<p>' + {{ 'cart.general.continue_browsing_html' | t | json }} + '</p>');
 
-      switch (settings.method) {
-        case 'modal':
-          sizeModal('resize');
-          break;
-        case 'flip':
-        case 'drawer':
-          sizeDrawer();
-
-          if (!$drawerContainer.hasClass('is-visible') && cartInit) {
-            sizeDrawer(true);
-          }
-          break;
-      }
+      sizeModal('resize');
       return;
     }
 
@@ -780,43 +536,6 @@ var ajaxifyShopify = (function(module, $) {
       cartTemplate(cart);
       return;
     }
-
-    // Handlebars.js cart layout
-    var items = [],
-        item = {},
-        data = {},
-        source = $("#CartTemplate").html(),
-        template = Handlebars.compile(source);
-
-    // Add each item to our handlebars.js data
-    $.each(cart.items, function(index, cartItem) {
-      var itemAdd = cartItem.quantity + 1,
-          itemMinus = cartItem.quantity - 1,
-          itemQty = cartItem.quantity;
-
-      /* Hack to get product image thumbnail
-       *   - Remove file extension, add _small, and re-add extension
-       *   - Create server relative link
-      */
-      var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1").replace('http:', ''),
-          prodName = cartItem.title.replace(/(\-[^-]*)$/, ""),
-          prodVariation = cartItem.title.replace(/^[^\-]*/, "").replace(/-/, "");
-
-      // Create item's data object and add to 'items' array
-      item = {
-        id: cartItem.variant_id,
-        url: cartItem.url,
-        img: prodImg,
-        name: prodName,
-        variation: prodVariation,
-        itemAdd: itemAdd,
-        itemMinus: itemMinus,
-        itemQty: itemQty,
-        price: Shopify.formatMoney(cartItem.price, settings.moneyFormat)
-      };
-
-      items.push(item);
-    });
 
     // Gather all cart data and add to DOM
     data = {
@@ -830,21 +549,7 @@ var ajaxifyShopify = (function(module, $) {
     adjustCart();
 
     // Setup close modal button and size drawer
-    switch (settings.method) {
-      case 'modal':
-        loadCartImages();
-        break;
-      case 'flip':
-      case 'drawer':
-        if (cart.item_count > 0) {
-          loadCartImages();
-        } else {
-          sizeDrawer(true);
-        }
-        break;
-      default:
-        break;
-    }
+    loadCartImages();
 
     // Mark the cart as built
     cartInit = true;
@@ -853,30 +558,10 @@ var ajaxifyShopify = (function(module, $) {
   cartTemplate = function (cart) {
     var url = '/cart?' + Date.now() + ' form[action="/cart"]';
     $cartContainer.load(url, function() {
-
       // With new elements we need to relink the adjust cart functions
       adjustCart();
 
-      // Size drawer at this point
-      switch (settings.method) {
-        case 'modal':
-          loadCartImages();
-          break;
-        case 'flip':
-        case 'drawer':
-          if (cart.item_count > 0) {
-            loadCartImages();
-          } else {
-            sizeDrawer(true);
-          }
-          // Create a close drawer button
-          $cartContainer.prepend('<button type="button" class="ajaxifyCart__close" title="Close Cart">Close Cart</button>');
-          $closeCart = $('.ajaxifyCart__close');
-          $closeCart.on('click', hideDrawer);
-          break;
-        default:
-          break;
-      }
+      loadCartImages();
 
       // Mark the cart as built
       cartInit = true;
@@ -962,6 +647,19 @@ var ajaxifyShopify = (function(module, $) {
       updateQuantity(id, qty);
     });
 
+    $('.cart-continue').click(function(e) {
+      e.preventDefault();
+      $('.ajaxifyCart__close').click();
+    });
+
+    $('form#cart_form').submit(function(event) {
+      $('input#accept:not(:checked)').each(function(){
+        event.preventDefault();
+        alert("Bitte bestätige die Allgemeinen Geschäftsbedingungen.");
+      });
+    });
+
+
     function updateQuantity(id, qty) {
       // Add activity classes when changing cart quantities
       if (!settings.useCartTemplate) {
@@ -994,19 +692,6 @@ var ajaxifyShopify = (function(module, $) {
   adjustCartCallback = function (cart) {
     // Update quantity and price
     updateCountPrice(cart);
-
-    // Hide the modal or drawer if we're at 0 items
-    if (cart.item_count === 0) {
-      // Handle each add to cart method
-      switch (settings.method) {
-        case 'modal':
-          break;
-        case 'flip':
-        case 'drawer':
-          hideDrawer();
-          break;
-      }
-    }
 
     // Reprint cart on short timeout so you don't see the content being removed
     setTimeout(function() {
