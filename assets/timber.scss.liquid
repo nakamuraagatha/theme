@@ -3111,17 +3111,14 @@ a.product-grid__item,
   @include flexbox(flex-direction, row);
   @include flexbox(flex-wrap, wrap);
 
-  & > div {
+  .teaser {
+    min-width: 300px;
     @include flexbox(flex, 1);
-    min-width: 390px;
-
-    &.teaser {
-      @include flexbox(align-self, center);
-      @include at-query ($min, $large) {
-        @include flexbox(order, -1);
-      }
-      text-align: center;
+    @include flexbox(align-self, center);
+    @include at-query ($min, $large) {
+      @include flexbox(order, -1);
     }
+    text-align: center;
   }
 
   ul li {
