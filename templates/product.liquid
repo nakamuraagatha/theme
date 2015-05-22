@@ -22,18 +22,18 @@
             {% for image in product.images offset: 1 %}
               {% if forloop.index < 5 %}
                 <li class="grid__item one-quarter">
-                  <a href="{{ image.src | img_url: 'large' }}" rel="fancybox-thumb" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ image.alt | escape }}">
+                  <a href="{{ image.src | img_url: 'large' }}" data-fancybox-group="group" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ image.alt | escape }}">
                     <img src="{{ image.src | img_url: 'small' }}" alt="{{ product.vendor }} {{ image.alt | escape }}">
                   </a>
                 </li>
               {% else %}
                 <li class="grid__item one-quarter hidden">
-                  <a href="{{ image.src | img_url: 'large' }}" rel="fancybox-thumb" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ image.alt | escape }}"></a>
+                  <a href="{{ image.src | img_url: 'large' }}" data-fancybox-group="group" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ image.alt | escape }}"></a>
                 </li>
               {% endif %}
             {% endfor %}
           </ul>
-          <a href="{{ product.images[1] | img_url: 'large' }}" rel="fancybox-thumb" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ product.title | escape }}">{{ 'products.product.more_gallery' | t }}</a>
+          <a href="{{ product.images[1] | img_url: 'large' }}" data-fancybox-group="group" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ product.title | escape }}">{{ 'products.product.more_gallery' | t }}</a>
         {% endif %}
       </div>
     </div>
@@ -132,7 +132,7 @@
           </button>
         </div>
         <div id="product-preorder">
-          <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&contact[body]=" data-fancybox-type="iframe" class="btn preorder">{{ 'products.product.preorder' | t }}</a>
+          <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&amp;contact[body]=" data-fancybox-type="iframe" class="btn preorder">{{ 'products.product.preorder' | t }}</a>
         </div>
         <div id="product-unavailable">
           <p>Leider ist das Produkt zur Zeit vergriffen.</p>
@@ -158,10 +158,10 @@
           {% assign cpage_description = cpage_description | append: feature_details[1] | append: ', ' %}
           <li>
             <img src="{{ 'feature_' | append: feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
-            <span class="caption">
-              <h4>{{ feature_details[1] }}</h4>
+            <div class="caption">
+              <span>{{ feature_details[1] }}</span>
               <p>{{ feature_details[2] }}</p>
-            </span>
+            </div>
           </li>
         {% endfor %}
       </ul>

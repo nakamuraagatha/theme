@@ -23,11 +23,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="msvalidate.01" content="98A9D8B3C93FC3932BCF4681EA02E831" />
 
-  {% if settings.ajax_cart_enable %}
-    {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
-  {% endif %}
-
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+
   {% include 'google-fonts' %}
 
   {{ content_for_header }}
@@ -57,7 +54,7 @@
       <div class="grid--full">
         {% capture tag %}{% if template == 'index' %}h1{% else %}div{% endif %}{% endcapture %}
         <{{ tag }} class="h1 header-logo large--left" itemscope itemtype="http://schema.org/Organization">
-          <a href="/" itemprop="url"><img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">Playmakers Football</a>
+          <a href="http://www.playmakers-football.de" itemprop="url"><img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }} Online Shop" itemprop="logo">{{ shop.name }}</a>
         </{{ tag }}>
 
         {{ 'layout.navigation.special_html' | t }}
@@ -84,8 +81,8 @@
       <a class="menu-toggle mobileNavBar-link">{{ 'layout.navigation.mobile_menu' | t }}</a>
     </div>
     <div class="display-table-cell text-center text-logo">
-      <a href="/">
-        <img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">Playmakers Football
+      <a href="http://www.playmakers-football.de">
+        <img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }} Online Shop">{{ shop.name }}
       </a>
     </div>
     <div class="display-table-cell">
@@ -110,7 +107,7 @@
 
   {% include 'ajax-cart-template' %}
 
-  {{ 'scripts2.js?123456' | asset_url | script_tag }}
+  {{ 'scripts2.js' | asset_url | script_tag }}
 
   {{ content_for_footer }}
 

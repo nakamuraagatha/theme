@@ -3,22 +3,23 @@
 {% include 'breadcrumb' %}
 
 <div class="grid grid-border">
-
-{% comment %}
-  <aside class="sidebar grid__item large--one-fifth collection-filters" id="collectionFilters">
-    {% include 'collection-sidebar' %}
-  </aside>
-{% endcomment %}
-
   <div class="grid__item grid-border--left">
 
-    <header class="section-header">
-      <h1 class="section-header__left">{{ collection.title }}</h1>
-      <div class="section-header__right small--hide">
-        {% include 'collection-views' %}
-      </div>
-    </header>
-    <hr class="hr--offset-left">
+    {% if collection.handle %}
+      <header class="section-header">
+        <h1 class="section-header__left">{{ collection.title }}</h1>
+        <div class="section-header__right small--hide">
+          {% include 'collection-views' %}
+        </div>
+      </header>
+      <hr class="hr--offset-left">
+
+    {% elsif collection.title != ""  %}
+      <header class="section-header">
+        <h1 class="section-header__left">Equipment Partner: {{ collection.title }}</h1>
+      </header>
+
+    {% endif %}
 
     <div class="grid-uniform">
 
@@ -28,11 +29,15 @@
         {% include 'product-grid-item' %}
 
       {% else %}
-
-        <div class="grid__item">
-          <p>{{ 'collections.general.no_matches' | t }}</p>
-        </div>
-
+        {% if collection.handle %}
+          <div class="grid__item" style="text-align:center">
+            <p>{{ 'collections.general.no_matches' | t }}</p>
+          </div>
+        {% else %}
+          <div class="grid__item">
+            {% include 'vendors' %}
+          </div>
+        {% endif %}
       {% endfor %}
 
     </div>

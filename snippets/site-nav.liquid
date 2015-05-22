@@ -37,16 +37,4 @@
       <a href="{{ link.url }}">{{ link.title }}</a>
     </li>
   {% endfor %}
-
-  {% if shop.customer_accounts_enabled %}
-    {% if customer %}
-      <li class="customer-navlink large--hide"><a href="/account">View Account</a></li>
-      <li class="customer-navlink large--hide">{{ 'Log out' | customer_logout_link }}</li>
-    {% else %}
-      <li class="customer-navlink large--hide">{{ 'Sign in' | customer_login_link }}</li>
-      {% if shop.customer_accounts_optional %}
-      <li class="customer-navlink large--hide">{{ 'Create an Account' | customer_register_link }}</li>
-      {% endif %}
-    {% endif %}
-  {% endif %}
 </ul>

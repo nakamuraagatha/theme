@@ -2,7 +2,7 @@
 
 {% unless template == 'index' or template == 'cart' %}
 <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
-  <a class="small--hide" href="/" title="{{ 'general.breadcrumbs.home_link_title' | t }}">{{ 'general.breadcrumbs.home' | t }}</a>
+  <a class="small--hide" href="http://www.playmakers-football.de/" title="{{ 'general.breadcrumbs.home_link_title' | t }}">{{ 'general.breadcrumbs.home' | t }}</a>
 
   {% if template contains 'product' %}
 
@@ -13,55 +13,61 @@
       {% endif %}
     {% endif %}
 
-    <a href="{{ product.vendor | url_for_vendor }}" title="Back to the frontpage">{{ product.vendor }}</a>
+    <a href="{{ product.vendor | url_for_vendor }}" title="{{ product.vendor }}">{{ product.vendor }}</a>
     <span class="breadcrumb--truncate">{{ product.title }}</span>
 
-  {% elsif template contains 'collection' and collection.handle %}
-    {% if current_tags %}
-      {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
-      {{ collection.title | link_to: url }}
-
-      {% comment %}
-        Loop through tags and our custom tag array to strip out prepended tag categories if they exist.
-        snippet/advanced-tag-loop.liquid is required for this to work.
-      {% endcomment %}
-      {% for tag in current_tags %}
-        {% assign is_advanced_tag = false %}
-        {% assign additional_tag = true %}
-        {% if forloop.first %}
-          {% assign additional_tag = false %}
-        {% endif %}
+  {% elsif template contains 'collection'%}
+    {% if collection.handle %}
+      {% if current_tags %}
+        {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+        {{ collection.title | link_to: url }}
 
         {% comment %}
-          Track whether the tag gets printed
+          Loop through tags and our custom tag array to strip out prepended tag categories if they exist.
+          snippet/advanced-tag-loop.liquid is required for this to work.
         {% endcomment %}
-        {% assign found_tag = false %}
+        {% for tag in current_tags %}
+          {% assign is_advanced_tag = false %}
+          {% assign additional_tag = true %}
+          {% if forloop.first %}
+            {% assign additional_tag = false %}
+          {% endif %}
 
-        {% for cat_item in cat_array %}
-          {% unless cat_item == '' %}
-            {% if tag contains cat_item %}
-              {% assign is_advanced_tag = true %}
-              {% if additional_tag %}
-                <span>+</span>
+          {% comment %}
+            Track whether the tag gets printed
+          {% endcomment %}
+          {% assign found_tag = false %}
+
+          {% for cat_item in cat_array %}
+            {% unless cat_item == '' %}
+              {% if tag contains cat_item %}
+                {% assign is_advanced_tag = true %}
+                {% if additional_tag %}
+                  <span>+</span>
+                {% endif %}
+                {% assign found_tag = true %}
+                <span>{{ tag | remove_first: cat_item | remove: '_' }}</span>
               {% endif %}
-              {% assign found_tag = true %}
-              <span>{{ tag | remove_first: cat_item | remove: '_' }}</span>
-            {% endif %}
+            {% endunless %}
+          {% endfor %}
+
+          {% comment %}
+            We have a regular tag that wasn't printed, so print it now
+          {% endcomment %}
+          {% unless found_tag %}
+            <span>{{ tag }}</span>
           {% endunless %}
+
         {% endfor %}
 
-        {% comment %}
-          We have a regular tag that wasn't printed, so print it now
-        {% endcomment %}
-        {% unless found_tag %}
-          <span>{{ tag }}</span>
-        {% endunless %}
+      {% else %}
+        <span>{{ collection.title }}</span>
 
-      {% endfor %}
+      {% endif %}
 
     {% else %}
+      <a href="/collections/vendors" title="Equipment Partner">Equipment Partner</a>
       <span>{{ collection.title }}</span>
-
     {% endif %}
 
   {% elsif template == 'blog' %}

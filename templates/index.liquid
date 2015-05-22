@@ -106,23 +106,4 @@
 
 <hr>
 
-<div class="section-header">
-  <p class="h1 section-header__left">{{ 'homepage.vendors.heading' | t }}</p>
-  <div class="section-header__right"></div>
-</div>
-
-<div class="grid-uniform vendors">
-  {% assign vendors = 'Russel Athletic,Bike,Cutters,Nike,Rawlings,Adidas,Riddell,Under Armour,Warrior,Xenith' | split: ',' %}
-  {% for product_vendor in vendors %}
-    <div class="grid__item large--one-fifth medium--one-quarter small--one-third">
-      <div class="product-grid-image">
-        <div class="product-grid-image--centered">
-          <a href="{{ product_vendor | url_for_vendor }}" title="{{ product_vendor }}">
-            {% capture image_name %}vendor_{{ product_vendor | handleize }}.png{% endcapture %}
-            <img class="grayscale" src="{{ image_name | asset_url }}" alt="{{ product_vendor }}">
-          </a>
-        </div>
-      </div>
-    </div>
-  {% endfor %}
-</div>
+{% include 'vendors' %}
