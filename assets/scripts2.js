@@ -1570,4 +1570,11 @@ jQuery(function($) {
     var target = $(event.target).parent('a');
     ga('send', 'event', 'link', 'click', target.attr('href'));
   });
+
+  if (window.location.href.indexOf("banner") > -1) {
+    $('.banner2').hide();
+    $('.banner3').removeClass('hidden');
+  } else {
+    $('.banner3').hide();
+  }
 });
