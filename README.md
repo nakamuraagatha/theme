@@ -8,6 +8,9 @@ Shopify Shop Theme V2
 * http://fancybox.net
 * http://demo.hongkiat.com/css3-image-captions/index.html
 
+## update script
+* wget http://www.playmakers-football.de/pages/scripts
+
 ## Debugger
 
 This is for widgets that share content on Facebook. See the Facebook Linter:
