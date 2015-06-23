@@ -61,11 +61,4 @@ jQuery(function($) {
     var target = $(event.target).parent('a');
     ga('send', 'event', 'link', 'click', target.attr('href'));
   });
-
-  if (window.location.href.indexOf("banner") > -1) {
-    $('.front.banner3').hide();
-    $('.flexslider').removeClass('hidden');
-  } else {
-    $('.flexslider').hide();
-  }
 });
