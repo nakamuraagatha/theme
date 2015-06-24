@@ -23,7 +23,10 @@
     <div class="grid-uniform">
 
       {% for product in collection.products %}
-        {% include 'product-list-item' %}
+        {% if product.tags contains 'expired' %}
+        {% else %}
+          {% include 'product-list-item' %}
+        {% endif %}
       {% else %}
 
         <div class="grid__item">

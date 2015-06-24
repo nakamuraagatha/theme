@@ -26,8 +26,11 @@
 
 <div class="grid-uniform row-negative-bottom">
   {% for product in collections[featured_row].products limit: row_limit %}
-    {% assign grid_item_width = 'large--one-quarter medium--one-half small--one-half' %}
-    {% assign current_collection = collections[featured_row] %}
-    {% include 'product-grid-item' %}
+    {% if product.tags contains 'expired' %}
+    {% else %}
+      {% assign grid_item_width = 'large--one-quarter medium--one-half small--one-half' %}
+      {% assign current_collection = collections[featured_row] %}
+      {% include 'product-grid-item' %}
+    {% endif %}
   {% endfor %}
 </div>

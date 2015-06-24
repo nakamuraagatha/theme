@@ -15,7 +15,10 @@
       Default collection order
     {% endcomment %}
     {% for product in collection.products limit:5 %}
-      {% include 'product-grid-item' %}
+      {% if product.tags contains 'expired' %}
+        {% else %}
+        {% include 'product-grid-item' %}
+      {% endif %}
     {% endfor %}
 
   {% else %}
@@ -23,7 +26,10 @@
       Custom order collections by 'all-collections' linklist
     {% endcomment %}
     {% for product in collections[collection.handle].products limit:5 %}
-      {% include 'product-grid-item' %}
+      {% if product.tags contains 'expired' %}
+      {% else %}
+        {% include 'product-grid-item' %}
+      {% endif %}
     {% endfor %}
 
   {% endif %}

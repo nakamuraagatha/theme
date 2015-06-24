@@ -24,10 +24,11 @@
     <div class="grid-uniform">
 
       {% for product in collection.products %}
-
-        {% assign grid_item_width = 'large--one-third medium--one-third small--one-half' %}
-        {% include 'product-grid-item' %}
-
+        {% if product.tags contains 'expired' %}
+        {% else %}
+          {% assign grid_item_width = 'large--one-third medium--one-third small--one-half' %}
+          {% include 'product-grid-item' %}
+        {% endif %}
       {% else %}
         {% if collection.handle %}
           <div class="grid__item" style="text-align:center">
