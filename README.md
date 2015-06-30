@@ -9,7 +9,16 @@ Shopify Shop Theme V2
 * http://demo.hongkiat.com/css3-image-captions/index.html
 
 ## update script
-* wget http://www.playmakers-football.de/pages/scripts
+
+```
+  wget http://www.playmakers-football.de/pages/scripts -O assets/scripts2.js
+```
+
+## update jquery selector
+
+```
+  wget https://raw.githubusercontent.com/playmakers/shopifyVisualVariantSelector/master/src/jquery.shopifyVisualVariantSelector.js -O snippets/script-jquery.shopifyVisualVariantSelector.js.liquid
+```
 
 ## Debugger
 
