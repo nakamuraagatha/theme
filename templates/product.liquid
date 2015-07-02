@@ -2,10 +2,7 @@
 
 {% assign variant = product.selected_or_first_available_variant %}
 
-{% assign on_sale = false %}
-{% if variant.compare_at_price > variant.price %}{% assign on_sale = true %}{% endif %}
-
-<div class="grid" id="product" itemscope itemtype="http://schema.org/Product">
+<div class="grid new" id="product" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
@@ -64,7 +61,7 @@
 
       <ul class="inline-list product-price">
         <li>
-          <span id="comparePrice">bisher: {{ variant.compare_at_price | money }}</span>
+          <span id="comparePrice">{{ variant.compare_at_price | money }}</span>
         </li>
         <li>
           <span id="productPrice">{{ variant.price | money }}</span>
@@ -76,49 +73,31 @@
 
       <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-      <form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm">
-        <ul id="options">
-          <li id="variants">
-            <select name="id" id="productSelect" class="product-variants">
-              {% for variant in product.variants %}
-                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
-                  {{ variant.title }} -
-                  {% if variant.available %}
-                    {{ variant.price | money_with_currency }}
-                  {% else %}
-                    {{ 'products.product.sold_out' | t }}
-                  {% endif %}
-                </option>
-                {% capture product_variants %}
-                  {{ product_variants }}
-                  addVariant({
-                    id: {{variant.id}},
-                    price: '{{variant.price | money}}',
-                    comparePrice: '{{variant.compare_at_price | money}}',
-                    onSale: {{ on_sale }},
-                    options: {
-                      {% if product.options[0] %} {{product.options[0] | handleize | replace: '-', ''}}: '{{variant.option1}}'{% endif %}
-                      {% if product.options[1] %},{{product.options[1] | handleize | replace: '-', ''}}: '{{variant.option2}}'{% endif %}
-                      {% if product.options[2] %},{{product.options[2] | handleize | replace: '-', ''}}: '{{variant.option3}}'{% endif %}
-                    },
-                    available: {{variant.available}},
-                    {% if variant.featured_image.src %}
-                    image: '{{variant.featured_image.src | product_img_url: 'grande'}}',
-                    {% endif %}
-                    quantity: {% if variant.inventory_quantity > 0 %}1{% else %}0{% endif %}
-                  });
-                {% endcapture %}
-              {% endfor %}
-            </select>
-          </li>
-          {% for option in product.options %}
-            <li>
-              {% capture handle %}{{ option | handleize | replace: '-', ''}}{% endcapture %}
-              <span>{{ option }}</span>
-              <div class="{{ handle }} btn-group btn-group-sm" data-toggle="buttons"></div>
-            </li>
+      <form id="addToCartForm" action="/cart/add" method="post" enctype="multipart/form-data">
+        <select id="productSelect" name="id" class="product-variants" data-option-group-names='{{ product.options | json }}'>
+          {% for variant in product.variants %}
+            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}"
+              data-variant='{
+                "id":{{ variant.id }},
+                "title":"{{ variant.title}}",
+                "options":{{ variant.options | json }},
+                "price":{{ variant.price }},
+                "compare_at_price":{{ variant.compare_at_price }},
+                "available":{{ variant.available }},
+                {% if variant.featured_image %}
+                "image":"{{ variant.featured_image.src | product_img_url: 'grande'}}",
+                {% endif %}
+                "inventory_quantity": {% if variant.inventory_quantity > 0 %}1{% else %}0{% endif %}
+                }'>
+              {{ variant.title }} -
+              {% if variant.available %}
+                {{ variant.price | money_with_currency }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            </option>
           {% endfor %}
-        </ul>
+        </select>
 
         {% if settings.product_quantity_enable %}
           <label for="quantity" class="quantity-selector">">{{ 'products.product.quantity' | t }}</label>
@@ -132,10 +111,10 @@
           </button>
         </div>
         <div id="product-preorder">
-          <a href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&amp;contact[body]=" data-fancybox-type="iframe" class="btn preorder">{{ 'products.product.preorder' | t }}</a>
+          <a class="btn preorder" href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&amp;contact[body]=" data-fancybox-type="iframe"><span class="icon icon-rss"></span> {{ 'products.product.preorder' | t }}</a>
         </div>
         <div id="product-unavailable">
-          <p>Leider ist das Produkt zur Zeit vergriffen.</p>
+          <p class="btn--secondary">{{ 'products.product.unavailable' | t }}</p>
         </div>
         {% if product.type == "Helme" %}
           <small>(inkl. Soft-Cup Chinstrap, exkl. Facemask, <a href="{{ 'Zubehör ' | append: product.type | url_for_type}}" data-fancybox-type="iframe">bitte hier wählen</a>)</small>
@@ -202,22 +181,6 @@
   </div>
 </div>
 
-<script>
-  Shopify.Image = {
-    preload: function (images, size) {
-      for (var i=0; i < images.length; i++) {
-        var image = images[i];
-
-        this.loadImage(this.getSizedImageUrl(image, size));
-      }
-    },
-
-    loadImage: function (path) {
-      new Image().src = path;
-    },
-  }
-</script>
-
 {% if settings.product_image_zoom_enable %}
   {{ 'jquery.zoom.min.js' | asset_url | script_tag }}
 {% endif %}
@@ -226,9 +189,28 @@
   {{ content_for_footer }}
   <script type="text/javascript">
     $(document).ready(function() {
-      {{ product_variants }}
-      if(defaultVariant) { init(defaultVariant); }
-      $('#variants').hide();
-    });
+      var visualSelector = $("#productSelect")
+            .on('variantChange', function(event, variant){
+              var productElement = $("#product");
+
+              productElement.toggleClass("undefined", variant.id == 'undefined');
+
+              if (variant.id != 'undefined') {
+                 productElement
+                    .toggleClass("unavailable", variant.unavailable)
+                    .toggleClass("soldout",     variant.soldOut)
+                    .toggleClass("onsale",      variant.onSale);
+
+                 if (variant.image ) {
+                   $("#productPhotoImg").attr("src", variant.image);
+                 }
+              }
+            })
+            .shopifyVisualVariantSelector({
+              hideSingleOptionsFromLevel: 2,
+              resolveAvailabilityConflict: false,
+              selectSoldOut: true
+            });
+     });
   </script>
 {% endcapture %}

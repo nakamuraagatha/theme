@@ -4435,22 +4435,12 @@ a.remove {
 }
 
 #product.new {
-  &.soldout {
+  &.unavailable {
     #product-preorder {
       display: block;
     }
 
     #product-add, #product-unavailable {
-      display: none;
-    }
-  }
-
-  &.unavailable {
-    #product-unavailable {
-      display: block;
-    }
-
-    #product-add, #product-preorder {
       display: none;
     }
   }
@@ -4493,10 +4483,10 @@ a.remove {
       background-color: $colorAccent;
     }
     &.unavailable {
-      opacity: 0.4;
+      opacity: 0.6;
     }
     &.soldout {
-      opacity: 0.6;
+      // opacity: 0.6;
     }
     &.over {
     }
@@ -4525,73 +4515,6 @@ a.remove {
 
     span {
       display: none;
-    }
-  }
-}
-
-#options li {
-  > label {
-    min-width: 70px;
-    &:after {
-      content: ": "
-    }
-  }
-
-  .btn-group {
-    .btn--secondary {
-      font-weight: bold;
-      margin-top: 1px;
-      margin-bottom: 6px;
-      padding-top: 2px;
-      min-width: 30px;
-      height: 30px;
-
-      input {
-        display: none;
-      }
-
-      &.active {
-        margin-bottom: 5px;
-        color: #000;
-        background-color: $colorAccent;
-      }
-
-      &.unavailable {
-        opacity: 0.4;
-      }
-
-      &.soldout {
-        opacity: 0.6;
-      }
-
-      &.optionValueSchwarz    { background-color: #111;    color: #FFF; }
-      &.optionValueRot        { background-color: #aa031d; color: #000; }
-      &.optionValueGrun       { background-color: #1a401b; color: #000; }
-      &.optionValueSilber     { background-color: #d2d2d2; color: #000; }
-      &.optionValueBlau       { background-color: #024aac; color: #FFF; }
-      &.optionValueNavy-Blau  { background-color: #04184b; color: #FFF; }
-      &.optionValueRoyal-Blau { background-color: #024aac; color: #FFF; }
-      &.optionValueGold       { background-color: #CFB52B; color: #FFF; }
-      &.optionValueLila       { background-color: #61017c; color: #FFF; }
-      &.optionValueWeis       { background-color: #eee;    color: #000; }
-      &.optionValueGelb       { background-color: #f8b003; color: #000; }
-    }
-
-    &.farbe {
-      .btn--secondary {
-        &:hover, &.active {
-          border: 2px solid $colorAccent;
-        }
-
-        &.unavailable {
-          opacity: 0.4;
-          border: 0;
-        }
-
-        span {
-          display: none;
-        }
-      }
     }
   }
 }
