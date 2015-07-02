@@ -17,7 +17,7 @@ Shopify Shop Theme V2
 ## update jquery selector
 
 ```
-  wget https://raw.githubusercontent.com/playmakers/shopifyVisualVariantSelector/master/src/jquery.shopifyVisualVariantSelector.js -O snippets/script-jquery.shopifyVisualVariantSelector.js.liquid
+  wget https://raw.githubusercontent.com/playmakers/shopifyVisualVariantSelector/master/dist/jquery.shopifyVisualVariantSelector.min.js -O snippets/script-jquery.shopifyVisualVariantSelector.min.js.liquid
 ```
 
 ## Debugger
