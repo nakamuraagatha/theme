@@ -1,3 +1,4 @@
+{% include 'l_setup' %}
 {% include 'breadcrumb' %}
 
 {% assign variant = product.selected_or_first_available_variant %}
@@ -111,7 +112,7 @@
           </button>
         </div>
         <div id="product-preorder">
-          <a class="btn preorder" href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&amp;contact[body]=" data-fancybox-type="iframe"><span class="icon icon-rss"></span> {{ 'products.product.preorder' | t }}</a>
+          <a class="btn preorder" href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&amp;contact[body]=" data-fancybox-type="iframe" rel="nofollow"><span class="icon icon-rss"></span> {{ 'products.product.preorder' | t }}</a>
         </div>
         <div id="product-unavailable">
           <p class="btn--secondary">{{ 'products.product.unavailable' | t }}</p>

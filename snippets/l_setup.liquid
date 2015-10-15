@@ -1,0 +1,10 @@
+{% capture dummy %}
+  {% assign locale = 'de' %}
+  {% assign ti = 0 %}
+  {% if request.host contains 'playmakers-football.com' %}
+    {% assign locale = 'en' %}
+    {% assign tl = '.' | append: locale %}
+    {% assign ti = 1 %}
+  {% endif %}
+  {% comment %}{{'aaaaa' | split: '|' | slice: ti}}{% endcomment %}
+{% endcapture %}

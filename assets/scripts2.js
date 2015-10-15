@@ -126,11 +126,11 @@ timber.init = function () {
   //   timber.responsiveNav();
   // });
 
-  
 
-  
+
+
     timber.socialSharing();
-  
+
 };
 
 timber.accessibleNav = function () {
@@ -392,11 +392,11 @@ timber.switchImage = function (src, imgObject, el) {
   var $el = $(el);
   $el.attr('src', src);
 
-  
+
 };
 
 timber.productImageZoom = function () {
-  
+
 };
 
 timber.socialSharing = function () {
@@ -1105,7 +1105,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   cartTemplate = function (cart) {
-    var url = '/cart?' + Date.now() + ' form[action="/cart"]';
+    var url = '/cart?' + Date.now() + ' #cart_form';
     $cartContainer.load(url, function() {
       // With new elements we need to relink the adjust cart functions
       adjustCart();

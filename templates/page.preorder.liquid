@@ -1,3 +1,4 @@
+{% include 'l_setup' %}
 <div class="content-offset row">
   <div class="col-md-10 col-md-offset-1">
     {% form 'contact' %}
@@ -6,7 +7,7 @@
 
       {% if form.posted_successfully? %}
         <div class="successForm feedback">
-          <p>Danke für dein Interesse. Wir benachrichtigen dich sobald du <strong>{{ form.product }}</strong> wieder bei Playmakers Football bestellen kannst.</p>
+          <p>{{ 'pages.preorder.description_html' | t: form_product: form.product }}</p>
         </div>
       {% else %}
         <div class="form-group">
@@ -14,17 +15,17 @@
           <input type="hidden" name="contact[body]" value="{{ form.body }}"/>
         </div>
         <div class="form-group">
-          <label>Dein Name:</label>
+          <label>{{ 'pages.preorder.name' | t }}</label>
           <input type="text" id="contactFormName" name="contact[name]" value="{{ form.name }}"/>
         </div>
         <div class="form-group">
-          <label>Deine Emailadresse:*</label>
+          <label>{{ 'pages.preorder.email' | t }}*</label>
           <input type="email" id="contactFormEmail" name="contact[email]" value="{{ form.email }}" required />
         </div>
 
         <div class="form-group">
           <br>
-          <button type="submit" id="contactFormSubmit" class="btn btn-default">Verfügbarkeitsbenachrichtigung aktivieren</button>
+          <button type="submit" id="contactFormSubmit" class="btn btn-default">{{ 'pages.preorder.submit' | t }}</button>
         </div>
       {% endif %}
     {% endform %}

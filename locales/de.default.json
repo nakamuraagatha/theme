@@ -322,6 +322,14 @@
       "features": "Eigenschaften"
     }
   },
+  "pages": {
+    "preorder": {
+      "description_html": "Danke für dein Interesse. Wir benachrichtigen dich sobald du <strong>{{ form_product }}</strong> wieder bei Playmakers Football bestellen kannst.",
+      "name": "Dein Name:",
+      "email": "Deine Emailadresse:",
+      "submit": "Verfügbarkeitsbenachrichtigung aktivieren"      
+    }
+  },
   "gift_cards": {
     "issued": {
       "title": "Hier ist Deine {{ value }} Geschenkkarte für {{ shop }}!",

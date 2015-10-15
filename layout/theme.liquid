@@ -1,4 +1,4 @@
-<!doctype html>
+{% include 'l_setup' %}<!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ 'layout.navigation.language' | t }}"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="{{ 'layout.navigation.language' | t }}"> <![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9" lang="{{ 'layout.navigation.language' | t }}"> <![endif]-->
@@ -54,7 +54,7 @@
       <div class="grid--full">
         {% capture tag %}{% if template == 'index' %}h1{% else %}div{% endif %}{% endcapture %}
         <{{ tag }} class="h1 header-logo large--left" itemscope itemtype="http://schema.org/Organization">
-          <a href="http://www.playmakers-football.de" itemprop="url"><img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }} Online Shop" itemprop="logo">{{ shop.name }}</a>
+          <a href="http://{{request.host}}" itemprop="url"><img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }} Online Shop" itemprop="logo">{{ shop.name }}</a>
         </{{ tag }}>
 
         {{ 'layout.navigation.special_html' | t }}

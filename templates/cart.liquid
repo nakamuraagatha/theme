@@ -1,5 +1,6 @@
+{% include 'l_setup' %}
 {% if cart.item_count > 0 %}
-  <form action="/cart" method="post" id="cart_form" novalidate>
+  <form action="/cart?locale={{ locale }}" method="post" id="cart_form" novalidate>
     <h1>{{ 'cart.general.title' | t }}</h1>
 
     {% for item in cart.items %}
@@ -94,7 +95,7 @@
           </div>
 
           <div class="cart-accept">
-            <input id="accept" type="checkbox"> {{ 'cart.general.accept_html' | t }}
+            <label for="accept"><input id="accept" type="checkbox">{{ 'cart.general.accept_html' | t }}</label>
           </div>
 
           <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
