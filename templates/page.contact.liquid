@@ -16,7 +16,7 @@
 
         {% if form.posted_successfully? %}
           <p class="note form-success">
-            {{ 'contact.form.post_success' | t }}
+            {% include 'l' with 'contact.form.post_success' %}
           </p>
         {% endif %}
 

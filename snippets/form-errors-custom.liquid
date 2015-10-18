@@ -7,7 +7,7 @@
 {% endcomment %}
 {% if form.errors %}
   <div class="note form-error">
-    <p>{{ 'general.forms.post_error' | t }}</p>
+    <p>{% include 'l' with 'general.forms.post_error' %}</p>
 
     <ul class="disc">
       {% assign message = 'contact.form.message' | t %}

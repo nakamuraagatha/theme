@@ -20,10 +20,10 @@
     <div class="product-grid-image">
       <div class="product-grid-image--centered">
         {% if sold_out %}
-          <div class="badge badge--sold-out"><span class="badge-label">{{ 'products.product.sold_out' | t }}</span></div>
+          <div class="badge badge--sold-out"><span class="badge-label">{% include 'l' with 'products.product.sold_out' %}</span></div>
         {% endif %}
         {% if on_sale %}
-          <div class="badge badge--on-sale"><span class="badge-label">{{ 'products.product.on_sale' | t }}</span></div>
+          <div class="badge badge--on-sale"><span class="badge-label">{% include 'l' with 'products.product.on_sale' %}</span></div>
         {% endif %}
         <img src="{{ product.featured_image.src | img_url: image_size }}" alt="{{ product.vendor }} {{ product.featured_image.alt | escape }} preview">
       </div>

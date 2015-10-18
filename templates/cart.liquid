@@ -1,7 +1,7 @@
 {% include 'l_setup' %}
 {% if cart.item_count > 0 %}
   <form action="/cart?locale={{ locale }}" method="post" id="cart_form" novalidate>
-    <h1>{{ 'cart.general.title' | t }}</h1>
+    <h1>{% include 'l' with 'cart.general.title' %}</h1>
 
     {% for item in cart.items %}
     <div class="cart__row" data-id="{{ item.id }}">
@@ -67,7 +67,7 @@
             <div class="grid__item one-eighth small--one-fifth text-right">
               <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}" class="icon-fallback-text btn--secondary remove">
                 <span class="icon icon-x" aria-hidden="true"></span>
-                <span class="fallback-text">{{ 'cart.general.remove' | t }}</span>
+                <span class="fallback-text">{% include 'l' with 'cart.general.remove' %}</span>
               </a>
             </div>
 
@@ -84,34 +84,34 @@
 
         <div class="grid__item text-right cart__total large--seven-twelfths  push--large--five-twelfths">
           <div class="cart-subtotal">
-            {{ 'cart.general.subtotal' | t }}
+            {% include 'l' with 'cart.general.subtotal' %}
             <span class="h1 cart-subtotal--price">
               {% include 'price' with cart.total_price %}
             </span>
             <div>
               {% capture shipping_key %}{% if cart.total_price < 10000 %}cart.general.shipping{% else %}cart.general.shipping_free{% endif %}{% endcapture %}
-              {{ 'cart.general.mwst' | t }}{{ shipping_key | t }}
+              {% include 'l' with 'cart.general.mwst' %}{{ shipping_key | t }}
             </div>
           </div>
 
           <div class="cart-accept">
-            <label for="accept"><input id="accept" type="checkbox">{{ 'cart.general.accept_html' | t }}</label>
+            <label for="accept"><input id="accept" type="checkbox">{% include 'l' with 'cart.general.accept_html' %}</label>
           </div>
 
-          <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
-          <a href="?continue" class="btn--secondary cart-continue">{{ 'cart.general.continue' | t }}</a>
+          <input type="submit" name="update" class="btn--secondary update-cart" value="{% include 'l' with 'cart.general.update' %}">
+          <a href="?continue" class="btn--secondary cart-continue">{% include 'l' with 'cart.general.continue' %}</a>
           <button type="submit" name="checkout" class="btn">
             <span class="icon icon-cart"></span>
-            {{ 'cart.general.checkout' | t }}
+            {% include 'l' with 'cart.general.checkout' %}
           </button>
         </div>
 
         <div class="grid__item large--five-twelfths pull--large--seven-twelfths">
           {% if settings.cart_notes_enable %}
-            <label for="cartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+            <label for="cartSpecialInstructions">{% include 'l' with 'cart.general.note' %}</label>
             <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
           {% else %}
-            <div class="h6">{{ 'layout.footer.pay_save' | t }}</div>
+            <div class="h6">{% include 'l' with 'layout.footer.pay_save' %}</div>
             <ul class="legal-links inline-list payment-icons">
               {% for type in shop.enabled_payment_types %}
                 <li>
@@ -122,7 +122,7 @@
                 </li>
               {% endfor %}
               <li class="ec_vorkasse">
-                <img src="{{ 'layout.footer.pay_save_ec_img' | t | asset_url }}" aria-hidden="true" alt="{{ 'layout.footer.pay_save_ec_alt' | t }}">
+                <img src="{{ 'layout.footer.pay_save_ec_img' | t | asset_url }}" aria-hidden="true" alt="{% include 'l' with 'layout.footer.pay_save_ec_alt' %}">
               </li>
             </ul>
           {% endif %}
@@ -134,7 +134,7 @@
 
 {% else %}
 
-  <h2>{{ 'cart.general.empty' | t }}</h2>
-  <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+  <h2>{% include 'l' with 'cart.general.empty' %}</h2>
+  <p>{% include 'l' with 'cart.general.continue_browsing_html' %}</p>
 
 {% endif %}

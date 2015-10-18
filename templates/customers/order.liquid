@@ -17,9 +17,9 @@
 
 {% include 'breadcrumb' %}
 
-<h1>{{ 'customer.account.title' | t }}</h1>
+<h1>{% include 'l' with 'customer.account.title' %}</h1>
 
-<p><a href="/account">{{ 'customer.account.return' | t }}</a></p>
+<p><a href="/account">{% include 'l' with 'customer.account.return' %}</a></p>
 
 <div class="grid">
 
@@ -33,18 +33,18 @@
     <div class="errors">
       {% capture date %}{{ order.cancelled_at | date: format: 'long' }}{% endcapture %}
       <h5>{{ 'customer.order.cancelled_on' | t: date: date }}</h5>
-      <p>{{ 'customer.order.cancel_reason' | t }}: {{ order.cancel_reason }}</p>
+      <p>{% include 'l' with 'customer.order.cancel_reason' %}: {{ order.cancel_reason }}</p>
     </div>
     {% endif %}
 
     <table class="full">
       <thead>
         <tr>
-          <th>{{ 'customer.order.product' | t }}</th>
-          <th>{{ 'customer.order.sku' | t }}</th>
-          <th>{{ 'customer.order.price' | t }}</th>
-          <th class="text-center">{{ 'customer.order.quantity' | t }}</th>
-          <th class="text-right">{{ 'customer.order.total' | t }}</th>
+          <th>{% include 'l' with 'customer.order.product' %}</th>
+          <th>{% include 'l' with 'customer.order.sku' %}</th>
+          <th>{% include 'l' with 'customer.order.price' %}</th>
+          <th class="text-center">{% include 'l' with 'customer.order.quantity' %}</th>
+          <th class="text-right">{% include 'l' with 'customer.order.total' %}</th>
         </tr>
       </thead>
       <tbody>
@@ -71,33 +71,33 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4">{{ 'customer.order.subtotal' | t }}:</td>
+          <td colspan="4">{% include 'l' with 'customer.order.subtotal' %}:</td>
           <td class="text-right">{{ order.subtotal_price | money }}</td>
         </tr>
 
         {% for discount in order.discounts %}
           <tr class="order_summary discount">
-            <td colspan="4">{{ discount.code }} {{ 'customer.order.discount' | t }}:</td>
+            <td colspan="4">{{ discount.code }} {% include 'l' with 'customer.order.discount' %}:</td>
             <td class="text-right">{{ discount.savings | money }}</td>
           </tr>
         {% endfor %}
 
         {% for shipping_method in order.shipping_methods %}
         <tr>
-          <td colspan="4">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }}):</td>
+          <td colspan="4">{% include 'l' with 'customer.order.shipping' %} ({{ shipping_method.title }}):</td>
           <td class="text-right">{{ shipping_method.price | money }}</td>
         </tr>
         {% endfor %}
 
         {% for tax_line in order.tax_lines %}
           <tr>
-            <td colspan="4">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%):</td>
+            <td colspan="4">{% include 'l' with 'customer.order.tax' %} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%):</td>
             <td class="text-right">{{ tax_line.price | money }}</td>
           </tr>
         {% endfor %}
 
         <tr>
-          <td colspan="4"><strong>{{ 'customer.order.total' | t }}:</strong></td>
+          <td colspan="4"><strong>{% include 'l' with 'customer.order.total' %}:</strong></td>
           <td class="text-right"><strong>{{ order.total_price | money }} {{ order.currency }}</strong></td>
         </tr>
       </tfoot>
@@ -109,9 +109,9 @@
 
   <div class="grid-item large--two-thirds push--large--one-sixth medium-down--one-whole">
 
-    <h4>{{ 'customer.order.billing_address' | t }}</h4>
+    <h4>{% include 'l' with 'customer.order.billing_address' %}</h4>
 
-    <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+    <p><strong>{% include 'l' with 'customer.order.payment_status' %}:</strong> {{ order.financial_status_label }}</p>
 
     <h5>{{ order.billing_address.name }}</h5>
     <p>
@@ -128,9 +128,9 @@
       {{ order.billing_address.phone }}
     </p>
 
-    <h4>{{ 'customer.order.shipping_address' | t }}</h4>
+    <h4>{% include 'l' with 'customer.order.shipping_address' %}</h4>
 
-    <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
+    <p><strong>{% include 'l' with 'customer.order.fulfillment_status' %}:</strong> {{ order.fulfillment_status_label }}</p>
 
     <h5>{{ order.shipping_address.name }}</h5>
     <p>

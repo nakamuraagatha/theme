@@ -1,12 +1,12 @@
 <iframe class="fb-likes" src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fplaymakers.shop&amp;width=240&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false"></iframe>
 
-<h4>{{ 'blogs.sidebar.newsletter' | t }}:</h4>
+<h4>{% include 'l' with 'blogs.sidebar.newsletter' %}:</h4>
 <form action="http://play-makers.us8.list-manage.com/subscribe/post?u=f8ccf2679d516fd2e247579b3&amp;id=22a6088452" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form" target="_blank" novalidate>
-  <label for="mce-EMAIL">{{ 'blogs.sidebar.newsletter_text' | t }}</label>
-  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="{{ 'blogs.sidebar.newsletter_email' | t }}" required>
+  <label for="mce-EMAIL">{% include 'l' with 'blogs.sidebar.newsletter_text' %}</label>
+  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="{% include 'l' with 'blogs.sidebar.newsletter_email' %}" required>
   <div style="position: absolute; left: -51234px;"><input type="text" name="b_f8ccf2679d516fd2e247579b3_22a6088452" value=""></div>
   <div class="clear">
-    <input type="submit" value="{{ 'blogs.sidebar.newsletter_button' | t }}" name="subscribe" id="mc-embedded-subscribe" class="btn button">
+    <input type="submit" value="{% include 'l' with 'blogs.sidebar.newsletter_button' %}" name="subscribe" id="mc-embedded-subscribe" class="btn button">
   </div>
 </form>
 
@@ -25,7 +25,7 @@
   </a>
 </div>
 
-<h4>{{ 'blogs.sidebar.recent_articles' | t }}:</h4>
+<h4>{% include 'l' with 'blogs.sidebar.recent_articles' %}:</h4>
 {% for article in blog.articles limit:8 %}
   <p>
     <a href="{{ article.url }}">{{ article.title }}</a>

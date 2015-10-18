@@ -31,7 +31,7 @@
       {% else %}
 
         <div class="grid__item">
-          <p>{{ 'collections.general.no_matches' | t }}</p>
+          <p>{% include 'l' with 'collections.general.no_matches' %}</p>
         </div>
 
       {% endfor %}

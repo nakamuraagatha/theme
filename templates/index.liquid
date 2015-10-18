@@ -50,7 +50,7 @@
   <div class="section-header">
       <p class="h1 section-header__left">{{ 'homepage.featured_articles.heading' | t: title: blogs['news'].title }}</p>
       <div class="section-header__right">
-        <a href="{{ blogs['news'].url }}">{{ 'homepage.featured_articles.more' | t }} &rsaquo;</a>
+        <a href="{{ blogs['news'].url }}">{% include 'l' with 'homepage.featured_articles.more' %} &rsaquo;</a>
       </div>
   </div>
 
@@ -65,7 +65,7 @@
 <hr>
 
 <div class="section-header">
-    <p class="h1 section-header__left">{{ 'homepage.about.heading' | t }}</p>
+    <p class="h1 section-header__left">{% include 'l' with 'homepage.about.heading' %}</p>
     <div class="section-header__right"></div>
 </div>
 

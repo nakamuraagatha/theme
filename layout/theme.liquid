@@ -1,9 +1,9 @@
 {% include 'l_setup' %}<!doctype html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ 'layout.navigation.language' | t }}"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="{{ 'layout.navigation.language' | t }}"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9" lang="{{ 'layout.navigation.language' | t }}"> <![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{% include 'l' with 'layout.navigation.language' %}"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="{% include 'l' with 'layout.navigation.language' %}"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="{% include 'l' with 'layout.navigation.language' %}"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="{{ 'layout.navigation.language' | t }}" class="no-touch no-js"> <!--<![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="{% include 'l' with 'layout.navigation.language' %}" class="no-touch no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -57,12 +57,12 @@
           <a href="http://{{request.host}}" itemprop="url"><img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }} Online Shop" itemprop="logo">{{ shop.name }}</a>
         </{{ tag }}>
 
-        {{ 'layout.navigation.special_html' | t }}
+        {% include 'l' with 'layout.navigation.special_html' %}
 
         <div class="header-nav large--text-right">
           <a href="/cart" class="header-btn cart-toggle right">
             <span class="icon icon-cart"></span>
-            {{ 'layout.cart.cart' | t }} <span id="cartCount" {% if cart.item_count == 0 %}class="hidden-count"{% endif %}>{{ cart.item_count }}</span>
+            {% include 'l' with 'layout.cart.cart' %} <span id="cartCount" {% if cart.item_count == 0 %}class="hidden-count"{% endif %}>{{ cart.item_count }}</span>
           </a>
 
           {% for link in linklists['menu-header'].links %}
@@ -78,7 +78,7 @@
 
   <div id="mobileNavBar">
     <div class="display-table-cell">
-      <a class="menu-toggle mobileNavBar-link">{{ 'layout.navigation.mobile_menu' | t }}</a>
+      <a class="menu-toggle mobileNavBar-link">{% include 'l' with 'layout.navigation.mobile_menu' %}</a>
     </div>
     <div class="display-table-cell text-center text-logo">
       <a href="http://www.playmakers-football.de">
@@ -126,5 +126,6 @@
   </script>
 
   <a href="https://plus.google.com/+PlaymakersDeShop" rel="publisher"></a>
+  <!-- {{ missing | join: ',' }} -->
 </body>
 </html>

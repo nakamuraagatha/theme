@@ -31,7 +31,7 @@
               {% endif %}
             {% endfor %}
           </ul>
-          <a href="{{ product.images[1] | img_url: 'large' }}" data-fancybox-group="group" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ product.title | escape }}">{{ 'products.product.more_gallery' | t }}</a>
+          <a href="{{ product.images[1] | img_url: 'large' }}" data-fancybox-group="group" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ product.title | escape }}">{% include 'l' with 'products.product.more_gallery' %}</a>
         {% endif %}
       </div>
     </div>
@@ -51,7 +51,7 @@
     </ul>
 
     <div class="product-teaser">
-      {{ page_description }} <a href="#description">{{ 'products.product.more_description' | t }}</a>
+      {{ page_description }} <a href="#description">{% include 'l' with 'products.product.more_description' %}</a>
     </div>
 
     <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -68,7 +68,7 @@
           <span id="productPrice">{{ variant.price | money }}</span>
         </li>
       </ul>
-      <div>{{ 'products.product.mwst' | t }}{{ shipping_key | t }}{{ 'products.product.delivery' | t }}</div>
+      <div>{% include 'l' with 'products.product.mwst' %}{{ shipping_key | t }}{% include 'l' with 'products.product.delivery' %}</div>
 
       <hr id="variantBreak" class="hr--clear hr--small">
 
@@ -94,28 +94,28 @@
               {% if variant.available %}
                 {{ variant.price | money_with_currency }}
               {% else %}
-                {{ 'products.product.sold_out' | t }}
+                {% include 'l' with 'products.product.sold_out' %}
               {% endif %}
             </option>
           {% endfor %}
         </select>
 
         {% if settings.product_quantity_enable %}
-          <label for="quantity" class="quantity-selector">">{{ 'products.product.quantity' | t }}</label>
+          <label for="quantity" class="quantity-selector">">{% include 'l' with 'products.product.quantity' %}</label>
           <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
         {% endif %}
 
         <div id="product-add">
           <button type="submit" name="add" id="addToCart" class="btn">
             <span class="icon icon-cart"></span>
-            <span id="addToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+            <span id="addToCartText">{% include 'l' with 'products.product.add_to_cart' %}</span>
           </button>
         </div>
         <div id="product-preorder">
-          <a class="btn preorder" href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&amp;contact[body]=" data-fancybox-type="iframe" rel="nofollow"><span class="icon icon-rss"></span> {{ 'products.product.preorder' | t }}</a>
+          <a class="btn preorder" href="/pages/produkt-vorbestellung?contact[product]={{ product.vendor }} {{ product.title }}&amp;contact[body]=" data-fancybox-type="iframe" rel="nofollow"><span class="icon icon-rss"></span> {% include 'l' with 'products.product.preorder' %}</a>
         </div>
         <div id="product-unavailable">
-          <p class="btn--secondary">{{ 'products.product.unavailable' | t }}</p>
+          <p class="btn--secondary">{% include 'l' with 'products.product.unavailable' %}</p>
         </div>
         {% if product.type == "Helme" %}
           <small>(inkl. Soft-Cup Chinstrap, exkl. Facemask, <a href="{{ 'Zubehör ' | append: product.type | url_for_type}}" data-fancybox-type="iframe">bitte hier wählen</a>)</small>
@@ -131,7 +131,7 @@
   <div class="grid__item large--two-thirds push--large--one-sixth">
     {% assign metafields = product.metafields.features %}
     {% if metafields.size > 0 %}
-      <span class="h1">{{ 'products.product.features' | t }}:</span>
+      <span class="h1">{% include 'l' with 'products.product.features' %}:</span>
       <ul class="inline-list product-features">
         {% for metafield in metafields %}
           {% assign feature_details = metafield | last | split: '|' %}
@@ -157,7 +157,7 @@
     {% endif %}
 
     <div class="delivery_extra">
-      {{ 'products.product.delivery_extra_html' | t }}
+      {% include 'l' with 'products.product.delivery_extra_html' %}
     </div>
 
     {% if settings.related_products_enable %}

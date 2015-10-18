@@ -30,7 +30,7 @@
 
         {% if settings.social_sharing_blog %}
           <hr class="hr--clear">
-          <h3>{{ 'blogs.article.share_this_post' | t }}</h3>
+          <h3>{% include 'l' with 'blogs.article.share_this_post' %}</h3>
           {% include 'social-sharing' %}
           <hr>
         {% endif %}
@@ -41,7 +41,7 @@
             <a href="#comments">{{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}</a> -
           </li>
           <li>
-            <a href="#write-comment">{{ 'blogs.comments.title' | t }} &rsaquo;</a>
+            <a href="#write-comment">{% include 'l' with 'blogs.comments.title' %} &rsaquo;</a>
           </li>
           {% endif %}
         </ul>
@@ -74,9 +74,9 @@
             {% if comment and comment.created_at %}
             <p class="note form-success">
               {% if blog.moderated? %}
-                {{ 'blogs.comments.success_moderated' | t }}
+                {% include 'l' with 'blogs.comments.success_moderated' %}
               {% else %}
-                {{ 'blogs.comments.success' | t }}
+                {% include 'l' with 'blogs.comments.success' %}
               {% endif %}
             </p>
             {% endif %}
@@ -114,32 +114,32 @@
             <div id="write-comment">
               {% form 'new_comment', article %}
 
-                <p class="h1" id="add-comment-title">{{ 'blogs.comments.title' | t }}</p>
+                <p class="h1" id="add-comment-title">{% include 'l' with 'blogs.comments.title' %}</p>
 
                 {% include 'form-errors-custom' %}
 
                 <div class="grid">
 
                   <div class="grid__item large--one-half">
-                    <label for="comment-author" class="hidden-label">{{ 'blogs.comments.name' | t }}</label>
-                    <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{{ 'blogs.comments.name' | t }}" id="comment-author" value="{{ form.author }}">
+                    <label for="comment-author" class="hidden-label">{% include 'l' with 'blogs.comments.name' %}</label>
+                    <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{% include 'l' with 'blogs.comments.name' %}" id="comment-author" value="{{ form.author }}">
 
-                    <label for="comment-email" class="hidden-label">{{ 'blogs.comments.email' | t }}</label>
-                    <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{{ 'blogs.comments.email' | t }}" id="comment-email" value="{{ form.email }}">
+                    <label for="comment-email" class="hidden-label">{% include 'l' with 'blogs.comments.email' %}</label>
+                    <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{% include 'l' with 'blogs.comments.email' %}" id="comment-email" value="{{ form.email }}">
                   </div>
 
                   <div class="grid__item">
-                    <label for="comment-body" class="hidden-label">{{ 'blogs.comments.message' | t }}</label>
-                    <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>
+                    <label for="comment-body" class="hidden-label">{% include 'l' with 'blogs.comments.message' %}</label>
+                    <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body" placeholder="{% include 'l' with 'blogs.comments.message' %}">{{ form.body }}</textarea>
                   </div>
 
                 </div>
 
                 {% if blog.moderated? %}
-                  <p class="text-light"><em>{{ 'blogs.comments.moderated' | t }}</em></p>
+                  <p class="text-light"><em>{% include 'l' with 'blogs.comments.moderated' %}</em></p>
                 {% endif %}
 
-                <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
+                <input type="submit" class="btn" value="{% include 'l' with 'blogs.comments.post' %}">
 
                 {% if form.errors %}
                   <script>

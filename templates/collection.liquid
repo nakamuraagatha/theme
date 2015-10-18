@@ -33,7 +33,7 @@
       {% else %}
         {% if collection.handle %}
           <div class="grid__item" style="text-align:center">
-            <p>{{ 'collections.general.no_matches' | t }}</p>
+            <p>{% include 'l' with 'collections.general.no_matches' %}</p>
           </div>
         {% else %}
           <div class="grid__item">

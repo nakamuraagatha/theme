@@ -3,25 +3,25 @@
 
 {% include 'breadcrumb' %}
 
-<h1>{{ 'customer.account.title' | t }}</h1>
+<h1>{% include 'l' with 'customer.account.title' %}</h1>
 
 <hr class="hr--small">
 
 <div class="grid">
 
   <div class="grid__item large--two-thirds push--large--one-sixth medium-down--one-whole">
-    <h4>{{ 'customer.orders.title' | t }}</h4>
+    <h4>{% include 'l' with 'customer.orders.title' %}</h4>
 
     {% if customer.orders.size != 0 %}
 
       <table class="full">
         <thead>
           <tr>
-            <th>{{ 'customer.orders.order_number' | t }}</th>
-            <th>{{ 'customer.orders.date' | t }}</th>
-            <th>{{ 'customer.orders.payment_status' | t }}</th>
-            <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
-            <th>{{ 'customer.orders.total' | t }}</th>
+            <th>{% include 'l' with 'customer.orders.order_number' %}</th>
+            <th>{% include 'l' with 'customer.orders.date' %}</th>
+            <th>{% include 'l' with 'customer.orders.payment_status' %}</th>
+            <th>{% include 'l' with 'customer.orders.fulfillment_status' %}</th>
+            <th>{% include 'l' with 'customer.orders.total' %}</th>
           </tr>
         </thead>
         <tbody>
@@ -39,13 +39,13 @@
 
     {% else %}
 
-      <p>{{ 'customer.orders.none' | t }}</p>
+      <p>{% include 'l' with 'customer.orders.none' %}</p>
 
     {% endif %}
   </div>
 
   <div class="grid-item large--two-thirds push--large--one-sixth medium-down--one-whole">
-    <h4>{{ 'customer.account.details' | t }}</h4>
+    <h4>{% include 'l' with 'customer.account.details' %}</h4>
 
     <h5>{{ customer.name }}</h5>
 
@@ -81,7 +81,7 @@
 
     {% endif %}
 
-    <p><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+    <p><a href="/account/addresses">{% include 'l' with 'customer.account.view_addresses' %} ({{ customer.addresses_count }})</a></p>
   </div>
 
 </div>

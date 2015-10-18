@@ -8,38 +8,38 @@
   <div class="grid__item large--two-thirds push--large--one-sixth">
 
     <div class="note form-success" id="resetSuccess" style="display:none;">
-      {{ 'customer.recover_password.success' | t }}
+      {% include 'l' with 'customer.recover_password.success' %}
     </div>
 
     {% form 'customer_login' %}
 
-      <h1>{{ 'customer.login.title' | t }}</h1>
+      <h1>{% include 'l' with 'customer.login.title' %}</h1>
 
       {% include 'form-errors-custom' %}
 
-      <label for="customer_email" class="hidden-label">{{ 'customer.login.email' | t }}</label>
-      <input type="email" value="" name="customer[email]" id="customer_email" placeholder="{{ 'customer.login.email' | t }}" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
+      <label for="customer_email" class="hidden-label">{% include 'l' with 'customer.login.email' %}</label>
+      <input type="email" value="" name="customer[email]" id="customer_email" placeholder="{% include 'l' with 'customer.login.email' %}" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
 
       {% if form.password_needed %}
 
-        <label for="customer_password" class="hidden-label">{{ 'customer.login.password' | t }}</label>
-        <input type="password" value="" name="customer[password]" id="customer_password" placeholder="{{ 'customer.login.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
+        <label for="customer_password" class="hidden-label">{% include 'l' with 'customer.login.password' %}</label>
+        <input type="password" value="" name="customer[password]" id="customer_password" placeholder="{% include 'l' with 'customer.login.password' %}" {% if form.errors contains "password" %} class="error"{% endif %}>
 
         <p>
-          <a href="#" onclick="showRecoverPasswordForm();return false;">{{ 'customer.login.forgot_password' | t }}</a>
+          <a href="#" onclick="showRecoverPasswordForm();return false;">{% include 'l' with 'customer.login.forgot_password' %}</a>
         </p>
 
       {% endif %}
 
         <p>
-          <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
+          <input type="submit" class="btn" value="{% include 'l' with 'customer.login.sign_in' %}">
         </p>
     {% endform %}
 
     <div id="recover_password" style="display: none;">
 
-      <h2>{{ 'customer.recover_password.title' | t }}</h2>
-      <p>{{ 'customer.recover_password.subtext' | t }}</p>
+      <h2>{% include 'l' with 'customer.recover_password.title' %}</h2>
+      <p>{% include 'l' with 'customer.recover_password.subtext' %}</p>
 
       {% form 'recover_customer_password' %}
 
@@ -49,11 +49,11 @@
           {% assign reset_success = true %}
         {% endif %}
 
-        <label for="recover-email" class="hidden-label">{{ 'customer.recover_password.email' | t }}</label>
-        <input type="email" value="" name="email" id="recover-email" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+        <label for="recover-email" class="hidden-label">{% include 'l' with 'customer.recover_password.email' %}</label>
+        <input type="email" value="" name="email" id="recover-email" placeholder="{% include 'l' with 'customer.recover_password.email' %}" autocorrect="off" autocapitalize="off">
 
         <p>
-          <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+          <input type="submit" class="btn" value="{% include 'l' with 'customer.recover_password.submit' %}">
         </p>
       {% endform %}
 

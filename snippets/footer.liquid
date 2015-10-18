@@ -16,7 +16,7 @@
 
       {% if settings.footer_social_enable %}
         <div class="grid__item medium--one-half large--one-third">
-         <h3>{{ 'layout.footer.get_in_touch' | t }}</h3>
+         <h3>{% include 'l' with 'layout.footer.get_in_touch' %}</h3>
           <ul class="inline-list social-icons">
             {% if settings.social_twitter_link != blank %}
               <li>
@@ -99,7 +99,7 @@
           <h3>{{ settings.footer_newsletter_title }}</h3>
           {% include 'newsletter-form' %}
         {% else %}
-          <h3>{{ 'layout.footer.pay_save' | t }}</h3>
+          <h3>{% include 'l' with 'layout.footer.pay_save' %}</h3>
           <ul class="inline-list payment-icons">
             {% for type in shop.enabled_payment_types %}
               <li>
@@ -110,7 +110,7 @@
               </li>
             {% endfor %}
             <li class="ec_vorkasse">
-              <img src="{{ 'layout.footer.pay_save_ec_img' | t | asset_url }}" aria-hidden="true" alt="{{ 'layout.footer.pay_save_ec_alt' | t }}">
+              <img src="{{ 'layout.footer.pay_save_ec_img' | t | asset_url }}" aria-hidden="true" alt="{% include 'l' with 'layout.footer.pay_save_ec_alt' %}">
             </li>
           </ul>
         {% endif %}
@@ -161,7 +161,7 @@
             {% else %}
               {{ 'layout.customer.sign_in' | t | customer_login_link }}
               {% if shop.customer_accounts_optional %}
-              <span class="site-header--spacer">{{ 'layout.customer.or' | t }}</span>
+              <span class="site-header--spacer">{% include 'l' with 'layout.customer.or' %}</span>
               {{ 'layout.customer.create_account' | t | customer_register_link }}
               {% endif %}
             {% endif %}

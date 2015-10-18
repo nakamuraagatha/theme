@@ -56,7 +56,7 @@
         {% comment %}
           If search.performed is false, someone either accessed the page without the q parameter, or it was blank.
         {% endcomment %}
-        <h2 class="text-center">{{ 'general.search.title' | t }}</h2>
+        <h2 class="text-center">{% include 'l' with 'general.search.title' %}</h2>
         {% include 'search-bar' %}
 
       {% endif %}
