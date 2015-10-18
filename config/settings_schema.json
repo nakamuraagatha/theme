@@ -769,18 +769,7 @@
         "type": "link_list",
         "id": "footer_quicklinks_linklist",
         "label": "Quick links link list"
-      },
-      {
-        "type": "checkbox",
-        "id": "footer_content_enable",
-        "label": "Show footer contact info"
-      },
-      {
-        "type": "textarea",
-        "id": "footer_content_text",
-        "label": "Footer contact text",
-        "info": "Basic HTML formatting is allowed"
-      },
+      },      
       {
         "type": "checkbox",
         "id": "footer_social_enable",

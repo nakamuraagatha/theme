@@ -52,11 +52,11 @@
     },
     "sidebar": {
       "recent_articles": "Recent Articles",
-      "categories": "Categories"
+      "categories": "Categories",
       "newsletter": "Football Newsletter",
       "newsletter_text": "Trage dich in unseren Newsletter ein um weitere Expertentipps & Neuigkeiten zu erhalten.",
-      "newsletter_email": "Deine Emailaddresse",
-      "newsletter_button": "Eintragen",
+      "newsletter_email": "Your Emailaddress",
+      "newsletter_button": "Sign up"
     }
   },
   "cart": {
@@ -71,11 +71,11 @@
       "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
       "or": "or",
       "view_cart": "View Cart",
-      "close_cart": "Close Cart"
+      "close_cart": "Close Cart",
       "accept_html": "Ich bestätige die <a href=\"\/pages\/agb\" target=\"_blank\">Allgemeinen Geschäftsbedingungen.<\/a>",
-      "mwst": "Preise inkl. MwSt.",
-      "shipping": ", zzgl. 3,50€ Versand",
-      "shipping_free": ", KOSTENLOSER Versand"
+      "mwst": "prices incl. VAT",
+      "shipping": ", + 3,50€ shipping",
+      "shipping_free": ", free shipping"
     },
     "label": {
       "product": "Product",
@@ -248,14 +248,14 @@
       "more_in_collection": "More {{ collection_title }}"
     },
     "featured_articles": {
-      "heading": " Neueste Einträge im {{ title }}",
-      "more": "Alle Beiträge lesen"
+      "heading": " Newest entries in {{ title }}",
+      "more": "Read all articles"
     },
     "about": {
-      "heading": "Das ist Playmakers Football"
+      "heading": "This is Playmakers Football"
     },
     "vendors": {
-      "heading": "Unsere Equipment Partner"
+      "heading": "Our equipment partners"
     }
   },
   "layout": {
@@ -272,9 +272,9 @@
     },
     "navigation": {
       "more": "More",
-      "mobile_menu": "Menu"
-      "language": "de",
-      "special_html": "<a href=\"\/pages\/versandkosten\" class=\"header-special fancybox fancybox.iframe\">Versandkosten frei ab 100 EUR<\/a>"
+      "mobile_menu": "Menu",
+      "language": "en",
+      "special_html": "<a href=\"\/pages\/shpipping\" class=\"header-special fancybox fancybox.iframe\">Free shpipping from 100 EUR<\/a>"
     },
     "search_bar": {
       "placeholder": "Search all products...",
@@ -285,12 +285,16 @@
       "quick_links": "Quick Links",
       "get_in_touch": "Get In Touch",
       "store_on_social_network": "{{ store_name }} on {{ social_network }}",
-      "pay_save": "Sicher zahlen mit",
+      "pay_save": "Secure payment",
       "pay_save_ec_img": "ec_vorkasse.png",
-      "pay_save_ec_alt": "Sicher mit Vorkasse zahlen",
+      "pay_save_ec_alt": "Secure payment with",
       "newsletter_title": "Newsletter",
       "newsletter_sign_up": "Sign Up",
-      "newsletter_email_placeholder": "Email Address"
+      "newsletter_email_placeholder": "Email Address",
+      "content": {
+        "title": "Imprint",
+        "text_html": "PM 24 Trading UG (haftungsbeschr&auml;nkt)<br>Schwedter Stra&szlig;e 45<br> 10435 Berlin"
+      }
     }
   },
   "products": {
@@ -308,25 +312,25 @@
       "unavailable": "Unavailable",
       "only_left": "Only {{ count }} left!",
       "quantity": "Quantity",
-      "add_to_cart": "Add to Cart"
-      "more_description": "Mehr...",
-      "more_gallery": "Weitere Bilder...",
+      "add_to_cart": "Add to Cart",
+      "more_description": "More...",
+      "more_gallery": "More pictures...",
       "on_sale": "Sale",
       "mwst": "Preis inkl. 19% MwSt.",
-      "shipping_html": ", <a href=\"\/pages\/versandkosten\" class=\"fancybox fancybox.iframe\">zzgl. 3,50&euro; Versand<\/a>",
-      "shipping_free_html": ", <a href=\"\/pages\/versandkosten\" class=\"fancybox fancybox.iframe\">KOSTENLOSER Versand<\/a>",
-      "delivery": ", Lieferzeit: 3-5 Werktage*",
-      "delivery_extra_html": "* gilt für Lieferungen innerhalb Deutschlands, Lieferzeiten für andere Länder unter <a href=\"\/pages\/versandkosten\" class=\"fancybox fancybox.iframe\">Zahlung und Versand<\/a>",
-      "preorder": "Verfügbarkeitsbenachrichtigung",
-      "features": "Eigenschaften"
+      "shipping_html": ", <a href=\"\/pages\/shipping\" class=\"fancybox fancybox.iframe\">+ 3,50&euro; shipping<\/a>",
+      "shipping_free_html": ", <a href=\"\/pages\/shipping\" class=\"fancybox fancybox.iframe\">FREE shipping<\/a>",
+      "delivery": ", Delivery: 3-5 days*",
+      "delivery_extra_html": "TODO: * gilt für Lieferungen innerhalb Deutschlands, Lieferzeiten für andere Länder unter <a href=\"\/pages\/shipping\" class=\"fancybox fancybox.iframe\">Zahlung und Versand<\/a>",
+      "preorder": " TODO:Verfügbarkeitsbenachrichtigung",
+      "features": "Features"
     }
   },
   "pages": {
     "preorder": {
-      "description_html": "Danke für dein Interesse. Wir benachrichtigen dich sobald du <strong>{{ form_product }}</strong> wieder bei Playmakers Football bestellen kannst.",
-      "name": "Dein Name:",
-      "email": "Deine Emailadresse:",
-      "submit": "Verfügbarkeitsbenachrichtigung aktivieren"
+      "description_html": "TODO: Danke für dein Interesse. Wir benachrichtigen dich sobald du <strong>{{ form_product }}</strong> wieder bei Playmakers Football bestellen kannst.",
+      "name": "Your name:",
+      "email": "Your Emailaddress:",
+      "submit": "TODO: Verfügbarkeitsbenachrichtigung aktivieren"
     }
   },
   "gift_cards": {
@@ -339,40 +343,6 @@
       "redeem": "Use this code at checkout to redeem your gift card",
       "shop_link": "Start shopping",
       "print": "Print"
-    }
-  },
-  "shopify": {
-    "checkout": {
-      "order_summary": {
-        "payment_due_label": "Zu Zahlen",
-        "taxes_label": "19% MwSt.",
-        "title": "Deine Bestellung",
-        "show_discount_form_link_label": "Gebe hier deinen Geschenkgutschein Code ein",
-        "free_shipping_discount_label": "Kostenloser Versand",
-        "shipping_label": "Versandkosten",
-        "total_label": "Gesamtpreis inkl. Mwst.",
-        "discount_placeholder": "Code",
-        "discount_label": "Geschenkgutschein"
-      },
-      "shipping": {
-        "please_enter_your_shipping_information_notice": "Bitte gebe deine Lieferadresse ein",
-        "select_placeholder": "Bitte wähle die Versandart"
-      },
-      "shop_policies": {
-        "privacy_policy": "Datenschutz",
-        "refund_policy": "Widerrufsrecht",
-        "terms_of_service": " AGB\/Kundeninformationen"
-      },
-      "newsletter": {
-        "subscription_checkbox": "Unseren Newsletter abonnieren",
-        "subscription_checkbox_tooltip": "Wir senden dir Nachrichten und Angebote bezüglich unserer  Produkte. Du kannst den Newsletter jederzeit kostenlos abbestellen. Die Kontaktdaten hierzu findest Du in unserem Impressum."
-      },
-      "payment": {
-        "gift_card_code_label": "Geschenkgutschein:"
-      }
-    },
-    "links": {
-      "powered_by_shopify": " "
     }
   }
 }

@@ -3,16 +3,10 @@
   <div class="wrapper">
 
     <div class="grid">
-      {% if settings.footer_content_enable %}
       <div class="grid__item medium--one-half large--one-third">
-        <h3>{{ settings.footer_content_title }}</h3>
-        <p>
-          {% if settings.footer_content_text != blank %}
-            {{ settings.footer_content_text }}
-          {% endif %}
-        </p>
+        <h3>{% include 'l' with 'layout.footer.content.title' %}</h3>
+        <p>{% include 'l' with 'layout.footer.content.text_html' %}</p>
       </div>
-      {% endif %}
 
       {% if settings.footer_social_enable %}
         <div class="grid__item medium--one-half large--one-third">
