@@ -109,8 +109,8 @@
           {{ address.phone }}
         </p>
         <p>
-          {{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }} |
-          {{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}
+          {% include 'lt' with 'customer.addresses.edit' %}{{ t | edit_customer_address_link: address.id }} |
+          {% include 'lt' with 'customer.addresses.delete' %}{{ t | delete_customer_address_link: address.id }}
         </p>
 
         <div id="edit_address_{{ address.id }}" style="display:none;">
@@ -220,7 +220,7 @@
     },
 
     destroy: function(id, confirm_msg) {
-      if (confirm(confirm_msg || {{ 'customer.addresses.delete_confirm' | t | json }})) {
+      if (confirm(confirm_msg || {% include 'lt' with 'customer.addresses.delete_confirm' %}{{ t | json }})) {
         Shopify.postLink('/account/addresses/'+id, {'parameters': {'_method': 'delete'}});
       }
     }

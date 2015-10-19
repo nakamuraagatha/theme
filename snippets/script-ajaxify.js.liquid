@@ -367,7 +367,7 @@ var ajaxifyShopify = (function(module, $) {
     $modalOverlay.on('click', hideModal);
 
     // Create a close modal button
-    $modalContainer.prepend('<button type="button" class="ajaxifyCart__close" title="' + {{ 'cart.general.close_cart' | t | json }} + '">' + {{ 'cart.general.close_cart' | t | json }} + '</button>');
+    $modalContainer.prepend('<button type="button" class="ajaxifyCart__close" title="' + {% include 'lt' with 'cart.general.close_cart' %}{{ t | json }} + '">' + {% include 'lt' with 'cart.general.close_cart' %}{{ t | json }} + '</button>');
     $closeCart = $('.ajaxifyCart__close');
     $closeCart.on('click', hideModal);
 
@@ -524,8 +524,8 @@ var ajaxifyShopify = (function(module, $) {
     // Show empty cart
     if (cart.item_count === 0) {
       $cartContainer
-        .append('<h2>' + {{ 'cart.general.empty' | t | json }} + '</h2>')
-        .append('<p>' + {{ 'cart.general.continue_browsing_html' | t | json }} + '</p>');
+        .append('<h2>' + {% include 'lt' with 'cart.general.empty' %}{{ t | json }} + '</h2>')
+        .append('<p>' + {% include 'lt' with 'cart.general.continue_browsing_html' %}{{ t | json }} + '</p>');
 
       sizeModal('resize');
       return;

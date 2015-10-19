@@ -104,7 +104,7 @@
               </li>
             {% endfor %}
             <li class="ec_vorkasse">
-              <img src="{{ 'layout.footer.pay_save_ec_img' | t | asset_url }}" aria-hidden="true" alt="{% include 'l' with 'layout.footer.pay_save_ec_alt' %}">
+              <img src="{% include 'lt' with 'layout.footer.pay_save_ec_img' %}{{ t | asset_url }}" aria-hidden="true" alt="{% include 'l' with 'layout.footer.pay_save_ec_alt' %}">
             </li>
           </ul>
         {% endif %}
@@ -151,12 +151,12 @@
             <li class="legal-links--account">
             {% if customer %}
               {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }} &middot; {{ 'layout.customer.log_out' | t | customer_logout_link }}
+              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }} &middot; {% include 'lt' with 'layout.customer.log_out' %}{{ t | customer_logout_link }}
             {% else %}
-              {{ 'layout.customer.sign_in' | t | customer_login_link }}
+              {% include 'lt' with 'layout.customer.sign_in' %}{{ t | customer_login_link }}
               {% if shop.customer_accounts_optional %}
               <span class="site-header--spacer">{% include 'l' with 'layout.customer.or' %}</span>
-              {{ 'layout.customer.create_account' | t | customer_register_link }}
+              {% include 'lt' with 'layout.customer.create_account' %}{{ t | customer_register_link }}
               {% endif %}
             {% endif %}
             </li>

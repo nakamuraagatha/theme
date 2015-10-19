@@ -1,7 +1,1 @@
-{% capture dummy2 %}
-  {% assign translation = l | prepend: locale_prefix | t %}
-  {% if translation contains 'missing' %}
-    {% assign translation = l | t %}
-    {% assign missing = missing | append: l | append: ', ' %}
-  {% endif %}
-{% endcapture %}{{ translation }}
+{% include 'lt' with l %}{{ translation }}

@@ -122,7 +122,7 @@
                 </li>
               {% endfor %}
               <li class="ec_vorkasse">
-                <img src="{{ 'layout.footer.pay_save_ec_img' | t | asset_url }}" aria-hidden="true" alt="{% include 'l' with 'layout.footer.pay_save_ec_alt' %}">
+                <img src="{% include 'lt' with 'layout.footer.pay_save_ec_img' %}{{ t | asset_url }}" aria-hidden="true" alt="{% include 'l' with 'layout.footer.pay_save_ec_alt' %}">
               </li>
             </ul>
           {% endif %}

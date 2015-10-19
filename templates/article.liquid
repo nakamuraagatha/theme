@@ -52,12 +52,12 @@
         <p class="clearfix">
           {% if blog.previous_article %}
             <span class="left">
-              {{ 'blogs.article.older_post' | t | prepend: '← ' | link_to: blog.previous_article }}
+              {% include 'lt' with 'blogs.article.older_post' %}{{ t | prepend: '← ' | link_to: blog.previous_article }}
             </span>
           {% endif %}
           {% if blog.next_article %}
             <span class="right">
-              {{ 'blogs.article.newer_post' | t | append: ' →' | link_to: blog.next_article }}
+              {% include 'lt' with 'blogs.article.newer_post' %}{{ t | append: ' →' | link_to: blog.next_article }}
             </span>
           {% endif %}
         </p>
