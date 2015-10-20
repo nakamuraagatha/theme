@@ -8,7 +8,7 @@
 {% endif %}
 {% endcapture %}
 {% assign saved_amount = saved_amount | strip %}
-{{ 'products.general.save_html' | t: saved_amount: saved_amount }}
+{% include 'lt' with 'products.general.save_html' %}{{ lk | t: saved_amount: saved_amount }}
 
 {% comment %}
 {% if compare_price > product_price %}

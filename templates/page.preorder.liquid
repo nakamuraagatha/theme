@@ -7,7 +7,7 @@
 
       {% if form.posted_successfully? %}
         <div class="successForm feedback">
-          <p>{{ 'pages.preorder.description_html' | t: form_product: form.product }}</p>
+          <p>{% include 'lt' with 'pages.preorder.description_html' %}{{ lk | t: form_product: form.product }}</p>
         </div>
       {% else %}
         <div class="form-group">

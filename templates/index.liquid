@@ -48,7 +48,7 @@
 
 <div class="articles fullsize">
   <div class="section-header">
-      <p class="h1 section-header__left">{{ 'homepage.featured_articles.heading' | t: title: blogs['news'].title }}</p>
+      <p class="h1 section-header__left">{% include 'lt' with 'homepage.featured_articles.heading' %}{{ lk | t: title: blogs['news'].title }}</p>
       <div class="section-header__right">
         <a href="{{ blogs['news'].url }}">{% include 'l' with 'homepage.featured_articles.more' %} &rsaquo;</a>
       </div>

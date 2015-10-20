@@ -19,7 +19,7 @@
   {% endif %}
   {% if more_link %}
     <div class="section-header__right">
-      <a href="{{ more_link }}">{{ 'homepage.featured_collection_rows.more_in_collection' | t: collection_title: header_title }} &rsaquo;</a>
+      <a href="{{ more_link }}">{% include 'lt' with 'homepage.featured_collection_rows.more_in_collection' %}{{ lk | t: collection_title: header_title }} &rsaquo;</a>
     </div>
   {% endif %}
 </div>
