@@ -144,7 +144,8 @@
     <div class="grid">
       <div class="grid__item">
         <ul class="legal-links inline-list">
-          {% for link in linklists['footer'].links %}
+          {% assign linklist = locale_prefix | append: 'footer' %}
+          {% for link in linklists[linklist].links %}
             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
           {% if shop.customer_accounts_enabled %}

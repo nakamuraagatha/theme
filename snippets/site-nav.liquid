@@ -1,6 +1,7 @@
 <ul class="site-nav" id="AccessibleNav">
   <li class="large--hide"><a href="/">Home</a></li>
-  {% for link in linklists['main-menu'].links %}
+  {% assign linklist = locale_prefix | append: 'main-menu' %}
+  {% for link in linklists[linklist].links %}
     {% assign child_list_handle = link.title | handleize %}
     {% if child_list_handle != 'sale' && link.object.products != blank %}
       <li class="site-nav--has-dropdown site-nav--{{ child_list_handle }}{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">

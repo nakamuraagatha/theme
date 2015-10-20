@@ -65,7 +65,8 @@
             {% include 'l' with 'layout.cart.cart' %} <span id="cartCount" {% if cart.item_count == 0 %}class="hidden-count"{% endif %}>{{ cart.item_count }}</span>
           </a>
 
-          {% for link in linklists['menu-header'].links %}
+          {% assign linklist = locale_prefix | append: 'header-menu' %}
+          {% for link in linklists[linklist].links %}
             <a href="{{ link.url }}" class="header-btn link--{{ link.title | handleize }}">
               {{ link.title }}
             </a>
