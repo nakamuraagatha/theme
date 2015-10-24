@@ -15,7 +15,7 @@
           <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
 
             {% for image in product.images %}
-              <li class="grid-item medium--down-one-quarter large--one-quarter">
+              <li class="grid-item medium-down--one-quarter large--one-quarter">
                 <a href="{{ image.src | img_url: 'large' }}" class="product-photo-thumb">
                   <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
                 </a>
@@ -34,16 +34,16 @@
 
     <h2 itemprop="name">{{ product.title }}</h2>
 
+    {% if settings.product_vendor_enable %}
+      <p class="product-meta" itemprop="brand">{{ product.vendor }}</p>
+    {% endif %}
+
     <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
       {% assign variant = product.selected_or_first_available_variant %}
 
       <meta itemprop="priceCurrency" content="{{ shop.currency }}">
       <meta itemprop="price" content="{{ variant.price | money }}">
-
-      {% if settings.product_vendor_enable %}
-        <p class="product-meta" itemprop="brand">{{ product.vendor }}</p>
-      {% endif %}
 
       <ul class="inline-list product-meta">
         <li>
@@ -76,7 +76,7 @@
           {% for variant in product.variants %}
             {% if variant.available %}
 
-              <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+              <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
 
             {% else %}
               <option disabled="disabled">
@@ -95,8 +95,9 @@
           <span class="icon icon-cart"></span>
           <span id="addToCartText">{{ 'products.product.add_to_cart' | t }}</span>
         </button>
-
-        <span id="variantQuantity" class="variant-quantity"></span>
+        {% if settings.product_quantity_message %}
+          <span id="variantQuantity" class="variant-quantity"></span>
+        {% endif %}
       </form>
 
       <hr>
@@ -147,7 +148,9 @@
       if (variant.featured_image) {
         var newImg = variant.featured_image,
             el = $featuredImage[0];
-        Shopify.Image.switchImage(newImg, el, timber.switchImage);
+        $(function() {
+          Shopify.Image.switchImage(newImg, el, timber.switchImage);
+        });
       }
 
       // Select a valid variant if available
@@ -157,13 +160,18 @@
         $addToCartText.html({{ 'products.product.add_to_cart' | t | json }});
 
         // Show how many items are left, if below 10
+        {% if settings.product_quantity_message %}
         if (variant.inventory_management) {
           if (variant.inventory_quantity < 10 && variant.inventory_quantity > 0) {
-            $variantQuantity.html({{ 'products.product.only_left' | t: count: '1' | json }}.replace('1', variant.inventory_quantity)).show();
+            $variantQuantity.html({{ 'products.product.only_left' | t: count: '1' | json }}.replace('1', variant.inventory_quantity)).addClass('is-visible');
           } else {
-            $variantQuantity.hide();
+            $variantQuantity.removeClass('is-visible');
           }
         }
+        else {
+          $variantQuantity.removeClass('is-visible');
+        }
+        {% endif %}
 
 
         $quantityElements.show();
@@ -171,7 +179,7 @@
         // Variant is sold out, disable the submit button
         $addToCart.addClass('disabled').prop('disabled', true);
         $addToCartText.html({{ 'products.product.sold_out' | t | json }});
-        $variantQuantity.hide();
+        $variantQuantity.removeClass('is-visible');
         $quantityElements.hide();
       }
 
@@ -195,7 +203,7 @@
       // This may be an error or notice that a specific variant is not available.
       $addToCart.addClass('disabled').prop('disabled', true);
       $addToCartText.html({{ 'products.product.unavailable' | t | json }});
-      $variantQuantity.hide();
+      $variantQuantity.removeClass('is-visible');
       $quantityElements.hide();
     }
   };

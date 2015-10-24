@@ -48,27 +48,29 @@
         {% endif %}
       </div>
     {% else %}
+    
       {% assign img_tag = '<' | append: 'img' %}
       {% if item.content contains img_tag %}
         {% assign src = item.content | split: 'src="' %}
         {% assign src = src[1] | split: '"' | first %}
         {% if src %}
           {% assign image_src = src | replace: '_small.', '.' | replace: '_compact.', '.' | replace: '_medium.', '.' | replace: '_large.', '.' | replace: '_grande.', '.' %}
-          {{ image_src | img_tag }}
         {% endif %}
       {% endif %}
 
+      {% unless image_src == blank %}
       <div class="product-grid-image">
         <div class="product-grid-image--centered">
           {{ image_src | img_tag }}
         </div>
       </div>
+      {% endunless %}
 
       <p class="h6">{{ item.title }}</p>
 
       <div class="rte">
         {% if item.excerpt.size > 0 %}
-          {{ item.excerpt }}
+          <p>{{ item.excerpt | strip_html | truncatewords: 30 }}</p>
         {% else %}
           <p>{{ item.content | strip_html | truncatewords: 30 }}</p>
         {% endif %}

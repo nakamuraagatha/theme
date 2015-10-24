@@ -1,10 +1,10 @@
 {% if cart.item_count > 0 %}
-  <form action="/cart" method="post" novalidate>
+  <form action="/cart" method="post" class="cart-form" novalidate>
 
     <h1 class="h2">{{ 'cart.general.title' | t }}</h1>
 
     {% for item in cart.items %}
-    <div class="cart-row" data-id="{{ item.id }}">
+    <div class="cart-row" data-line="{{ forloop.index }}">
       <div class="grid">
 
         <div class="grid-item large--seven-twelfths">
@@ -25,9 +25,10 @@
                 <small>{{ item.variant.title }}</small>
               {% endunless %}
 
-              {% if item.properties.size > 0 %}
-              <p>
+              {% assign property_size = item.properties | size %}
+              {% if property_size > 0 %}
                 {% for p in item.properties %}
+                  {% if forloop.first %}<br>{% endif %}
                   {% unless p.last == blank %}
                     {{ p.first }}:
 
@@ -40,7 +41,6 @@
                     <br>
                   {% endunless %}
                 {% endfor %}
-              </p>
               {% endif %}
             </div>
 
@@ -51,7 +51,7 @@
           <div class="grid">
 
             <div class="grid-item one-half medium-down--one-third text-right">
-              <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
+              <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-line="{{ forloop.index }}">
             </div>
 
             <div class="grid-item one-third medium-down--one-third medium-down--text-left text-right">
@@ -61,7 +61,7 @@
             </div>
 
             <div class="grid-item one-sixth medium-down--one-third text-right">
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}" class="icon-fallback-text btn-secondary remove">
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-line="{{ forloop.index }}" class="icon-fallback-text btn-secondary remove">
                 <span class="icon icon-x" aria-hidden="true"></span>
                 <span class="fallback-text">{{ 'cart.general.remove' | t }}</span>
               </a>
@@ -102,7 +102,7 @@
           </button>
 
           {% if additional_checkout_buttons %}
-            <p>{{ content_for_additional_checkout_buttons }}</p>
+            <div>{{ content_for_additional_checkout_buttons }}</div>
           {% endif %}
 
         </div>

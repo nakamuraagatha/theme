@@ -17,16 +17,34 @@
 
   <div class="grid-item{% if has_sidebar %} large--four-fifths grid-border--left{% endif %}">
 
+    {% comment %}
+      Different markup if description is set
+    {% endcomment %}
+    {% if collection.description != blank %}
+      <header class="section-header">
+        <h1 class="section-header--title">{{ collection.title }}</h1>
+        <div class="rte rte--header">
+          {{ collection.description }}
+        </div>
+      </header>
+      <hr{% if has_sidebar %} class="hr--offset-left"{% endif %}>
+      <div class="section-header">
+        <div class="section-header--right">
+          {% include 'collection-sorting' %}
+          {% include 'collection-views' %}
+          {% include 'toggle-filters' %}
+        </div>
+      </div>
+    {% else %}
     <header class="section-header">
-      <h1 class="section-header--left">{{ collection.title }}</h1>
+      <h1 class="section-header--title section-header--left">{{ collection.title }}</h1>
       <div class="section-header--right">
-
         {% include 'collection-sorting' %}
         {% include 'collection-views' %}
         {% include 'toggle-filters' %}
-
       </div>
     </header>
+    {% endif %}
 
     <div class="grid-uniform">
 

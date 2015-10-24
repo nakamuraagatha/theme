@@ -11,6 +11,23 @@
       "title": "404 page non trouvée",
       "subtext_html": "La page que vous avez demandée n'existe pas. Cliquez <a href=\"/collections/all\">ici</a> pour continuer à magasiner."
     },
+    "password_page": {
+      "opening_soon": "Bientôt ouvert",
+      "spread_the_word": "Passez le mot:",
+      "login_form_heading": "Accéder à la boutique à l'aide d'un mot de passe:",
+      "login_form_password_label": "Mot de passe",
+      "login_form_password_placeholder": "Votre mot de passe",
+      "login_form_submit": "Entrer",
+      "signup_form_heading": "Soyez le premier informé de notre lancement:",
+      "signup_form_email_label": "Courriel",
+      "signup_form_email_placeholder": "Votre courriel",
+      "signup_form_submit": "Soumettre",
+      "signup_form_success": "Nous vous ferons parvenir un courriel juste avant l'ouverture!",
+      "admin_link_html": "Êtes-vous le propriétaire de la boutique? <a href=\"/admin\" class=\"text-link\">Connectez-vous ici</a>.",
+      "password_link": "Entrer avec un mot de passe",
+      "powered_by_shopify_html": "Cette boutique sera propulsée par {{ shopify }}",
+      "close": "Fermer (Esc)"
+    },
     "breadcrumbs": {
       "home": "Accueil",
       "home_link_title": "Revenir à la première page"
@@ -23,6 +40,12 @@
       "no_results_html": "Votre recherche, « {{ terms }} », n'a donné aucun résultat.",
       "results_for_html": "Votre recherche, « {{ terms }} », a donné les résultats suivants:",
       "title": "Chercher des produits sur notre site"
+    },
+    "social": {
+      "share_on_facebook": "Partager",
+      "share_on_twitter": "Tweeter",
+      "share_on_pinterest": "Épingler",
+      "share_on_fancy": "Partager sur Fancy"
     }
   },
   "blogs": {
@@ -128,6 +151,7 @@
       "title": "Vos adresses",
       "default": "Défaut",
       "add_new": "Ajouter une nouvelle adresse",
+      "edit_address": "Éditer l'adresse",
       "first_name": "Prénom",
       "last_name": "Nom",
       "company": "Entreprise",
@@ -223,10 +247,10 @@
       "heading": "Collection en vedette",
       "more": "Plus",
       "no_products_in_collection_html": "Il n'y a aucun produit dans votre collection {{ collection_title }}.",
-      "instructions_to_add_products_to_collection_html": "Cet espace réservé s'affichera jusqu'à ce que vous <a href=\"{{ collection_admin_url }}\">ajoutiez un produit à cette collection</a> ou désactiviez <em>la ligne En vedette 1</em> dans vos paramètres de thème.",
+      "instructions_to_add_products_to_collection_html": "Cet espace réservé s'affichera jusqu'à ce que vous <a href=\"{{ collection_admin_url }}\">ajoutiez un produit à cette collection</a> ou désactiviez <em>la ligne en vedette {{ featured_row_index }}</em> dans vos paramètres de thème.",
       "add_a_product": "Ajouter un produit",
       "example_product_title": "Exemple de titre de produit",
-      "more_in_collection": "Plus {{ collection_title }}"
+      "more_in_collection": "Toute la collection {{ collection_title }}"
     }
   },
   "layout": {
@@ -263,10 +287,6 @@
   },
   "products": {
     "general": {
-      "share_on_facebook": "Partager",
-      "share_on_twitter": "Tweeter",
-      "share_on_pinterest": "Épingler",
-      "share_on_fancy": "Partager sur Fancy",
       "related_products": "Nous vous recommandons également",
       "save_html": "Épargnez {{ saved_amount }}"
     },
@@ -287,7 +307,8 @@
       "active": "Expire le {{ expiry }}",
       "redeem": "Utilisez ce code à la caisse pour payer à l'aide de votre carte-cadeau",
       "shop_link": "Commencer à magasiner",
-      "print": "Imprimer"
+      "print": "Imprimer",
+      "add_to_apple_wallet": "Ajouter à Apple Wallet"
     }
   }
 }

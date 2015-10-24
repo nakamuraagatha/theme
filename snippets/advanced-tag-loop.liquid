@@ -1,12 +1,14 @@
 {% comment %}
-  A recursive loop to catch and filter out the different tag categories.
+  A loop to catch and filter out the different tag categories.
   This is mainly for advanced tagging, but will also help us strip
   out any tag categories from our tags (E.g. remove BRAND_ from BRAND_tag)
 {% endcomment %}
 {% if template contains 'collection' and collection.all_tags.size > 0 %}
-  {% assign c = 0 %}
-  {% for t in collection.all_tags %}
-  {% capture cat %}{{ cat }}{% capture temp_cat %}{% if t contains '_' %}{% assign cat_grp = t | split: '_' %}{{ cat_grp.first }}{% endif %}{% endcapture %}{% unless cat contains temp_cat %}{% if t contains '_' %}{% assign new_cat_grp = t | split: '_' %}{{ new_cat_grp.first }}{% endif %}{% unless forloop.last %}+{% endunless %}{% assign c = c | plus: 1 %}{% endunless %}{% endcapture %}
+  {% assign categories = '' %}
+  {% for tag in collection.all_tags %}
+    {% if tag contains '_' %}
+      {% capture categories %}{% unless categories == blank  %}{{ categories }}|{% endunless %}{{ tag | split: '_' | first }}{% endcapture %}
+    {% endif %}
   {% endfor %}
-  {% assign cat_array = cat | split: '+' %}
+  {% assign cat_array = categories | split: '|' | uniq %}
 {% endif %}

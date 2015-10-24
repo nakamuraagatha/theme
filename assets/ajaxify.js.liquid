@@ -1,7 +1,7 @@
 /*============================================================================
   (c) Copyright 2015 Shopify Inc. Author: Carson Shold (@cshold). All Rights Reserved.
 
-  Plugin Documentation - http://shopify.github.io/Timber/#ajax-cart
+  Plugin Documentation - https://shopify.github.io/Timber/#ajax-cart
 
   Ajaxify the add to cart experience and flip the button for inline confirmation,
   show the cart in a modal, or a 3D drawer.
@@ -209,11 +209,11 @@ Shopify.getProduct = function(handle, callback) {
 };
 
 // POST to cart/change.js returns the cart in JSON
-Shopify.changeItem = function(variant_id, quantity, callback) {
+Shopify.changeItem = function(line, quantity, callback) {
   var params = {
     type: 'POST',
     url: '/cart/change.js',
-    data:  'quantity='+quantity+'&id='+variant_id,
+    data:  'quantity=' + quantity + '&line=' + line,
     dataType: 'json',
     success: function(cart) {
       if ((typeof callback) === 'function') {
@@ -241,13 +241,13 @@ var ajaxifyShopify = (function(module, $) {
   var init;
 
   // Private general variables
-  var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body, $html;
+  var settings, isUpdating, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body, $html;
 
   // Private plugin variables
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, toggleCallback;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, toggleCallback, validateQty;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -299,6 +299,9 @@ var ajaxifyShopify = (function(module, $) {
     $w    = $(window);
     $body = $('body');
     $html = $('html');
+
+    // Track cart activity status
+    isUpdating = false;
 
     // Check if we can use .load
     $nojQueryLoad = $html.hasClass('lt-ie9');
@@ -477,11 +480,6 @@ var ajaxifyShopify = (function(module, $) {
       'margin-left': - ($modalContainer.outerWidth() / 2),
       'opacity': 1
     });
-
-    // Position close button relative to title
-    $closeCart.css({
-      'top': 10 + ( $cartContainer.find('h1').height() / 2 )
-    })
 
     $modalContainer.addClass('is-visible');
 
@@ -789,6 +787,7 @@ var ajaxifyShopify = (function(module, $) {
       // Create item's data object and add to 'items' array
       item = {
         id: cartItem.variant_id,
+        line: index + 1, // Shopify uses a 1+ index in the API
         url: cartItem.url,
         img: prodImg,
         name: prodName,
@@ -870,6 +869,13 @@ var ajaxifyShopify = (function(module, $) {
       createQtySelectors();
     }
 
+    // Prevent cart from being submitted while quantities are changing
+    $body.on('submit', 'form.cart-form', function(evt) {
+      if (isUpdating) {
+        evt.preventDefault();
+      }
+    });
+
     // Update quantify selectors
     var qtyAdjust = $('.ajaxifyCart--qty span');
 
@@ -877,22 +883,23 @@ var ajaxifyShopify = (function(module, $) {
     qtyAdjust.off('click');
     qtyAdjust.on('click', function() {
       var el = $(this),
-          id = el.data('id'),
+          line = el.data('line'),
           qtySelector = el.siblings('.ajaxifyCart--num'),
           qty = parseInt( qtySelector.val() );
+
+      qty = validateQty(qty);
 
       // Add or subtract from the current quantity
       if (el.hasClass('ajaxifyCart--add')) {
         qty = qty + 1;
       } else {
-        qty = qty - 1;
-        if (qty <= 0) qty = 0;
+        qty = qty <= 0 ? 0 : qty - 1;
       }
 
-      // If it has a data-id, update the cart.
+      // If it has a data-line, update the cart.
       // Otherwise, just update the input's number
-      if (id) {
-        updateQuantity(id, qty);
+      if (line) {
+        updateQuantity(line, qty);
       } else {
         qtySelector.val(qty);
       }
@@ -904,7 +911,7 @@ var ajaxifyShopify = (function(module, $) {
     qtyInput.off('change');
     qtyInput.on('change', function() {
       var el = $(this),
-          id = el.data('id'),
+          line = el.data('line'),
           qty = el.val();
 
       // Make sure we have a valid integer
@@ -916,9 +923,9 @@ var ajaxifyShopify = (function(module, $) {
         return;
       }
 
-      // Only update the cart via ajax if we have a variant ID to work with
-      if (id) {
-        updateQuantity(id, qty);
+      // If it has a data-line, update the cart
+      if (line) {
+        updateQuantity(line, qty);
       }
     });
 
@@ -934,24 +941,26 @@ var ajaxifyShopify = (function(module, $) {
     // Completely remove product
     $('.ajaxifyCart--remove').on('click', function(e) {
       var el = $(this),
-          id = el.data('id') || null,
+          line = el.data('line') || null,
           qty = 0;
 
-      // Without an id, let the default link action take over
-      if (!id) {
+      // Without a data-line, let the default link action take over
+      if (!line) {
         return;
       }
 
       e.preventDefault();
-      updateQuantity(id, qty);
+      updateQuantity(line, qty);
     });
 
-    function updateQuantity(id, qty) {
+    function updateQuantity(line, qty) {
+      isUpdating = true;
+
       // Add activity classes when changing cart quantities
       if (!settings.useCartTemplate) {
-        var row = $('.ajaxifyCart--row[data-id="' + id + '"]').addClass('ajaxifyCart--is-loading');
+        var row = $('.ajaxifyCart--row[data-line="' + line + '"]').addClass('ajaxifyCart--is-loading');
       } else {
-        var row = $('.cart-row[data-id="' + id + '"]').addClass('ajaxifyCart--is-loading');
+        var row = $('.cart-row[data-line="' + line + '"]').addClass('ajaxifyCart--is-loading');
       }
 
       if ( qty === 0 ) {
@@ -960,7 +969,7 @@ var ajaxifyShopify = (function(module, $) {
 
       // Slight delay to make sure removed animation is done
       setTimeout(function() {
-        Shopify.changeItem(id, qty, adjustCartCallback);
+        Shopify.changeItem(line, qty, adjustCartCallback);
       }, 250);
     }
 
@@ -973,9 +982,12 @@ var ajaxifyShopify = (function(module, $) {
       // Simply updating the cart note in case they don't click update/checkout
       Shopify.updateCartNote(newNote, function(cart) {});
     });
+    if (typeof GoogleWalletButton === "function") GoogleWalletButton();
   };
 
   adjustCartCallback = function (cart) {
+    isUpdating = false;
+
     // Update quantity and price
     updateCountPrice(cart);
 
@@ -1003,7 +1015,7 @@ var ajaxifyShopify = (function(module, $) {
     if ($('input[type="number"]', $cartContainer).length) {
       $('input[type="number"]', $cartContainer).each(function() {
         var el = $(this),
-            currentQty = el.val();
+            currentQty = parseInt(el.val());
 
         var itemAdd = currentQty + 1,
             itemMinus = currentQty - 1,
@@ -1012,7 +1024,7 @@ var ajaxifyShopify = (function(module, $) {
         var source   = $("#ajaxifyQty").html(),
             template = Handlebars.compile(source),
             data = {
-              id: el.data('id'),
+              line: el.attr('data-line'),
               itemQty: itemQty,
               itemAdd: itemAdd,
               itemMinus: itemMinus
@@ -1036,10 +1048,14 @@ var ajaxifyShopify = (function(module, $) {
     // Make sure to add the existing name and id to the new input element
     var numInputs = $('input[type="number"]');
 
+    // Qty selector has a minimum of 1 on the product page
+    // and 0 in the cart (determined on qty click)
+    var qtyMin = 0;
+
     if (numInputs.length) {
       numInputs.each(function() {
         var el = $(this),
-            currentQty = el.val(),
+            currentQty = parseInt(el.val()),
             inputName = el.attr('name'),
             inputId = el.attr('id');
 
@@ -1069,12 +1085,14 @@ var ajaxifyShopify = (function(module, $) {
             qtySelector = el.siblings('.js--num'),
             qty = parseInt( qtySelector.val() );
 
+        var qty = validateQty(qty);
+        qtyMin = $body.hasClass('template-product') ? 1 : qtyMin;
+
         // Add or subtract from the current quantity
         if (el.hasClass('js--add')) {
           qty = qty + 1;
         } else {
-          qty = qty - 1;
-          if (qty <= 1) qty = 1;
+          qty = qty <= qtyMin ? qtyMin : qty - 1;
         }
 
         // Update the input's number
@@ -1095,6 +1113,16 @@ var ajaxifyShopify = (function(module, $) {
     // Run the callback if it's a function
     if (typeof settings.onToggleCallback == 'function') {
       settings.onToggleCallback.call(this, data);
+    }
+  };
+
+  validateQty = function (qty) {
+    if((parseFloat(qty) == parseInt(qty)) && !isNaN(qty)) {
+      // We have a valid number!
+      return qty;
+    } else {
+      // Not a number. Default to 1.
+      return 1;
     }
   };
 

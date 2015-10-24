@@ -15,69 +15,47 @@
         Loop through tag categories
       {% endcomment %}
       {% for cat_item in cat_array %}
-        {% comment %}
-          Ignore if tag category is empty
-        {% endcomment %}
-        {% unless cat_item == '' %}
         <div class="grid-item small--one-half medium--one-third">
           <h3>{{ cat_item }}</h3>
           <ul class="advanced-filters">
             {% comment %}
               Loop through collection tags
             {% endcomment %}
-            {% for custom_tag in collection.all_tags %}
-              {% if custom_tag contains cat_item %}
+            {% for tag in collection.all_tags %}
+              {% assign cat = tag | split: '_' | first %}              
+              {% if cat != tag and cat_item == cat %}
                 {% comment %}
                   Strip out tag category prefix and add/remove link for tag filtering
                 {% endcomment %}
-                {% if current_tags contains custom_tag %}
-                  <li class="advanced-filter active-filter" data-group="{{ cat_item }}" data-handle="{{ custom_tag | handleize }}">{{ custom_tag | remove_first: cat_item | remove: '_' | link_to_remove_tag: custom_tag }}</li>
+                {% if current_tags contains tag %}
+                  <li class="advanced-filter active-filter" data-group="{{ cat_item }}" data-handle="{{ tag | handle }}">{{ tag | remove_first: cat_item | remove_first: '_' | link_to_remove_tag: tag }}</li>
                 {% else %}
-                  <li class="advanced-filter" data-group="{{ cat_item }}">{{ custom_tag | remove_first: cat_item | remove: '_' | link_to_add_tag: custom_tag }}</li>
+                  <li class="advanced-filter" data-group="{{ cat_item }}" data-handle="{{ tag | handle }}">{{ tag | remove_first: cat_item | remove_first: '_' | link_to_add_tag: tag }}</li>
                 {% endif %}
               {% endif %}
             {% endfor %}
           </ul>
         </div>
-        {% endunless %}
       {% endfor %}
     </div>
 
     <script>
     $(function() {
-      var currentTags = '{{ current_tags }}',
-          filters = $('.advanced-filter'),
-          activeTag,
-          activeHandle;
-
-      filters.each(function() {
-        var el = $(this),
-            group = el.data('group'),
-            isActive = el.hasClass('active-filter');
-      });
-
+      var filters = $('.advanced-filter'),
+        el,
+        elGroup,
+        elHandle,
+        activeTagInGroup;
+        
       filters.on('click', function(e) {
-        var el = $(this),
-            group = el.data('group'),
-            url = el.find('a').attr('href');
-
-        // Continue as normal if we're clicking on the active link
-        if ( el.hasClass('active-filter') ) {
-          return;
-        }
-
-        // Get active group link (unidentified if there isn't one)
-        activeTag = $('.active-filter[data-group="'+ group +'"]');
-
-        // If a tag from this group is already selected, remove it from the new tag's URL and continue
-        if ( activeTag && activeTag.data('group') === group ) {
+        el = $(this);
+        elGroup = el.data('group');
+        elHandle = el.data('handle');
+        activeTagInGroup = $('.active-filter[data-group="'+ elGroup +'"]');
+        // If the tag clicked is not already active and its group contains an active tag, we will swap tag within the group.
+        if ( !el.hasClass('active-filter')  && activeTagInGroup.size() ) {
           e.preventDefault();
-          activeHandle = activeTag.data('handle') + '+';
-
-          // Create new URL without the currently active handle
-          url = url.replace(activeHandle, '');
-
-          window.location = url;
+          location.href = location.href.replace(activeTagInGroup.data('handle'), elHandle);
         }
       });
     });
@@ -117,7 +95,6 @@
           {% endcomment %}
           {% elsif collection.current_vendor %}
             <a href="{{ collection.current_vendor | url_for_vendor }}">{{ 'collections.sidebar.all_collection' | t: collection_title: collection.title }}</a>
-
           {% endif %}
         </li>
       {% endif %}
@@ -128,19 +105,17 @@
       {% endcomment %}
       {% for tag in collection.all_tags %}
         {% assign is_advanced_tag = false %}
-        {% for cat_item in cat_array %}
-          {% unless cat_item == '' %}
-            {% if tag contains cat_item %}
-              {% assign is_advanced_tag = true %}
-              {% if current_tags contains tag %}
-                <li class="active-filter">{{ tag | remove: cat_item | remove: '_' }}</li>
-              {% else %}
-                <li>{{ tag | remove: cat_item | remove: '_' | link_to_tag: tag }}</li>
-              {% endif %}
+        {% assign cat = tag | split: '_' | first %}
+        {% unless cat == tag %}
+          {% if cat_array contains cat %}
+            {% assign is_advanced_tag = true %}
+            {% if current_tags contains tag %}
+              <li class="active-filter">{{ tag | remove_first: cat | remove_first: '_' }}</li>
+            {% else %}
+              <li>{{ tag | remove_first: cat | remove_first: '_' | link_to_tag: tag }}</li>
             {% endif %}
-
-          {% endunless %}
-        {% endfor %}
+          {% endif %}
+        {% endunless %}
 
         {% if is_advanced_tag == false %}
           {% if current_tags contains tag %}

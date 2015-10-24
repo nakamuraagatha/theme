@@ -11,6 +11,23 @@
       "title": "404 Page Not Found",
       "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
     },
+    "password_page": {
+      "opening_soon": "Opening Soon",
+      "spread_the_word": "Spread the word:",
+      "login_form_heading": "Enter store using password:",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_submit": "Enter",
+      "signup_form_heading": "Find out when we open:",
+      "signup_form_email_label": "Email",
+      "signup_form_email_placeholder": "Your email",
+      "signup_form_submit": "Submit",
+      "signup_form_success": "We will send you an email right before we open!",
+      "admin_link_html": "Are you the store owner? <a href=\"/admin\" class=\"text-link\">Log in here</a>",
+      "password_link": "Enter using password",
+      "powered_by_shopify_html": "This shop will be powered by {{ shopify }}",
+      "close": "Close"
+    },
     "breadcrumbs": {
       "home": "Home",
       "home_link_title": "Back to the frontpage"
@@ -23,6 +40,12 @@
       "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
       "results_for_html": "Your search for \"{{ terms }}\" revealed the following:",
       "title": "Search for products on our site"
+    },
+    "social": {
+      "share_on_facebook": "Share",
+      "share_on_twitter": "Tweet",
+      "share_on_pinterest": "Pin it",
+      "share_on_fancy": "Fancy"
     }
   },
   "blogs": {
@@ -128,6 +151,7 @@
       "title": "Your Addresses",
       "default": "Default",
       "add_new": "Add a New Address",
+      "edit_address": "Edit address",
       "first_name": "First Name",
       "last_name": "Last Name",
       "company": "Company",
@@ -223,7 +247,7 @@
       "heading": "Featured Collection",
       "more": "More",
       "no_products_in_collection_html": "You have no products in your {{ collection_title }} collection.",
-      "instructions_to_add_products_to_collection_html": "This placeholder will appear until you <a href=\"{{ collection_admin_url }}\">add a product to this collection</a> or disable <em>Featured Row 1</em> in your theme settings.",
+      "instructions_to_add_products_to_collection_html": "This placeholder will appear until you <a href=\"{{ collection_admin_url }}\">add a product to this collection</a> or disable <em>Featured Row {{ featured_row_index }}</em> in your theme settings.",
       "add_a_product": "Add a Product",
       "example_product_title": "Example Product Title",
       "more_in_collection": "More {{ collection_title }}"
@@ -263,10 +287,6 @@
   },
   "products": {
     "general": {
-      "share_on_facebook": "Share",
-      "share_on_twitter": "Tweet",
-      "share_on_pinterest": "Pin it",
-      "share_on_fancy": "Fancy",
       "related_products": "We Also Recommend",
       "save_html": "Save {{ saved_amount }}"
     },
@@ -287,7 +307,9 @@
       "active": "Expires on {{ expiry }}",
       "redeem": "Use this code at checkout to redeem your gift card",
       "shop_link": "Start shopping",
-      "print": "Print"
+      "print": "Print",
+      "add_to_apple_wallet": "Add to Apple Wallet"
     }
   }
+
 }

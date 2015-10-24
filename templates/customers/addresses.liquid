@@ -1,5 +1,3 @@
-{% layout settings.customer_layout %}
-
 <header class="section-header">
   <h1 class="section-header--left">{{ 'customer.account.title' | t }}</h1>
   <div class="section-header--right">
@@ -15,39 +13,41 @@
     <p><a href="/account">{{ 'customer.account.return' | t }}</a></p>
   </div>
   <div class="grid-item two-thirds medium-down--one-whole">
+    {% form 'customer_address', customer.new_address %}
 
-    <div id="add_address" style="display: none;">
-      {% form 'customer_address', customer.new_address %}
+      <div id="add_address" {% unless form.errors %}style="display: none;"{% endunless %}>
 
         <h2>{{ 'customer.addresses.add_new' | t }}</h2>
+
+        {% include 'form-errors-custom' %}
 
         <div class="grid">
 
           <div class="grid-item one-half small--one-whole">
             <label for="address_first_name_new">{{ 'customer.addresses.first_name' | t }}</label>
-            <input type="text" id="address_first_name_new" class="address_form" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words">
+            <input type="text" id="address_first_name_new" class="address_form" name="address[first_name]" value="{{ form.first_name }}">
           </div>
 
           <div class="grid-item one-half small--one-whole">
             <label for="address_last_name_new">{{ 'customer.addresses.last_name' | t }}</label>
-            <input type="text" id="address_last_name_new" class="address_form" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words">
+            <input type="text" id="address_last_name_new" class="address_form" name="address[last_name]" value="{{ form.last_name }}">
           </div>
 
         </div>
 
         <label for="address_company_new">{{ 'customer.addresses.company' | t }}</label>
-        <input type="text" id="address_company_new" class="address_form" name="address[company]" value="{{ form.company }}" autocapitalize="words">
+        <input type="text" id="address_company_new" class="address_form" name="address[company]" value="{{ form.company }}">
 
         <label for="address_address1_new">{{ 'customer.addresses.address1' | t }}</label>
-        <input type="text" id="address_address1_new" class="address_form" name="address[address1]" value=" {{ form.address1 }}" autocapitalize="words">
+        <input type="text" id="address_address1_new" class="address_form" name="address[address1]" value=" {{ form.address1 }}">
 
         <label for="address_address2_new">{{ 'customer.addresses.address2' | t }}</label>
-        <input type="text" id="address_address2_new" class="address_form" name="address[address2]" value=" {{ form.address2 }}" autocapitalize="words">
+        <input type="text" id="address_address2_new" class="address_form" name="address[address2]" value=" {{ form.address2 }}">
 
         <div class="grid">
           <div class="grid-item large--one-half">
             <label for="address_city_new">{{ 'customer.addresses.city' | t }}</label>
-            <input type="text" id="address_city_new" class="address_form" name="address[city]" value="{{ form.city }}" autocapitalize="words">
+            <input type="text" id="address_city_new" class="address_form" name="address[city]" value="{{ form.city }}">
           </div>
 
           <div class="grid-item large--one-half">
@@ -81,8 +81,8 @@
         <a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a>
 
         <hr>
-      {% endform %}
-    </div>
+      </div>
+    {% endform %}
 
     <h2>{{ 'customer.addresses.title' | t }}</h2>
 
@@ -110,36 +110,36 @@
           {{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}
         </p>
 
-        <div id="edit_address_{{ address.id }}" style="display:none;">
-          {% form 'customer_address', address %}
+        {% form 'customer_address', address %}
+          <div id="edit_address_{{ address.id }}" {% unless form.errors %}style="display:none;"{% endunless %}>
 
-            <h4>Edit address</h4>
-
+            <h4>{{ 'customer.addresses.edit_address' | t }}</h4>
+            {% include 'form-errors-custom' %}
             <div class="grid">
 
               <div class="grid-item one-half small--one-whole">
                 <label for="address_first_name_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
-                <input type="text" id="address_first_name_{{ form.id }}" class="address_form" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words">
+                <input type="text" id="address_first_name_{{ form.id }}" class="address_form" name="address[first_name]" value="{{ form.first_name }}">
               </div>
 
               <div class="grid-item one-half small--one-whole">
                 <label for="address_last_name_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
-                <input type="text" id="address_last_name_{{ form.id }}" class="address_form" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words">
+                <input type="text" id="address_last_name_{{ form.id }}" class="address_form" name="address[last_name]" value="{{ form.last_name }}">
               </div>
 
             </div>
 
             <label for="address_company_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
-            <input type="text" id="address_company_{{ form.id }}" class="address_form" name="address[company]" value="{{ form.company }}" autocapitalize="words">
+            <input type="text" id="address_company_{{ form.id }}" class="address_form" name="address[company]" value="{{ form.company }}">
 
             <label for="address_address1_{{ form.id }}">{{ 'customer.addresses.address1' | t }}</label>
-            <input type="text" id="address_address1_{{ form.id }}" class="address_form" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words">
+            <input type="text" id="address_address1_{{ form.id }}" class="address_form" name="address[address1]" value="{{ form.address1 }}">
 
             <label for="address_address2_{{ form.id }}">{{ 'customer.addresses.address2' | t }}</label>
-            <input type="text" id="address_address2_{{ form.id }}" class="address_form" name="address[address2]" value="{{ form.address2 }}" autocapitalize="words">
+            <input type="text" id="address_address2_{{ form.id }}" class="address_form" name="address[address2]" value="{{ form.address2 }}">
 
             <label for="address_city_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
-            <input type="text" id="address_city_{{ form.id }}" class="address_form" name="address[city]" value="{{ form.city }}" autocapitalize="words">
+            <input type="text" id="address_city_{{ form.id }}" class="address_form" name="address[city]" value="{{ form.city }}">
 
             <label for="address_country_{{ form.id }}">{{ 'customer.addresses.country' | t }}</label>
             <select id="address_country_{{ form.id }}" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select>
@@ -151,7 +151,7 @@
 
             <div class="grid">
               <div class="grid-item one-half small--one-whole">
-                <label for="address_zip_{{ form.id }}">{{ 'customer.addresses.province' | t }}</label>
+                <label for="address_zip_{{ form.id }}">{{ 'customer.addresses.zip' | t }}</label>
                 <input type="text" id="address_zip_{{ form.id }}" class="address_form" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
               </div>
 
@@ -170,8 +170,8 @@
             or <a href="#" onclick="Shopify.CustomerAddress.toggleForm({{ form.id }}); return false;">{{ 'customer.addresses.cancel' | t }}</a>
 
             <hr>
-          {% endform %}
-        </div>
+          </div>
+        {% endform %}
 
       {% endfor %}
 

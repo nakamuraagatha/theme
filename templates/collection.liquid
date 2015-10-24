@@ -27,7 +27,7 @@
           {{ collection.description }}
         </div>
       </header>
-      <hr class="hr--offset-left">
+      <hr{% if has_sidebar %} class="hr--offset-left"{% endif %}>
       <div class="section-header">
         <div class="section-header--right">
           {% include 'collection-sorting' %}
