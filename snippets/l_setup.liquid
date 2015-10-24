@@ -3,6 +3,7 @@
   {% assign locale = 'de' %}
   {% assign locale_prefix = ''  %}
   {% assign ti = 0 %}
+  {% assign locale_canonical_url = canonical_url %}
   {% if request.host contains 'playmakers-football.com' %}
     {% assign locale = 'en' %}
     {% assign locale_prefix = locale | append: '-'  %}

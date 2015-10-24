@@ -73,7 +73,6 @@
     "collection_prod_image_sizes": "compact",
     "collection_sidebar_filters": "tags",
     "cart_notes_enable": false,
-    "ajax_cart_enable": true,
     "ajax_cart_method": "modal",
     "twittercard_handle": "@playmakers_shop",
     "social_sharing_products": true,

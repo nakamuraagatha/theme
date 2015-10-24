@@ -769,7 +769,7 @@
         "type": "link_list",
         "id": "footer_quicklinks_linklist",
         "label": "Quick links link list"
-      },      
+      },
       {
         "type": "checkbox",
         "id": "footer_social_enable",
@@ -1146,12 +1146,6 @@
         "type": "checkbox",
         "id": "cart_notes_enable",
         "label": "Allow notes with orders"
-      },
-      {
-        "type": "checkbox",
-        "id": "ajax_cart_enable",
-        "label": "Enable Ajaxify Cart",
-        "info": "[View documentation](http:\/\/shopify.com\/timber#ajax-cart)"
       },
       {
         "type": "select",
