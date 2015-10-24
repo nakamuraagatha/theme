@@ -10,7 +10,7 @@
 {% endif %}
 
 <div class="section-header partners">
-  <p class="h1 section-header__left">Unsere Mediapartner</p>
+  <p class="h1 section-header__left">{% include 'l' with 'blogs.sidebar.mediapartner' %}</p>
   <div class="section-header__right"></div>
 </div>
 
@@ -46,16 +46,17 @@
 
 <hr class="partners">
 
+{% assign blog_name = locale_prefix | append: 'news' %}
+{% assign blog = blogs[blog_name] %}
 <div class="articles fullsize">
   <div class="section-header">
-      <p class="h1 section-header__left">{% include 'lt' with 'homepage.featured_articles.heading' %}{{ lk | t: title: blogs['news'].title }}</p>
+      <p class="h1 section-header__left">{% include 'lt' with 'homepage.featured_articles.heading' %}{{ lk | t: title: blog.title }}</p>
       <div class="section-header__right">
-        <a href="{{ blogs['news'].url }}">{% include 'l' with 'homepage.featured_articles.more' %} &rsaquo;</a>
+        <a href="{{ blog.url }}">{% include 'l' with 'homepage.featured_articles.more' %} &rsaquo;</a>
       </div>
   </div>
-
   <div class="grid-uniform article">
-    {% for article in blogs['news'].articles limit: 3 %}
+    {% for article in blog.articles limit: 3 %}
       {% assign grid_item_width = 'large--one-third medium--one-whole small--one-whole' %}
       {% include 'article-grid-item' %}
     {% endfor %}
@@ -64,13 +65,14 @@
 
 <hr>
 
+{% assign blog_name = locale_prefix | append: 'about' %}
+{% assign blog = blogs[blog_name] %}
 <div class="section-header">
-    <p class="h1 section-header__left">{% include 'l' with 'homepage.about.heading' %}</p>
+    <p class="h1 section-header__left">{{ blog.title }}</p>
     <div class="section-header__right"></div>
 </div>
-
 <div class="grid-uniform article-about">
-  {% for article in blogs['about'].articles limit: 4 %}
+  {% for article in blog.articles limit: 4 %}
     <div class="grid__item large--one-quarter medium--one-half small--one-whole">
       <div class="product-grid-image">
         <div class="product-grid-image--centered">

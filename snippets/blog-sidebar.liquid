@@ -10,7 +10,7 @@
   </div>
 </form>
 
-<h4 class="partners">Unsere Mediapartner:</h4>
+<h4 class="partners">{% include 'l' with 'blogs.sidebar.mediapartner' %}:</h4>
 <div class="partners">
   <a href="http://www.football-aktuell.de/cgi-bin/ehuddle.pl" target="_blank" title="E-Huddle">
     <img src="{{ 'partner-ehuddle.png' | asset_url }}" alt="E-Huddle">

@@ -56,7 +56,8 @@
       "newsletter_text": "Trage dich in unseren Newsletter ein um weitere Expertentipps & Neuigkeiten zu erhalten.",
       "newsletter_email": "Deine Emailadresse",
       "newsletter_button": "Eintragen",
-      "categories": "Kategorien"
+      "categories": "Kategorien",
+      "mediapartner": "Our Mediapartner"
     }
   },
   "cart": {
@@ -252,9 +253,6 @@
       "heading": " Neueste Einträge im {{ title }}",
       "more": "Alle Beiträge lesen"
     },
-    "about": {
-      "heading": "Das ist Playmakers Football"
-    },
     "vendors": {
       "heading": "Unsere Equipment Partner"
     }
@@ -438,7 +436,8 @@
         "newsletter": "Football Newsletter",
         "newsletter_text": "Trage dich in unseren Newsletter ein um weitere Expertentipps & Neuigkeiten zu erhalten.",
         "newsletter_email": "Your Emailaddress",
-        "newsletter_button": "Sign up"
+        "newsletter_button": "Sign up",
+        "mediapartner": "Our Mediapartner"
       }
     },
     "cart": {
@@ -632,9 +631,6 @@
       "featured_articles": {
         "heading": " Newest entries in {{ title }}",
         "more": "Read all articles"
-      },
-      "about": {
-        "heading": "This is Playmakers Football"
       },
       "vendors": {
         "heading": "Our equipment partners"
