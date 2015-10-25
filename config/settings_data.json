@@ -90,7 +90,6 @@
     "checkout_headline": "",
     "checkout_accent_color": "#ff6700",
     "checkout_button_color": "#ff6700",
-    "checkout_call_to_action_color": "#ff6700",
-    "customer_layout": "theme"
+    "checkout_call_to_action_color": "#ff6700"
   }
 }
