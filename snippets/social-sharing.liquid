@@ -1,11 +1,10 @@
 {% if template contains 'article' or template contains 'blog' %}
-  {% capture permalinkURL %}{{ shop.url }}{{ article.url }}{% endcapture %}
-
+  {% assign item_url = article.url %}
 {% elsif template contains 'product' %}
-  {% capture permalinkURL %}{{ shop.url }}{{ product.url }}{% endcapture %}
-
+  {% assign item_url = product.url %}
 {% endif %}
 
+{% assign permalinkURL = locale_shop_url | append: item_url %}
 {% assign shareButtonStyle = settings.social_sharing_style %}
 
 <div class="social-sharing {{ shareButtonStyle }}" data-permalink="{{ permalinkURL }}">

@@ -42,7 +42,7 @@
     {
     "@context": "http://schema.org/",
     "@type": "Organization",
-    "url": "http://{{ shop.domain }}",
+    "url": "{{ locale_shop_url }}",
     "logo": "http:{{ 'logo.svg' | asset_url }}"
     }
   </script>
@@ -54,7 +54,7 @@
       <div class="grid--full">
         {% capture tag %}{% if template == 'index' %}h1{% else %}div{% endif %}{% endcapture %}
         <{{ tag }} class="h1 header-logo large--left" itemscope itemtype="http://schema.org/Organization">
-          <a href="http://{{request.host}}" itemprop="url"><img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }} Online Shop" itemprop="logo">{{ shop.name }}</a>
+          <a href="{{ locale_shop_url }}" itemprop="url"><img src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }} Online Shop" itemprop="logo">{{ shop.name }}</a>
         </{{ tag }}>
 
         {% include 'l' with 'layout.navigation.special_html' %}

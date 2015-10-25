@@ -11,7 +11,7 @@
 {% elsif template == 'password' %}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ shop.name | escape }}">
-  <meta property="og:url" content="{{ shop.url }}">
+  <meta property="og:url" content="{{ locale_shop_url }}">
   {% if settings.logo_use_image %}
   <meta property="og:image" content="http:{{ 'logo.png' | asset_url }}">
   <meta property="og:image:secure_url" content="https:{{ 'logo.png' | asset_url }}">

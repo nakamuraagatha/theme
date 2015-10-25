@@ -1,7 +1,7 @@
 {% include 'l_setup' %}
 {% assign grid_results = true %}
 
-{% assign respond_js_secret_key = shop.domain | md5 %}
+{% assign respond_js_secret_key = locale_shop_domain | md5 %}
 {% unless search.terms == respond_js_secret_key %}
 
   <div class="grid">

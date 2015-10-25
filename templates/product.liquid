@@ -4,7 +4,7 @@
 {% assign variant = product.selected_or_first_available_variant %}
 
 <div class="grid new" id="product" itemscope itemtype="http://schema.org/Product">
-  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="url" content="{{ locale_shop_url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
   <div class="grid__item large--one-half text-right">
