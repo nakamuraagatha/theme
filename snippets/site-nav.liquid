@@ -36,7 +36,8 @@
       </li>
     {% endif %}
   {% endfor %}
-  {% for link in linklists['menu-header'].links %}
+  {% assign linklist = locale_prefix | append: 'header-menu' %}
+  {% for link in linklists[linklist].links %}
     <li class="large--hide {% if link.active %}site-nav--active{% endif %}">
       <a href="{{ link.url }}">{{ link.title }}</a>
     </li>

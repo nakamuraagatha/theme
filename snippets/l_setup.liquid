@@ -2,14 +2,15 @@
   {% assign missing = '' %}
   {% assign locale = 'de' %}
   {% assign locale_prefix = ''  %}
-  {% assign ti = 0 %}
-  {% assign locale_canonical_url = canonical_url %}
+  {% assign locale_prefix_t = ''  %}
   {% assign locale_shop_domain = request.host %}
+  {% assign locale_canonical_url = canonical_url %}
   {% assign locale_shop_url = 'http://' | append: locale_shop_domain %}
+  {% assign ti = 0 %}
   {% if locale_shop_domain contains 'playmakers-football.com' %}
     {% assign locale = 'en' %}
     {% assign locale_prefix = locale | append: '-'  %}
+    {% assign locale_prefix_t = locale | append: '.'   %}
     {% assign ti = 1 %}
   {% endif %}
-  {% comment %}{{'aaaaa' | split: '|' | slice: ti}}{% endcomment %}
 {% endcapture %}

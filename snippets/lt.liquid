@@ -1,10 +1,9 @@
 {% capture dummy2 %}
-  {% assign lk = locale | append: '.' | append: lt %}
+  {% assign lk = locale_prefix_t | append: lt %}
   {% assign translation = lk | t %}
   {% if translation contains 'missing' %}
-    {% assign lk = lt %}
-    {% assign translation = lk | t %}
-    {% assign missing = missing | append: lt | append: ', ' %}
+    {% assign missing = missing | append: lk | append: ', ' %}
+    {% assign translation = lt | t %}
   {% endif %}
   {% assign t = translation %}
 {% endcapture %}
