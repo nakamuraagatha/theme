@@ -373,10 +373,15 @@
       "payment": {
         "gift_card_code_label": "Geschenkgutschein:"
       }
-    },
-    "links": {
-      "powered_by_shopify": " "
     }
+  },
+  "redirects": {
+    "en-news": "",
+    "revocation-right":"",
+    "data-protection-declaration": "http://www.playmakers-football.de/pages/datenschutz",
+    "business-terms-and-customer-information":"",
+    "payment-and-dispatch":"",
+    "imprint":""
   },
   "en": {
     "date_formats": {

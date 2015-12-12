@@ -13,4 +13,17 @@
     {% assign locale_prefix_t = locale | append: '.'   %}
     {% assign ti = 1 %}
   {% endif %}
+
+  {% if template contains 'page' %}
+    {% assign handle = page.handle %}
+  {% elsif template contains 'blog' %}
+    {% assign handle = blog.handle %}
+  {% endif %}
+  {% if handle %}
+    {% assign handle = handle | prepend: 'redirects.' %}
+    {% include 'l' with handle %}{% unless translation contains 'missing' %}
+      {% comment %}{% layout 'redirect' %}{% endcomment %}
+      {% assign redirect_to_url = translation %}
+    {% endunless %}
+  {% endif %}
 {% endcapture %}

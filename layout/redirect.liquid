@@ -1,0 +1,19 @@
+{% include 'l_setup' %}<!DOCTYPE HTML>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="1;url={{ redirect_to_url }}">
+    <script type="text/javascript">
+        window.location.href = "{{ redirect_to_url }}"
+    </script>
+    <title>Page Redirection</title>
+    <!-- <link rel="alternate" hreflang="es" href="{{ redirect_to_url }}" /> -->
+    <link rel="canonical" href="{{ redirect_to_url }}"/>
+
+    {% capture header %}{{ content_for_header }}{% endcapture %}
+  </head>
+  <body>
+    If you are not redirected automatically, follow the <a href='{{ redirect_to_url }}'>link to example</a>
+    {% capture layout %}{{ content_for_layout }}{% endcapture %}
+  </body>
+</html>
