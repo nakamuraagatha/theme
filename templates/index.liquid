@@ -76,7 +76,8 @@
     <div class="grid__item large--one-quarter medium--one-half small--one-whole">
       <div class="product-grid-image">
         <div class="product-grid-image--centered">
-          {{ article.excerpt }}
+          {% assign image_alt = article.title | escape %}
+          {{ article | img_url: '1024x1024' | img_tag: image_alt }}
         </div>
       </div>
 

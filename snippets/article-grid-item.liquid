@@ -9,18 +9,23 @@
   <a href="{{ article.url }}" class="product-grid__item text-left">
     <div class="product-grid-image">
       <div class="product-grid-image--centered">
-        {% if article.excerpt contains "<img" %}
-          {% assign src = article.excerpt | split: 'src="' %}
-          {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
-          {% if src %}
-            <img src="{{src }}" alt="{{ article.title | escape }}">
-          {% endif %}
+        {% assign image_alt = article.title | escape %}
+        {% if article.image %}
+          {{ article | img_url: '1024x1024' | img_tag: image_alt }}
         {% else %}
-         {% if article.content contains "<img" %}
-            {% assign src = article.content | split: 'src="' %}
-            {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
+          {% if article.excerpt contains "<img" %}
+            {% assign src = article.excerpt | split: 'src="' %}
+            {% assign src = src[1] | split: '"' | first %}
             {% if src %}
-              <img src="{{src }}" alt="{{ article.title | escape }}">
+              <img src="{{src }}" alt="{{ image_alt }}">
+            {% endif %}
+          {% else %}
+           {% if article.content contains "<img" %}
+              {% assign src = article.content | split: 'src="' %}
+              {% assign src = src[1] | split: '"' | first %}
+              {% if src %}
+                <img src="{{src }}" alt="{{ image_alt }}">
+              {% endif %}
             {% endif %}
           {% endif %}
         {% endif %}

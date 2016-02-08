@@ -5,7 +5,7 @@
   {% assign locale_prefix_t = ''  %}
   {% assign locale_shop_domain = request.host %}
   {% assign locale_canonical_url = canonical_url %}
-  {% assign locale_shop_url = 'http://' | append: locale_shop_domain %}
+  {% assign locale_shop_url = 'https://' | append: locale_shop_domain %}
   {% assign ti = 0 %}
   {% if locale_shop_domain contains 'playmakers-football.com' %}
     {% assign locale = 'en' %}
