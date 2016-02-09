@@ -1,0 +1,100 @@
+<style>
+  @font-face {
+      font-family: 'playmaker_3regular';
+      src: url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.eot');
+      src: url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.eot?#iefix') format('embedded-opentype'),
+           url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.woff') format('woff'),
+           url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.ttf') format('truetype'),
+           url('//cdn.shopify.com/s/files/1/0240/1531/t/5/assets/playmaker_3-webfont.svg#playmaker_3regular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+  }
+  @media print {
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #FAFAFA;
+    }
+
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    .slip {
+      margin-top: -28mm;
+      margin-left: -20mm;
+    }
+  }
+
+  .slip {
+    width: 55mm;
+    height: 148mm;
+    border: 1px solid black;
+    /* background-image: url(http://cdn.shopify.com/s/files/1/0240/1531/files/bg.png?13893); */
+    background-image: url(http://cdn.shopify.com/s/files/1/0240/1531/files/bg.png);
+    background-size: 100% auto;
+    padding-left: 50mm;
+  }
+
+  .slip p {
+    line-height: 7mm;
+    margin: 0;
+    padding: 0;
+    font-size: 5mm;
+    padding-bottom: 3mm;
+    font-family: 'playmaker_3regular';
+    overflow: hidden;
+  }
+
+  .sender {
+    height: 65mm;
+    width: 55mm;
+    margin-top: 15mm;
+  }
+  .recipient {
+    height: 75mm;
+    width: 55mm;
+  }
+
+  .printer-preview-content {
+    padding: 0px;
+  }
+
+ .rotate {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+    position: relative;
+ }
+
+/*
+ .recipient .rotate {
+   top: 15mm;
+ }
+
+.sender .rotate {
+  top: 10mm;
+  width: 55mm;
+  left: -5mm;
+ } */
+</style>
+<div class="slip">
+   <div class="sender">
+        <div class="rotate">
+            <p>{{ shop.name }}</br>
+            {{ shop.address }}<br>
+           {{ shop.zip | upcase }} {{ shop.city | upcase}}</p>
+        </div>
+    </div>
+    <div class="recipient">
+        <div class="rotate">
+          <p>{{ shipping_address.name }}<br>
+          {{ shipping_address.street }}<br>
+          {{ shipping_address.zip | upcase }} {{ shipping_address.city | upcase}}<br>
+          {{ shipping_address.country | upcase}}</p>
+        </div>
+    </div>
+</div>
