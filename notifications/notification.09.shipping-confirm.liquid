@@ -1,26 +1,41 @@
-# Playmakers - Versandbestätigung Bestellung {{ name }}
+# Playmakers - Versandbestätigung & Rechnung {{ name }}
 
-Hallo {{ billing_address.name }},
+Hallo {{ billing_address.first_name }},
 
-heute haben wir deine Bestellung verschickt an:
+heute haben wir deine Bestellung an folgende Adresse verschickt:
 
   {{ shipping_address.name }}
   {{ shipping_address.address1 }}
   {{ shipping_address.address2 }}
   {{ shipping_address.zip }} {{ shipping_address.city }}
 
+Mit diesem Equipment:
+
   {% for line in fulfillment.line_items %}{{ line.quantity }}x {{ line.title }}
   {% endfor %}
 
-{% if fulfillment.tracking_number %}Von DHL haben wir folgende Versandnummer erhalten, mit der du deine Sendung verfolgen kannst:
-{% for tracking_number in fulfillment.tracking_numbers %}{{ tracking_number }}
+{% if fulfillment.tracking_number %}Die Sendung hat die DHL Versandnummer {% for tracking_number in fulfillment.tracking_numbers %}{{ tracking_number }}{% endfor %}. Unter folgendem Link kannst du den Status überprüfen:
+{% for tracking_number in fulfillment.tracking_numbers %}https://nolp.dhl.de/nextt-online-public/set_identcodes.do?lang=de&idc={{ tracking_number }}
 {% endfor %}
 {% else %}Die Lieferung wurde an DHL übergeben, so dass sie in den nächsten Tagen bei dir eintreffen sollte.
 {% endif %}
 
-Wir wünschen dir viel Spaß mit den neuen Produkten freuen uns auf deinen nächsten Besuch - Be a Playmaker!
+Die Rechnung kannst du dir hier downloaden:
+
+https://www.playmakers-football.de/pages/rechnung?contact[r]={{ id  | times: 8767 }}&contact[o]={{ order_number }}
+
+Wir wünschen dir viel Spaß mit deinem neuen Equipment und freuen uns auf deinen nächsten Besuch - Be a Playmaker!
 
 Gruß
 Pascal
 ---
-Playmakers.de - Dein American Football Shop
+Playmakers-Football.de - Dein American Football Shop
+
+Like us on Facebook: https://www.facebook.com/playmakers.shop
+Follow us on Twitter:  https://twitter.com/playmakersfootb
+
+
+PM 24 Trading UG (haftungsbeschränkt)
+Geschäftsführer: Pascal Heck
+Handelsregister: Amtsgericht Charlottenburg, HRB 151649 B
+Sitz der Gesellschaft: Berlin
