@@ -1,0 +1,23 @@
+{% layout none %}<!DOCTYPE HTML>
+{% form 'contact' %}
+{% assign redirect_to_url = 'https://order-printer-emailer.herokuapp.com/download/d575da83f8ad04693c8f/' }}
+{% assign redirect_to_url = redirect_to_url | append: form.r | append: '/' %}
+{% assign redirect_to_url = redirect_to_url | append: form.o | append: '.pdf' %}
+{% endform %}
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="1;url={{ redirect_to_url }}">
+    <script type="text/javascript">
+        window.location.href = "{{ redirect_to_url }}"
+    </script>
+    <title>Page Redirection</title>
+    <!-- <link rel="alternate" hreflang="es" href="{{ redirect_to_url }}" /> -->
+
+    {% capture header %}{{ content_for_header }}{% endcapture %}
+  </head>
+  <body>
+    If you are not redirected automatically, follow the <a href='{{ redirect_to_url }}'>link</a>
+    {% capture layout %}{{ content_for_layout }}{% endcapture %}
+  </body>
+</html>
