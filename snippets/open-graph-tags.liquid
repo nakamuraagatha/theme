@@ -3,8 +3,8 @@
   <meta property="og:title" content="{{ product.vendor}} {{ product.title | strip_html | escape }}">
   <meta property="og:url" content="{{ locale_canonical_url }}">
   {% for image in product.images limit:3 %}
-  <meta property="og:image" content="http:{{ image.src | img_url: 'grande' }}">
-  <meta property="og:image:secure_url" content="https:{{ image.src | img_url: 'grande' }}">
+  <meta property="og:image" content="http:{{ image.src | img_url: 'medium' }}">
+  <meta property="og:image:secure_url" content="https:{{ image.src | img_url: 'medium' }}">
   {% endfor %}
   <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html | escape }}">
   <meta property="og:price:currency" content="{{ shop.currency }}">
@@ -20,15 +20,8 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{ article.title | strip_html | escape }}">
   <meta property="og:url" content="{{ locale_canonical_url }}">
-  {% assign img_tag = '<' | append: 'img' %}
-  {% if article.excerpt_or_content contains img_tag %}
-    {% assign src = article.excerpt_or_content | split: 'src="' %}
-    {% assign src = src[1] | split: '"' | first | remove: 'https:' | remove: 'http:' %}
-    {% if src %}
-  <meta property="og:image" content="http:{{ src }}">
-  <meta property="og:image:secure_url" content="https:{{ src }}">
-    {% endif %}
-  {% endif %}
+  <meta property="og:image" content="http:{{ article | img_url: 'medium' }}">
+  <meta property="og:image:secure_url" content="https:{{ article | img_url: 'medium' }}">
 {% else %}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ page_title | escape }}">

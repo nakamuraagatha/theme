@@ -77,13 +77,13 @@
       <div class="product-grid-image">
         <div class="product-grid-image--centered">
           {% assign image_alt = article.title | escape %}
-          {{ article | img_url: '1024x1024' | img_tag: image_alt }}
+          {{ article | img_url: 'medium' | img_tag: image_alt }}
         </div>
       </div>
 
       <h4>{{ article.title }}</h4>
 
-      <div class="atricle-item--text">
+      <div class="article-item--text">
         {{ article.content }}
       </div>
     </div>

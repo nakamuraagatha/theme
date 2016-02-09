@@ -10,32 +10,13 @@
     <div class="product-grid-image">
       <div class="product-grid-image--centered">
         {% assign image_alt = article.title | escape %}
-        {% if article.image %}
-          {{ article | img_url: '1024x1024' | img_tag: image_alt }}
-        {% else %}
-          {% if article.excerpt contains "<img" %}
-            {% assign src = article.excerpt | split: 'src="' %}
-            {% assign src = src[1] | split: '"' | first %}
-            {% if src %}
-              <img src="{{src }}" alt="{{ image_alt }}">
-            {% endif %}
-          {% else %}
-           {% if article.content contains "<img" %}
-              {% assign src = article.content | split: 'src="' %}
-              {% assign src = src[1] | split: '"' | first %}
-              {% if src %}
-                <img src="{{src }}" alt="{{ image_alt }}">
-              {% endif %}
-            {% endif %}
-          {% endif %}
-        {% endif %}
-
+        {{ article | img_url: 'medium' | img_tag: image_alt }}
       </div>
     </div>
 
     <p class="h6">{{ article.title }}</p>
 
-    <div class="atricle-item--text">
+    <div class="article-item--text">
       {{ article.excerpt | strip_html }}
     </div>
 
