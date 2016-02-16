@@ -70,7 +70,7 @@
       "continue": "Weiter Einkaufen",
       "checkout": "Zur Kasse",
       "empty": "Dein Einkaufswagen ist im Moment leer.",
-      "continue_browsing_html": "Mit der Suche <a href=\"\/collections\/all\">hier<\/a> fortfahren.",
+      "continue_browsing_html": "<a href=\"\/collections\/all\">Hier<\/a> findest Du unsere Football Produkte.",
       "or": "oder",
       "accept_html": "Ich bestätige die <a href=\"\/pages\/agb\" target=\"_blank\">Allgemeinen Geschäftsbedingungen.<\/a>",
       "view_cart": "Einkaufswagen ansehen",
@@ -273,7 +273,7 @@
       "language": "de",
       "more": "Mehr",
       "mobile_menu": "Menü",
-      "special_html": "<a href=\"\/pages\/versandkosten\" class=\"header-special fancybox fancybox.iframe\">Versandkosten frei ab 100 EUR<\/a>"
+      "special_html": "<a href=\"\/pages\/versandkosten\" class=\"header-special fancybox fancybox.iframe\">Versand frei ab 100,- €<\/a>"
     },
     "search_bar": {
       "placeholder": "Alle Artikel durchsuchen...",
