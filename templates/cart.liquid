@@ -1,0 +1,147 @@
+{% if cart.item_count > 0 %}
+
+  <h1 class="small--text-center">{{ 'cart.general.title' | t }}</h1>
+  <form action="/cart" method="post" novalidate class="cart">
+    <table class="responsive-table cart-table">
+      <thead class="cart__row visually-hidden">
+        <th colspan="2">{{ 'cart.label.product' | t }}</th>
+        <th>{{ 'cart.label.quantity' | t }}</th>
+        <th>{{ 'cart.label.total' | t }}</th>
+      </thead>
+      <tbody id="CartProducts">
+        {% for item in cart.items %}
+          <tr class="cart__row responsive-table__row">
+            <td class="cart__cell--image text-center">
+              <a href="{{ item.url | within: collections.all }}" class="cart__image">
+                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+              </a>
+            </td>
+            <td>
+              <a href="{{ item.url }}" class="h5">
+                {{ item.product.title }}
+              </a>
+              {% unless item.variant.title contains 'Default' %}
+                <p>{{ item.variant.title }}</p>
+              {% endunless %}
+
+              {% if settings.product_vendor_enable %}
+                <p>{{ item.vendor }}</p>
+              {% endif %}
+
+              {% comment %}
+                Optional, loop through custom product line items if available
+
+                Line item properties come in as having two parts. The first part will be passed with the default form,
+                but p.last is the actual custom property and may be blank. If it is, don't show it.
+
+                For more info on line item properties, visit:
+                  - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+              {% endcomment %}
+              {% assign property_size = item.properties | size %}
+              {% if property_size > 0 %}
+                {% for p in item.properties %}
+                  {% unless p.last == blank %}
+                    {{ p.first }}:
+
+                    {% comment %}
+                      Check if there was an uploaded file associated
+                    {% endcomment %}
+                    {% if p.last contains '/uploads/' %}
+                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                    {% else %}
+                      {{ p.last }}
+                    {% endif %}
+
+                  {% endunless %}
+                {% endfor %}
+              {% endif %}
+            </td>
+            <td class="cart__cell--quantity">
+              <label for="Updates_{{ item.id }}" class="cart__quantity-label medium-up--hide">{{ 'cart.label.quantity' | t }}</label>
+              <input type="number" name="updates[]" id="Updates_{{ item.id }}" class="cart__quantity" value="{{ item.quantity }}" min="0" data-line="{{ forloop.index }}">
+            </td>
+            <td class="cart__cell--total">
+              <span class="cart__item-total">
+                {{ item.line_price | money }}
+              </span>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="grid cart__row">
+      {% if settings.cart_notes_enable %}
+        <div class="grid__item medium-up--one-half">
+          <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+          <textarea name="note" id="CartSpecialInstructions" class="cart__note">{{ cart.note }}</textarea>
+        </div>
+      {% endif %}
+      <div class="grid__item cart__buttons text-right small--text-center{% if settings.cart_notes_enable %} medium-up--one-half{% endif %}">
+        <p class="h3 cart__subtotal" id="CartSubtotal">{{ cart.total_price | money }}</p>
+        <p class="cart__taxes">{{ 'cart.general.shipping_at_checkout' | t }}</p>
+        <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
+        <input type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
+      </div>
+    </div>
+  </form>
+{% else %}
+  <div class="page-empty text-center">
+    <h1>{{ 'cart.general.title' | t }}</h1>
+    <p>{{ 'cart.general.empty' | t }}</p>
+    <hr>
+    <p>
+      <a href="/collections/all" class="btn">{{ 'cart.general.continue_browsing' | t }}</a>
+    </p>
+  </div>
+{% endif %}
+
+<script id="CartProductTemplate" type="text/template">
+  {% raw %}
+    {{#items}}
+    <tr class="cart__row responsive-table__row">
+      <td class="cart__cell--image text-center">
+        <a href="{{ url }}" class="cart__image">
+          <img src="{{ img }}" alt="{{ name }}">
+        </a>
+      </td>
+      <td>
+        <a href="{{ url }}" class="h5">
+          {{{ name }}}
+        </a>
+        {{#if variation}}
+          <p>{{variation}}</p>
+        {{/if}}
+
+        {% endraw %}{% if settings.product_vendor_enable %}{% raw %}
+          <p>{{ vendor }}</p>
+        {% endraw %}{% endif %}{% raw %}
+
+        {{#properties}}
+          {{#each this}}
+            {{#if this}}
+              <p>{{@key}}: {{this}}</p>
+            {{/if}}
+          {{/each}}
+        {{/properties}}
+      </td>
+      <td class="cart__cell--quantity">
+        <label for="Updates_{{ id }}" class="cart__quantity-label medium-up--hide">
+          {% endraw %}{{ 'cart.label.quantity' | t }}</label>{% raw %}
+        <input type="number" name="updates[]" id="Updates_{{ id }}" value="{{ itemQty }}" min="0" data-line="{{ line }}">
+      </td>
+      <td class="cart__cell--total">
+        <span class="cart__item-total">
+          {{{ price }}}
+        </span>
+      </td>
+    </tr>
+    {{/items}}
+  {% endraw %}
+</script>
+
+<script>
+  // Hold on to current cart object to check against
+  // available inventory before updating cart in
+  // quantity-selectors.js
+  window.cartObject = {{ cart | json }};
+</script>
