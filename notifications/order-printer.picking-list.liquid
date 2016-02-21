@@ -1,0 +1,56 @@
+<style>
+@media print {
+  @page {
+    size: portrait;
+   }
+
+  .printer-inline-preview.printer-inline-preview-161750 {
+    page-break-before: avoid;
+  }
+
+ .printer-preview-content {
+   font-size: 10pt;
+ }
+
+ .box.disabled {
+   display: block !important;
+  }
+
+ .box.printer-sidebar-template-box, .box-header {
+   display: none !important;
+ }
+}
+
+.printer-inline-preview-161750 .printer-preview-content {
+  padding: 10px;
+  margin: 0px;
+}
+
+.printer-inline-preview-161750 .printer-preview-top {
+  display: none;
+}
+</style>
+
+{% assign done = '' %}
+<table width="100%" class="products">
+  <tbody>
+    {% assign types = "Helme,Schulterpolster,Handschuhe,Schuhe,Bekleidung,Bälle,Zubehör,Zubehör Helme,Zubehör Schulterpolster,Other" | split: ',' %}
+    {% for product_type in types %}
+        {% for line_item in line_items %}
+            {% if (product_type == line_item.product.type) or (product_type == 'Other') %}
+                {% if done contains line_item.title %}
+                {% else %}
+                    {% assign done = done | append: line_item.title | append: '|' %}
+                    <tr>
+                        <td width="50">#{{ order_number }}</td>
+                        <td width="100">{{ line_item.product.type | replace: 'Zubehör', 'Zub.' }}</td>
+                        <td width="30">{{ line_item.quantity }}x</td>
+                        <td>{{ line_item.vendor }} {{ line_item.product.title }} - {{ line_item.variant.title }}</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+  </tbody>
+</table>
+
