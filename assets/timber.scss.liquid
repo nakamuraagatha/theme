@@ -131,6 +131,33 @@ $max: max-width;
 }
 
 /*============================================================================
+  Fonts
+==============================================================================*/
+
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+
+@font-face {
+  font-family: 'icons';
+  src: url('{{ "icons.eot" | asset_url }}');
+  src: url('{{ "icons.eot" | asset_url }}#iefix') format("embedded-opentype"),
+       url('{{ "icons.woff" | asset_url }}') format("woff"),
+       url('{{ "icons.ttf" | asset_url }}') format("truetype"),
+       url('{{ "icons.svg" | asset_url }}#timber-icons') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'playmakers';
+  src: url(' {{ "playmakers.eot" | asset_url }} ');
+  src: url(' {{ "playmakers.eot" | asset_url }}?#iefix ') format('embedded-opentype'),
+       url(' {{ "playmakers.woff" | asset_url }} ') format('woff'),
+       url(' {{ "playmakers.ttf" | asset_url }} ') format('truetype'),
+       url(' {{ "playmakers.svg" | asset_url }}#playmakers ') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/*============================================================================
   Ajaxify Cart - General
 ==============================================================================*/
 .ajaxcart__content {
