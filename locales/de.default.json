@@ -50,6 +50,21 @@
         "other": "{{ count }} Kommentare"
       }
     },
+    "feedback": {
+      "title": "Gib uns Dein Feedback",
+      "name": "Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "post": "Feedback posten",
+      "moderated": "Bitte beachte, dass Dein Feedback zur Veröffentlichung aus rechtlichen Gründen zuerst freigegeben werden muss.",
+      "success_moderated": "Dein Feedback wurde erfolgreich gepostet und wird in kürzester Zeit veröffentlicht.",
+      "success": "Dein Feedback wurde erfolgreich gepostet. Danke!",
+      "comments_with_count": {
+        "zero": "0 Kommentare",
+        "one": "1 Feedback",
+        "other": "{{ count }} Feedback"
+      }
+    },
     "sidebar": {
       "recent_articles": "Neueste Artikel im Fooball Blog",
       "newsletter": "Football Newsletter",

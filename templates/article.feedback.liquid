@@ -1,0 +1,131 @@
+{% include 'l_setup' %}
+{% assign number_of_comments = article.comments_count %}
+
+{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count | plus: 1 %}
+{% endif %}
+
+{% include 'breadcrumb' %}
+
+<div class="grid grid-border">
+
+  <div class="grid__item large--four-fifths grid-border--right article-content">
+    <div class="grid">
+      <div class="grid__item large--ten-twelfths push--large--one-twelfth">
+
+        <header class="section-header">
+          <div class="section-header__left">
+            <h1>{{ article.title }}</h1>
+          </div>
+        </header>
+
+        <div class="rte">
+          {{ article.content }}
+        </div>
+
+        {% if blog.comments_enabled? %}
+
+          <hr>
+
+          {% paginate article.comments by 10 %}
+
+          <div id="comments">
+
+            {% if comment and comment.created_at %}
+            <p class="note form-success">
+              {% if blog.moderated? %}
+                {% include 'l' with 'blogs.feedback.success_moderated' %}
+              {% else %}
+                {% include 'l' with 'blogs.feedback.success' %}
+              {% endif %}
+            </p>
+            {% endif %}
+
+            {% if number_of_comments > 0 %}
+              <ul>
+                {% if comment and comment.created_at %}
+                <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+
+                  {% include 'feedback' %}
+
+                </li>
+                {% endif %}
+
+                {% for comment in article.comments %}
+                <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+
+                  {% include 'feedback' %}
+
+                </li>
+                {% endfor %}
+
+              </ul>
+
+              <hr>
+
+              {% if paginate.pages > 1 %}
+              <div class="text-center">
+                {% include 'pagination-custom' %}
+              </div>
+              {% endif %}
+
+            {% endif %}
+
+            <div id="write-comment">
+              {% form 'new_comment', article %}
+
+                <p class="h1" id="add-comment-title">{% include 'l' with 'blogs.feedback.title' %}</p>
+
+                {% include 'form-errors-custom' %}
+
+                <div class="grid">
+
+                  <div class="grid__item large--one-half">
+                    <label for="comment-author" class="hidden-label">{% include 'l' with 'blogs.feedback.name' %}</label>
+                    <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{% include 'l' with 'blogs.feedback.name' %}" id="comment-author" value="{{ form.author }}">
+
+                    <label for="comment-email" class="hidden-label">{% include 'l' with 'blogs.feedback.email' %}</label>
+                    <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{% include 'l' with 'blogs.feedback.email' %}" id="comment-email" value="{{ form.email }}">
+                  </div>
+
+                  <div class="grid__item">
+                    <label for="comment-body" class="hidden-label">{% include 'l' with 'blogs.feedback.message' %}</label>
+                    <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body" placeholder="{% include 'l' with 'blogs.feedback.message' %}">{{ form.body }}</textarea>
+                  </div>
+
+                </div>
+
+                {% if blog.moderated? %}
+                  <p class="text-light"><em>{% include 'l' with 'blogs.feedback.moderated' %}</em></p>
+                {% endif %}
+
+                <input type="submit" class="btn" value="{% include 'l' with 'blogs.feedback.post' %}">
+
+                {% if form.errors %}
+                  <script>
+                    window.location.hash = '#add-comment-title';
+                  </script>
+                {% endif %}
+
+                {% if form.posted_successfully? %}
+                  <script>
+                    window.location.hash = '#comments';
+                  </script>
+                {% endif %}
+
+              {% endform %}
+            </div>
+
+          </div>
+
+          {% endpaginate %}
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <aside class="sidebar grid__item large--one-fifth">
+    {% include 'blog-sidebar' %}
+  </aside>
+</div>
