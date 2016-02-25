@@ -341,7 +341,7 @@
   },
   "pages": {
     "preorder": {
-      "description_html": "Danke für dein Interesse. Wir benachrichtigen dich sobald du <strong>{{ form_product }}</strong> wieder bei Playmakers Football bestellen kannst.",
+      "description_html": "Danke für dein Interesse. Wir benachrichtigen dich sobald du <strong>{{ form_product }}<\/strong> wieder bei Playmakers Football bestellen kannst.",
       "name": "Dein Name:",
       "email": "Deine Emailadresse:",
       "submit": "Verfügbarkeitsbenachrichtigung aktivieren"
@@ -387,16 +387,20 @@
       },
       "payment": {
         "gift_card_code_label": "Geschenkgutschein:"
+      },
+      "contact": {
+        "address1_label": "Straße mit Hausnummer",
+        "address1_placeholder": "z.B. Hauptstraße 23"
       }
     }
   },
   "redirects": {
     "en-news": "",
-    "revocation-right":"",
-    "data-protection-declaration": "http://www.playmakers-football.de/pages/datenschutz",
-    "business-terms-and-customer-information":"",
-    "payment-and-dispatch":"",
-    "imprint":""
+    "revocation-right": "",
+    "data-protection-declaration": "http:\/\/www.playmakers-football.de\/pages\/datenschutz",
+    "business-terms-and-customer-information": "",
+    "payment-and-dispatch": "",
+    "imprint": ""
   },
   "en": {
     "date_formats": {
@@ -409,7 +413,7 @@
       },
       "404": {
         "title": "404 Page Not Found",
-        "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
+        "subtext_html": "The page you requested does not exist. Click <a href=\"\/collections\/all\">here<\/a> to continue shopping."
       },
       "breadcrumbs": {
         "home": "Home",
@@ -417,7 +421,7 @@
       },
       "forms": {
         "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:",
-        "post_field_error_html": "The <strong>{{ field }}</strong> {{ error }}"
+        "post_field_error_html": "The <strong>{{ field }}<\/strong> {{ error }}"
       },
       "search": {
         "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
@@ -469,7 +473,7 @@
         "update": "Update cart",
         "checkout": "Checkout",
         "empty": "Your cart is currently empty.",
-        "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
+        "continue_browsing_html": "Continue browsing <a href=\"\/collections\/all\">here<\/a>.",
         "or": "or",
         "view_cart": "View Cart",
         "close_cart": "Close Cart",
@@ -557,7 +561,7 @@
         "city": "City",
         "country": "Country",
         "province": "Province",
-        "zip": "Postal/Zip Code",
+        "zip": "Postal\/Zip Code",
         "phone": "Phone",
         "set_default": "Set as default address?",
         "add": "Add Address",
@@ -637,7 +641,7 @@
       "featured_collections": {
         "heading": "Shop For",
         "more_categories": "More categories",
-        "no_collections_html": "You don't have any collections to show here. <a href=\"/admin/themes/\">Add some featured collections</a> in your theme settings.",
+        "no_collections_html": "You don't have any collections to show here. <a href=\"\/admin\/themes\/\">Add some featured collections<\/a> in your theme settings.",
         "collection_image": "Collection Image",
         "example_collection": "Example Collection"
       },
@@ -725,7 +729,7 @@
     },
     "pages": {
       "preorder": {
-        "description_html": "TODO: Danke für dein Interesse. Wir benachrichtigen dich sobald du <strong>{{ form_product }}</strong> wieder bei Playmakers Football bestellen kannst.",
+        "description_html": "TODO: Danke für dein Interesse. Wir benachrichtigen dich sobald du <strong>{{ form_product }}<\/strong> wieder bei Playmakers Football bestellen kannst.",
         "name": "Your name:",
         "email": "Your Emailaddress:",
         "submit": "TODO: Verfügbarkeitsbenachrichtigung aktivieren"
