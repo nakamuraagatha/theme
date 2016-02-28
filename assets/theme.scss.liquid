@@ -173,7 +173,7 @@ $color-success: #fff;
 $color-success-bg: #59ac6c;
 
 /*================ Sizing Variables ================*/
-$width-site: 1180px;
+$width-site: 2400px;
 $gutter-site: 20px;
 $gutter-heading: 20px;
 $logo-max-width: {{ settings.logo_max_width | default: '450' | remove: 'px' | append: 'px'}};
@@ -2503,6 +2503,16 @@ $slick-opacity-not-active: 0.25;
   }
 }
 
+@font-face {
+  font-family: 'playmakers';
+  src: url(' {{ "playmakers.eot" | asset_url }} ');
+  src: url(' {{ "playmakers.eot" | asset_url }}?#iefix ') format('embedded-opentype'),
+       url(' {{ "playmakers.woff" | asset_url }} ') format('woff'),
+       url(' {{ "playmakers.ttf" | asset_url }} ') format('truetype'),
+       url(' {{ "playmakers.svg" | asset_url }}#playmakers ') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /*================ MODULES ================*/
 /*================ Site Header ================*/
@@ -4756,3 +4766,60 @@ body.modal--is-active {
   }
 }
 
+/*================ Featured collection card ================*/
+
+.site-header__logo {
+  margin: 0;
+  font-family: 'playmakers';
+  font-size: 35pt;
+  max-height: 65px;
+  overflow: hidden;
+  padding-left: 110px;
+
+  a,
+  a:hover,
+  a:focus {
+    text-decoration: none;
+    letter-spacing: 0;
+    font-weight: bold;
+  }
+
+  img {
+    margin: 10px;
+    height: 120px;
+    width: inherit;
+    position: absolute;
+    left: 0px;
+    z-index: 100;
+  }
+}
+
+.site-header__upper {
+  padding-top: em(5);
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+#StickNavWrapper {
+  overflow-x: scroll;
+  padding-left: em(100);
+}
+
+#SiteNav {
+  width: 100%;
+  display: table;
+  li {
+    display: table-cell;
+  }
+}
+
+.site-nav__link {
+  color: #FFF;
+  padding: 7px;
+  font-size: 1.2em;
+  font-family: "Unica One","HelveticaNeue","Helvetica Neue",sans-serif;
+}
+
+.hero__title {
+  font-size: em(30);
+}

@@ -54,7 +54,7 @@
   <div class="grid grid--no-gutters grid--uniform">
 
     {% for product in collection.products %}
-      <div class="grid__item small--one-half medium-up--one-fifth">
+      <div class="grid__item small--one-half {% comment %}medium-up--one-fifth{% endcomment %}medium-up--one-third">
         {% include 'product-card', product: product %}
       </div>
     {% else %}
