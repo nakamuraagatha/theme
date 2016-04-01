@@ -391,6 +391,9 @@
       "contact": {
         "address1_label": "Straße mit Hausnummer",
         "address1_placeholder": "z.B. Hauptstraße 23"
+      },
+      "general": {
+        "consent_notice_for_european_customers": " "
       }
     }
   },

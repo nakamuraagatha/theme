@@ -306,193 +306,6 @@
         "content": "Header Styles"
       },
       {
-        "type": "select",
-        "id": "type_header_family",
-        "label": "Header Family",
-        "options": [
-          {
-            "value": "'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
-            "label": "Avant Garde",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "'Gill Sans', 'Gill Sans MT', Calibri, sans-serif",
-            "label": "Gill Sans",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-            "label": "Helvetica Neue",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
-            "label": "Arial",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif",
-            "label": "Candara",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Geneva, Tahoma, Verdana, sans-serif",
-            "label": "Geneva",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Google_Droid+Sans_400_sans",
-            "label": "Droid Sans",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Droid+Sans_700_sans",
-            "label": "Droid Sans Bold",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Lato_400_sans",
-            "label": "Lato",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Lato_700_sans",
-            "label": "Lato Bold",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Montserrat_700_sans",
-            "label": "Montserrat Bold",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Open+Sans_400_sans",
-            "label": "Open Sans",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Open+Sans_700_sans",
-            "label": "Open Sans Bold",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_PT+Sans_400_sans",
-            "label": "PT Sans",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_PT+Sans_700_sans",
-            "label": "PT Sans Bold",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Roboto_400_sans",
-            "label": "Roboto",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Roboto_700_sans",
-            "label": "Roboto Bold",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Ubuntu_400_sans",
-            "label": "Ubuntu",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Ubuntu_700_sans",
-            "label": "Ubuntu Bold",
-            "group": "Sans-serif | Google Web Fonts"
-          },
-          {
-            "value": "'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif",
-            "label": "Big Calson",
-            "group": "Serif"
-          },
-          {
-            "value": "'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif",
-            "label": "Calisto MT",
-            "group": "Serif"
-          },
-          {
-            "value": "Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif",
-            "label": "Baskerville",
-            "group": "Serif"
-          },
-          {
-            "value": "Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif",
-            "label": "Garamond",
-            "group": "Serif"
-          },
-          {
-            "value": "TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif",
-            "label": "Times New Roman",
-            "group": "Serif"
-          },
-          {
-            "value": "Google_Arvo_400_serif",
-            "label": "Arvo",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Arvo_700_serif",
-            "label": "Arvo Bold",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Crimson+Text_400_serif",
-            "label": "Crimson Text",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Crimson+Text_700_serif",
-            "label": "Crimson Text Bold",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Droid+Serif_400_serif",
-            "label": "Droid Serif",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Droid+Serif_700_serif",
-            "label": "Droid Serif Bold",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Lora_400_serif",
-            "label": "Lora",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Lora_700_serif",
-            "label": "Lora Bold",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_PT+Serif_400_serif",
-            "label": "PT Serif",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_PT+Serif_700_serif",
-            "label": "PT Serif Bold",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Vollkorn_400_serif",
-            "label": "Vollkorn",
-            "group": "Serif | Google Web Fonts"
-          },
-          {
-            "value": "Google_Vollkorn_700_serif",
-            "label": "Vollkorn Bold",
-            "group": "Serif | Google Web Fonts"
-          }
-        ]
-      },
-      {
         "type": "checkbox",
         "id": "type_header_transform",
         "label": "Capitalize Headers"
@@ -762,16 +575,6 @@
     "settings": [
       {
         "type": "checkbox",
-        "id": "footer_quicklinks_enable",
-        "label": "Show quick links"
-      },
-      {
-        "type": "link_list",
-        "id": "footer_quicklinks_linklist",
-        "label": "Quick links link list"
-      },
-      {
-        "type": "checkbox",
         "id": "footer_social_enable",
         "label": "Show social media links"
       },
@@ -830,17 +633,6 @@
         "id": "mailing_list_form_action",
         "label": "MailChimp Form Action URL",
         "info": "[Where do I find my MailChimp form action URL?](http:\/\/docs.shopify.com\/support\/configuration\/store-customization\/where-do-i-get-my-mailchimp-form-action)"
-      },
-      {
-        "type": "checkbox",
-        "id": "footer_legallinks_enable",
-        "label": "Show Legal Links",
-        "info": "Links appearing next to the copyright"
-      },
-      {
-        "type": "link_list",
-        "id": "footer_legallinks_linklist",
-        "label": "Legal Link List"
       }
     ]
   },
@@ -850,11 +642,6 @@
       {
         "type": "header",
         "content": "Content"
-      },
-      {
-        "type": "page",
-        "id": "home_content",
-        "label": "Add this page to the home page"
       },
       {
         "type": "header",
@@ -1061,17 +848,6 @@
         "label": "Show Quantity Selector"
       },
       {
-        "type": "checkbox",
-        "id": "product_quantity_message",
-        "label": "Show Remaining Quantity Message",
-        "info": "Displays when less than 10 items remain in stock."
-      },
-      {
-        "type": "checkbox",
-        "id": "product_vendor_enable",
-        "label": "Show Product Vendor"
-      },
-      {
         "type": "header",
         "content": "Related Products"
       },
@@ -1236,23 +1012,6 @@
         "type": "checkbox",
         "id": "share_google",
         "label": "+1 on Google Plus"
-      }
-    ]
-  },
-  {
-    "name": "Price Format",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "remove_dollar_symbol",
-        "label": "Remove dollar symbol",
-        "info": "Remove the '$' symbol from all prices."
-      },
-      {
-        "type": "checkbox",
-        "id": "superscript_decimals",
-        "label": "Apply superscript styling to cents",
-        "info": "Show cents half a character above the normal line and in a smaller font."
       }
     ]
   }
