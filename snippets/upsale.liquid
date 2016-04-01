@@ -1,0 +1,33 @@
+<link rel="stylesheet" media="screen" href="https://incartupsell.herokuapp.com/assets/themes-78b038cafe8e9696367aaa7959f2da02.css">
+<div id="nudge-offer" class="cart__row blank with-image product">
+  <img src="//cdn.shopify.com/s/files/1/0240/1531/products/Playmakers_Tshirt_small.jpg" class="product-image">
+  <div class="nudge-wrapper">
+    Nimm Dir noch ein Playmakers T-Shirt mit!
+    <form action="/cart/add" class="variants" id="product-actions" method="post">
+      <input name="quantity" type="hidden" value="1">
+      <span class="variants-wrapper">
+        <select id="product-select" name="id" onchange="handleProductChange(this)">
+          <option value="844217197" data-image-url="">
+            XXXL / Grau / Baumwolle/ Viskose (EUR19.85)
+          </option>
+          <option value="844217125" data-image-url="">
+            XXL / Grau / Baumwolle/ Viskose (EUR19.85)
+          </option>
+          <option value="672063229" data-image-url="">
+            XL / Grau / Baumwolle/ Viskose (EUR19.85)
+          </option>
+          <option value="672063193" data-image-url="">
+            L / Grau / Baumwolle/ Viskose (EUR19.85)
+          </option>
+          <option value="672062709" data-image-url="">
+            M / Grau / Baumwolle/ Viskose (EUR19.85)
+          </option>
+          <option value="672062581" data-image-url="">
+            S / Grau / Baumwolle/ Viskose (EUR19.85)
+          </option>
+        </select>
+      </span>
+      <input class="bttn" id="add-to-cart" name="add" type="submit" value="Hinzufügen" onclick="ga('nudge.send', 'event', 'playmaker.myshopify.com', 'clickOffer-a', '509');">
+    </form>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+{% include 'l_setup' %}
+{% include 'breadcrumb' %}
+
+{% assign variant = product.selected_or_first_available_variant %}
+
+<div class="grid new" id="product" itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="url" content="{{ locale_shop_url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+
+  <div class="grid__item large--one-half text-right">
+    <div class="grid">
+      <div class="grid__item large--eleven-twelfths text-center">
+        <div class="product-photo-container" id="productPhoto">
+          {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+          <img id="productPhotoImg" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" {% if settings.product_image_zoom_enable %} data-zoom="{{ featured_image | img_url: 'grande' }}"{% endif %}>
+        </div>
+        {% if product.images.size > 1 %}
+          <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
+
+            {% for image in product.images offset: 1 %}
+              {% if forloop.index < 5 %}
+                <li class="grid__item one-quarter">
+                  <a href="{{ image.src | img_url: 'large' }}" data-fancybox-group="group" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ image.alt | escape }}">
+                    <img src="{{ image.src | img_url: 'small' }}" alt="{{ product.vendor }} {{ image.alt | escape }}">
+                  </a>
+                </li>
+              {% else %}
+                <li class="grid__item one-quarter hidden">
+                  <a href="{{ image.src | img_url: 'large' }}" data-fancybox-group="group" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ image.alt | escape }}"></a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <a href="{{ product.images[1] | img_url: 'large' }}" data-fancybox-group="group" class="fancybox-thumb product-photo-thumb" title="{{ product.vendor }} {{ product.title | escape }}">{% include 'l' with 'products.product.more_gallery' %}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="grid__item large--one-half text-left">
+    <ul class="inline-list product-header">
+      <li class="product-vendor" itemprop="brand">{{ product.vendor }}</li>
+      <li><h2 class="product-title" itemprop="name">{{ product.title }}</h2></li>
+    </ul>
+
+    <div class="product-teaser">
+      Leider ist dieses Produkt nicht mehr verfügbar. Alter alternative empfehlen wir:
+      <br>
+    </div>
+
+    <div>
+      {% assign alternative = product.variants[0].sku %}
+      {% assign product = all_products[alternative] %}
+
+      <a href="{{ product.url }}" class="product-grid__item">
+        <div class="product-grid-image">
+          <div class="product-grid-image--centered">
+            {% if sold_out %}
+              <div class="badge badge--sold-out"><span class="badge-label">{% include 'l' with 'products.product.sold_out' %}</span></div>
+            {% endif %}
+            {% if on_sale %}
+              <div class="badge badge--on-sale"><span class="badge-label">{% include 'l' with 'products.product.on_sale' %}</span></div>
+            {% endif %}
+            <img src="{{ product.featured_image.src | img_url: image_size }}" alt="{{ product.vendor }} {{ product.featured_image.alt | escape }} preview">
+          </div>
+        </div>
+
+        <p class="h6">{{ product.vendor }} {{ product.title }}</p>
+        {% if on_sale %}
+          {% assign product_price = product.compare_at_price %}
+        {% else %}
+          {% assign product_price = product.price %}
+        {% endif %}
+
+        <div class="product-item--price">
+          {% if product.price_varies %}<small>ab</small>{% endif %}
+          <span class="h1">{{ product_price | money }}</span>
+
+          {% if on_sale %}
+            <span class="sale-price">{{ product.price | money }}</span>
+          {% endif %}
+        </div>
+        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      </a>
+    </div>
+
+    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+    </div>
+  </div>
+
+  <div class="grid__item one-whole">
+    <hr>
+  </div>
+
+  <div class="grid__item large--two-thirds push--large--one-sixth">
+    {% assign metafields = product.metafields.features %}
+    {% if metafields.size > 0 %}
+      <span class="h1">{% include 'l' with 'products.product.features' %}:</span>
+      <ul class="inline-list product-features">
+        {% for metafield in metafields %}
+          {% assign feature_details = metafield | last | split: '|' %}
+          {% assign cpage_description = cpage_description | append: feature_details[1] | append: ', ' %}
+          <li>
+            <img src="{{ 'feature_' | append: feature_details[0] | asset_url }}" alt="{{ feature_details[1] | escape}}" class="img-responsive"/>
+            <div class="caption">
+              <span>{{ feature_details[1] }}</span>
+              <p>{{ feature_details[2] }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <hr>
+    {% endif %}
+
+    {% if settings.related_products_enable %}
+      {% if product.type == "Helme" %}
+        {% assign collection_name = 'zubehor-' | append: product.handle %}
+        {% assign collection = collections[collection_name] %}
+      {% elsif product.type == "Schulterpolster" %}
+        {% assign collection = collections['american-football-schulterpolster-zubehoer'] %}
+      {% else %}
+        {% assign collection = collections['american-football'] %}
+      {% endif %}
+      {% assign grid_item_width = 'large--one-quarter medium--one-half small--one-half' %}
+      {% include 'related-products' %}
+    {% endif %}
+  </div>
+</div>
